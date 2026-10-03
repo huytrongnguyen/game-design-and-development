@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zone client</title>
+<style>
+  body { font: 14px system-ui, sans-serif; margin: 16px; display: grid; gap: 12px; max-width: 760px; }
+  #status { padding: 2px 8px; border-radius: 10px; background: #ccc; }
+  #status.on { background: #9d9; } #status.off { background: #e99; }
+  #map { position: relative; width: 400px; height: 400px; background: #f4f4ee; border: 1px solid #888; cursor: crosshair; }
+  .dot { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #36c; }
+  .dot.me { background: #c33; }
+  .dot span { position: absolute; left: 14px; top: -2px; font-size: 11px; white-space: nowrap; }
+  #log { height: 180px; overflow: auto; background: #111; color: #cde; padding: 6px; font: 12px ui-monospace, monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div>
+  <input id="name" value="player" maxlength="16"> <button id="connect">Connect</button>
+  <button id="disconnect">Disconnect</button> <span id="status" class="off">disconnected</span>
+</div>
+<div id="map" title="Click to move"></div>
+<div><input id="text" placeholder="chat message" size="40"> <button id="send">Send chat</button></div>
+<div id="log"></div>
+<script>
+  let ws = null, seq = 0, me = null;
+  const players = new Map();
+  const $ = id => document.getElementById(id);
+
+  function log(dir, text) {
+    const log = $('log');
+    log.textContent += dir + ' ' + text + '\n';
+    log.scrollTop = log.scrollHeight;
+  }
+  function setStatus(on, text) { $('status').className = on ? 'on' : 'off'; $('status').textContent = text; }
+  function send(op, payload) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    const text = JSON.stringify({ op, seq: ++seq, payload });
+    log('->', text);
+    ws.send(text);
+  }
+  function render() {
+    const map = $('map');
+    map.replaceChildren();
+    for (const p of players.values()) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (p.id === me ? ' me' : '');
+      dot.style.left = p.x * 4 + 'px';   // world is 0..100, map is 400px
+      dot.style.top = p.y * 4 + 'px';
+      const label = document.createElement('span');
+      label.textContent = p.name;
+      dot.appendChild(label);
+      map.appendChild(dot);
+    }
+  }
+  function onMessage(env) {
+    if (env.op === 'welcome') { me = env.payload.playerId; setStatus(true, 'connected (session ' + env.payload.sessionId + ')'); }
+    else if (env.op === 'state') {
+      if (env.payload.full) players.clear();
+      for (const p of env.payload.players) players.set(p.id, p);
+      render();
+    }
+  }
+  $('connect').onclick = () => {
+    if (ws) return;
+    setStatus(false, 'connecting...');
+    ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws');
+    ws.onopen = () => send('hello', { name: $('name').value, protocol: 1 });
+    ws.onmessage = e => { log('<-', e.data); onMessage(JSON.parse(e.data)); };
+    ws.onclose = () => { ws = null; me = null; players.clear(); render(); setStatus(false, 'disconnected'); };
+  };
+  $('disconnect').onclick = () => ws && ws.close();
+  $('map').onclick = e => {
+    const r = $('map').getBoundingClientRect();
+    send('move', { x: Math.round((e.clientX - r.left) / 4), y: Math.round((e.clientY - r.top) / 4) });
+  };
+  $('send').onclick = () => { send('chat', { text: $('text').value }); $('text').value = ''; };
+</script>
+</body>
+</html>
