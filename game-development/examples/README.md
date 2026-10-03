@@ -6,4 +6,4 @@ Runnable examples for the [Game Development course](../README.md). One folder pe
 dotnet test examples/03-game-loop
 ```
 
-These are teaching code, kept small and readable, not production code. Start a new example by copying `_template/`.
+These are teaching code, kept small and readable, not production code.

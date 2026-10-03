@@ -1,0 +1,34 @@
+{
+  "rarities": [
+    { "name": "Common",   "power": 0.90, "affixes": 0 },
+    { "name": "Uncommon", "power": 1.00, "affixes": 1 },
+    { "name": "Rare",     "power": 1.10, "affixes": 2 },
+    { "name": "Epic",     "power": 1.20, "affixes": 3 }
+  ],
+  "slots": [
+    { "name": "Weapon", "weight": 2.0 }, { "name": "Chest", "weight": 1.4 },
+    { "name": "Legs", "weight": 1.2 },   { "name": "Head", "weight": 1.0 },
+    { "name": "Ring", "weight": 1.0 },   { "name": "Hands", "weight": 0.8 },
+    { "name": "Feet", "weight": 0.8 },   { "name": "Necklace", "weight": 0.8 }
+  ],
+  "budget": { "base": 10, "growthPerLevel": 0.12 },
+  "sources": [
+    { "name": "Trash enemy",  "dropChance": 0.08, "weights": { "Common": 70, "Uncommon": 25, "Rare": 5,  "Epic": 0 } },
+    { "name": "Elite",        "dropChance": 0.40, "weights": { "Common": 30, "Uncommon": 45, "Rare": 24, "Epic": 1 } },
+    { "name": "Boss chest",   "dropChance": 1.00, "weights": { "Common": 0,  "Uncommon": 0,  "Rare": 85, "Epic": 15 } }
+  ],
+  "dungeon": {
+    "name": "Cinder Forge", "itemLevel": 32, "rollsPerRun": 1, "source": "Boss chest",
+    "targetRarity": "Epic", "pieces": 8,
+    "pity": { "softStartRuns": 50, "softBonusPerRun": 0.005, "hardAtRuns": 100 }
+  },
+  "upgrade": {
+    "maxLevel": 10, "perLevelBonus": 0.025, "dropFromStep": 8, "charmGold": 400,
+    "steps": [
+      { "rate": 1.00, "gold": 50 },  { "rate": 1.00, "gold": 60 },  { "rate": 1.00, "gold": 70 },
+      { "rate": 0.85, "gold": 100 }, { "rate": 0.75, "gold": 130 }, { "rate": 0.65, "gold": 170 },
+      { "rate": 0.55, "gold": 220 }, { "rate": 0.45, "gold": 280 }, { "rate": 0.35, "gold": 350 },
+      { "rate": 0.25, "gold": 450 }
+    ]
+  }
+}

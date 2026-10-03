@@ -1,0 +1,13 @@
+{
+  "pullCost": 160,
+  "unitsPerUsd": 100,
+  "horizon": 3000,
+  "trials": 200000,
+  "seed": 20261003,
+  "models": [
+    { "name": "Pity and 50/50",           "baseRate": 0.006, "softPityStart": 74, "softPityStep": 0.06, "hardPity": 90, "featuredChance": 0.5, "guaranteeAfterLoss": true },
+    { "name": "Pity, always featured",    "baseRate": 0.006, "softPityStart": 74, "softPityStep": 0.06, "hardPity": 90, "featuredChance": 1.0, "guaranteeAfterLoss": true },
+    { "name": "No pity, 50/50 each time", "baseRate": 0.006, "softPityStart": 0,  "softPityStep": 0,    "hardPity": 0,  "featuredChance": 0.5, "guaranteeAfterLoss": false },
+    { "name": "2% with hard pity 50",     "baseRate": 0.02,  "softPityStart": 0,  "softPityStep": 0,    "hardPity": 50, "featuredChance": 1.0, "guaranteeAfterLoss": true }
+  ]
+}

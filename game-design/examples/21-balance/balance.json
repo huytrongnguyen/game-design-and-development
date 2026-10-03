@@ -1,0 +1,36 @@
+{
+  "defenceConstant": 100,
+  "bands": { "classScore": [0.90, 1.10], "pathGap": 0.05 },
+  "fights": [
+    { "name": "Boss",    "targets": 1.0, "enemyDefence": 30, "weights": { "dps": 0.55, "survivability": 0.20, "utility": 0.25 } },
+    { "name": "Pack",    "targets": 4.0, "enemyDefence": 10, "weights": { "dps": 0.40, "survivability": 0.20, "utility": 0.40 } },
+    { "name": "Dungeon", "targets": 2.5, "enemyDefence": 20, "weights": { "dps": 0.45, "survivability": 0.20, "utility": 0.35 } }
+  ],
+  "classes": [
+    { "name": "Warden", "role": "tank", "hp": 1300, "defence": 40, "damagePerHit": 38, "attackInterval": 1.0,
+      "critChance": 0.10, "critMultiplier": 1.5, "mitigation": 0.05, "utility": 6, "areaShare": 0.10, "maxTargets": 3,
+      "paths": [
+        { "name": "Bulwark", "damageMult": 0.95, "areaMult": 1.0, "ehpMult": 1.15, "utilityDelta": 1 },
+        { "name": "Avenger", "damageMult": 1.10, "areaMult": 1.5, "ehpMult": 1.05, "utilityDelta": 0 } ] },
+    { "name": "Cleric", "role": "healer", "hp": 1000, "defence": 20, "damagePerHit": 46, "attackInterval": 1.4,
+      "critChance": 0.05, "critMultiplier": 1.5, "mitigation": 0.10, "utility": 9, "areaShare": 0.05, "maxTargets": 3,
+      "paths": [
+        { "name": "Lifebinder", "damageMult": 0.90, "areaMult": 1.0, "ehpMult": 1.05, "utilityDelta": 2 },
+        { "name": "Radiant",    "damageMult": 1.00, "areaMult": 1.4, "ehpMult": 0.90, "utilityDelta": 2 } ] },
+    { "name": "Duelist", "role": "damage", "hp": 900, "defence": 15, "damagePerHit": 22, "attackInterval": 0.6,
+      "critChance": 0.30, "critMultiplier": 1.75, "mitigation": 0.15, "utility": 5, "areaShare": 0.20, "maxTargets": 3,
+      "paths": [
+        { "name": "Swiftblade",  "damageMult": 1.00, "areaMult": 1.2, "ehpMult": 1.05, "utilityDelta": 0 },
+        { "name": "Executioner", "damageMult": 1.10, "areaMult": 1.4, "ehpMult": 0.95, "utilityDelta": -1 } ] },
+    { "name": "Ranger", "role": "damage", "hp": 900, "defence": 15, "damagePerHit": 30, "attackInterval": 0.8,
+      "critChance": 0.25, "critMultiplier": 1.75, "mitigation": 0.05, "utility": 7, "areaShare": 0.15, "maxTargets": 4,
+      "paths": [
+        { "name": "Sharpshooter", "damageMult": 1.10, "areaMult": 1.0, "ehpMult": 1.0, "utilityDelta": 0 },
+        { "name": "Trapper",      "damageMult": 1.05, "areaMult": 1.4, "ehpMult": 1.0, "utilityDelta": 0 } ] },
+    { "name": "Arcanist", "role": "damage", "hp": 800, "defence": 10, "damagePerHit": 70, "attackInterval": 1.75,
+      "critChance": 0.15, "critMultiplier": 2.0, "mitigation": 0.0, "utility": 7, "areaShare": 0.28, "maxTargets": 5,
+      "paths": [
+        { "name": "Stormcaller", "damageMult": 1.05, "areaMult": 1.6, "ehpMult": 1.0,  "utilityDelta": 0 },
+        { "name": "Frostbinder", "damageMult": 0.95, "areaMult": 1.2, "ehpMult": 1.15, "utilityDelta": 1 } ] }
+  ]
+}

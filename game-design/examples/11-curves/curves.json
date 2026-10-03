@@ -1,0 +1,27 @@
+{
+  "maxLevel": 50,
+  "totalTargetHours": 25,
+  "toleranceHours": 1,
+  "xp": { "kind": "polynomial", "base": 250, "exponent": 1.8 },
+  "income": { "killXpBase": 8, "killXpExponent": 1.2, "questKillEquivalent": 25 },
+  "regions": [
+    { "name": "Region 1", "fromLevel": 1,  "toLevel": 11, "killsPerHour": 200, "questsPerHour": 8, "targetHours": 2.5 },
+    { "name": "Region 2", "fromLevel": 12, "toLevel": 24, "killsPerHour": 240, "questsPerHour": 6, "targetHours": 6.0 },
+    { "name": "Region 3", "fromLevel": 25, "toLevel": 37, "killsPerHour": 260, "questsPerHour": 6, "targetHours": 7.5 },
+    { "name": "Region 4", "fromLevel": 38, "toLevel": 49, "killsPerHour": 300, "questsPerHour": 4, "targetHours": 9.0 }
+  ],
+  "milestones": [ { "name": "Path", "level": 20 }, { "name": "Mastery", "level": 40 } ],
+  "rested": { "poolPerOfflineHour": 0.01, "poolCapBars": 0.72, "bonus": 0.5 },
+  "power": {
+    "statGrowth": 0.12,
+    "levelsPerHub": 3,
+    "band": [0.9, 1.35],
+    "gear": [
+      { "level": 1,  "factor": 1.00 }, { "level": 11, "factor": 1.20 },
+      { "level": 12, "factor": 0.95 }, { "level": 24, "factor": 1.25 },
+      { "level": 25, "factor": 0.95 }, { "level": 37, "factor": 1.25 },
+      { "level": 38, "factor": 0.95 }, { "level": 49, "factor": 1.30 },
+      { "level": 50, "factor": 1.30 }
+    ]
+  }
+}

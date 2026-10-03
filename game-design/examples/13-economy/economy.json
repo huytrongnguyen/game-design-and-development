@@ -1,0 +1,44 @@
+{
+  "days": 90,
+  "retentionExponent": 0.6,
+  "newPlayers": [
+    { "fromDay": 1,  "perDay": 3000 },
+    { "fromDay": 8,  "perDay": 1200 },
+    { "fromDay": 30, "perDay": 500 }
+  ],
+  "progress": {
+    "levelPower": 0.12,
+    "referenceLevel": 30,
+    "levelByHour": [
+      { "hours": 0,    "level": 1 },
+      { "hours": 2.4,  "level": 12 },
+      { "hours": 8.3,  "level": 25 },
+      { "hours": 16.1, "level": 38 },
+      { "hours": 25.1, "level": 50 }
+    ]
+  },
+  "faucets": [
+    { "name": "field",    "goldPerHour": 900 },
+    { "name": "quests",   "goldPerHour": 1100, "maxLevel": 50 },
+    { "name": "dungeons", "goldPerHour": 1500 },
+    { "name": "events",   "goldPerHour": 2000 }
+  ],
+  "profiles": [
+    { "name": "casual",  "share": 0.50, "hoursPerDay": 0.4,
+      "mix": { "field": 0.40, "quests": 0.50, "dungeons": 0.10, "events": 0.00 } },
+    { "name": "regular", "share": 0.35, "hoursPerDay": 1.5,
+      "mix": { "field": 0.25, "quests": 0.25, "dungeons": 0.40, "events": 0.10 } },
+    { "name": "hardcore", "share": 0.15, "hoursPerDay": 3.5,
+      "mix": { "field": 0.15, "quests": 0.10, "dungeons": 0.60, "events": 0.15 } }
+  ],
+  "sinks": [
+    { "name": "potions",         "cost": 40,   "usesPerHour": 5.0,  "usesPerDay": 0,     "scalesWithStage": true },
+    { "name": "tempering",       "cost": 188,  "usesPerHour": 4.4,  "usesPerDay": 0,     "scalesWithStage": true },
+    { "name": "crafting fees",   "cost": 200,  "usesPerHour": 0.7,  "usesPerDay": 0,     "scalesWithStage": true },
+    { "name": "fast travel",     "cost": 30,   "usesPerHour": 1.0,  "usesPerDay": 0,     "scalesWithStage": false },
+    { "name": "respec",          "cost": 1500, "usesPerHour": 0,    "usesPerDay": 0.03,  "scalesWithStage": true },
+    { "name": "guild founding",  "cost": 1000, "usesPerHour": 0,    "usesPerDay": 0.002, "scalesWithStage": false },
+    { "name": "storage upgrade", "cost": 4000, "usesPerHour": 0,    "usesPerDay": 0.01, "scalesWithStage": false }
+  ],
+  "market": { "volumePerHour": 1200, "fee": 0.05 }
+}

@@ -1,0 +1,20 @@
+{
+  "defence": { "model": "ratio", "ratioConstant": 100, "minFraction": 0.2 },
+  "party": ["Warden", "Ranger", "Arcanist", "Cleric"],
+  "partyHpScale": 2.5,
+  "classes": [
+    { "name": "Warden", "role": "tank",   "hp": 1300, "defence": 40, "damagePerHit": 38, "attackInterval": 1.0,  "critChance": 0.10, "critMultiplier": 1.5,  "variance": 0.10 },
+    { "name": "Ranger",  "role": "damage", "hp": 900,  "defence": 15, "damagePerHit": 30, "attackInterval": 0.8,  "critChance": 0.25, "critMultiplier": 1.75, "variance": 0.10 },
+    { "name": "Arcanist", "role": "damage", "hp": 800,  "defence": 10, "damagePerHit": 70, "attackInterval": 1.75, "critChance": 0.15, "critMultiplier": 2.0,  "variance": 0.10 },
+    { "name": "Cleric",  "role": "healer", "hp": 1000, "defence": 20, "damagePerHit": 46, "attackInterval": 1.4,  "critChance": 0.05, "critMultiplier": 1.5,  "variance": 0.10 },
+    { "name": "Duelist", "role": "damage", "hp": 900,  "defence": 15, "damagePerHit": 22, "attackInterval": 0.6,  "critChance": 0.30, "critMultiplier": 1.75, "variance": 0.10 }
+  ],
+  "enemies": [
+    { "name": "Trash pack", "hp": 480,  "defence": 10, "attackers": 4, "damagePerHit": 30,  "attackInterval": 2.0,
+      "bands": { "solo": [10, 18],  "party": [6, 10] } },
+    { "name": "Elite",      "hp": 2200, "defence": 20, "attackers": 1, "damagePerHit": 110, "attackInterval": 2.5,
+      "bands": { "solo": [50, 85],  "party": [30, 50] } },
+    { "name": "Boss",       "hp": 6500, "defence": 30, "attackers": 1, "damagePerHit": 160, "attackInterval": 3.0,
+      "bands": { "solo": [170, 260], "party": [100, 160] } }
+  ]
+}
