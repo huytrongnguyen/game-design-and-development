@@ -1,2 +1,1 @@
-# game-design-and-development
-Game Design &amp; Development
+# Game Design & Development

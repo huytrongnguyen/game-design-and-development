@@ -55,5 +55,3 @@ The examples have one job: **show how the server side of an online game works**,
 | 24 | [Content pipeline, localisation and testing](24-pipeline-testing.md) | `24-pipeline` |
 | 25 | [Live operations](25-live-ops.md) | none |
 | 26 | [Capstone: a no-middleware PoC plan](26-poc-plan.md) | none |
-
-Every lesson follows [_lesson-template.md](_lesson-template.md).
