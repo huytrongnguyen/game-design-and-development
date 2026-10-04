@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Module 06: time-to-kill simulation.
-       Example code and its xUnit tests live in one project: `dotnet test examples/06-ttk`.
-       The design numbers live in combat.json, which is copied next to the test binary. -->
+  <!-- Module 15: loot and upgrade simulation.
+       Example code and its xUnit tests live in one project: `dotnet test examples/15-loot`.
+       The design numbers live in loot.json, which is copied next to the test binary. -->
   <ItemGroup>
-    <None Include="combat.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="loot.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

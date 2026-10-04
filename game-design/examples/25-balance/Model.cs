@@ -3,7 +3,7 @@ namespace Course.Balance;
 /// <summary>The spreadsheet formulas. A Path is optional: null means the base class kit.</summary>
 public static class Model
 {
-    /// <summary>Expected damage per second against one benchmark fight. Module 06's formula
+    /// <summary>Expected damage per second against one benchmark fight. Module 08's formula
     /// (crit multiplies the raw hit, then ratio defence K / (K + defence)), times the Path's damage multiplier,
     /// times an area bonus: share x Path area multiplier x (extra targets the class can reach).</summary>
     public static double Dps(BalanceData d, HeroClass c, Fight f, PathMod? p = null)

@@ -11,7 +11,7 @@ public sealed record Fight(string Name, double Targets, double EnemyDefence, Wei
 /// <summary>A Path (level 20 choice) as multipliers on the base class kit.</summary>
 public sealed record PathMod(string Name, double DamageMult, double AreaMult, double EhpMult, double UtilityDelta);
 
-/// <summary>Module 06's combat stats, plus what a balance sheet needs on top: mitigation (damage removed by the kit:
+/// <summary>Module 08's combat stats, plus what a balance sheet needs on top: mitigation (damage removed by the kit:
 /// blocks, shields, self-heals), a 0-10 utility score, and how much of the damage is area (share and max targets).</summary>
 public sealed record HeroClass(
     string Name, string Role, double Hp, double Defence, double DamagePerHit, double AttackInterval,

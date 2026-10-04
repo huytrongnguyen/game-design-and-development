@@ -1,6 +1,6 @@
 namespace Course.Curves;
 
-/// <summary>The formulas of module 11: XP curve, income, hours per level, rested XP and the power ratio.</summary>
+/// <summary>The formulas of module 14: XP curve, income, hours per level, rested XP and the power ratio.</summary>
 public static class Curves
 {
     /// <summary>XP to go from level L to L+1.</summary>

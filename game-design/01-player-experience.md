@@ -150,7 +150,7 @@ A useful persona has:
 
 A player rarely says "I want more Competence". They say "I feel like I am getting better" or "I do not know what to do next". Your job is to translate vague feelings into the vocabulary above so that design discussions stay precise.
 
-**How the three models connect to the core loop (module 02):** the core loop is where aesthetics such as Challenge and Sensation are delivered second by second. The session loop is where Competence and Autonomy (choosing what to do next) show up. The meta loop is where Completion, Power and Fellowship keep people returning for weeks. If an aesthetic you promise has no loop that delivers it, players will not feel it.
+**How the three models connect to the core loop (module 03):** the core loop is where aesthetics such as Challenge and Sensation are delivered second by second. The session loop is where Competence and Autonomy (choosing what to do next) show up. The meta loop is where Completion, Power and Fellowship keep people returning for weeks. If an aesthetic you promise has no loop that delivers it, players will not feel it.
 
 Typical player-facing signals and what they usually mean:
 

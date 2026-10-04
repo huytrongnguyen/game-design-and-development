@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Module 13: 90-day money-supply simulation.
-       Example code and its xUnit tests live in one project: `dotnet test examples/13-economy`.
-       The design numbers live in economy.json, which is copied next to the test binary. -->
+  <!-- Module 25: class balance sheet.
+       Example code and its xUnit tests live in one project: `dotnet test examples/25-balance`.
+       The design numbers live in balance.json, which is copied next to the test binary. -->
   <ItemGroup>
-    <None Include="economy.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="balance.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

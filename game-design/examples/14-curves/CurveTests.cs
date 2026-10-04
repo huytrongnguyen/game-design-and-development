@@ -59,7 +59,7 @@ public class CurveTests(ITestOutputHelper output)
     [Fact]
     public void Party_Bonus_Shortens_The_Climb()
     {
-        // The 25 hours are the solo baseline. At the 1.84x reward rate of module 09 the same XP takes 25 / 1.84 hours.
+        // The 25 hours are the solo baseline. At the 1.84x reward rate of module 11 the same XP takes 25 / 1.84 hours.
         Assert.Equal(Curves.TotalHours(Data) / 1.84, Curves.TotalHours(Data, 1.84), 6);
         Assert.InRange(Curves.TotalHours(Data, 1.84), 13, 14.5);
     }

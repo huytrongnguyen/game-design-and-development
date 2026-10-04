@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Module 21: class balance sheet.
-       Example code and its xUnit tests live in one project: `dotnet test examples/21-balance`.
-       The design numbers live in balance.json, which is copied next to the test binary. -->
+  <!-- Module 17: gacha odds and expected spend.
+       Example code and its xUnit tests live in one project: `dotnet test examples/17-gacha-odds`.
+       The design numbers live in gacha.json, which is copied next to the test binary. -->
   <ItemGroup>
-    <None Include="balance.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="gacha.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

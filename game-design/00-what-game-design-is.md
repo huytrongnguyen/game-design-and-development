@@ -51,7 +51,7 @@ Design is written down top-down, from **why** to **exactly how**, so a detail de
 | 5 | **Feature specs** | Exactly how does one mechanic behave? | 1–5 pages each | Every sprint |
 | 6 | **Data** | What are the actual values? | Tables and files | Constantly |
 
-A **GDD** (game design document) is the living description of all the systems in enough detail that a producer or engineer can act on it. Modern teams usually keep it as a set of linked pages or a wiki, not one huge file, because one monolithic document rots: nobody can keep 200 pages consistent. Module 04 covers how to keep documents alive.
+A **GDD** (game design document) is the living description of all the systems in enough detail that a producer or engineer can act on it. Modern teams usually keep it as a set of linked pages or a wiki, not one huge file, because one monolithic document rots: nobody can keep 200 pages consistent. Module 05 covers how to keep documents alive.
 
 ```mermaid
 flowchart TD
@@ -88,7 +88,7 @@ Players never see a pitch, a pillar or a spec. They see **the effect** of them: 
 This is why design is tied to the two modules that follow:
 
 - [Module 01](01-player-experience.md) names the **feelings** (aesthetics) and **motivations** the design is trying to serve.
-- [Module 02](02-vision-pillars-loops.md) turns them into a vision, pillars and **loops** (the repeating action cycles that make a game playable for hours).
+- [Module 03](03-vision-pillars-loops.md) turns them into a vision, pillars and **loops** (the repeating action cycles that make a game playable for hours).
 
 Every level of the hierarchy exists to protect one thing the player cares about: **a consistent promise**. A game that promises tense, readable fights and then ships a mode where you stand still and click a button has broken its promise, even if every individual feature works.
 
@@ -165,9 +165,9 @@ Design documents have no numbers to tune, but they have clear health signals.
 | Two specs contradict each other | No GDD owner; no review step | Name an owner; link specs back to pillars |
 | Engineers "just decide" because the spec is silent | Spec too thin or too late | Specs include edge cases and example numbers |
 | The same debate restarts every few months | No decision record | Write the decision and the reason in the spec |
-| Nobody can name the pillars | Pillars are too long or too vague | Cut to 3–5 short lines (module 02) |
+| Nobody can name the pillars | Pillars are too long or too vague | Cut to 3–5 short lines (module 03) |
 | Spec says one thing, game does another | Docs not updated after playtests | Treat the spec as part of "done" for a feature |
-| A feature everyone loves does not fit | Vision drift, scope creep | Run the pillar check (module 02) before building |
+| A feature everyone loves does not fit | Vision drift, scope creep | Run the pillar check (module 03) before building |
 
 ### 4.2 Classic failures
 
@@ -188,7 +188,7 @@ Design documents have no numbers to tune, but they have clear health signals.
 
 ## 5. Worked example
 
-This is the one-page pitch of the **course game**. Every later module designs one part of it, and by module 26 the pieces add up to a complete design package. All numbers are invented for teaching.
+This is the one-page pitch of the **course game**. Every later module designs one part of it, and by module 30 the pieces add up to a complete design package. All numbers are invented for teaching.
 
 ### 5.1 One-page pitch
 
@@ -236,8 +236,8 @@ This is the one-page pitch of the **course game**. Every later module designs on
 A pitch is as much about what is left out. These ideas were considered and cut from the course game:
 
 - **Housing and farming**: pleasant, but they pull the game toward a life-simulation and double the content load.
-- **Open-world PvP everywhere**: fights between players need their own balance and moderation budget; the game ships one opt-in PvP mode instead (module 19).
-- **A second playable character per account**: possible, but it is a different design (module 09 compares it).
+- **Open-world PvP everywhere**: fights between players need their own balance and moderation budget; the game ships one opt-in PvP mode instead (module 23).
+- **A second playable character per account**: possible, but it is a different design (module 11 compares it).
 
 ### 5.4 Who owns what in the course game
 

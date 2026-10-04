@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Module 12: loot and upgrade simulation.
-       Example code and its xUnit tests live in one project: `dotnet test examples/12-loot`.
-       The design numbers live in loot.json, which is copied next to the test binary. -->
+  <!-- Module 14: level curve and pacing simulation.
+       Example code and its xUnit tests live in one project: `dotnet test examples/14-curves`.
+       The design numbers live in curves.json, which is copied next to the test binary. -->
   <ItemGroup>
-    <None Include="loot.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="curves.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
