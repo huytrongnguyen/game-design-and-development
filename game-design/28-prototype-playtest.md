@@ -48,13 +48,13 @@ A change costs more at each stage. A rule changed on paper takes minutes. The sa
 
 ## 2. The player's view
 
-The player never sees a prototype. They feel its result: a fight that reads clearly, a first hour that does not confuse, a first dungeon that rewards friends. A playtest tests whether the **feelings promised by the pillars** (module 03) are real. If a pillar cannot be tested, it is a slogan. Pillar tests are the bridge between design and playtest, and in this module they are the pass or fail lines.
+The player never sees a prototype. They feel its result: a fight that reads clearly, a first hour that does not confuse, a first dungeon that rewards friends. A playtest tests whether the **feelings promised by the pillars** (module 03) are real. A pillar that cannot be tested is hard to use as a decision tool. Pillar tests are the bridge between design and playtest, and in this module they are the pass or fail lines.
 
 ## 3. The design space
 
 ### 3.1 Finding the fun
 
-"Find the fun" means answering early: **is the core loop (30–90 seconds) pleasant to repeat?** A rule of thumb used in many studios: if the basic loop is not fun with grey boxes and placeholder sounds, polish will not save it. The signal is not "players say it is good" but **players keep playing after the test ends**, ask for another round, or start inventing their own goals.
+"Find the fun" means answering early: **is the core loop (30–90 seconds) pleasant to repeat?** A rule of thumb used in many studios: a loop that is not fun with grey boxes and placeholder sounds is unlikely to be saved by polish. Art-led and story-led games also test mood, writing and look early. The signal is not "players say it is good" but **players keep playing after the test ends**, ask for another round, or start inventing their own goals.
 
 ### 3.2 Types of prototype
 
@@ -66,6 +66,8 @@ The player never sees a prototype. They feel its result: a fight that reads clea
 | **Greybox level** | Layout, scale, pacing, wayfinding (module 18) | Exposes a room that is too big or a path that is unclear | Not final lighting or readability |
 | **Vertical slice** | Quality, art direction, "does the whole thing feel good", pitching | Proves the target quality | Expensive; do it after the loop is proven |
 | **Playable MVP** | Whether the business works: acquisition, retention, spend | Real players and data | A weak first impression is hard to undo |
+| **Early access or open alpha** | A rough build with real players and telemetry, for live games | Real behaviour and funding | First impressions stick. Public examples: many PC games on Steam |
+| **Wizard of Oz** | A human plays the system the design needs (a matchmaker, an AI companion) before it is built | Tests the idea cheaply | Does not scale |
 
 ### 3.3 Vertical slice versus MVP
 
@@ -160,7 +162,7 @@ flowchart LR
     E --> F["Day-1<br/>return"]
 ```
 
-**Retention.** D1, D7 and D30 retention measure whether the game earns a return. Public industry reports (for example from analytics firms) suggest typical mobile games keep roughly 25–30% of players on day 1, around 10% on day 7 and a few percent on day 30, with large differences by genre and market. Treat those as a rough orientation, and compare your own cohorts with each other.
+**Retention.** D1, D7 and D30 retention measure whether the game earns a return. Industry reports differ by genre, market and year; [module 24](24-endgame-retention.md) cites one 2026 report with medians and top-decile values (for mobile games, a median D7 under 4% and a top-decile D1 near 40%). Treat any report as a rough orientation, and compare your own cohorts with each other.
 
 **Cohorts.** Compare cohorts by install week and by platform. If the cohort that saw the new tutorial retains 4 points better, the tutorial matters. If every cohort drops the same way, the problem is elsewhere.
 
@@ -336,7 +338,7 @@ Questions 1 to 4 map to the four pillars. Question 5 is a guardrail on pillar 4:
 
 ### 5.3 Telemetry for the closed beta
 
-After the paper and moderated stages, a closed beta with telemetry checks the same questions at scale. Targets are teaching placeholders, to be recalibrated against genre benchmarks and the studio's own cohorts. These are **closed-beta gates**: a small, self-selected cohort must clear them before launch, and after launch the **live targets** of [module 24](24-endgame-retention.md) (D1 40%, D7 12%, D30 4%) take over.
+After the paper and moderated stages, a closed beta with telemetry checks the same questions at scale. Targets are teaching placeholders, to be recalibrated against genre benchmarks and the studio's own cohorts. These are **closed-beta gates**: a small, self-selected cohort must clear them before launch, and after launch the **live targets** of [module 24](24-endgame-retention.md) (the top-decile benchmarks D1 40%, D7 12%, D30 4%) take over.
 
 | Funnel step | Event | Target |
 |---|---|---|
@@ -353,7 +355,7 @@ Events carry the platform, the build and an anonymous id. Combat events carry th
 **Pillar 3 at scale.** The dungeon clear time of a party of four versus a solo run: target at least 25% faster, measured on the same dungeon in the closed beta.
 **Pillar 4 at scale.** The share of 15-minute windows with at least one reward event: target 100%. Players who reach level 50 with no purchase: a share, not zero.
 
-**A/B candidates, and what to leave alone.** Candidates: the order of tutorial steps (outcome: level 4 reached), the wording of the group prompt (outcome: group finder use). Not candidates: prices, drop odds and anything that hides a cost. These are design decisions covered by the red lines of [module 17](17-monetization.md), not experiments on players.
+**A/B candidates, and what to leave alone.** Candidates: the order of tutorial steps (outcome: level 4 reached), the wording of the group prompt (outcome: group finder use). Testing prices, odds or offers on players is sensitive: some regions and platforms treat undisclosed variation as a consumer issue, and tests that hide a cost or target minors are not permitted. The course game does not run them (pillar 4, [module 17](17-monetization.md)).
 
 ### 5.4 Playtest stages and gates
 
@@ -368,7 +370,7 @@ Events carry the platform, the build and an anonymous id. Combat events carry th
 ### 5.5 What was cut
 
 - **A full simulation of the paper rules in code.** Module 08's simulation already does the numbers; paper tests readability.
-- **A 30-person first-hour test.** Twelve with two rounds beats thirty with one.
+- **A 30-person first-hour test.** Cut for this example: twelve testers give at least four per persona and six per platform, and two rounds allow a retest; a larger test gives tighter intervals at a higher cost.
 - **An "NPS" question.** A single recommend score tells you nothing about which pillar failed.
 - **Testing the shop in the first hour.** The shop must not be in the first hour (pillar 4); a separate test covers it later.
 
@@ -389,7 +391,7 @@ Events carry the platform, the build and an anonymous id. Combat events carry th
 - Five testers per group reveal most of the main usability problems (about 85%). Run small rounds and retest fixes. A small sample is an indication, not proof.
 - Watch what players do, not only what they say. Do not help, ask neutral questions, and beware friends, volunteers and the loud minority.
 - Log events that answer a question, with a schema and a platform tag. Read funnels and cohorts by platform.
-- A/B tests need big samples, one primary metric and a guardrail, and they leak in social games. They are not a way to test prices or odds on players.
+- A/B tests need big samples, one primary metric and a guardrail, and they leak in social games. Testing prices or odds on players is sensitive and, where it hides a cost or targets minors, not permitted; the course game does not do it.
 
 ## Further reading
 

@@ -64,7 +64,7 @@ How each fits the loops of [module 03](03-vision-pillars-loops.md):
 - **Session loop (a sitting):** (a) needs other people to be available, which costs waiting time. (b) and (d) start instantly.
 - **Meta loop (weeks):** (a) grows through gear and social goals. (d) grows through collecting and upgrading, which makes recruitment itself the meta loop.
 
-The risk to watch in every option is that the **control load** and the **number of things to maintain** (gear, levels, skills per character) multiply by the number of characters. A player with ten characters to gear has ten times the chores, so a roster game needs a way to share progress between characters.
+A risk to watch in the options with several characters is that the **control load** and the **number of things to maintain** (gear, levels, skills per character) tend to grow with the number of characters. A player with ten characters to gear has many more chores, so a roster game often needs a way to share progress between characters. Content cost grows with the number of distinct kits, and monetization pressure depends on how characters are acquired (section 3.6), not on their count.
 
 ## 3. The design space
 
@@ -72,7 +72,7 @@ The risk to watch in every option is that the **control load** and the **number 
 
 The most common shape in online RPGs. Each player owns and controls one hero at a time and joins a **party** of other players for dungeons, bosses and field content. Public examples (as of October 2026): World of Warcraft, Final Fantasy XIV, Guild Wars 2, Diablo IV, Path of Exile.
 
-**Party size.** Typical sizes: **four** (Diablo IV parties and Final Fantasy XIV's standard dungeons), **five** (World of Warcraft and Guild Wars 2 dungeons), and **eight to thirty** for raids. Small parties have three benefits: each player's contribution is visible, matchmaking is faster, and the screen is readable. Larger parties support deeper role specialisation but need more coordination.
+**Party size.** Parties of three to five are common in online RPGs: **four** (Final Fantasy XIV's standard dungeons), **five** (World of Warcraft dungeons), and **eight to thirty** for raids. Small parties have three benefits: each player's contribution is visible, matchmaking is faster, and the screen is readable. Larger parties support deeper role specialisation but need more coordination. Four with three roles is easy to fill and read, and is the course game's choice.
 
 | Party size | Common roles | Strength | Cost |
 |---|---|---|---|
@@ -88,13 +88,16 @@ The most common shape in online RPGs. Each player owns and controls one hero at 
 
 | System | How it works | Pros | Cons | Example |
 |---|---|---|---|---|
-| **Personal loot** | Each player rolls their own drops; trade may be allowed afterwards | No arguments, no stolen items | Fewer chances to guarantee a specific item; players trade to fix it | World of Warcraft's default in group content |
+| **Personal loot** | Each player rolls their own drops; trade may be allowed afterwards | Removes most loot arguments, no stolen items | Fewer chances to guarantee a specific item; players trade to fix it | World of Warcraft's default in group content |
 | **Need before greed** | Items drop to the pile; players roll Need or Greed | Chance for every player; social | Roll arguments, "ninja looting" | World of Warcraft group loot |
 | **Master loot** | One person decides | Efficient for organised guilds | Trust and abuse problems | World of Warcraft (guild raids) |
+| **Round-robin** | Party members take turns looting | Fair over time, simple | A player may get an item they cannot use; the kill order can be manipulated | World of Warcraft (a group loot method) |
+| **Loot council or points (DKP)** | Guild officers or a point balance decide who gets an item | Fits raids and long-term guild play | Trust and drama | Dragon kill points, first used in EverQuest and widely used in World of Warcraft guilds |
+| **Timed ownership** | The killer or top contributor owns a drop for a set time, then it is free for all | Rewards effort, simple | Kill stealing and races | Used in some online RPGs |
 | **Free for all** | First to pick up wins | Simple | Races, griefing | Early online RPGs |
 | **Loot per player (everyone gets a chest)** | Every player opens an own chest | Fair, mobile-friendly | Group has no loot decisions | Common in modern action RPGs |
 
-Rule of thumb: the more casual and cross-platform the audience, the more personal the loot should be. Loot arguments are one of the top causes of party breakup, and every fix beyond personal loot is a social feature, not a game feature.
+Personal loot removes most loot arguments and suits casual and cross-platform audiences. Shared systems (need or greed, master loot, round-robin, guild points systems) give groups social decisions and control over who gets what, and are common in organised raiding; the cost is arguments, abuse and extra social work.
 
 **Scaling for party size.** The same encounter must work for one to four players if solo play is allowed. The knobs are enemy health, damage, count and mechanics. Two well-known public approaches:
 
@@ -105,11 +108,11 @@ Rule of thumb: the more casual and cross-platform the audience, the more persona
 
 | Stance | What it means | Typical outcome |
 |---|---|---|
-| **Group-favoured** | Groups earn more per hour; solo is possible but slower | Social game; solo players feel pushed |
-| **Neutral** | Same reward per hour in either | Players choose by taste; groups form less |
-| **Solo-favoured** | Solo is more efficient | Group content empties; the game becomes a single-player game with a chat window |
+| **Group-favoured** | Groups earn more per hour; solo is possible but slower | Groups become a core activity; solo players may feel pushed |
+| **Neutral** | Same reward per hour in either | Players choose by taste |
+| **Solo-favoured** | Solo is as efficient as or more efficient than grouping | Serves players who mostly play alone; group content needs other draws (harder challenge, unique rewards, social play) |
 
-A social game should be group-favoured but never solo-blocked. Section 5 shows how to build that.
+A game that wants grouping as a core activity often chooses group-favoured and keeps solo play possible; a game with a mostly solo audience may choose neutral or solo-favoured. Section 5 shows the group-favoured build.
 
 **Content and balance cost.** Medium. Encounters must work for any role mix and several sizes, but only one hero's kit has to be balanced at a time.
 
@@ -131,11 +134,11 @@ Public examples (as of October 2026):
 
 **Control load.** Low, if the AI is good. The player gives broad orders (stay close, protect me, focus my target) rather than skill-by-skill orders.
 
-**Content and balance cost.** Medium to high. The designer must write AI for every role the companion can play, tune solo and group difficulty, and avoid companions that either carry the player or die constantly. Each companion needs its own animation, gear and skill set.
+**Content and balance cost.** Medium to high. The designer must write AI for every role the companion can play, tune solo and group difficulty, and decide whether companions carry the player or die constantly. Each companion needs its own animation, gear and skill set.
 
 **Monetization pressure.** Medium. Companions are easy to sell (outfits, new ones), but if they affect power, they become pay-to-win in solo content.
 
-**The social risk.** If companions are good, players stop queuing. A game whose pillar says "stronger together" must keep companions weaker than humans, or restrict them to story and normal-difficulty content.
+**The social risk.** Companions that outperform humans can pull players out of groups. Games that want grouping keep them weaker than humans or restrict them to story and normal-difficulty content; games that serve solo play and story may let them carry the player (*Guild Wars* heroes ran for years beside healthy group play).
 
 ### 3.3 Option (c): a party the player controls
 
@@ -176,7 +179,7 @@ The player collects many heroes and fields a **squad** (often four to six) built
 
 **A public example with a squad but no random draw: King's Raid.** King's Raid (Vespa, launched in Thailand in 2016 and worldwide in 2017) is a mobile fantasy RPG where the player collects heroes in seven classes (knight, warrior, assassin, archer, mechanic, wizard, priest) and fields a **squad of four** placed in front, middle and back lines. Battles are real-time and seen from the side, in 3D graphics. **Control** sits between options (c) and (d): the player does not move the heroes, but each hero has a few skills (three, plus an energy bar, according to public guides) that the player can trigger by hand in any order, or leave to an **auto-battle** mode that does it for them. Healers and tanks reward manual timing in harder content; easy content runs on auto. Some modes (a world-boss raid, for example) allow eight heroes with four of them run by the AI. **Acquisition** is the notable part: public sources describe heroes obtained with hero tickets, by gifting items to a hero and building friendship at an inn, and by in-app purchase, and describe the game as avoiding the random draw so that players choose which heroes to own. So it shows that a roster game can be built on predictable recruitment (section 3.6) rather than gacha. **Status (as of October 2026):** the original service ended in March 2025 (one outlet gives 15 April; check the publisher); the Korean company Masangsoft then acquired the rights and has run closed betas of a relaunch (29 January to 4 February 2026 and 7 to 24 April 2026) on iOS, Android and PC, with no launch date found in the sources checked. It also shows the business risk of the option: a long-running roster game must keep producing heroes and events, and when that stops, the collection stops with it.
 
-**Why it works.** It suits short mobile sessions (Dev persona), makes progress visible, and gives long-lived collection goals. It works against deep co-operation and against a single hero's identity.
+**Strengths and costs.** Strengths: short mobile sessions (Dev persona), visible progress and long collection goals. Costs: less moment-to-moment co-operation (guilds and arenas carry the social layer, for example guild raid battles in *King's Raid*) and a team identity in place of one hero's.
 
 ### 3.5 The four options side by side
 
@@ -194,7 +197,7 @@ The player collects many heroes and fields a **squad** (often four to six) built
 
 ### 3.6 Recruitment: how characters join the roster
 
-Options (b), (c) and (d) must decide **how the player gets more characters**. Five methods:
+Options (b), (c) and (d) must decide **how the player gets more characters**. Common methods:
 
 | Method | How it works | Cost predictability | What it feels like | Content cost | Monetization pressure | Public examples |
 |---|---|---|---|---|---|---|
@@ -203,6 +206,9 @@ Options (b), (c) and (d) must decide **how the player gets more characters**. Fi
 | **Crafting or shards** | Collect fragments (shards) per hero, spend them to unlock | Predictable if shard rates are public | Steady progress, "I am close" | Medium | Low to medium | Raid: Shadow Legends uses shards for many champions |
 | **Currency draw (gacha)** | Spend currency for a random pull | Unpredictable per pull, predictable on average | Thrill and frustration | Low per pull, high per pool | High | Genshin Impact, Summoners War, Epic Seven |
 | **Event or grind reward** | A time-limited challenge gives a hero | Predictable but time-boxed | Prestigious, sometimes stressful | Medium | Low | Common as a "free hero" in live-service games |
+| **Capture or taming** | Find and catch a creature, or tame one in the world | Skill-based or exploration-based | Discovery and collecting | Medium | Low | *Palworld* (catching Pals), *Ark: Survival Evolved* (taming creatures) |
+| **Player trading or marketplace** | Buy or swap characters between players | Market price | Social and economic play | Low | Depends on the rules (real-money trading is a risk) | *Palworld* lets players trade Pals with each other |
+| **Season or battle-pass reward** | A character at a tier of a seasonal track | Fully predictable | Earned by play time | Medium | Medium | Many live-service games |
 
 Mixing is normal: the story gives a few free heroes, the shop sells a few, and the draw gives the rest. What matters is which part of the roster a **free-to-play player can complete**, and how clearly the game tells them.
 
@@ -263,7 +269,7 @@ The formula for the middle column is `N × H(N) / rate`. The last column multipl
 | **United Kingdom** | Industry principles (2023): disclose loot boxes and probabilities, restrict under-18 purchases without parental consent | Voluntary |
 | **European Union** | Consumer authorities published key principles on in-game virtual currencies in March 2025: clear pricing, no hidden costs, extra care with children | Guidance |
 
-Design rule for a new game: **publish the odds including the pity curve, show the expected cost in the shop, and treat the strictest rule above as the baseline for every region.** If your design only works without pity or disclosure, it is the design that is wrong.
+Platforms and several countries require odds disclosure (table above). Beyond that, teams choose how much to show: odds only; odds plus pity rules; or odds, pity rules and an expected-cost estimate. More disclosure builds trust and lowers legal risk; the cost is that players see how expensive a full collection is. Designing to the strictest rule above gives one version for every region; designing per region eases friction in lenient markets but multiplies versions.
 
 ### 3.8 How to choose
 
@@ -279,7 +285,16 @@ Design rule for a new game: **publish the odds including the pity curve, show th
 
 ### 4.1 Rules of thumb
 
-Pick the smallest party that makes every role necessary; make loot personal by default; keep every non-event content piece soloable; keep companions weaker than humans; give every hero a reason to exist in at least one team; and publish odds with pity and a worst-case cost.
+These rules of thumb serve a solo-friendly social online RPG like the course game; other designs choose differently.
+
+| Choice | Rule of thumb and the alternative |
+|---|---|
+| **Party size** | Small parties are easier to fill and read; larger parties allow more role depth |
+| **Loot** | Personal loot avoids arguments; shared systems give groups social decisions |
+| **Solo access** | Soloable content serves solo players; party-only content (raids, dungeons) gives groups a reason to exist |
+| **Companions** | Weaker companions protect party play; strong companions serve solo players and story (*Guild Wars* heroes) |
+| **Heroes in a roster** | Giving every hero a reason to exist in at least one team keeps a collection meaningful |
+| **Odds** | Disclosure is required by platforms and several laws (section 3.7); pity rules and expected-cost displays are a design and trust choice |
 
 ### 4.2 Signals that something is wrong
 
@@ -295,7 +310,7 @@ Pick the smallest party that makes every role necessary; make loot personal by d
 ### 4.3 Classic failures
 
 - **The missing role.** If only one in ten players picks the healing role and every dungeon needs one, queues stall. Fix: reduce the dependency, make the role attractive, or let AI or consumables cover a missing role softly.
-- **Companion replaces people.** Solo play becomes easier and better than group play, and the world empties.
+- **Companion replaces people.** Companions that outperform humans can pull players out of groups; games that want grouping keep them weaker, and games that serve solo play and story may let them carry the player.
 - **Roster rot.** New heroes make the old ones obsolete, so the collection has no meaning.
 - **The multiplied chore.** Several characters mean several inventories, quest logs and gear sets. Share what you can across the roster.
 - **Scaling nobody can see.** If group scaling makes the same dungeon feel harder with more people, players avoid parties. Tell the player what scaling does.
@@ -361,7 +376,7 @@ How to read it:
 | **Dungeon bosses** | HP, damage and the number of simultaneous mechanics (see module 12) | Keeps the roles busy |
 | **World boss** | A fixed, high HP for a population of players; no party scaling | Open event |
 
-**Rule: no mechanic may need more than one player.** A mechanic that needs two players to stand on two plates in a group must be sequenced for a solo hero (one plate, repeated). Solo is slower, never blocked.
+**The course game's rule, following from its solo-playable pillar: no mechanic needs more than one player.** A mechanic that needs two players to stand on two plates in a group is sequenced for a solo hero (one plate, repeated). Solo is slower, not blocked. Raid and party-only content in other games requires a group by design.
 
 ### 5.5 Solo versus group rewards
 
@@ -378,8 +393,8 @@ Solo players give up **speed**, never content or the 15-minute reward guaranteed
 
 ### 5.6 What was cut
 
-- **Hard role lock** (needing a healer to enter). It makes queues slow and lets one role hold the group hostage.
-- **Need/greed and master loot.** Too much social work for a game that wants short sessions.
+- **Hard role lock** (needing a healer to enter). Cut from this example because it promises that solo is never blocked and that sessions are short; raid-focused games use role locks on purpose.
+- **Need/greed and master loot.** Cut from this example as too much social work for its short sessions; shared loot is the usual choice for organised raiding.
 - **Cross-class party bonuses** (for example a bonus for five different classes). They would force the party composition, and only four slots exist.
 - **Companions that fight**, **multi-character control** and **hero collection.** Kept out of the first release. See section 5.7.
 
@@ -410,7 +425,7 @@ Solo players give up **speed**, never content or the 15-minute reward guaranteed
 | Area | Change |
 |---|---|
 | **Core loop** | Shifts from fighting to team-building; combat becomes auto or semi-auto |
-| **Pillars** | Pillar 2 (read the fight) loses its purpose; pillar 1 changes to "my team"; pillar 4 needs odds, pity and a "no unearnable power" statement the shop cannot easily keep |
+| **Pillars** | Pillar 2 (read the fight) loses its purpose; pillar 1 changes to "my team"; pillar 4 needs a "no unearnable power" statement, which a roster shop can keep only if every hero can be earned (predictable recruitment, as in *King's Raid*) |
 | **Content** | One kit per hero, an ever-growing roster, new heroes each season |
 | **Social** | Guilds and arenas replace dungeon parties |
 | **Persona fit** | Dev gains a great fit; Mira loses |
@@ -420,15 +435,18 @@ The table in section 3.5 summarises the trade: the course game keeps (a) because
 ## Key takeaways
 
 - The first design choice is **how many characters a player owns and controls**: one hero in a player party, one hero plus AI companions, a controlled party, or a roster of collected heroes.
-- Control load, content cost and monetization pressure all **multiply with the number of characters**; plan to share progress across a roster.
-- For a social online RPG, **party size four with three roles** is the smallest structure that makes roles matter, and it keeps queues fast and the screen readable.
-- **Personal loot** removes the biggest source of party arguments; trading is the safety valve.
-- Scale enemies **more slowly than party power** so groups are faster per hour, and let nothing require more than one player so solo is never blocked.
-- AI companions give solo access but **replace people if they are too good**; keep them weaker than humans in a game that sells togetherness.
-- If characters come from a random draw, **publish rates and pity and calculate the expected and worst-case cost**; completing a pool of 20 top-rarity heroes by chance alone costs thousands of pulls even with pity.
+- Control load and the number of things to maintain tend to grow with the number of characters; content cost grows with the number of distinct kits, and monetization pressure depends on how characters are acquired. Plan to share progress across a roster.
+- Parties of three to five are common in online RPGs (four in *Final Fantasy XIV* dungeons, five in *World of Warcraft* dungeons); four with three roles is easy to fill and read, and is the course game's choice.
+- Personal loot removes most loot arguments; shared systems (need or greed, master loot, points) give groups control, at the cost of social work. The course game uses personal loot with a trade window as a safety valve.
+- In a game where solo play is allowed, scale enemies **more slowly than party power** so groups are faster per hour, and give solo a sequential version of any mechanic that needs two players; fixed-size content is the alternative.
+- AI companions give solo access; if they outperform humans they can pull players out of groups, so a game that sells togetherness keeps them weaker, and a solo-friendly game may let them carry the player.
+- If characters come from a random draw, odds disclosure is required by platforms and several laws, and designers should calculate the expected and worst-case cost; completing a pool of 20 top-rarity heroes by chance alone costs thousands of pulls even with pity.
 
 ## Further reading
 
+- Warcraft Wiki, "Loot" (group loot methods): https://warcraft.wiki.gg/wiki/Loot
+- Wikipedia, "Dragon kill points": https://en.wikipedia.org/wiki/Dragon_kill_points
+- Wikipedia, "Palworld" and "Ark: Survival Evolved" (capture and taming): https://en.wikipedia.org/wiki/Palworld and https://en.wikipedia.org/wiki/Ark:_Survival_Evolved
 - Guild Wars Wiki, "Hero" (companions with control panel, modes and flags): https://wiki.guildwars.com/wiki/Hero
 - Warcraft Wiki, "Follower Dungeons": https://warcraft.wiki.gg/wiki/Follower_Dungeons
 - Final Fantasy XIV Console Games Wiki, "Trust System": https://ffxiv.consolegameswiki.com/wiki/Trust_System

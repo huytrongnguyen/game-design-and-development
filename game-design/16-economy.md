@@ -56,7 +56,7 @@ How it supports the loops of [module 03](03-vision-pillars-loops.md):
 - **Session loop (a sitting):** at the end of a session the player sells, buys potions, and upgrades. That "spend" moment closes the loop.
 - **Meta loop (weeks):** saving for a big purchase or a market flip gives the weeks a shape.
 
-Feelings to protect: "my gold means something" (no inflation), "I can afford something useful today" (no deflation), "the market is fair" (no bots or scammers), and "paying money did not break it" ([module 17](17-monetization.md)). The most damaging feeling is **"gold is worthless"**: when everything that matters costs ten times what a session earns, or when a bot has made the currency meaningless, players stop caring about drops.
+Feelings many designers aim to protect: "my gold means something" (little inflation), "I can afford something useful today" (little deflation), "the market is fair" (few bots or scammers), and "paying money did not break it" ([module 17](17-monetization.md)). A feeling that damages loot-driven games is **"gold is worthless"**: when everything that matters costs ten times what a session earns, or when a bot has made the currency meaningless, players stop caring about drops. Some games accept steady inflation and reset it with seasons, new tiers or new currencies; the cost is that old wealth loses meaning.
 
 ## 3. The design space
 
@@ -77,16 +77,17 @@ Every extra currency adds a wallet, a vendor, an icon and a way to confuse playe
 1. **Contain inflation.** Gold earned by killing monsters flows into the market. A token earned by one dungeon and spent only at its vendor cannot.
 2. **Set a fixed progress rate.** A weekly-capped token says "you can have one piece of this per week" regardless of how much you grind.
 3. **Protect against bots and RMT.** A bound currency has no resale value.
-4. **Keep the shop honest.** A premium currency that cannot be converted to gold cannot become a back door for buying power ([module 17](17-monetization.md)).
+4. **Keep money and in-game wealth separate.** A premium currency with no link to gold keeps real money out of the gold economy ([module 17](17-monetization.md)). The exchange options below accept that link on purpose and manage it with the market.
 
-**The cost:** "currency soup". Some games end up with a dozen currencies and a wallet screen that needs a tutorial. Rule of thumb: **one tradeable currency, at most two or three bound ones, one premium one**.
+**The cost:** "currency soup". Some games end up with a dozen currencies and a wallet screen that needs a tutorial. Currency counts vary. Many online RPGs run one tradeable currency, a few bound tokens and one premium currency; mobile collectors and roster games often run one bound currency per upgrade axis (section 5.10). Each extra currency costs a wallet, a vendor and a tutorial, and buys a separate faucet or rate.
 
-**Should premium currency convert to gold?** Three options:
+**Should premium currency convert to gold?** Four common options:
 
 | Option | How it works | Pros | Cons |
 |---|---|---|---|
 | **No link** | Premium never becomes gold | Simple, no pay-for-power route, bots gain no official outlet | Gold sellers still exist |
 | **Official exchange** | The publisher sells a token players list for gold: the buyer pays money, the seller gets gold | Takes business from gold sellers; players can pay for playtime with gold | Real money buys gold, and gold buys power; a design stance, not a detail. World of Warcraft launched its Token this way in April 2015 |
+| **Tradeable premium item** | The publisher sells an item for money; players trade it on the market for soft currency, so the market sets the exchange rate | Money flows to the publisher, not to sellers; the rate is set by players; gold sellers lose business | Soft-currency prices become tied to real prices; the publisher must watch the rate. Public example: EVE Online's PLEX, sold for money and tradeable for in-game currency (as of October 2026) |
 | **Real-money auction house** | Players sell items for real money in the game | A legal outlet, publisher takes a cut | The loot loop becomes a job. Diablo III closed its real-money and gold auction houses on 18 March 2014; Blizzard's production director said the auction house "short-circuited" the loop of earning loot by killing monsters |
 
 ### 3.2 Faucets and sinks
@@ -106,18 +107,21 @@ Every extra currency adds a wallet, a vendor, an icon and a way to confuse playe
 
 | Sink | Type | Notes |
 |---|---|---|
-| **Consumables** (potions, ammo, food) | Recurring, scales with play | The healthiest sink: players choose how much to use |
+| **Consumables** (potions, ammo, food) | Recurring, scales with play | Players choose how much to use, so the drain follows activity |
 | **Upgrades and enhancement** | Aspirational | The biggest sink in most RPGs, because players want power |
 | **Crafting fees** | Recurring | Cheap but frequent |
-| **Fast travel, teleports** | Convenience | Keep it cheap; a travel toll that stings is a time tax |
+| **Fast travel, teleports** | Convenience | Cheap travel keeps the world open; costly travel gives distance weight and adds a gold drain. The choice depends on how big the world should feel |
 | **Repairs** (gear durability) | Mandatory | Classic in older games. It punishes failure, and not every game wants that |
-| **Storage and slot expansion** | One-off | Large price, rare, never "needed" |
+| **Storage and slot expansion** | One-off | Large price, rare, seldom "needed" |
 | **Respec and re-roll services** | Optional | Good places for a fee ([module 09](09-classes-roles.md)) |
 | **Market fees and taxes** | Scales with trade | The only sink that grows with the economy itself |
 | **Cosmetic purchases in gold** | Aspirational | Good late sinks for veterans who own everything useful |
 | **Item destruction** (failed upgrades, salvage) | Item sink | Removes supply of items as well as gold |
+| **Death penalty** (gold or durability loss) | Recurring | Gives failure a cost and raises the stakes of exploration; costs player goodwill |
+| **Upkeep** (housing, guild hall, pet or mount feeding) | Recurring | Scales with what the player owns |
+| **Gold gambles or lotteries** | Optional | A sink some players enjoy and others resent |
 
-**Mandatory or aspirational?** Sinks the player must pay (repairs, tolls) feel like punishment; sinks the player chooses (upgrades, cosmetics) feel like shopping. Prefer the second kind, keep the first small, and **never make a sink the way players lose to a mistake they cannot see coming**.
+**Mandatory or aspirational?** Sinks the player must pay (repairs, tolls, death loss) feel like punishment to many players; sinks the player chooses (upgrades, cosmetics) feel like shopping. Mandatory sinks are reliable drains and give failure a cost; chosen sinks are better liked. Most games mix both. Hidden-risk sinks (a failed enhancement, a death loss) are a recognised but disputed option; if you use them, warn the player of the risk before it applies.
 
 ### 3.3 Player trading
 
@@ -127,15 +131,17 @@ Every extra currency adds a wallet, a vendor, an icon and a way to confuse playe
 | **Direct trade only** | Two players swap in a window | Social, simple | Slow price discovery; scams; whispers and spam |
 | **Auction house / trading post** | Listings, buyers browse, fees apply | Price discovery, ships your items to everyone | Needs fees, price limits, anti-bot work; can turn the game into a spreadsheet |
 | **Player-run markets** | Players set up shops in the world | Flavour | Poor UI, needs moderation |
+| **Bid auction or fixed-price board** | The seller picks a start price and a time limit (bids) or a buy-now price (board) | Bids find prices for rare items; fixed boards are faster and simpler | Bids are slower; boards price rare items badly |
+| **Gift or mail only** | One-way transfers with limits | Supports guild and friend help without a market | No price discovery |
 
-**Binding** is the dial between these: **bind on pickup** (never tradeable), **bind on equip** (tradeable until first used), **account-bound** (shareable between your own characters only), and **tradeable until X** (a time window, as in the party loot rule of [module 11](11-party-roster.md)). The more power an item carries, the earlier it binds.
+**Binding** is the dial between these: **bind on pickup** (never tradeable), **bind on equip** (tradeable until first used), **account-bound** (shareable between your own characters only), and **tradeable until X** (a time window, as in the party loot rule of [module 11](11-party-roster.md)). A common pattern is that the more power an item carries, the earlier it binds. Some games leave their best items tradeable so the market can price them; the cost is easier gold-to-power conversion and more RMT pressure.
 
 **Fees and taxes.** Trade fees are the sink designers love because they scale with the economy: more trading, more drain. Two common forms (as of October 2026):
 
 - **Listing fee:** paid up front, non-refundable. Discourages spam listings and price testing. Guild Wars 2's Trading Post charges 5% to list, plus 10% on sale.
 - **Sale tax:** a percentage of the sale price, taken from the seller. Old School RuneScape's Grand Exchange charges a flat percentage with a cap per item, so very expensive items are not taxed without limit; the rate was raised once after launch and the community wiki lists the current value.
 
-**Safeguards that cost little:** a level or age requirement before trading; a **price corridor** (a listing may not be priced far from the recent median); a daily cap on how much gold one account may transfer; and a short delay on mail and large trades so scammers and gold sellers lose their speed.
+**Safeguards, with their costs:** a level or age requirement before trading (new players cannot trade for a while); a **price corridor** (a listing may not be priced far from the recent median; it blocks genuine bargains and scarce-item prices); a daily cap on how much gold one account may transfer (it limits large honest trades); and a short delay on mail and large trades so scammers and gold sellers lose their speed (it slows friends who gift).
 
 ### 3.4 Inflation and deflation
 
@@ -148,14 +154,14 @@ Every extra currency adds a wallet, a vendor, an icon and a way to confuse playe
 
 **Deflation** is less discussed. Causes: sinks too heavy for the earning rate; fees too high; a new currency that crowds out gold. Symptoms: players stop trading because the fee eats the margin, and newcomers cannot afford the basics.
 
-**The key measure is money supply per active player**, and the key warning sign is the sink ratio drifting away from 90–100% for weeks. Two details trip up first-time designers:
+**The key measure is money supply per active player**, and a key warning sign is the sink ratio drifting away from the band the game aims for. The ratio shows the direction of the supply: 100% is flat, below 100% grows, above 100% shrinks. The band is a design choice (the course game aims for 85–95% so that players can save). Two details trip up first-time designers:
 
 1. **The stock is a small difference of two big flows.** If players earn 2,200 gold a day and sinks drain 2,010, the supply grows by only 190 a day, but a 5% change in either flow moves that difference by half. The simulation of section 5 shows it: doubling the market fee from 5% to 10% cuts the day-90 supply by 40%. Tune sinks in small steps and wait.
 2. **The average hides the distribution.** A few rich veterans hold most of the gold. Look at the median and the top 1% as well as the mean.
 
 ### 3.5 Bots and real-money trading
 
-Bots and RMT hurt in three ways: they inflate the currency, they make farming unprofitable for honest players, and they bring account theft and scams. A design that **reduces the profit** works better than one that only bans.
+Bots and RMT hurt in three ways: they inflate the currency, they make farming unprofitable for honest players, and they bring account theft and scams. Teams combine two approaches: **reduce the profit** (binding, caps, friction) and **enforce** (detection, bans, rollback). Reducing profit costs honest players some freedom; enforcement costs staff and brings false positives.
 
 | Lever | How it helps |
 |---|---|
@@ -178,10 +184,11 @@ Bots and RMT hurt in three ways: they inflate the currency, they make farming un
 | **Entry tickets** | A limited number of dungeon entries | Common in mobile RPGs |
 | **Rested bonus** | Time offline stores a bonus for later | Several MMORPGs |
 | **Diminishing returns** | Rewards shrink as you repeat the same task | Many action RPGs |
+| **No limit** | Players play as long as they like; pacing comes from content, gear and gold sinks | Most PC MMORPGs. Strengths: freedom, no refill pressure. Costs: content is consumed faster, and grind sets the rate instead of a limiter |
 
-**What it is for.** Pacing (players do not burn a month of content in a weekend), a retention hook (a reason to come back), and, in some games, a sales point (refills). It is the clearest divide between mobile and PC design: stamina suits short mobile sessions and collector games, and fits badly with a game that sells "play as long as you like".
+**What it is for.** Pacing (players do not burn a month of content in a weekend), a retention hook (a reason to come back), and, in some games, a sales point (refills). It is the clearest divide between mobile and PC design: stamina is most common in short-session mobile and collector games. Other games use similar limits too (daily dungeon entries, weekly lockouts). Games that promise "play as long as you like" tend to cap the reward instead of the access.
 
-**Cost.** The player must stop when the bar empties, and the reason can feel arbitrary. Selling refills makes it worse, because the game is now charging for the right to keep playing.
+**Cost.** The player must stop when the bar empties, and the reason can feel arbitrary. Selling refills is a revenue stream for several top-earning games. Players who dislike it describe it as paying for the right to keep playing; designers who sell refills usually pair them with a free daily refill.
 
 **Soft alternatives.** Cap the *reward*, not the *access*: a daily first-clear bonus, a weekly chest, a capped token. The player may keep playing; they just earn less of one thing.
 
@@ -191,7 +198,7 @@ Bots and RMT hurt in three ways: they inflate the currency, they make farming un
 |---|---|---|
 | A social RPG with a long endgame | One tradeable currency, a market with a 5%-ish fee, one or two capped tokens | Players trade, so the sink must scale with trade |
 | A mobile game with short sessions | Stamina or entry tickets, many bound currencies, little or no trading | Pacing and control matter more than a player economy |
-| A game with strict "no pay for power" | No official exchange, premium currency that never becomes gold | A link from money to gold is a link from money to power |
+| A game that wants no purchased power | No official exchange, premium currency with no link to gold | Where gold buys power, any link from money to gold passes money into power. Where gold buys only convenience or cosmetics, the link matters less |
 | An open sandbox (player-made goods) | Heavy fees and item sinks, public economic reports | Players make most of the economy and the sinks have to match |
 | A single-player or co-op game | One soft currency, no market | Nothing to balance between players |
 
@@ -199,13 +206,15 @@ Bots and RMT hurt in three ways: they inflate the currency, they make farming un
 
 ### 4.1 Rules of thumb
 
+These rules of thumb fit the course game; other games set other targets.
+
 - **Price in time.** Decide how many minutes of average income each purchase should cost. A common ladder: consumables 1–5 minutes, services 5–15, an upgrade attempt 30–60, a big goal 3–10 hours, a one-off luxury a few evenings.
-- **Aim for a sink ratio of 85–95%** in the steady state. Do not aim at 100%: players need to save for goals, so the supply has to grow slowly.
-- **Hold a few days of income.** A healthy average wallet is a few days of income, not weeks. In the simulation below the target is under five.
+- **A sink ratio under 100% lets the supply grow** so that players can save for goals; the band is a design choice. The course game aims for 85–95% in the steady state.
+- **Days of income held.** The course game aims for an average wallet of a few days of income; in the simulation below the target is under five. Games where players hoard on purpose may hold more.
 - **Scale sinks with progress.** Fixed sinks do nothing for a veteran, and ruin the start for a newcomer. Prices that scale with level or stage keep the ratio in place.
-- **Make sinks chosen.** Prefer consumables, upgrades and cosmetics to tolls and repairs.
-- **Prefer many small sinks to one big one.** One sink can be skipped and hurts when it is touched.
-- **Do not change a sink and a faucet in the same patch.** You will not know which did what.
+- **Chosen or mandatory sinks.** The course game leans on consumables, upgrades and cosmetics rather than tolls and repairs (section 3.2 lists the trade-off).
+- **Many small sinks or one big one.** One big sink can be skipped by players and hurts when it is touched; many small ones spread the drain but add more prices to tune.
+- **Change one lever per patch.** If a sink and a faucet change together, it is harder to tell which did what.
 
 ### 4.2 Telemetry and live tuning
 
@@ -221,6 +230,8 @@ An economy is run by a dashboard. Measure daily, per active player, and review w
 | **Trade volume and fee take** | How active the market is | Volume dropping after a fee change |
 | **Gold per account per hour** | Bot detection | Accounts far above the 99th percentile |
 | **Premium currency bought and spent** | Health of the shop | Large unspent balances (a possible refund and consumer-law issue) |
+
+The warning thresholds are illustrative; set them from your own baseline after the first month.
 
 Public example: EVE Online's developer publishes a Monthly Economic Report with money supply, money velocity, sinks and faucets, and price indices (as of October 2025), so players can see the same dashboard the designers use.
 
@@ -239,7 +250,7 @@ Public example: EVE Online's developer publishes a Monthly Economic Report with 
 
 **Classic failures.**
 
-- **The retrofit.** Sinks added after players have stockpiled feel like a tax on the past. Design them before launch.
+- **The retrofit.** Sinks added after players have stockpiled can feel like a tax on the past. Games that add them later usually pair them with a new reward (cosmetic or aspirational) and announce them in advance.
 - **The one big sink.** All the drain goes through one item class, which then dominates the game.
 - **The duplicate bug.** One exploit floods the economy. Keep an audit log so you can roll back.
 - **A currency that nobody can spend.** Event leftovers or tokens with no vendor.
@@ -400,11 +411,11 @@ The course game has **no stamina or energy bar**, because pillar 4 says a player
 
 ### 5.9 What was cut
 
-- **Official gold-for-money exchange.** It would turn the shop into a power route (section 3.1).
+- **Official gold-for-money exchange.** Cut because pillar 4 says nothing sold gives power players cannot earn, and gold buys power here (section 3.1 shows games that chose the exchange).
 - **Repair costs and gold loss on death.** Module 12 gives no repair cost, and pillar 4 (respectful of time) argues against making failure cost twice.
 - **A listing deposit.** A 1% deposit would stop listing spam but punish players who test prices; the corridor and the 20-listing cap do the job.
 - **Stamina.** See 5.7.
-- **A second tradeable currency.** One is enough to keep the economy readable.
+- **A second tradeable currency.** Cut to keep the course game's economy to one price list; games with several tradeable currencies accept more complexity.
 
 ### 5.10 How the design would change for another kind of game
 
@@ -418,12 +429,12 @@ The course game has **no stamina or energy bar**, because pillar 4 says a player
 ## Key takeaways
 
 - An economy is **faucets, sinks and wallets**; the number to watch is the **sink ratio** and the **money supply per active player**, not the price of any one item.
-- Give each currency **one job**: one tradeable soft currency, one or two bound tokens with weekly rates, one premium currency that never converts to gold.
-- **Sinks should be chosen, not forced**: upgrades, consumables and cosmetics feel like shopping, tolls and repairs feel like punishment.
-- A market needs a **fee, a price corridor and trade limits**; the fee is the one sink that scales with the economy itself.
+- **Choose how many currencies and what each is for**; each extra one needs its own earn rate and vendor.
+- Sinks the player chooses and sinks the player must pay both work; they feel different, and most games mix them.
+- If players can trade, the market needs something that drains it (a fee) and ways to limit abuse (corridor, caps). The fee is the one sink that scales with the economy itself; the course game uses a 5% fee, a corridor and caps.
 - The stock is a **small difference of two big flows**, so tune in steps of a few percent. In the model, moving the fee from 5% to 10% cuts the day-90 supply by 40%.
 - **Averages hide the tail**: a hardcore veteran can hold ten times the mean while a casual holds nothing; track the median and the top 1%.
-- Design the sinks **before launch**, publish a dashboard, and decide the rules for premium currency early: any link from money to gold is a link from money to power.
+- Plan the sinks early (adding them later is possible but can feel like a tax on the past), consider publishing a dashboard, and decide early whether money can reach gold; where gold buys power, that is a decision about power.
 
 ## Further reading
 
@@ -435,5 +446,6 @@ The course game has **no stamina or energy bar**, because pillar 4 says a player
 - Guild Wars 2 Wiki, "Trading Post" (listing and exchange fees): https://wiki.guildwars2.com/wiki/TP
 - Old School RuneScape Wiki, "Grand Exchange" (tax rate and cap): https://oldschool.runescape.wiki/w/Grand_Exchange
 - Final Fantasy XIV Console Games Wiki, "Allagan Tomestones" (weekly caps): https://ffxiv.consolegameswiki.com/wiki/Tomestone
+- EVE Online Support, "ISK and PLEX" (a premium item traded for in-game currency, as of October 2026): https://support.eveonline.com/hc/en-us/articles/14141550499612-ISK-and-PLEX
 - Genshin Impact Wiki, "Original Resin": https://genshin-impact.fandom.com/wiki/Original_Resin
 - Edward Castronova, *Synthetic Worlds: The Business and Culture of Online Games* (University of Chicago Press, 2005), the standard economics-of-virtual-worlds book.

@@ -1,6 +1,6 @@
 # Module 18: World and level design
 
-- **Goal:** lay out the spaces of an online RPG (regions, fields, towns and dungeons) so that players always know where to go, the pacing alternates tension and rest, and the shared world stays alive when many players are in it.
+- **Goal:** lay out the spaces of an online RPG (regions, fields, towns and dungeons) so that players can tell where to go, the pacing alternates tension and rest, and the shared world stays alive when many players are in it.
 - **Prerequisites:** [03 — Vision, pillars and loops](03-vision-pillars-loops.md), [06 — Controls, camera and game feel](06-controls-camera-feel.md), [08 — Combat design](08-combat.md), [12 — Enemies, bosses and encounters](12-enemies-encounters.md).
 - **Simulation:** none
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
@@ -65,7 +65,7 @@ Spatial design supports three pillars of the course game. **Fights you can read*
 | **Hub and instances** | A shared hub, private instances for all missions | *Diablo III* (town plus instanced areas); many action RPGs | Total control of pacing and difficulty | Weak sense of a living world |
 | **Hybrid (shared fields, private dungeons)** | Fields and towns shared; dungeons and story scenes instanced | *World of Warcraft*, *Guild Wars 2*, *Final Fantasy XIV* | Social fields, authored dungeons | Two content types to build |
 
-Most online RPGs are hybrids (as of October 2026). The rule is: **share what benefits from other players** (fields, towns, world bosses) and **instance what needs control** (dungeons, story fights, anything that must not be ruined by a stranger).
+Most online RPGs are hybrids (as of October 2026). A common split in hybrids is to **share what benefits from other players** (fields, towns, world bosses) and **instance what needs control** (dungeons, story fights). Seamless worlds share almost everything; hub-and-instance games share almost nothing; each trades social life against control.
 
 #### Open world as a world structure
 
@@ -76,11 +76,26 @@ The seamless open world deserves a closer look, because it changes how every oth
 | **Exploration density and points of interest** | The designer fills the map with things worth finding: puzzles, chests, camps, view points, small secrets. A common rule is that the player should see or reach something new every 30–60 seconds of travel; the "triangle rule" (a landmark, a second landmark and the hidden space between) is one way to place them. Empty space is cheap to paint but feels dead; dense space is expensive to author |
 | **Traversal** | Movement is a feature, not a cost: climbing, gliding, swimming and sprinting open the space. A **stamina** bar limits them, so the designer decides where a cliff can be climbed, how far a glide reaches and how stamina recovers. Traversal needs its own collision, animation and camera work (module 06) |
 | **Map reveal** | The map starts hidden and is revealed by visiting: standing on a tower or a statue unveils a region and unlocks fast travel. The reveal is a reward and a navigation aid at once. Fast-travel points also shorten return trips, which keeps short sessions possible (module 27) |
-| **Gating by level and story** | The player can walk anywhere, so gates must be soft or explicit: enemies far above the player's level, a story-quest requirement, an account level that unlocks regions or content, or terrain that needs a traversal ability. Soft gates feel like choices; hard gates feel like walls. The designer must decide which |
+| **Gating by level and story** | The player can walk anywhere, so gates must be soft or explicit: enemies far above the player's level, a story-quest requirement, an account level that unlocks regions or content, or terrain that needs a traversal ability. Soft gates read as choices and let players try content early; hard gates give the designer control over order and spoilers. Open-world games use both |
 | **Co-op in an open world** | Parties share one world, but players want to move on their own. Common choices: invite-only visits to a friend's world, a limited number of players per world, and dungeons or bosses as shared instances. Content gated by story progress needs a rule for what a guest may do in the host's world |
 | **Content cost and pacing** | A large map needs a steady cadence of new regions and events, not just a big launch. Pacing is set by the player, so the designer shapes it with density, difficulty bands and rewards: quiet spaces between dense ones, a bright landmark before a hard area, daily or weekly resets to give returning players a reason to travel again |
 
 Compared with the zoned world above, an open world gives more freedom and costs more to balance: players can arrive at any place at any level, so enemy scaling and reward tuning must tolerate that. Module 02 places the open-world action RPG on the genre map.
+
+#### The world map: geography, scale and layers
+
+Whatever the structure, players build a **mental map**: they remember that the mine is north of town and the coast is east. The **world map** is the designer's version of that picture, and every zone is placed on it. A zone's gates then point the way the map says: leaving by the north gate leads to the place drawn to the north. When a road leaves a zone eastward and arrives in the next zone from the east, or two roads cross without meeting, players lose their bearings and stop trusting the map.
+
+| Choice | Options | What each gives and costs |
+|---|---|---|
+| **What comes first** | **Map first**: draw the geography (coasts, mountains, rivers, roads), then cut it into zones. **Zone first**: build zones as content needs them, then fit a map around them. **Generated**: terrain from rules, places set by hand | Map first keeps directions and distances true, but fixes the layout early. Zone first is quick to extend for years, but drifts: a zone added later goes wherever there is room, and the map stops matching the roads. Generated terrain is cheap at scale and needs hand work to feel authored |
+| **Scale** | **True scale**: distances on the map match walking time. **Compressed**: the map keeps order and direction but shrinks travel. **Symbolic**: the map is a diagram of links | True scale makes the world feel real and costs content to fill the distance. Compressed is the usual middle ground. A symbolic map is easy to read and gives up the sense of place |
+| **Layers** | **Surface** (fields, towns); **underground** (caves, dungeon floors) placed under their entrance; **interiors** (buildings) inside their footprint or as separate pocket spaces; **above** (towers, sky areas) | Placing every layer in one coordinate space lets the map show what lies beneath what, and keeps entrances honest (a cave behind the waterfall really is there). Pocket interiors are cheaper and may be larger inside than outside, which most players accept |
+| **One place, many versions** | A place shown **once** on the map, with its **versions** (night, ruined, in the past, a private copy) entered from it; or each version as its own place | One place with versions keeps the map clean and the geography true. Separate places are simpler to build and clutter the map with copies of the same ground |
+| **Land and sea** | One landmass, or **continents and islands** joined by sea or air routes | Separate landmasses give natural regions and room to add land later (an unexplored coast, a new island). Sea and air routes are travel services, not roads, and are drawn as routes |
+| **Roads and services** | **Roads** (walking between neighbouring zones) and **services** (teleports, ships, fast travel between distant places) | Only roads decide where zones sit on the map. Services shorten travel and are drawn separately, or the map turns into a web of lines |
+
+**Repairing a world that drifted.** A zoned world grown over years often shows the same symptoms: exits that face the wrong way, a long road that skips a region, two places built on the same ground, dungeons with no place on the surface. The repair works on the map first: choose the true geography, then rotate and move each zone to fit it, move gates to the side that faces the neighbour, add connecting land where zones no longer touch, and give each layer its height. A public example of a large rework is *World of Warcraft: Cataclysm* (2010), which rebuilt the original continents' zones and roads. The cost is art and data work in every zone touched; the gain is a world that can be drawn, explored and extended without contradictions.
 
 ### 3.2 Level flow and the critical path
 
@@ -91,12 +106,14 @@ Compared with the zoned world above, an open world gives more freedom and costs 
 | **Linear** | A → B → C; one route | Tutorials, dungeons, story | Feels like rails if every region is linear |
 | **Hub and spoke** | Return to a hub, go out along one spoke at a time | Quest hubs, regions with several dungeons | Backtracking to the hub every time |
 | **Branching with loops** | Several routes that rejoin, shortcuts that open | Large dungeons, big fields | Players get lost; more content to build |
+| **Free order** | Several areas open at once and the player chooses (many open-world games) | Freedom | Difficulty and story order are harder to control |
+| **Interconnected map with ability gates** | Areas link back and open after the player gets an ability | Exploration | Backtracking; hard to signpost |
 
-The **critical path** is the route the main quests force. Everything else (side quests, optional dungeons, hidden chests) hangs off it as branches. Three rules:
+The **critical path** is the route the main quests force. Everything else (side quests, optional dungeons, hidden chests) hangs off it as branches. Three common practices, each with a cost:
 
-1. **Move forward, not back.** Each main step should lead to a new place, not to one the player already cleared. When a chain must go back, use a fast-travel point or a scene instead of a long walk (module 19 lists this as an anti-pattern).
-2. **Gate by level first, walls last.** A level range per region and a stronger enemy at the edge say "not yet" without a locked door. Use hard gates (a story flag) only where the story needs them.
-3. **One new idea per place.** A field adds one enemy type or mechanic; the dungeon combines them. This is the same "teach, then test" order as a boss (module 12).
+1. **Move forward.** Each main step leads to a new place; the cost is less reward for backtracking, which some games use on purpose (revisits with new abilities). When a chain must go back, a fast-travel point or a scene can replace a long walk (module 19 covers the risk).
+2. **Gate by level first, and by story flags where the story needs them.** A level range per region and a stronger enemy at the edge say "not yet" without a locked door; hard gates give control over order and spoilers.
+3. **One new idea per place.** A field adds one enemy type or mechanic; the dungeon combines them. This is the same "teach, then test" order as a boss (module 12) and makes teaching clear; games that combine ideas early trade clarity for density.
 
 ### 3.3 Sightlines and landmarks
 
@@ -125,8 +142,7 @@ Rules of thumb (invented targets for tuning):
 
 - **Dungeon:** fighting is **30–40 %** of the run (module 08); the rest is travel, regrouping, rest and story.
 - **Field questing:** fighting is about **40–50 %** of the time, because quests send the player between spots.
-- **Never two peaks back to back** without a valley, except at the finale.
-- **Put the biggest peak last** (the boss) and a smaller peak in the middle (the second elite).
+- **Rhythm.** A common rhythm alternates peaks and valleys and ends on the biggest peak (the boss), with a smaller peak in the middle (the second elite); the course game follows it. Other rhythms use sustained intensity (boss rush, wave survival, roguelike runs) or a peak at the start; they cost the player rest and need more recovery tools.
 
 ### 3.5 Field design: packs, density and respawns
 
@@ -141,10 +157,10 @@ A field is a place where packs repeat. Four numbers define it:
 
 Other field rules:
 
-- **Respawn out of sight.** Never spawn a pack inside the area a player can see; a pack that pops into view looks like a bug.
+- **Respawn out of sight.** Spawning out of sight avoids the "pop-in" look that can read as a bug; visible spawns suit event waves.
 - **Rings of difficulty.** Easier packs near the road or hub, harder ones deeper in, with an elite at the far end. Level range climbs along the path.
 - **Safe lanes.** A road or river with few or no enemies, so travelling players are not forced to fight.
-- **Quest spots overlap pack spots.** If a quest needs "5 Slingers", put them where Slingers already are. Do not make players hunt for a rare spawn.
+- **Quest spots overlap pack spots.** If a quest needs "5 Slingers", putting them where Slingers already are saves travel. Hunting for a rare spawn gives collectors a goal; the cost is competition and waiting.
 
 ### 3.6 Dungeon layout
 
@@ -156,9 +172,10 @@ A **dungeon** is an instanced sequence of rooms with a start, a climax and an ex
 | **Linear with a loop or side room** | The main line plus one optional branch that returns | Same, plus a reason to explore | Optional rooms must not become mandatory |
 | **Hub and spokes** | A central room with several wings, each with a mini-boss, then a final door | Long dungeons (30–60 minutes); keys or order choices | Players wander; harder to pace |
 | **Branching with shortcuts** | Several paths; shortcuts open after a first clear | Large dungeons; replay | Large, costly to test |
-| **Open or maze** | Free movement in a large structure | Exploration games | Poor fit for a timed party run |
+| **Open or maze** | Free movement in a large structure | Exploration games | Slow for a timed party run |
+| **Procedural** | Rooms or layouts chosen at random each run | Replay value. Public examples: Hades (random chamber order within fixed lands), Diablo III's Nephalem Rifts | Pacing and tutorials are harder to control; needs strong room kits and tests |
 
-For short party dungeons choose **linear with one side room**, then use these rules:
+The course game's short party dungeon uses **linear with one side room**. Hub-and-spokes, branching and open layouts suit other lengths and audiences (table above); the rules below are the practices this example follows:
 
 1. **A room has one job.** A pack room, a rest room, a puzzle or mechanic room, an elite room. Mixed jobs confuse pacing.
 2. **Room order mirrors boss structure.** First rooms teach a mechanic, middle rooms combine it, the last room tests it (module 12).
@@ -180,9 +197,9 @@ A **town** is a place of safety and services. The services of an online RPG (mod
 | **Mailbox and trade post** | Trade between players (module 16) | Plaza |
 | **Guild hall** | Social anchor (module 22) | A landmark building |
 
-Design rule: **every service within a 40 m radius of the waypoint**, so a full town errand takes under 60 seconds. A town where Dev must run for three minutes to sell loot wastes the 15-minute session.
+A town's size sets the errand time. The course game keeps **every service within 40 m of the waypoint**, so a full town errand takes under 60 seconds. A town where Dev must run for three minutes to sell loot wastes the 15-minute session.
 
-A town is also a **social space**: cap the crowd with channels (below), give people places to stand and talk, and show other heroes' cosmetics. Do not put fights in a town; do put the story there (a Marshal who greets you, a notice board that changes with the season).
+A town is also a **social space**: cap the crowd with channels (below), give people places to stand and talk, and show other heroes' cosmetics. Most MMORPG towns are safe zones; some games allow PvP or events in town, which gives towns more life and costs safety. The course game keeps fights out and puts the story in town (a Marshal who greets you, a notice board that changes with the season).
 
 ### 3.8 Shared world: density, channels and layers
 
@@ -201,6 +218,8 @@ Tools, from simplest to most refined:
 | **Megaserver instances** | The system places players in map instances by party, guild, language and home server and opens a new copy at capacity | *Guild Wars 2* megaserver (April 2014, per its wiki) | Players of one realm meet less often |
 | **Layering (sharding)** | Parallel copies of a whole area with their own enemies, used to ease launch crowds | *World of Warcraft Classic* at launch (2019); Blizzard planned to reduce it once crowds eased | Friends can end up in different layers |
 | **Dynamic spawns** | Extra enemies appear when many players are near, and disappear later | Used in many MMOs | Hard to tune; can feel fake |
+| **Single shared world** | Everyone in one space, with caps by queue or by simulation load | EVE Online (one cluster; time dilation slows the game clock under heavy load) | One community; crowds, queues and load limits |
+| **Personal copies (phasing)** | Quest-critical enemies are copied for each player | Used in several online RPGs | No waiting; players share less |
 | **Shared kill credit** | Every player who contributes gets full credit, so no one steals | Common in modern online RPGs | Crowded fields are very fast to clear |
 
 **How to size a channel.** Count the packs, estimate how often each player needs one, and set the cap so supply meets demand (worked example in section 5.2).
@@ -263,7 +282,7 @@ Steps of a greybox review: (1) walk it, (2) time it, (3) run a fight in each roo
 - **Corridor combat.** Fights in a 3 m corridor: no room to dodge, so the pillar "Fights you can read" fails.
 - **Chain pulls.** Packs too close; one mistake wakes half the room.
 - **Backtracking tours.** The main quest sends the player through three zones they have cleared.
-- **Maze for its own sake.** A dungeon with branches that only waste time. Branch only for a reward.
+- **Maze for its own sake.** Branches that only add walking cost time in a timed party run; in exploration games the maze is the content. Decide what the branch gives the player.
 - **Dead fields.** A beautiful region nobody visits after level 11. Give it reasons to return: a daily, a weekly, a world-boss site.
 
 ## 5. Worked example
@@ -428,9 +447,9 @@ The longest silence is 1.9 hours, under module 14's two-hour rule for a dead str
 
 ### 5.7 What was cut
 
-- **A fourth field.** Three fields cover 11 levels; a fourth would add walking, not ideas.
+- **A fourth field.** Cut: the course game's three fields cover 11 levels; a fourth would lengthen the region without new teaching.
 - **Mounts.** Not at launch; waypoints replace them, and mount speed would rewrite every metric.
-- **Dungeon keys and puzzle rooms.** A timed party run does not need them. Puzzles live in field quests (module 19).
+- **Dungeon keys and puzzle rooms.** Cut: the dungeons are timed 15-minute party runs, so puzzles live in field quests (module 19); games with exploration dungeons use keys and puzzles as the core.
 - **Branching dungeons.** One loop is enough. The other nine dungeons reuse the same kit (Foundry rooms re-skinned into ice, fen and peak themes) so the team makes three layout kits, not ten.
 
 ### 5.8 For another kind of game
@@ -445,15 +464,18 @@ The longest silence is 1.9 hours, under module 14's two-hour rule for a dead str
 ## Key takeaways
 
 - A hybrid is the usual shape for an online RPG: **share** fields, towns and world bosses; **instance** dungeons and anything that must stay authored.
-- Players navigate by **landmarks and leading lines**, not by the map. Test it by dropping a stranger in and watching.
-- **Pace in waves:** fighting is 30–40 % of a dungeon, with a rest beat before every peak and the biggest peak last.
+- **Landmarks and leading lines** help players navigate without the map; maps and quest markers carry the rest. Place every zone on **one world map**: gates face their neighbours, underground and interior layers sit under or inside their entrances, and a place appears once with its versions.
+- A common pacing is **waves of peaks and valleys**; the course game keeps fighting at 30–40 % of a dungeon, with a rest before each peak.
 - Write the **metrics** first (speed, dodge, aggro radius, tell sizes), derive corridor widths, pack spacing and arena sizes from them, and test in a greybox before art.
 - Size shared fields by **supply and demand**: packs, respawn time and a channel cap of about packs ÷ 1.5, with dynamic spawns as slack.
-- Keep the critical path **moving forward**, keep every town service within 40 m of the waypoint, and let a short session always reach a fight in two minutes.
+- Set a **town service radius and a time-to-first-fight** from the session length you want (the course game: 40 m and two minutes), and decide how much backtracking the critical path allows.
 - Reuse space deliberately with kits, re-skins and hard modes, so ten dungeons cost three layouts.
 
 ## Further reading
 
+- EVE Online, "Introducing Time Dilation (TiDi)": https://eveonline.com/article/introducing-time-dilation-tidi
+- Gamepressure, "Hades: Underworld structure" (random chamber order): https://www.gamepressure.com/hades/underworld-structure-1/z4d9c4
+- BlizzCon 2013 Diablo III: Reaper of Souls panel transcript (randomized Nephalem Rifts): https://blizzplanet.com/blog/comments/blizzcon-2013-diablo-iii-reaper-of-souls-preview-panel-transcript/3
 - Kevin Lynch, *The Image of the City* (1960), overview: https://en.wikipedia.org/wiki/The_Image_of_the_City
 - *The Level Design Book* (free online): https://book.leveldesignbook.com/
 - Level design overview: https://en.wikipedia.org/wiki/Level_design
@@ -462,3 +484,4 @@ The longest silence is 1.9 hours, under module 14's two-hour rule for a dead str
 - Blizzard forum, "Addressing Population Concerns in WoW Classic" (layering): https://us.forums.blizzard.com/en/wow/t/499746/1
 - Harvey Smith and Matthias Worch, "What Happened Here? Environmental Storytelling" (GDC 2010): https://www.gdcvault.com/play/1012647/What-Happened-Here-Environmental
 - Genshin Impact (overview, open-world design, co-op, release): https://en.wikipedia.org/wiki/Genshin_Impact
+- World of Warcraft: Cataclysm (the rework of the original continents): https://en.wikipedia.org/wiki/World_of_Warcraft:_Cataclysm

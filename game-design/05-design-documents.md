@@ -26,7 +26,7 @@ Documents serve four purposes:
 
 ### 1.2 The document hierarchy
 
-Documents are layered from *why* to *exactly how*, so that a rule on page 40 never quietly contradicts the reason the project exists.
+Documents are commonly layered from *why* to *exactly how*, so that a rule on page 40 does not quietly contradict the reason the project exists.
 
 ```mermaid
 flowchart TB
@@ -51,7 +51,7 @@ The hierarchy is also an argument-settling tool. When a debate stalls, walk up: 
 | **Design overview** (the modern "GDD") | The whole team | A short index plus links | Continuously |
 | **Feature spec** | Engineers, QA, artists on that feature | 1 to 4 pages | Often during build |
 | **Data tables** | Designers, engineers, sims | Rows and columns | Constantly |
-| **Decision record** | Future you, new joiners | Half a page each | Never rewritten; superseded |
+| **Decision record** | Future you, new joiners | Half a page each | Superseded by a new record when reversed (one common convention) |
 | **Playtest report** | Design and production | 1 to 2 pages | One per test |
 
 ### 1.4 The one-pager, the pitch and the vision document
@@ -62,9 +62,9 @@ A **pitch** is a one-pager grown for an audience with money or authority. It add
 
 A **vision document** is for the team. It states the experience goal in a few sentences, the **pillars** (3 to 5 short phrases used as a filter for decisions), the target players, and what the game is explicitly *not*. It is the document you re-read when two good ideas collide.
 
-### 1.5 Why monolithic GDDs rot
+### 1.5 Why monolithic GDDs often fall out of date
 
-The traditional **game design document (GDD)** was one big file describing everything, written before production. It fails in predictable ways:
+The traditional **game design document (GDD)** was one big file describing everything, written before production. A monolithic GDD works for fixed-scope games, outsourcing and publisher sign-off when someone owns it. In live or fast-changing games it tends to fall out of date, in these ways:
 
 | Failure | Why it happens |
 |---|---|
@@ -95,7 +95,7 @@ Here the "player" of the document is its reader. Each reader asks a different qu
 
 Write for the *least informed* reader on this list who must act on the document. That is usually the engineer, so the feature spec is the layer to get right first.
 
-The document also protects the player's experience over time. A spec that states its **intent** ("death should cost a little time, never progress") gives later changes something to be checked against, so a quick fix for an economy problem does not silently turn a friendly rule into a harsh one.
+The document also protects the player's experience over time. A spec that states its **intent** ("death should cost a little time, not progress") gives later changes something to be checked against, so a quick fix for an economy problem does not silently turn a friendly rule into a harsh one.
 
 ## 3. The design space
 
@@ -108,7 +108,9 @@ The document also protects the player's experience over time. A spec that states
 | **Wiki of pages** | Easy to link and search; non-programmers can edit | History is weak; easy to leave stale; no review | Most mid-sized studios |
 | **Docs in the code repository** | Reviewed and versioned with the code; changes can be tied to builds | Designers need basic tooling | Engineering-led teams |
 | **Spreadsheets as source of truth** | Numbers and formulas live together; designers edit freely | Poor for prose; version history is thin | Almost every RPG for the numbers |
-| **Ticket tracker only** | Work is tracked | Rules get lost inside tickets | Teams that never write specs (a warning sign) |
+| **Ticket tracker only** | Work is tracked and the spec lives in the ticket | Rules scatter, are hard to search and are lost when tickets close | Agile teams; works better when tickets link to a wiki or repository page for lasting rules |
+| **Whiteboard or diagram boards** (Miro, FigJam) | Fast, visual, good for flows and workshops | Hard to version; no single reading order | Art-led and workshop-heavy teams |
+| **Prototype plus a recorded walkthrough** | Shows the rule rather than describing it | Edge cases stay undocumented | Small teams and prototype phases |
 
 ### 3.2 Wiki versus repository documents
 
@@ -121,7 +123,7 @@ The document also protects the player's experience over time. A spec that states
 | Rich media | Easy | Possible, needs conventions |
 | Best for | Brainstorming, meeting notes, onboarding, external sharing | Specs, decision records, data schemas, anything that must stay true |
 
-A common split, and a sensible default: **wiki or shared documents for exploring, repository for what is agreed.** The idea of "docs as code" is the same one that engineering teams use for architecture: documents are files, reviewed like code, with the same history (see the readings below).
+A common split is **wiki or shared documents for exploring, repository for what is agreed.** Others keep everything in a wiki with page approvals, or everything in the repository; the deciding factors are who must edit, how much review you need and whether the document has to change with the build. The idea of "docs as code" is the same one that engineering teams use for architecture: documents are files, reviewed like code, with the same history (see the readings below).
 
 ### 3.3 How big should a spec be?
 
@@ -131,14 +133,23 @@ A common split, and a sensible default: **wiki or shared documents for exploring
 | **Spec** | Intent, rules, parameters, test cases, out of scope | 1 to 4 pages | Anything that will be built |
 | **Formal specification** | Every state and transition, precise wording | Days | Money, trading, anti-cheat, legal rules |
 
-### 3.4 How to choose
+### 3.4 Spec formats
+
+| Format | Strength | Weakness |
+|---|---|---|
+| **Intent, rules, parameters, edge cases, tests, out of scope** (this module) | Thorough and testable | Heavy for small features |
+| **User story with acceptance criteria** | Agile; ties to tickets | Rules can scatter across stories |
+| **One-page visual design** (Stone Librande) | Readable at a glance | Weak for numbers and edge cases |
+| **State table or flow diagram plus a data table** | Best for systems with many states (trading, quests) | Weak on intent |
+
+### 3.5 How to choose
 
 | Situation | Use |
 |---|---|
 | Pitching to outsiders | Pitch deck plus the one-pager |
 | Starting a project | One-pager, vision and pillars, then a design overview index |
 | A feature is going to be built next | Feature spec in the repository |
-| A number will change often | Data table, never prose |
+| A number will change often | Data table, with the prose pointing to it |
 | A decision was contentious or reversed | Decision record |
 | A publisher demands a GDD | Generate it from the pieces; do not maintain it by hand |
 
@@ -146,7 +157,7 @@ A common split, and a sensible default: **wiki or shared documents for exploring
 
 ### 4.1 A feature spec, section by section
 
-A good feature spec has the same six sections every time, so readers know where to look:
+One proven spec shape has the same six sections every time, so readers know where to look (section 3.4 lists others):
 
 | Section | What it holds | Rule of thumb |
 |---|---|---|
@@ -170,7 +181,7 @@ For an RPG, the numbers are the design. A **data table** is a spreadsheet or fil
 
 ### 4.3 Decision records
 
-A **decision record** captures one choice and its reasons. Software teams call it an architecture decision record (ADR); the same structure works for design. It has a short, fixed shape: **title, status, context, options considered, decision, consequences, and when to revisit.** Records are not edited after the fact. A reversed decision gets a new record that supersedes the old one, which keeps the history honest.
+A **decision record** captures one choice and its reasons. Software teams call it an architecture decision record (ADR); the same structure works for design. It has a short, fixed shape: **title, status, context, options considered, decision, consequences, and when to revisit.** Many teams keep records append-only: a reversed decision gets a new record that supersedes the old one, which keeps the history honest. Others edit in place with a visible change log; the cost is that old reasoning can be lost.
 
 Write one when: the decision is expensive to reverse, the team argued about it, someone new will ask "why?", or you are about to *not* do the obvious thing.
 
@@ -182,7 +193,7 @@ Write one when: the decision is expensive to reverse, the team argued about it, 
 | **Balance simulation** | The data table and the formulas, as inputs the sim can read | The sim reads the same file the game reads (modules 08, 14 and 25) |
 | **QA** | The test cases and edge cases | Each rule has a test case with expected values |
 | **Artists** | The state list and the feedback moments | Each state has a name, a trigger and an end condition |
-| **Live operations** | The tunable parameters and their safe ranges | The team knows which numbers can change without a release |
+| **Live operations** | The tunable parameters and their allowed ranges | The team knows which numbers can change without a release |
 
 A useful gate is a **definition of ready**: intent written, every rule numbered, every number in a table, edge cases listed, tests written, out of scope stated.
 
@@ -217,7 +228,7 @@ Fix these by deleting, merging and assigning owners before writing anything new.
 |---|---|
 | **Writing the whole GDD before prototyping** | Write sketches; specify a feature only when it will be built |
 | **Over-specifying what will change** | Keep the stable parts (intent, rules) in prose and the volatile parts (numbers) in tables |
-| **Under-specifying edge cases** | Always list disconnects, ties and simultaneous events |
+| **Under-specifying edge cases** | List disconnects, ties and simultaneous events for any online rule |
 | **Specs with no intent** | Intent first; a rule without intent cannot be judged |
 | **Documentation as ritual** | If no one reads it, stop writing it |
 | **Locking the numbers** | Mark numbers "starting values, tune in playtest" |
@@ -270,10 +281,14 @@ Each spec links up to the pillar it serves and down to its data table. Nothing e
 DR-007: No experience or item loss on death
 Status: Agreed (2026-03-02)   Owner: Lead designer
 Context: Death will happen often in group content, and sessions on mobile are short.
-         Harsh penalties push casual players out and reward only careful veterans.
+         The course game's pillar "Fair and friendly" and its short sessions make progress loss
+         costly for its target players.
 Options: (A) lose a slice of current-level XP; (B) drop items; (C) lose time and a short
          strength debuff; (D) no penalty at all.
-Decision: C. Death costs time and a short debuff, never progress.
+         (A) gives stakes and an XP sink; (B) gives strong tension and a strong economy sink
+         but high frustration; (C) gives low frustration; (D) gives the lowest friction, and
+         death means little.
+Decision: C, as this example's choice. Death costs time and a short debuff, not progress.
 Consequences: Death no longer drains the economy (no repair or loss sink),
          so the economy needs other sinks (module 16). Pillar "Fair and friendly"
          is protected. Tension in boss fights comes from the enrage clock and the walk back, not from loss.
@@ -405,10 +420,10 @@ A second small system uses the same shape. The **daily login reward**: *Intent*,
 
 - A design document exists to change what someone does. If no reader acts on it, stop maintaining it.
 - Layer documents from why to how: pitch, vision and pillars, design overview, feature specs, data tables, tests.
-- One monolithic GDD rots. Split it into small, owned, dated pieces, and generate any large document a publisher asks for.
-- A feature spec has the same six sections every time: intent, numbered rules, parameters, edge cases, test cases, out of scope.
+- A monolithic GDD suits fixed scope; a changing game usually needs small, owned, dated pieces. Either way, generate or maintain the large version from the same source.
+- A feature spec should have a fixed shape; one proven shape is intent, numbered rules, parameters, edge cases, test cases and out of scope.
 - The numbers live in data tables, one copy each. Prose explains why, the table says how much, and the balance sim reads the same table the game reads.
-- Record contentious decisions in short decision records that are superseded, never rewritten.
+- Record contentious decisions in short decision records; many teams supersede them rather than rewrite them.
 - Keep documents alive with owners, status and dates, with changes made in the same step as the game, and with regular deletion.
 
 ## Further reading
@@ -419,5 +434,6 @@ A second small system uses the same shape. The **daily login reward**: *Intent*,
 - [Michael Nygard: Documenting Architecture Decisions (2011)](https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 - [Architectural Decision Records: templates and tooling](https://adr.github.io/)
 - [Malte Ubl: Design Docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)
+- [Miro](https://miro.com/) and [FigJam](https://www.figma.com/figjam/): whiteboard tools used for flows and workshops (as of October 2026)
 - [Write the Docs: Docs as Code](https://www.writethedocs.org/guide/docs-as-code/)
 - [Martin Fowler: YAGNI (do not specify what you do not need yet)](https://martinfowler.com/bliki/Yagni.html)

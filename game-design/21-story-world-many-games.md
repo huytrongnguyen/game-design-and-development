@@ -39,7 +39,7 @@ flowchart TD
     S2 -->|"new facts go back<br/>through the owner"| B
 ```
 
-Facts flow **out** of the bible to every product and **back in** only through the continuity owner. Products never copy facts from each other directly. This is the whole mechanism; the rest of the module is about what to put in each spoke and what to allow back into the hub.
+One common mechanism is a hub-and-spoke bible: facts flow **out** of the bible to every product and **back in** through a continuity owner, and products do not copy facts from each other directly. Other studios use a canon board or let each product keep its own continuity. The rest of the module is about what to put in each spoke and what to allow back into the hub.
 
 ## 2. The player's view
 
@@ -51,17 +51,17 @@ Players meet a shared world in three ways:
 | **Spin-off player tries the core game** | "I know this place; I want the full story" | A way in that does not require the spin-off knowledge |
 | **New player of any product** | "I don't know this world, and I need not" | Each product must stand alone |
 
-The rule players care about: **each product must be enjoyable without the others.** Cross-references reward fans but never gate the story. Motivations from [module 01](01-player-experience.md): Story and Discovery (Lena) are served by the extra material; Fantasy and Community are served by a world that feels bigger than one game; Completion pulls some players to try every product, which is the risk of fatigue.
+Many players want each product to stand alone; others want connected products that reward following all of them. Stand-alone products lower the entry cost; connected products raise the payoff and the entry cost. Cross-references can reward fans without gating the story (the course game's choice). Motivations from [module 01](01-player-experience.md): Story and Discovery (Lena) are served by the extra material; Fantasy and Community are served by a world that feels bigger than one game; Completion pulls some players to try every product, which is the risk of fatigue.
 
 ## 3. The design space
 
 ### 3.1 What story material suits which format
 
-| Story material | Best format | What the format can tell | What it cannot tell well |
+| Story material | Best format | What the format can tell | What it tends to tell less well |
 |---|---|---|---|
 | **An epic arc** (many years, many places, a changing hero) | Long single-player or serial online RPG | Change over time, large cast, scale | Anything that needs a short session |
 | **A side character's tale** | Short narrative game, mobile chapter game, or a season of a live game | Voice, personal stakes, a small cast | World-wide events |
-| **A place** (a city, a fortress, a wilderness) | Exploration game, city builder, survival game | Atmosphere, systems rooted in the place, player-made stories | A planned plot |
+| **A place** (a city, a fortress, a wilderness) | Exploration game, city builder, survival game | Atmosphere, systems rooted in the place, player-made stories | A planned plot (open-world games with a plot, such as *Skyrim*, show it can be done, at the cost of authored pacing) |
 | **A historical war** | Strategy game, card game, tactics game, board game | Factions, rules of power, "what if" choices | Individual character arcs |
 | **A mystery** | Puzzle or investigation game, episodic series | Clues and discovery, a clear question and answer | Large action set pieces |
 | **A group of heroes** | Hero collector, party game | Many voices in short scenes, variety | One deep arc |
@@ -79,6 +79,7 @@ Examples below are features any player can see. Product status is as of October 
 | **The Witcher** | Novels and short stories by Andrzej Sapkowski, then a series of role-playing games set after the books, a card game that began as a mini-game in the third RPG and later became its own product (*Gwent*), a single-player card-based story game (*Thronebreaker*), and a television series | A world that moved from books to games, and a side activity that grew into its own product. The games continue the world's story rather than retell the books. |
 | **Pokémon** | Mainline role-playing games, a trading card game, a location-based mobile game (*Pokémon GO*, 2016), a team-battle game (*Pokémon UNITE*, 2021), photography and spin-off games, an animated series | A world with almost no fixed plot; the shared asset is the **creatures and the rules of the world**, so every product can use them in a different genre. |
 | **Final Fantasy VII** | The original RPG, then a "Compilation" of games, a film and others (*Crisis Core*, *Advent Children*, *Ever Crisis*) and a remake series | A single story told again and extended in different formats, including a mobile gacha game that retells earlier products, with the risk that fans must follow many titles for the full picture. |
+| **League of Legends (Runeterra)** | A competitive online game, a card game (*Legends of Runeterra*), an animated series (*Arcane*, 2021) and other games by the same studio | A world whose stories live outside the core game, with the core game's champions as the shared cast |
 | **Final Fantasy (series)** | Each main game is a new world; spin-offs (tactics, rhythm, card and mobile games) reuse names and creatures | The opposite model: shared **motifs**, not a shared plot. A useful contrast for section 3.4. |
 
 ### 3.3 Canon tiers across products
@@ -92,10 +93,12 @@ Examples below are features any player can see. Product status is as of October 
 | **Alternate (non-canon)** | A "what if", a comedy, a retelling in the world's tone | May contradict anything; says so on the box | A card game of tall tales |
 | **Shared setting only** | Uses the world's look, names and rules, with no link to its plot | Free inside the rules of the world | A cooking game in the same region |
 
-Two rules make this work:
+**Other models.** *Single canon* (every product counts): simplest to read, hardest to maintain. *Reset*: older products move to a non-canon label when a new canon starts (Star Wars moved its older stories to "Legends" in 2014). *Multiverse*: each product has its own universe (Marvel's comics and films are treated as separate universes).
+
+Two practices make the tier model work:
 
 1. **State the tier in the product's own materials** (a banner, a store page, a codex note), so a player is never surprised.
-2. **Upgrade by decision, not by accident.** A fact from an Adjacent or Alternate product enters Core only when the continuity owner approves it and writes it in the bible.
+2. **Upgrade by decision rather than by accident.** A fact from an Adjacent or Alternate product enters Core only when the continuity owner approves it and writes it in the bible.
 
 ### 3.4 Shared plot or shared motifs
 
@@ -105,7 +108,7 @@ Two rules make this work:
 | **Shared world, separate plots** | Setting, rules and cast; each product tells its own story | Easy to enter anywhere; products stay independent | Less payoff for fans of the whole |
 | **Shared motifs only** | Names, creatures and tone | Cheapest; no continuity work | The "world" is thin |
 
-For a small team, **shared world, separate plots** is the safest default. Choose a continuous plot only when one person owns continuity for the whole world.
+A small team may prefer **shared world, separate plots** (easy entry, lower continuity work). A **continuous plot** gives the biggest payoff (Final Fantasy VII's retelling, Marvel's films) and needs a continuity owner or team; **shared motifs** cost least and give the thinnest world.
 
 ### 3.5 Keeping characters consistent
 
@@ -119,7 +122,7 @@ A character who appears in several products is a **contract**:
 | **Timeline position** | Which year the character is in this product, so a young Kael and an old Kael do not meet by accident |
 | **Look** | A reference sheet; a style may change by product (a card art style) but silhouette and colours stay |
 | **Name and spelling** | One spelling in all languages (module 20, localisation) |
-| **Fate** | Never kill a character in an Adjacent product if the core story still needs them; use a prequel timeline instead |
+| **Fate** | Killing a character in an Adjacent product constrains the core story; teams set the product earlier in the timeline, or accept the death as canon and plan around it |
 
 ### 3.6 Risks
 
@@ -127,8 +130,8 @@ A character who appears in several products is a **contract**:
 |---|---|---|
 | **Contradiction** | Two products state different facts; fans argue | Shared bible, one continuity owner, a canon log |
 | **Fatigue** | Too many products too fast; each feels thin | Cap launches per year; give each product a clear reason to exist |
-| **Diluting the main story** | Spin-offs answer the core game's mysteries or use up its characters | Spin-offs must not resolve the core's open threads |
-| **Entry cost** | A new player thinks they must know five products | Each product stands alone; recaps in each |
+| **Diluting the main story** | Spin-offs answer the core game's mysteries or use up its characters | Decide per product whether it may answer the core's open threads; answers in a spin-off reward its players and can undercut the core |
+| **Entry cost** | A new player thinks they must know five products | Stand-alone products lower the entry; recaps in each |
 | **Brand confusion** | A card game and an RPG share a name; players buy the wrong one | Clear subtitle and genre on every product |
 | **Uneven quality** | A weak spin-off damages trust in the world | A quality bar and a veto for the owner |
 | **Cannibalisation** | A spin-off takes the same players and time as the core game | Different genre, session length and audience; track overlap |
@@ -139,24 +142,24 @@ A character who appears in several products is a **contract**:
 
 | If you have... | Do this | Because |
 |---|---|---|
-| **One live game and a small team** | Keep one product; grow the world inside seasons (module 20) | Every extra product splits the team |
+| **One live game and a small team** | Keeping one product avoids splitting the team (grow the world inside seasons, module 20); a second product with a clear canon tier tests demand | Every extra product splits the team |
 | **A core game with a stable audience** | Add one **Adjacent** product in a different genre and size | Tests demand and keeps the core game safe |
 | **A rich history with a famous war or event** | A strategy or card product on that event | The format fits the material |
 | **A loved side character** | A short narrative game, or a season | A small cast and personal stakes |
 | **A strong place** | A building or survival game in the same setting | Systems can carry the place |
-| **A funny or unserious idea** | An **Alternate** product, labelled non-canon | It cannot hurt the main story |
-| **No continuity owner** | Do not start a second product yet | Contradictions arrive faster than you can fix them |
+| **A funny or unserious idea** | An **Alternate** product, labelled non-canon | A labelled non-canon product limits harm to the main story but can still affect the brand |
+| **No continuity owner** | Expect contradictions to arrive faster; some teams accept that for a non-canon or shared-setting product | Nobody reconciles the facts |
 
 ## 4. Tuning and pitfalls
 
-### 4.1 Rules of thumb
+### 4.1 Common practices and their costs
 
-- **Build the bible before the second product**, not after.
-- **One product at a time per team.** Finish and ship before starting the next.
-- **Core first.** A spin-off may start only when the core game's story has an established audience.
-- **Make every product stand alone**, then add references as bonuses.
-- **Label canon status** on every product.
-- **Leave the main story's open threads alone** in spin-offs; answers belong in the core line.
+- **A bible before the second product** avoids contradictions; reconciling later costs more.
+- **One product per team** keeps focus; parallel teams ship sooner and need a bible and an owner.
+- **Core first** lowers risk; products launched together share marketing and cost coordination.
+- **Stand-alone products** lower the entry; connected ones raise the payoff.
+- **Labelling canon status** on every product avoids surprises for players.
+- **Open threads in spin-offs.** Leaving the core's threads alone protects the core line; answering them rewards spin-off players.
 - **Reuse assets deliberately.** Shared models, music and voice save money but tie the products' schedules together.
 
 ### 4.2 Signals that something is wrong
@@ -174,7 +177,7 @@ A character who appears in several products is a **contract**:
 ### 4.3 Classic failures
 
 - **The tangled timeline.** Many products each add events; no one can place them in order.
-- **The required reading list.** The core story needs five side products to make sense.
+- **The required reading list.** A story that needs five side products raises the entry cost; connected-story franchises accept that for depth. State up front which products a player needs.
 - **The retcon spiral.** A spin-off changes a core fact, and the core game must then explain the change (module 20).
 - **The cash-in.** A spin-off made only to sell the name; players feel it.
 - **The spoiler spin-off.** A prequel that reveals the core game's twist.
@@ -276,16 +279,19 @@ How the table maps to the module's choice guide:
 
 ## Key takeaways
 
-- A **story world** is a shared asset; the **lore bible** and one **continuity owner** are what keep many products consistent.
+- A **story world** is a shared asset; a shared bible and a named owner (or a canon board) are the usual way to keep many products consistent.
 - Match **story material to format**: an epic arc to a long game, a side character to a short one, a place to a systems game, a war to strategy or cards, a mystery to puzzles or episodes.
 - Use **canon tiers** (Core, Adjacent, Alternate, Shared setting only) and **state the tier in each product**.
-- **Each product must stand alone**; cross-references are bonuses, never gates.
+- Stand-alone products lower the entry cost; connected products raise the payoff; choose per world.
 - A character is a **contract**: one sheet, one voice, locked facts and a position in the timeline.
-- Guard the main story: spin-offs must not answer the core game's open threads or spoil its twists.
-- **Finish one product before starting the next**, and cap launches so the world does not tire its audience.
+- Decide whether spin-offs may answer the core's threads or spoil its twists.
+- Order and cadence are choices (the course game plans one new product a year); parallel launches and a cap on launches each have costs.
 
 ## Further reading
 
+- Fandom, "Star Wars Legends: Two Years Later" (the 2014 reset): https://www.fandom.com/articles/star-wars-legends-two-years-later
+- Netflix, "Netflix and Riot Games bring League of Legends to television" (Arcane): https://about.netflix.com/en/news/netflix-and-riot-games-bring-league-of-legends-to-television-with-animated
+- Wikipedia, "Multiverse (Marvel Cinematic Universe)": https://en.wikipedia.org/wiki/Multiverse_(Marvel_Cinematic_Universe)
 - Warcraft Wiki, "Canon" (what counts as canon across Warcraft products): https://warcraft.wiki.gg/wiki/Canon
 - Hearthstone Wiki, "Hearthstone lore": https://hearthstone.wiki.gg/wiki/Hearthstone_lore
 - Wikipedia, "Gwent: The Witcher Card Game": https://en.wikipedia.org/wiki/Gwent:_The_Witcher_Card_Game

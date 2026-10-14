@@ -7,7 +7,7 @@
 
 ## In short
 
-A **genre** is a bundle of promises: a core loop, a set of feelings, a typical session length and a content cost. Players choose games by those promises, and a team chooses a genre by what it can afford to keep. This module maps the genres an online-RPG designer meets most often: the MMORPG, the open-world action RPG, the squad (hero-collection) RPG, the action RPG, tactics, roguelike and roguelite, platformer, card and deck-building, puzzle, adventure and visual novel, and idle and auto-battle games. It then looks at **classic and 8-bit style games**, where small rule sets and hard limits are a design method, not a lack of money. The worked example places the course game on the map and shows how its design would change as an open-world action RPG, as a squad RPG and as a small classic-style game.
+A **genre** is a bundle of promises: a core loop, a set of feelings, a typical session length and a content cost. Players choose games by those promises, and a team chooses a genre by what it can afford to keep. This module maps the genres an online-RPG designer meets most often: the MMORPG, the mobile MMORPG, the open-world action RPG, the squad (hero-collection) RPG, the action RPG, the looter-shooter, tactics, roguelike and roguelite, platformer, card and deck-building, puzzle, adventure and visual novel, idle and auto-battle games, competitive arena games and survival-crafting or sandbox games. It then looks at **classic and 8-bit style games**, where small rule sets and hard limits are a design method, not a lack of money. The worked example places the course game on the map and shows how its design would change as an open-world action RPG, as a squad RPG and as a small classic-style game.
 
 ## 1. The concept
 
@@ -19,7 +19,7 @@ A **genre** is a bundle of promises: a core loop, a set of feelings, a typical s
 | **Format** | How the game is delivered and played: platform, session length, single or online, free or paid, real time or turn based |
 | **Core loop** | The 30–90 second cycle the player repeats (module 03) |
 | **Aesthetics** | The eight feelings of the MDA framework (module 01): Sensation, Fantasy, Narrative, Challenge, Fellowship, Discovery, Expression, Submission |
-| **Content cost** | How many hours of authored work one hour of play needs. The most important number for a small team |
+| **Content cost** | How many hours of authored work one hour of play needs. An important number for a small team |
 | **Replayability** | How much the game stays fresh without new authored content (random levels, builds, other players) |
 | **Gacha** | A random draw that gives characters or items, usually sold for premium currency (module 17) |
 | **Hero collection (squad RPG)** | An RPG where the player collects many heroes and fields a small team of them (module 11) |
@@ -54,9 +54,18 @@ Each entry gives the core loop, the main aesthetics, what makes it fun, a typica
 - **Core loop:** fight enemies with a class, loot and gain levels, return to a town, group up for bigger content.
 - **Aesthetics:** Fellowship, Fantasy, Challenge, Discovery.
 - **What makes it fun:** a persistent shared world, a role inside a group, long progression, a social identity (guild, reputation).
-- **Typical session:** 1–3 hours at a PC; the hobby lasts months or years.
-- **Content cost:** very high and never finished. Players consume content faster than a team can make it, so the genre depends on repeatable content (dungeons, seasons) and on players entertaining each other.
+- **Typical session:** often 1–3 hours at a PC (a rule of thumb); the hobby lasts months or years.
+- **Content cost:** very high and ongoing. Players consume content faster than a team can make it, so many MMORPGs lean on repeatable content (dungeons, seasons) and on players entertaining each other; some lean on sandbox systems and player economies instead.
 - **Public examples:** *World of Warcraft*, *Final Fantasy XIV*, *Guild Wars 2*.
+
+#### Mobile MMORPG
+
+- **Core loop:** the MMORPG loop (fight, loot, level, group up) adapted to a phone, often with shorter sessions and more automation of travel and routine fights.
+- **Aesthetics:** Fellowship, Power (Quantic Foundry), Fantasy, Submission.
+- **What makes it fun:** a persistent world and a guild in your pocket, steady progress in short sessions.
+- **Typical session:** 10–30 minutes (a rule of thumb).
+- **Content cost:** as high as the PC MMORPG, because the live service has the same appetite for new content.
+- **Public example:** *Lineage M*, the mobile version of the PC MMORPG *Lineage*, launched in South Korea in 2017 (as of October 2026).
 
 #### Open-world action RPG
 
@@ -85,6 +94,14 @@ Each entry gives the core loop, the main aesthetics, what makes it fun, a typica
 - **Typical session:** 1–2 hours; runs of 15–40 minutes.
 - **Content cost:** medium. Systemic: random levels and random loot make a few authored pieces last. The depth is in the item and skill rules (modules 10 and 15).
 - **Public examples:** *Diablo III*, *Path of Exile*.
+
+#### Looter-shooter
+
+- **Core loop:** shoot enemies in real time, collect randomised weapons and armour, compare and equip, take on harder content.
+- **Aesthetics:** Sensation, Challenge, Expression (the build), Fellowship in co-op versions.
+- **What makes it fun:** gunplay plus the loot chase; many versions add raids and clans.
+- **Content cost:** medium to high; weapons, enemies and activities must be refreshed in a live service.
+- **Public examples:** *Borderlands* and *Destiny*, the latter adding MMO-style raids, clans and a hub world.
 
 #### Tactics (turn-based and grid-based)
 
@@ -149,6 +166,23 @@ Each entry gives the core loop, the main aesthetics, what makes it fun, a typica
 - **Content cost:** low for the first hours, and it needs steady new layers (prestige, new currencies) to avoid running out. The design risk is retention through habit and not through meaning.
 - **Public examples:** *Cookie Clicker*, many mobile idle RPGs.
 
+#### Competitive arena (MOBA and similar)
+
+- **Core loop:** pick a hero, play a match of 20–40 minutes against another team, win or lose, queue again.
+- **Aesthetics:** Challenge, Fellowship, Competition (Quantic Foundry).
+- **What makes it fun:** skill expression, team play and fresh matches with other people.
+- **Typical session:** one to a few matches.
+- **Content cost:** moderate per hero and map, plus constant balance work; the other players supply the variety.
+- **Public examples:** *League of Legends*, *Dota 2*.
+
+#### Survival-crafting and sandbox
+
+- **Core loop:** gather resources, craft tools, build shelter or structures, survive threats, expand.
+- **Aesthetics:** Discovery, Expression, Submission, Fantasy.
+- **What makes it fun:** self-set goals and building; content comes from systems and from players' own creations.
+- **Content cost:** low authored content, high cost in systems and tools.
+- **Public example:** *Minecraft*.
+
 ### 3.2 Comparison at a glance
 
 | Genre | Core loop length | Session | Content cost | Replay without new content | Social need |
@@ -164,6 +198,10 @@ Each entry gives the core loop, the main aesthetics, what makes it fun, a typica
 | Puzzle | 1–5 min | 2–15 min | Low–high | Low–medium | None |
 | Adventure / visual novel | 1–10 min | 30–120 min | Medium (writing and art) | Low | None |
 | Idle / auto-battle | seconds | 1–5 min | Low at first | Medium | Low |
+| Mobile MMORPG | 30–90 s | 10–30 min | Very high | Medium (other players) | High |
+| Looter-shooter | 30–90 s | 1–2 h | Medium to high | High (loot) | Low to high |
+| Competitive arena | 20–40 min per match | 1–3 matches | Moderate, plus balance | Very high (other players) | High |
+| Survival-crafting / sandbox | 5–20 min | 1–3 h | Low authored, high systems | Very high | Optional |
 
 ### 3.3 Classic, retro and 8-bit style games
 
@@ -179,12 +217,12 @@ Why they are small to make: few systems to balance, small assets (a 16×16 sprit
 
 What they teach a designer of larger games:
 
-- **Clarity:** if the core loop is not fun with grey boxes and four colours, extra systems will not fix it.
+- **Clarity:** for loops built on feel, such as platformers, test the loop with grey boxes and four colours first. For systems-first genres (idle, collection, deck builders), test the systems with a spreadsheet or a paper model first.
 - **Feel before features:** the first investment is controls and feedback (module 06).
 - **Constraint:** deciding what a game will not have is half of the design (module 03, pillars).
 - **Pacing in small units:** a classic level introduces, tests and twists one idea in two minutes; a long game's quest can use the same shape (module 19).
 
-The risk is nostalgia: copying the look without the discipline gives a game that is merely old. The style is a means to keep scope small.
+Teams pick the style for scope, for the look and the audience that loves it, or both. The risk is nostalgia: copying the look without the tight loop gives a game that is merely old.
 
 ### 3.4 How to choose
 
@@ -195,11 +233,12 @@ The risk is nostalgia: copying the look without the discipline gives a game that
 | 20+ people, live service for years | MMORPG, open-world action RPG | Needs a content machine and steady teams |
 | Audience: short sessions on phones | Squad RPG, idle, puzzle, card, roguelite | Fits 5–25 minute sessions (module 27) |
 | Audience: evenings at a PC with friends | MMORPG, ARPG, co-op action | Fellowship and mastery |
+| Audience: short sessions on a phone, with a persistent world | Mobile MMORPG, squad RPG | A guild and a world in short sessions; live content cost is high |
 | Audience: story and characters | Visual novel, adventure, narrative RPG | Narrative and Fantasy first |
 | Platform: browser | Classic-style, puzzle, card, small roguelite, idle | Fast start, small download (module 07) |
 | Goal: a quick, testable prototype | Roguelite, platformer, puzzle | Fun can be judged in a day (module 28) |
 
-Choose the **smallest genre that still delivers the aesthetics you promised**. If the vision needs Fellowship and a living world, the content cost of an online RPG is the price, and the plan (modules 24 and 29) must pay for it.
+One common rule is to choose the smallest genre that delivers the aesthetics you promised. Other teams start from their strengths, a gap in the market, a technology (VR, mobile, browser), a publisher's brief or an idea they cannot let go. Whatever the rule, compute the content cost before committing. If the vision needs Fellowship and a living world, the content cost of an online RPG is the price, and the plan (modules 24 and 29) has to pay for it.
 
 ## 4. Tuning and pitfalls
 
@@ -219,11 +258,11 @@ Choose the **smallest genre that still delivers the aesthetics you promised**. I
 
 | Failure | What happens | Fix |
 |---|---|---|
-| **Genre stacking** | "An MMORPG with a card battler, a farm and a roguelike" | Pick one core loop; others must be small and serve it |
+| **Genre blending** | A game combines loops of several genres. Strength: wider appeal and more reasons to return. Cost: more content, more tuning, and a muddled first hour if nothing leads. Public examples: *Genshin Impact*, *Stardew Valley* (farming, mining, combat and relationships) and *Hades* (action, roguelike and story) | Teams that blend usually decide which loop leads and how the others feed it |
 | **Underestimated content cost** | The team plans an MMORPG with a team sized for a platformer | Compute hours of content per hour of play before committing |
 | **Cloning without the reason** | A copy of a hit's systems without its audience or live team | Write down which feeling you copy, not which features |
-| **Retro as an excuse** | Pixels and chiptune but no tight loop | Test with grey boxes first |
-| **Automation without decisions** | An auto-battle game where the player has nothing to decide | Keep at least one meaningful choice per session |
+| **Retro without the loop** | Pixels and chiptune but no tight loop | Test with grey boxes first |
+| **Automation without decisions** | Fine when the aim is Submission (relaxing, away-from-keyboard play); the risk is that players find nothing to care about | Designs that want more engagement keep at least one choice per session (build, team or timing) |
 | **Collection without purpose** | Many heroes, no reason to field them | Roles and encounters that reward different teams (module 11) |
 
 ## 5. Worked example
@@ -240,7 +279,7 @@ flowchart TB
     C --- O["Open-world action RPG<br/>exploration"]
 ```
 
-It borrows the **combat and loot** of the action RPG, the **shared hubs, parties and weekly endgame** of the MMORPG and a **mobile session design** from squad games (15-minute reward, resume where you stopped). It leaves out most exploration systems and all hero collection. Its aesthetics, in priority order, are Challenge, Fellowship, Fantasy, then Discovery.
+It borrows the **combat and loot** of the action RPG, the **shared hubs, parties and weekly endgame** of the MMORPG and a **mobile session design** from squad games (15-minute reward, resume where you stopped). It leaves out most exploration systems and all hero collection. Its aesthetics, in priority order (module 01, section 5.4), are Fellowship, Challenge, Fantasy, then Discovery.
 
 ### 5.2 If the course game were made as...
 
@@ -263,17 +302,17 @@ What it would keep in each case: the vision's sentence (a hero with a clear role
 ### 5.3 What was decided and what was cut
 
 - **Decided:** the course game stays an online action RPG between the ARPG and the MMORPG. Hero collection is the one genre signature deliberately left out, because it would conflict with pillar 1 ("my hero, my way") and make module 11's single-hero rule meaningless.
-- **Cut:** open-world traversal (no climbing or gliding), randomly generated levels, card and puzzle mini-games, idle rewards beyond rested XP.
+- **Cut:** open-world traversal (the example's content budget goes to dungeons and parties), randomly generated levels (the example's telegraphed encounters are authored), card and puzzle mini-games (they would split the first hour), idle rewards beyond rested XP (kept small so that logging in is not the goal).
 - **For another kind of game:** a squad RPG makes module 11 and the shop (module 17) the centre of the design; an open-world action RPG makes module 18 the centre; a classic-style game removes most of modules 15, 16, 17 and 22, and puts everything into module 06.
 
 ## Key takeaways
 
 - A genre is a bundle of promises: core loop, aesthetics, session length and content cost. Choose it from the feelings you must deliver.
-- Content cost is the deciding number: how many authored hours does one hour of play need, and who pays for the next hour?
+- Content cost is one of the deciding numbers: how many authored hours does one hour of play need, and who pays for the next hour? Compare it with the audience, the team's skills, the market and the platform.
 - MMORPGs and open-world RPGs need a live content machine; roguelites, puzzles and classic-style games get hours from a few rules.
 - Squad (hero-collection) RPGs put the hero into the product: the roster is the content, the team puzzle is the play.
 - Classic and 8-bit style is a design discipline: tight loop, small rules, hard limits and short sessions; it is cheap because it is focused.
-- Don't stack genres. Keep one core loop and let the others serve it.
+- Hybrids are common; each added loop costs content, tuning and first-hour clarity, so decide which loop leads.
 - State what your game does not have; the course game leaves out hero collection and open-world traversal on purpose.
 
 ## Further reading
@@ -281,6 +320,11 @@ What it would keep in each case: the vision's sentence (a hero with a clear role
 - Robin Hunicke, Marc LeBlanc, Robert Zubek, "MDA: A Formal Approach to Game Design and Game Research": https://users.cs.northwestern.edu/~hunicke/MDA.pdf
 - Video game genre overview: https://en.wikipedia.org/wiki/Video_game_genre
 - Genshin Impact (overview, gameplay, release): https://en.wikipedia.org/wiki/Genshin_Impact
+- Stardew Valley and Hades (genre blends): https://en.wikipedia.org/wiki/Stardew_Valley and https://en.wikipedia.org/wiki/Hades_(video_game)
+- Looter shooter (Borderlands, Destiny): https://en.wikipedia.org/wiki/Looter_shooter
+- Multiplayer online battle arena: https://en.wikipedia.org/wiki/Multiplayer_online_battle_arena
+- Survival game (Minecraft): https://en.wikipedia.org/wiki/Survival_game
+- Lineage M (mobile MMORPG, 2017): https://en.wikipedia.org/wiki/Lineage_M
 - King's Raid (overview, gameplay, service history): https://en.wikipedia.org/wiki/King%27s_Raid
 - Roguelike and roguelite overview: https://en.wikipedia.org/wiki/Roguelike
 - Platform game overview: https://en.wikipedia.org/wiki/Platform_game

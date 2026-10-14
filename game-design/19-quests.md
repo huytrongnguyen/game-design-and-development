@@ -1,6 +1,6 @@
 # Module 19: Quest and mission design
 
-- **Goal:** design quests and quest chains that guide players through the content, deliver the story and pace the rewards, without hidden prerequisites, backtracking or grind.
+- **Goal:** design quests and quest chains that guide players through the content, deliver the story and pace the rewards, and choose how much prerequisite depth, backtracking and repetition the game wants.
 - **Prerequisites:** [03 — Vision, pillars and loops](03-vision-pillars-loops.md), [09 — Classes and roles](09-classes-roles.md), [18 — World and level design](18-world-level.md).
 - **Simulation:** none
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
@@ -41,7 +41,7 @@ flowchart LR
     D --> N["Unlocks the next quests"]
 ```
 
-Every quest has these states. The designer's job is to make each transition **visible**: the player should always know why a quest is locked, what is active, what to do next and what they got.
+Every quest has these states. The designer's job is to make each transition **visible**: the player can tell why a quest is locked, what is active, what to do next and what they got.
 
 ## 2. The player's view
 
@@ -69,20 +69,25 @@ The motivations from [module 01](01-player-experience.md) that quests serve: **C
 | **Explore** | Reach a place or find things | "Reach three overlooks" | Showing off the world | Hidden items with no hint |
 | **Puzzle** | Solve a small problem with rules | "Light the braziers in order" | Variety, thinking | A puzzle with one hidden answer; players look it up |
 | **Event** | Take part in something shared and timed | "Hold the line at the Ash Tide" | Social peaks | Players must be online at the right time |
+| **Defend or survive** | Hold a point against waves | "Hold the ford for five minutes" | Set pieces | Balance by party size |
+| **Craft or gather order** | Make or gather for an NPC | "Forge twelve arrowheads" | Crafting loops | Dull if it is only a shop errand |
+| **Choice** | Pick a side or an answer | "Decide who gets the grain" | Story ownership | Content cost |
+| **Bounty or contract** | A repeatable target list | "Three wanted outlaws this week" | Repeatable play | Feels like a checklist |
+| **Collection** | Fill a log of items, monsters or places | "Record every bird of the fen" | Completion players | Long tail of one missing entry |
 
-Escort is the type designers describe as the one most players dislike: slow or fragile partners and the loss of control over pacing are the usual complaints. If an escort is needed, let the NPC be hard to kill, as fast as the hero, and let a death mean a retry from a checkpoint, never a lost quest.
+Escort is the type designers describe as the one many players dislike: slow or fragile partners and the loss of control over pacing are the usual complaints. Escort designs differ: an NPC that is hard to kill and keeps pace removes the usual complaints; a fragile NPC makes protection the challenge (the cost: players dislike it). A death can mean a checkpoint retry or a failed quest with a retry from the giver.
 
-**Mix the verbs.** Do not put more than two quests of the same type back to back. A chain of "kill, kill, kill, kill" is a grind with a story label. Combine verbs inside a quest: "reach the ridge (explore), then clear the camp (kill), then bring the banner back (talk)".
+**Mixing the verbs** keeps variety high, which is a design aim in the course game (no more than two quests of one type back to back). Repeating one verb keeps a quest simple to read and fast to complete, at the cost of variety; many popular MMORPGs run long kill-quest runs and players use them as levelling. A way to mix is to combine verbs inside a quest: "reach the ridge (explore), then clear the camp (kill), then bring the banner back (talk)".
 
 ### 3.2 Categories
 
 | Category | Purpose | Gated by | Repeats? | Notes |
 |---|---|---|---|---|
-| **Main (story)** | The critical path ([module 18](18-world-level.md)) and the story | Level, previous main quest | No | Always in the tracker; never skippable by accident |
-| **Side** | Extra stories and XP | Level, region | No | Optional; each should stand alone in 2–5 minutes |
+| **Main (story)** | The critical path ([module 18](18-world-level.md)) and the story | Level, previous main quest | No | Often pinned in the tracker |
+| **Side** | Extra stories and XP | Level, region | No | Optional; lengths vary, and short ones suit short sessions (the course game aims for 2–5 minutes) |
 | **Class** | Class identity and advancement | Level, class | No | The worked example below is one |
 | **Chain (arc)** | A longer optional story | Level, a prerequisite | No | Adds depth; plan the reward at the end |
-| **Daily** | A short reason to log in | Level | Resets every day | A small, capped list; rewards that are not power (pillar 4) |
+| **Daily** | A short reason to log in | Level | Resets every day | A small, capped list. Rewards vary: some games pay power, others currency or cosmetics (the course game pays non-power rewards, pillar 4) |
 | **Repeatable (bounty)** | Content that fills any session | Level | Any time | Used for events and endgame |
 | **Event** | Seasonal or timed content | Calendar, season | During the event | Module 29 |
 
@@ -90,55 +95,56 @@ Public examples. In *Guild Wars 2* many tasks are **renown hearts**: a fixed are
 
 ### 3.3 Chains and arcs
 
-A **chain** is a sequence of linked quests. Three shapes:
+A **chain** is a sequence of linked quests. Four shapes:
 
 | Shape | Description | Good for | Risk |
 |---|---|---|---|
 | **Linear** | 1 → 2 → 3 → 4 | A single story; teaching | A stuck player has no alternative |
 | **Parallel** | 1 → (2a, 2b, 2c, any order) → 3 | Exploration; choice of order | More cases to test |
 | **Branching** | The player's choice leads to different steps | Choices, class or path stories | Content cost multiplies |
+| **Hidden or discovery chain** | Steps are not tracked; the player follows NPC leads | Curiosity and replay | Players miss it or look it up on the web (Elden Ring's NPC quests work this way, with no quest log) |
 
-Rules:
+Common practices:
 
-1. **Keep chains short.** Three to six steps, or 20–40 minutes total. Longer chains need a visible "chapter" structure and a save point every 30 minutes.
-2. **Each step is worth doing alone.** A step has its own objective, a small reward and a little story, so a player who quits after step 2 did not waste time.
-3. **Put the strongest reward at the end, and a small one in each step.**
-4. **Make the end obvious.** The journal shows "Step 2 of 5".
+1. **Chain length.** Short chains (three to six steps, or 20–40 minutes) are easy to finish and test. Long chains give depth and ownership (Final Fantasy XIV's Main Scenario is one) and need chapters or save points.
+2. **Each step on its own.** A step with its own objective, a small reward and a little story means a player who quits after step 2 did not waste time; the cost is more authoring per step.
+3. **Reward placement.** Rewards can come per step, at the end, or both.
+4. **Showing the length.** A journal that shows "Step 2 of 5" reduces drop-out; hiding it keeps mystery.
 5. **An arc is made of chains.** A region's main story arc is a sequence of main chains, each ending at a place or a boss (module 20).
 
 ### 3.4 Gating
 
-A gate answers "why can't I do this yet?" Use the weakest gate that does the job.
+A gate answers "why can't I do this yet?" Gates trade control for freedom: weak gates (level) let players roam; strong gates (story flags, items) keep order. Pick by how much order the story needs.
 
 | Gate | Typical use | Cost to the player | Notes |
 |---|---|---|---|
 | **Level** | Matching content to power | None, if levelling is smooth | The default. Offer a quest a little before it can be finished |
 | **Prerequisite quest** | A story or tutorial order | Must do the earlier quest | Show the earlier quest in the journal |
 | **Story flag** | "The player has reached or seen X" | None, if it follows the main path | Beware flags set by obscure quests |
-| **Item** | A key, a ticket, a token | Can be a hunt | Avoid for the main path (see 3.5) |
-| **Class** | Class quests | None | Show other classes' quests as locked |
+| **Item** | A key, a ticket, a token | Can be a hunt | Many games keep item gates off the main path (see 3.5) |
+| **Class** | Class quests | None | Other classes' quests can be shown as locked or hidden |
 | **Reputation or faction** | Long-term goals | Time | Fine for optional content |
 | **Time or season** | Dailies, events | Calendar | Always show the countdown |
-| **Party** | "Needs four players" | Waiting for a group | Never on the critical path (pillar: solo is never blocked) |
+| **Party** | "Needs four players" | Waiting for a group | Many games keep party gates off the main path (the course game does, pillar 3); group story missions in MMORPGs use them on purpose |
 
-**Soft and hard gates.** A **hard gate** blocks the quest (you cannot accept it). A **soft gate** lets the player try but warns them (a red level number). Prefer soft gates for side content and hard gates only where the story or the safety of a new player demands it.
+**Soft and hard gates.** A **hard gate** blocks the quest (you cannot accept it). A **soft gate** lets the player try but warns them (a red level number). Soft gates read as choices; hard gates give control. The course game prefers soft gates for side content and hard gates where the story or the safety of a new player needs them.
 
-**Show locked quests.** A quest that is locked should appear in the journal with its requirement ("Requires level 18 and the Rimewatch main quest"), so no one asks, "how do I unlock this?".
+**Showing locked quests.** A locked quest can appear in the journal with its requirement ("Requires level 18 and the Rimewatch main quest"), which prevents "how do I unlock this?" questions; hiding locked quests keeps discovery. The course game shows them.
 
 ### 3.5 Prerequisite graphs and how they go wrong
 
-Draw the graph of a chain before building it: nodes are quests, arrows are gates. Then check for these failures:
+Draw the graph of a chain before building it: nodes are quests, arrows are gates. Then check for these failure modes. Some are used on purpose (grinds and wait gates for pacing and retention), so the last column also says why a game might choose one.
 
-| Failure | What it looks like | Why it hurts | Fix |
-|---|---|---|---|
-| **Hidden chain** | A quest only appears after an obscure earlier quest in another region | Players think the content is missing; they search the web | Show locked quests in the journal; keep prerequisites on the main path |
-| **Long chain** | 12 steps over several zones to unlock one thing | One broken or boring step blocks everything; drop-out | Cap length; reward each step |
-| **Backtracking** | Steps that send the player back to areas already cleared | Wasted time; breaks "move forward" (module 18) | Fast travel, scenes, or a hub-based design |
-| **Grind step** | "Kill 200", "drop rate 2 %" | Players feel the time is wasted | Use short counts, guaranteed drops, or a time cap |
-| **Item gate by luck** | The step needs a rare drop | Luck decides who progresses | Guarantee the drop, or give it as a quest reward |
-| **Single point of failure** | One NPC or flag that can bug out | A player is stuck forever | Allow an abandon and restart; log a reset option |
-| **Wrong order** | A later step is open before an earlier one is done | Story spoilers; confusion | Lock by prerequisite |
-| **Wait gate** | "Come back in 24 hours" | A day of nothing | Use only for dailies, with a countdown |
+| Failure | What it looks like | Why it hurts | Fix | Why a game might choose it |
+|---|---|---|---|---|
+| **Hidden chain** | A quest only appears after an obscure earlier quest in another region | Players think the content is missing; they search the web | Show locked quests in the journal; keep prerequisites on the main path | Discovery and secrets; used in action RPGs |
+| **Long chain** | 12 steps over several zones to unlock one thing | One broken or boring step blocks everything; drop-out | Cap length; reward each step | Depth and ownership of a long story |
+| **Backtracking** | Steps that send the player back to areas already cleared | Wasted time; breaks "move forward" (module 18) | Fast travel, scenes, or a hub-based design | Revisits with new abilities |
+| **Grind step** | "Kill 200", "drop rate 2 %" | Players feel the time is wasted | Use short counts, guaranteed drops, or a time cap | Some audiences and games use long counts to pace content |
+| **Item gate by luck** | The step needs a rare drop | Luck decides who progresses | Guarantee the drop, or give it as a quest reward | The chase of a rare item |
+| **Single point of failure** | One NPC or flag that can bug out | A player is stuck forever | Allow an abandon and restart; log a reset option | None |
+| **Wrong order** | A later step is open before an earlier one is done | Story spoilers; confusion | Lock by prerequisite | None |
+| **Wait gate** | "Come back in 24 hours" | A day of nothing | A countdown makes it readable | Pacing and retention in some games, usually for dailies |
 
 *World of Warcraft*'s original *Burning Crusade* gave a clear public example. The first 10-player raid (Karazhan) required a long attunement chain across several zones; patch 2.4 (March 2008) removed the attunement requirements for it and two other raids, although its key was still needed, as of the Warcraft wiki's account. The lesson for a designer is to measure how many players drop out of a chain and shorten it when the answer is "many".
 
@@ -153,8 +159,10 @@ Draw the graph of a chain before building it: nodes are quests, arrows are gates
 | **Story reveal** | Meaning | Spoiled by a skip |
 | **Cosmetics** | Identity | Selling the same ones in the shop makes quests look cheap |
 | **Reputation** | Long goals | Opaque numbers |
+| **Choice of reward** | Pick one of N items | Lock-in; balance by class (gives agency) |
+| **Random reward** | A bag or roll | Bad luck on repeat (gives excitement) |
 
-**Reward pacing.** Plan the **rhythm** of rewards, not just their size:
+**Reward pacing.** A game can plan the **rhythm** of rewards, not just their size. A rhythm like the one below suits the course game's 15-minute sessions (invented values):
 
 | Interval | Reward | Purpose |
 |---|---|---|
@@ -165,14 +173,14 @@ Draw the graph of a chain before building it: nodes are quests, arrows are gates
 
 **XP budget.** In a levelling game, quests give a share of the XP needed to level. A common design is that quests give most of the XP early and less later. In the course game, module 14 sets quest XP at **25 kills' worth** per quest and the share at **50 %** of income in region 1, 38 % in region 2, 37 % in region 3 and 25 % in region 4, so the story leads first and the kill loop takes over. Rewards should scale with the *time* a quest takes, not just its level: a chain step that takes 6 minutes should pay more than a 4-minute side quest, and the chain's last step pays most.
 
-**Reward preview.** Show the reward before the player accepts. A hidden reward is a lost motivation.
+**Reward preview.** Showing the reward before the player accepts lets players judge effort; hidden rewards add surprise, at the cost of motivation for players who weigh effort.
 
 ### 3.7 Quest UX
 
-| Element | Rule | Why |
+| Element | Common practice | Why |
 |---|---|---|
-| **Tracker** | Up to 3 pinned quests on mobile, 5 on PC; the main quest is always pinned; text says what to do, not what the lore is | The tracker is the compass |
-| **Markers** | Three states: available, in progress, ready; objectives shown as an **area** on the map, not a point, when an exact spot would give the answer away | Players know where to go without a spoiler |
+| **Tracker** | The course game: up to 3 pinned quests on mobile, 5 on PC, the main quest always pinned (many games let players pin as many as they like); text says what to do, not what the lore is | The tracker is the compass |
+| **Markers** | Three states: available, in progress, ready. Precision varies: an exact pin is fast and spoils discovery; an **area** gives a hint; no marker suits exploration games. Some games add **auto-travel** (tap a quest to auto-run; common in mobile and some MMORPGs; saves time, reduces looking at the world) | Players know where to go without a spoiler |
 | **Journal** | Tabs for main, class, side, daily, done; a **hint** button that re-states the next step and pins it; locked quests with their requirements | Returning players ("where was I?") |
 | **Dialogue** | One idea per page, at most three pages, a skip button that shows a summary | Dev's 15 minutes; localisation (module 20) |
 | **Turn-in** | Remote turn-in where it makes sense (a board, a message); otherwise the turn-in character is on the way to the next step | Cuts backtracking |
@@ -183,13 +191,13 @@ Draw the graph of a chain before building it: nodes are quests, arrows are gates
 
 ### 3.8 Quests as story delivery
 
-A quest is both a task and a story beat. Author each one top-down: **beat, then verb, then reward.**
+A quest is both a task and a story beat. One method authors each quest top-down: **beat, then verb, then reward.** Another starts from a mechanic or a systemic generator (radiant quests) and layers story on top; it gives variety with less authored fit. Both need a check that the task matches the beat. The steps of the first method:
 
 1. **Beat:** what does the story need next? ("The Lodge learns who relit the furnace.")
 2. **Verb:** which task makes the player *do* that beat? ("Explore the ridge and see the signal fires.")
 3. **Reward:** what does the player get that confirms the beat? ("A map of the old watch-posts.")
 
-The task should feel like the natural way for that beat to play out. "Kill 10 wolves" for a story about a missing child is a mismatch; "follow the tracks, then fight what you find" fits. Module 20 covers narrative design; this module owns the structure that carries it.
+The task can be the natural way for that beat to play out: "follow the tracks, then fight what you find" fits a story about a missing child, where "kill 10 wolves" would be a mismatch. Module 20 covers narrative design; this module owns the structure that carries it.
 
 ### 3.9 How to choose
 
@@ -215,7 +223,7 @@ Plan the quest hours of a region as a budget. For the first region (2.4 hours, 1
 | Free play (fields, exploring, grouping) | | | 23 min |
 | **Total** | | | **144 min** |
 
-About **84 %** of the time (121 of 144 minutes) is guided by a quest; the rest is free. If every minute is guided, players feel on rails; if less than 70 % is guided, many will wander without knowing what to do.
+About **84 %** of the time (121 of 144 minutes) is guided by a quest; the rest is free. The right share depends on the audience: if every minute is guided, some players feel on rails, and exploration games guide far less and add other aids.
 
 ### 4.2 Signals that something is wrong
 
@@ -232,7 +240,7 @@ About **84 %** of the time (121 of 144 minutes) is guided by a quest; the rest i
 
 ### 4.3 Classic failures
 
-- **The checklist.** Every quest is "kill N" or "collect N" with a different noun. The story is a label.
+- **The checklist.** Every quest is "kill N" or "collect N" with a different noun. Checklist quests are cheap to author and easy to read, and carry less story; many popular MMORPGs rely on them for levelling and add chains for story.
 - **The long hidden chain.** A key or ability requires 10 quests across 4 zones and nothing in the game says so.
 - **The grind step.** A reward gated by a rare drop or a huge count.
 - **The commute.** Steps that send the player across the map and back, with no fast travel.
@@ -248,7 +256,7 @@ The course game's **class advancement chain**: the quest that unlocks a **Path**
 
 - The player **tries both Paths** before choosing, in a way that feels like a story and not a menu.
 - The chain takes **about 30 minutes**, fits in one session, and has a save point after step 2 and after step 4 (the second trial).
-- The chain **never blocks** a player: no party, no rare drop, no backtracking.
+- In this course game's design the chain **does not block** a player: no party, no rare drop, no backtracking.
 - The reward is a **memorable unlock**: a Path trait and two changed skills (module 09), plus a story beat.
 
 ### 5.2 The chain at a glance
@@ -322,7 +330,7 @@ The chain has **five steps**. Steps 3 and 4 (the two trials) can be done in eith
 
 ### 5.6 What was cut
 
-- **A rare-drop quest step** ("find a legendary feather"). Rare drops belong to loot (module 15), not to a class unlock.
+- **A rare-drop quest step** ("find a legendary feather"). Cut: the course game's class unlock promises that a player is not blocked (pillar 3) and a rare drop adds luck; rare-item class quests are used in other games for their chase.
 - **Escort.** The Ranger chain walks the ridge alone.
 - **Quest auto-travel.** Tapping a quest to auto-run is common on mobile, but this design relies on waypoints and landmarks (module 18); it may return with the mobile platform rules (module 27).
 - **A branching story per Path.** Two Paths with a separate quest each would double the content; instead both trials are in one chain and only the last scene differs by the choice.
@@ -340,15 +348,16 @@ The chain has **five steps**. Steps 3 and 4 (the two trials) can be done in eith
 ## Key takeaways
 
 - A quest is an **objective, a reason and a reward**; every state of it (locked, available, active, ready, done) must be visible to the player.
-- **Mix the verbs** and keep chains to 3–6 steps (20–40 minutes), each worth doing alone.
-- Gate with the **weakest gate that works**: level first, then a quest or story flag; avoid item, wait and party gates on the critical path.
+- **Choose how varied the verbs are and how long chains run**; the course game mixes verbs and caps chains at 3–6 steps.
 - **Draw the prerequisite graph** and test it for hidden chains, backtracking, grind steps and single points of failure.
-- **Pace rewards**: a visible gain every 5–8 minutes, a level or chain ending every 20–40, a memorable unlock every 1–3 hours.
-- Quest UX is a compass: a tracker, three marker states, area markers, a journal with hints and locked quests, and a short dialogue.
-- Author quests as **beat, verb, reward**, so the task is the natural way for the story to happen.
+- **Gates trade control for freedom**; choose per quest, and say which gates the main path allows.
+- **Plan a reward rhythm** for your session length (the course game: a visible gain every 5–8 minutes).
+- **Decide how much the player is told**: markers, areas or nothing, and whether locked quests show.
+- One authoring method is **beat, verb, reward**; systemic quests start from the mechanic.
 
 ## Further reading
 
+- PC Gamer, "Don't miss these seven Elden Ring NPCs before you leave Limgrave" (no quest log, missable NPC quests): https://www.pcgamer.com/elden-ring-npc-locations/
 - Quest (video games), overview: https://en.wikipedia.org/wiki/Quest_(video_games)
 - Guild Wars 2 wiki, Heart (renown hearts): https://wiki.guildwars2.com/wiki/Heart
 - Warcraft wiki, Burning Crusade daily quests: https://warcraft.wiki.gg/wiki/Burning_Crusade_daily_quests

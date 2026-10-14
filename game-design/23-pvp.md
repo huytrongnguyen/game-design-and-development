@@ -1,13 +1,13 @@
 # Module 23: PvP and competitive design
 
-- **Goal:** design a player-versus-player mode for a game that is mainly player-versus-environment: pick the mode, the matchmaking and rating, a separate balance rule set and rewards that never pull PvE players into PvP (or the reverse).
+- **Goal:** design a player-versus-player mode for a game that is mainly player-versus-environment: pick the mode, the matchmaking and rating, a separate balance rule set and rewards, and decide how far PvP and PvE rewards are coupled.
 - **Prerequisites:** [06 — Controls, camera and game feel](06-controls-camera-feel.md), [08 — Combat design](08-combat.md), [10 — Skills and abilities](10-skills.md), [22 — Social systems](22-social.md).
 - **Simulation:** none
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
 
 ## In short
 
-**PvP** (player versus player) replaces scripted enemies with people. That changes everything: enemies no longer follow fixed patterns, losing is someone else's win, and one overpowered skill ruins a match instead of a boss fight. So PvP needs five things a PvE game does not: a **mode** (duel, arena, battleground, siege, open world, asynchronous), a **matchmaking and rating** system that makes matches close, a **separate balance rule set** so PvE tuning does not break PvP and the reverse, **rewards** that do not let PvP gear gate PvE, and **anti-snowball and anti-griefing** design. The worked example is the course game's single opt-in mode, the **Crucible**: 3v3, best of three rounds, normalised stats, a rating that resets softly each 12-week season, and rewards that are cosmetic and capped so that pillar 4 holds.
+**PvP** (player versus player) replaces scripted enemies with people. That changes everything: enemies no longer follow fixed patterns, losing is someone else's win, and one overpowered skill ruins a match instead of a boss fight. So PvP needs five things a PvE game does not: a **mode** (duel, arena, battleground, siege, open world, asynchronous), a **matchmaking and rating** system that makes matches close, a **separate balance rule set** so PvE tuning does not break PvP and the reverse, **rewards**, with a choice between keeping PvP and PvE power apart and letting them feed each other, and **anti-snowball and anti-griefing** design. The worked example is the course game's single opt-in mode, the **Crucible**: 3v3, best of three rounds, normalised stats, a rating that resets softly each 12-week season, and rewards that are cosmetic and capped so that pillar 4 holds.
 
 ## 1. The concept
 
@@ -56,7 +56,7 @@ PvP serves **Competition**, **Challenge** and **Mastery** ([module 01](01-player
 | "Losing teaches me something" | Short matches, a death recap, a replay or recap screen |
 | "A quick game" | Queue under a minute, matches under 10 minutes |
 
-PvE-first players have the opposite fears: **being forced into PvP, being ganked while playing PvE, and being left behind in gear because they will not fight people**. A PvP mode inside a PvE game must make those three fears impossible.
+PvE-first players have the opposite fears: **being forced into PvP, being ganked while playing PvE, and being left behind in gear because they will not fight people**. A mode can remove those fears (opt-in, separate gear) or accept some of them and offer a reward for the risk (open-world and flagged systems).
 
 ## 3. The design space
 
@@ -68,23 +68,26 @@ PvE-first players have the opposite fears: **being forced into PvP, being ganked
 | **Arena** | 2v2 to 5v5 | 3–10 min | Matchmaking, rating | Competitive core; spectating | Needs a separate balance table; queue health |
 | **Battleground** | 8v8 to 40v40 | 10–25 min | Objectives, many players | Casual PvP; larger teams | Weak players can hide; needs matchmaking at scale |
 | **Siege or territory war** | Guild versus guild | Scheduled, 30–90 min | Guilds, a world map, owners | Long-term guild goals | Rich-get-richer; scheduling; high server load |
+| **Faction or realm war (RvR)** | 3 or more factions | Persistent | A persistent map, objectives | Persistent stories, world feeling | Server load; population balance |
+| **Free-for-all or battle royale** | Every player against all | 10–30 min | High concurrent players | Spectacle, short sessions | Needs a large player pool |
+| **PvP server rules** | A whole server where PvP is on | Always | Realm types | Players who want danger | Splits the community |
 | **Open-world PvP** | Any | Always | A flagging system, rules | Danger, emergent stories | Griefing; loses PvE players (see 3.2) |
 | **Asynchronous** | Your team vs a saved team | 1–3 min | Saved snapshots, AI | Mobile and idle games | Feels less personal; snapshot balance |
 
-Public examples (as of October 2026): *World of Warcraft* has arenas and battlegrounds and an opt-in open-world mode; *Lineage II* made castle sieges a long-running feature; *Clash of Clans* attacks another player's saved base; *Final Fantasy XIV* has Crystalline Conflict (5v5 objective arena) and Frontline (large-scale).
+Public examples (as of October 2026): *World of Warcraft* has arenas and battlegrounds and an opt-in open-world mode; *Lineage II* made castle sieges a long-running feature; *Clash of Clans* attacks another player's saved base; *Final Fantasy XIV* has Crystalline Conflict (5v5 objective arena) and Frontline (large-scale); *Guild Wars 2* runs World vs. World, a persistent three-server war for map objectives; *World of Warcraft* has offered PvP realm types and War Mode as a player-chosen switch.
 
 ### 3.2 The open-world PvP lesson
 
-The best-known lesson is *Ultima Online*. Until 2000, the game's one world allowed player killing everywhere; reports from the time say many new players quit after being hunted. The *Renaissance* expansion (3 April 2000) added a second copy of the world, **Trammel**, with no player killing, beside the original **Felucca**. Reports say that most of the community moved to Trammel and subscriptions rose strongly afterwards. The lesson most designers take: **non-consensual PvP in the same space as PvE loses PvE players**; if it exists, make it a place players choose to enter, or a mode with a visible flag and a reward that pays for the risk (as of October 2026, per community histories).
+The best-known lesson is *Ultima Online*. Until 2000, the game's one world allowed player killing everywhere; reports from the time say many new players quit after being hunted. The *Renaissance* expansion (3 April 2000) added a second copy of the world, **Trammel**, with no player killing, beside the original **Felucca**. Reports say that most of the community moved to Trammel and subscriptions rose strongly afterwards. Open PvP has a cost and a benefit. The cost is the PvE players it loses; the benefit is stakes and emergent stories. Other games build on open PvP and attract the players who want that danger: *EVE Online*'s null-security space has no NPC police response, and *Albion Online* has full-loot zones where a death drops what the player carries (as of October 2026). A game can also make PvP a place players choose to enter, or a mode with a visible flag and a reward that pays for the risk.
 
 **How to choose a mode:**
 
 | Question | Choose |
 |---|---|
 | Is PvP a side feature in a PvE game? | One opt-in arena or battleground |
-| Do you have strong guilds and a map? | Add siege later, not at launch |
+| Do you have strong guilds and a map? | Siege at launch gives guilds a goal and costs map, server load and balance; later lets the guild base mature first |
 | Is the audience mobile and short-session? | Short arena or asynchronous |
-| Do players want danger in the world? | A separate, flagged zone or server rule, never the main fields |
+| Do players want danger in the world? | A flagged zone or server rule (opt-in), or open PvP in the main fields (full danger; you lose PvE-first players, as *Ultima Online* showed) |
 | Do you want spectators and an esports story? | A symmetrical arena with a clean rule set |
 
 ### 3.3 Matchmaking: what it must do
@@ -97,7 +100,16 @@ A matchmaker has three jobs and they conflict:
 
 The standard compromise is a **search window that widens with waiting time**: start narrow, widen every few seconds, and stop widening at a limit past which the game offers an unrated match instead.
 
-Other inputs: party size (a group of friends coordinates better than strangers and should count for more than its raw rating), connection quality, and platform.
+Other inputs: party size (a group of friends coordinates better than strangers; many games adjust for that, some do not), connection quality, and platform.
+
+**Matchmaking options.**
+
+| Option | How it works | Strength | Cost |
+|---|---|---|---|
+| **Skill-based** (this section) | Match by rating | Close matches | Waits grow with a small population |
+| **Connection-first** | Nearest players, short waits | Low latency, fast queues | Uneven skill |
+| **Open lobby or server browser** | Players pick a server; community servers (the Counter-Strike series) | Choice and community | Uneven quality; little skill control |
+| **Party-first** | Friends choose the opponent | Social | Needs a larger friend pool |
 
 ### 3.4 Rating systems in plain words
 
@@ -136,7 +148,7 @@ PvE balance asks "can this class kill this boss in a reasonable time?". PvP bala
 | **Crowd control** | A short stun on an enemy is fine | Chains of stun are a "free win" (module 08) |
 | **Burst damage** | Fine against a boss | Kills in under a second feel unfair |
 | **Healing** | Needed | Can stall matches |
-| **Tolerance for imbalance** | A class a bit weaker still clears | A weaker class is never picked |
+| **Tolerance for imbalance** | A class a bit weaker still clears | A weaker class is picked less |
 | **Patch speed** | Slow | Fast; meta shifts quickly |
 
 There are two approaches to avoid one breaking the other:
@@ -145,16 +157,19 @@ There are two approaches to avoid one breaking the other:
 |---|---|---|---|
 | **Separate rule sets** | A PvP table of numbers that overrides skill values inside PvP, in a data file | *Final Fantasy XIV* gives each job a separate set of PvP actions, with fixed stats; equipment has no effect in PvP | Doubles the data to maintain; players must relearn |
 | **Scaling and templates** | Keep the same skills but scale stats or gear for PvP | *World of Warcraft* scales PvP gear up inside PvP content (Shadowlands patch 9.1, per community reports of Blizzard's notes) | Fewer data tables; PvE changes still leak |
-| **Same rules, no changes** | PvE and PvP use the same numbers | Older MMOs | Every PvE patch is a PvP patch |
+| **Per-skill modifiers** | A few skills get PvP-only numbers in a table | *World of Warcraft* patch notes list PvP-only reductions for individual abilities | Players must know which skill is which |
+| **Same rules, no changes** | PvE and PvP use the same numbers | Older MMOs | One data set, simple; every PvE patch is a PvP patch |
 
-**Normalisation** (everyone gets the same template) is the strongest fairness tool. It removes the "gear check" so that PvP is skill versus skill, at the cost of making PvP progress purely cosmetic or ranked.
+**Normalisation** (everyone gets the same template) removes the "gear check" so that skill decides, at the cost of making PvP progress cosmetic or ranked. Gear-based PvP adds a progression chase and a gear gap.
 
 ### 3.6 Rewards, and the gear gating problem
 
-The commonest PvP design failure is a **gear loop that couples PvP and PvE**:
+A **gear loop that couples PvP and PvE** has two effects:
 
-- If PvP gives gear that helps in PvE, PvE players are pushed into PvP (and complain).
-- If PvE gear is required to compete in PvP, PvP players are pushed into PvE and new PvP players lose to veterans because of gear, not skill.
+- If PvP gives gear that helps in PvE, PvE players are pulled into PvP (a larger PvP population, and complaints from those who did not want it).
+- If PvE gear is needed to compete in PvP, PvP players are pushed into PvE and new PvP players meet veterans with a gear gap.
+
+Some games couple on purpose; others decouple with normalisation. The course game decouples (pillar 4).
 
 Options:
 
@@ -166,7 +181,7 @@ Options:
 | **PvE-useful items** | A strong pull for PvE players | Pushes them into PvP; must be capped (a weekly item at most) |
 | **Rank rewards** | Tiers at season end | Needs fair matching |
 
-The rule of thumb: **power from PvP stays in PvP, power from PvE stays in PvE, and shared rewards are cosmetic or capped.**
+Coupling is a choice: decoupled rewards (power from PvP stays in PvP, power from PvE stays in PvE, shared rewards cosmetic or capped) protect each audience, coupled rewards feed population.
 
 ### 3.7 Griefing and anti-snowball design
 
@@ -182,11 +197,11 @@ The rule of thumb: **power from PvP stays in PvP, power from PvE stays in PvE, a
 | **Stalling** | A team hides to win on time | A soft enrage: the arena shrinks |
 | **Disconnects** | A player drops | A short reconnect window and a rule for who loses |
 
-**Anti-snowball** is a design mindset: give the losing side a chance to recover without being given the win. Cheap tools are short rounds, a full reset between rounds, and objectives that matter more than kills.
+**Anti-snowball** tools give the losing side a chance to recover without being given the win; cheap tools are short rounds, a full reset between rounds, and objectives that matter more than kills. Snowball keeps early play meaningful and ends matches sooner, and many MOBAs and strategy games use it as the reward for early advantage. Games pick a level per mode.
 
 ### 3.8 Seasons and ladders
 
-A **season** is a fixed period for a ladder. At its end, players receive rewards by tier and the rating is **soft reset**: compressed toward the middle, not zeroed, so players do not spend their first weeks facing mismatched opponents.
+A **season** is a fixed period for a ladder. At its end, players receive rewards by tier and the rating is reset. Reset options: **hard reset** (everyone restarts; rank starts fresh but placement matches are long), **soft reset** (compress toward the middle, below) and **no reset** (a permanent ladder such as Elo in chess; simple, and old ranks never expire). A soft reset is compressed toward the middle, not zeroed, so players do not spend their first weeks facing mismatched opponents.
 
 Soft reset formula: `new = middle + (old − middle) × keep`, where `keep` is between 0 and 1 (for example 0.5). Typical season lengths are 2–4 months; the course game ties it to the 12-week season of [module 20](20-narrative.md).
 
@@ -207,7 +222,7 @@ Spectating serves learning (watch better players), community (watch a friend) an
 
 | Game type | PvP shape |
 |---|---|
-| **PvE online RPG** (the course game) | One opt-in arena, normalised, cosmetic rewards |
+| **PvE online RPG** | An opt-in arena (as in the course game: normalised, cosmetic rewards), flagged zones, or open-world PvP, depending on how much danger the players want |
 | **Guild-focused MMO** | Siege or territory plus an arena |
 | **Competitive-first game** | The arena is the game: ranked ladder, spectating, esports tools |
 | **Mobile hero collection** | Asynchronous arena against saved teams |
@@ -215,7 +230,9 @@ Spectating serves learning (watch better players), community (watch a friend) an
 
 ## 4. Tuning and pitfalls
 
-### 4.1 Targets (rules of thumb)
+### 4.1 Example targets
+
+These are the course game's targets; teams set theirs from their audience and genre. The match length and time to kill vary widely: battle royale matches run 20–30 min and duels 1–3 min; time to kill is 1–3 s in fast shooters and tens of seconds in tactics games.
 
 | Metric | Target | Warning sign |
 |---|---|---|
@@ -242,13 +259,13 @@ Spectating serves learning (watch better players), community (watch a friend) an
 
 ### 4.3 Classic failures
 
-- **PvP gear gating PvE** (and the reverse). Fixed by normalisation and cosmetic rewards.
+- **PvP gear gating PvE** (and the reverse). A trade-off (section 3.6), not a failure for games that want the coupling.
 - **No separate balance table.** Every dungeon hotfix changes PvP.
 - **Rewards that outweigh play.** Players grind for the reward and hate the mode.
-- **A rank that decays.** The mode becomes a job.
+- **A rank that decays.** It raises retention pressure; some competitive games keep it to keep the ladder active.
 - **Matchmaking that waits for perfect.** Waits grow, the population shrinks, matches get worse.
 - **No placement.** New players are thrown in at the median and lose, or smurfs destroy the lowest tier.
-- **No answer to a skill.** If a skill can only be avoided by not being in range, it is a design bug in PvP.
+- **No answer to a skill.** A skill that cannot be answered makes matches predictable; some games accept hard counters to reward drafting.
 
 ## 5. Worked example
 
@@ -293,7 +310,7 @@ A **PvP data table** overrides skill and combat values inside the Crucible only.
 | **Telegraphs** | Per module 12 | Unchanged: every dangerous hit warns | Pillar 2 |
 | **Dodge** | 0.35 s, 4 m, 0.25 s i-frames, 3.0 s cooldown | Unchanged | Identical on both devices |
 | **Aim assist** | PC 1.5 m, touch 2.5 m snap | **2.0 m on both** | Device parity (module 06) |
-| **Randomness** | Variance ±10% | **None** | A match should never turn on a roll |
+| **Randomness** | Variance ±10% | **None** | The course game's competitive mode removes variance so that skill decides; many games (card games, auto-battlers, crit-based shooters) keep it for excitement |
 
 **Worked example: why 0.6×.** Take the module 08 numbers: a Duelist deals 22 per 0.6 s, a Ranger 30 per 0.8 s, an Arcanist 70 per 1.75 s, using basic attacks. Their damage rates are 36.7, 37.5 and 40.0 per second, 114.2 together. Against a Ranger with 900 HP and 15 defence the ratio formula gives 100 / (100 + 15) = 0.87, so the trio deals 114.2 × 0.87 = 99.3 per second, and the Ranger lasts 900 / 99.3 = **9.1 s** with basic attacks only, about **6 s** if skills add 50% (inferred; module 25 measures it). That leaves no time to dodge or answer. At 0.6× the trio deals 59.6 per second and the Ranger lasts **15.1 s** on basics, about **10 s** with skills, inside the 8–14 s target. One Duelist alone lasts 900 / (36.7 × 0.87 × 0.6) = **47 s**, so one-on-one fights are long and a lone hero has time to run, heal or call help. Changing 0.6 to 0.5 pushes the trio's kill to about 12 s with skills; 0.8 pulls it to about 7.6 s.
 
@@ -384,16 +401,22 @@ The rating is Elo-style with a high K for new players.
 
 ## Key takeaways
 
-1. A **single opt-in mode** serves a PvE-first game; open-world PvP in shared fields drives PvE players away, as *Ultima Online*'s Trammel split showed.
+1. An **opt-in mode** keeps PvE players safe; open PvP in shared fields costs PvE players and gains danger (*Ultima Online*'s Trammel split; *EVE Online*).
 2. **Matchmaking** trades fairness against wait time: use a search window that widens, and offer an unrated match rather than a bad one.
 3. **Elo in one line:** `change = K × (result − expected)`. Uncertainty (Glicko), teams (TrueSkill) and high K for new players are the usual refinements.
-4. **PvP needs its own rule set**: a separate data table for damage, healing, crowd control and crit, so a dungeon patch never changes the arena and the reverse.
-5. **Normalise stats** and keep power earned in PvP out of PvE: cosmetic and capped rewards stop gear from gating either side.
-6. Design out the snowball and the grief: short rounds, resets, a closing arena, leave penalties and no opponent chat.
-7. **Respect time**: soft resets, frozen ranks, capped weekly rewards and matches that fit a short session.
+4. PvP can **share the PvE rules, scale with templates, or use its own table**; the course game uses a separate table so a dungeon patch does not change the arena.
+5. **Normalising stats** makes skill decide; coupled gear gives progression and queue population.
+6. **Snowball and grief are design variables**; the course game reduces both with short rounds, resets, a closing arena and leave penalties.
+7. The course game **respects time** with soft resets, a frozen rank and capped weekly rewards; other ladders choose decay and demotion for activity.
 
 ## Further reading
 
+- Albion Market, "Zones and flagging explained" (full-loot zones): https://www.albionmarket.gg/guides/zones-and-flagging
+- EVE University Wiki, "0.0" (null security space): https://wiki.eveuniversity.org/0.0
+- Guild Wars 2 Wiki, "World versus World": https://wiki.guildwars2.com/wiki/WvW
+- Warcraft Wiki, "Realm type": https://warcraft.wiki.gg/wiki/Realm_type
+- Mein-MMO, "WoW: Balance Carousel" (PvP-only ability reductions in patch notes): https://mein-mmo.de/en/wow-725-pvp-balance-patch,163154/
+- Dust2.us, "New community server browser aims to fix major issue with Counter-Strike 2": https://www.dust2.us/news/65129/new-community-server-browser-aims-to-fix-major-issue-with-counter-strike-2
 - Elo rating system (formula and K-factor): https://en.wikipedia.org/wiki/Elo_rating_system
 - Mark Glickman, "The Glicko system": http://www.glicko.net/glicko/glicko.pdf
 - Microsoft Research, TrueSkill ranking system: https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/

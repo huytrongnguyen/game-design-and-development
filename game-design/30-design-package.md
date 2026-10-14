@@ -6,7 +6,7 @@
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
 
 ## In short
-A **design package** is the complete, indexed set of documents that says what a game is, how every system works, which numbers belong to whom, what was cut, and how the design will be proved. Its value is not volume but **consistency**: every fact lives in one place, every number has one owner, and the places where systems meet are checked on purpose. This module assembles the course game's package from modules 00 to 29: a one-page overview, a document map, twenty system summaries, a number-ownership table, eight cross-checks (all pass after five conflicts found by the first pass were ruled on and logged), the cut list, the vertical slice and the validation plan. The conflicts found are kept in a reconciliation log because finding them is what the exercise is for.
+A **design package** is the complete, indexed set of documents that says what a game is, how every system works, which numbers belong to whom, what was cut, and how the design will be proved. Its value is not volume but **consistency**: every fact lives in one place, every number has one owner, and the places where systems meet are checked on purpose. This module assembles the course game's package from modules 00 to 29: a one-page overview, a document map, twenty-three system summaries, a number-ownership table, ten cross-checks (all pass after seven conflicts were ruled on and logged: five in the first pass, two in the second), the cut list, the vertical slice and the validation plan. The conflicts found are kept in a reconciliation log because finding them is what the exercise is for.
 
 ## 1. The concept
 
@@ -24,7 +24,7 @@ Each reader opens a different part first.
 | **Engineers** | System specs, data schemas, number ownership | Exact rules, edge cases, which file holds each number |
 | **Artists and animators** | Controls, combat, encounters, UX | State lists, telegraph rules, readability constraints |
 | **QA** | Specs with test cases, validation plan | Expected values for every rule |
-| **Live team** | Live plan, balancing, economy, monetization | Tunable numbers and their safe ranges |
+| **Live team** | Live plan, balancing, economy, monetization | Tunable numbers and their target bands |
 | **Investors and partners** | Overview, pillars, business model, roadmap | The pitch, the risks, the plan to prove them |
 
 ### 1.3 The parts and their order
@@ -78,12 +78,12 @@ The test of a good package is the same as in module 05: **every player-facing ru
 ## 4. Tuning and pitfalls
 
 ### 4.1 Keeping the package consistent
-Three habits do most of the work.
+Three habits that many teams use.
 
 | Habit | How it works |
 |---|---|
 | **One fact sheet** | A short list of fixed facts (identity, scope, key numbers). Every module that decides something new adds it there in the same change |
-| **Number ownership** | Each number has exactly one owning document. Other documents link to it and never copy it |
+| **Number ownership** | Each number has one owning document. Other documents link to it, or carry a labelled copy that points to the owner |
 | **A change log** | Each document ends with dated changes. A change to an owned number lists the documents that quote it |
 
 A fourth habit is the **cross-check pass**: before a milestone, list the places where two systems meet and recompute each side from the owners' numbers (section 5.5).
@@ -123,6 +123,10 @@ The course game: a small online fantasy RPG for PC and mobile, one hero per play
 
 **Loops.** Core 30–90 s (engage a pack, skills and dodging, loot and XP). Session 20–40 min (quest or dungeon, group up, clear, turn in and upgrade). Meta, weeks (levels and gear, harder content, weekly dungeons and the world boss, guild goals).
 
+**Genre** ([module 02](02-genres-formats.md)). An online action RPG between the action RPG and the MMORPG. Hero collection and open-world traversal are left out on purpose.
+
+**Look** ([module 07](07-dimensions-art-style.md)). Stylised 3D models on a ground plane under a fixed-rotation camera, strong silhouettes and a limited palette per region; enemies and telegraphs are never hidden.
+
 **Business model.** Free to play. Cosmetics, a Convenience Pass (500 Crowns for 30 days) and a Seasonal Pass (1,000 Crowns for 12 weeks). No sale of unearnable combat power ([module 17](17-monetization.md)).
 
 **Scope of the first release.**
@@ -142,12 +146,12 @@ The course game: a small online fantasy RPG for PC and mobile, one hero per play
 
 ```mermaid
 flowchart TB
-    WHY["Why<br/>00 pitch and roles<br/>01 players and motives<br/>02 vision, pillars, loops<br/>03 teardown method<br/>04 document rules"]
-    CORE["Core gameplay<br/>05 controls<br/>06 combat<br/>07 classes<br/>08 skills<br/>09 party<br/>10 encounters"]
-    NUM["Progression and economy<br/>11 progression<br/>12 items<br/>13 economy<br/>14 monetization"]
-    CONTENT["World and social<br/>15 world<br/>16 quests<br/>17 story<br/>18 social<br/>19 PvP<br/>20 endgame"]
-    CRAFT["Craft and proof<br/>21 balancing<br/>22 UX<br/>23 platforms<br/>24 playtest plan<br/>25 live plan"]
-    PKG["Design package<br/>26 assembly, checks, slice, validation"]
+    WHY["Why<br/>00 pitch and roles<br/>01 players and motives<br/>02 genre and format<br/>03 vision, pillars, loops<br/>04 teardown method<br/>05 document rules"]
+    CORE["Core gameplay<br/>06 controls<br/>07 dimension and style<br/>08 combat<br/>09 classes<br/>10 skills<br/>11 party<br/>12 encounters<br/>13 AI-driven companion"]
+    NUM["Progression and economy<br/>14 progression<br/>15 items<br/>16 economy<br/>17 monetization"]
+    CONTENT["World, story and social<br/>18 world<br/>19 quests<br/>20 story<br/>21 canon across products<br/>22 social<br/>23 PvP<br/>24 endgame"]
+    CRAFT["Craft and proof<br/>25 balancing<br/>26 UX<br/>27 platforms<br/>28 playtest plan<br/>29 live plan"]
+    PKG["Design package<br/>30 assembly, checks, slice, validation"]
     WHY --> CORE
     CORE --> NUM
     CORE --> CONTENT
@@ -168,6 +172,13 @@ Each summary lists the key numbers. The linked module owns them.
 - Universal dodge: 0.35 s, 4 m, 0.25 s of invulnerability, 3.0 s cooldown, free.
 - Input buffer 0.15 s; animation starts within 100 ms on the client; targeting range 25 m, else nearest in a 120° front cone.
 - Touch sizes: joystick 120 dp, attack 72 dp, skills and dodge 56 dp, gaps of at least 8 dp.
+
+#### Dimension and art style ([module 07](07-dimensions-art-style.md))
+- 3D models on a ground plane under the fixed-rotation camera; stylised, strong silhouettes, a limited palette per region; jump is not a combat tool.
+- Walls and props between camera and hero fade to 30% opacity; enemies and telegraphs are never hidden.
+- Budgets: hero at most 15,000 triangles, trash enemy at most 6,000, at most 40 animated characters at full detail; in crowded events the nearest 24 players at full detail and the rest as low-detail figures.
+- Art cost: new enemy 8 days, class set 40 days, environment kit 25 days, costume variant on an existing rig 4 days.
+- No browser target at launch (if there were one, the first load would stay under 20 MB).
 
 #### Combat ([module 08](08-combat.md))
 - Always hit, one defence stat: damage = hit × 100 ÷ (100 + defence), variance ±10%, crit multiplies the raw hit.
@@ -204,6 +215,12 @@ Each summary lists the key numbers. The linked module owns them.
 - World boss: twice a week, announced 30 minutes ahead, 9,000 HP per player (10–40 players), at least 5% contribution for rewards, gone after 20 minutes.
 - Stun, silence or knockback cancel an elite's cast; bosses cannot be interrupted.
 - Death in dungeons and boss rooms: revive by an ally, or wait 15 s and respawn at the room door at 50% HP; a wipe resets the room with the party back at the door at full HP within 10 s; no repair cost. The open world uses the spec of [module 05](05-design-documents.md) (respawn delay 10–30 s, Weakened for 180 s).
+
+#### AI-driven companion ([module 13](13-ai-driven-characters.md); optional, not in the first release)
+- **Pip**, a Lodge scout: field content and normal dungeons only; never in Ember mode, the world boss or PvP; fills a slot only when the party is smaller than three.
+- Combat is rule-based (follow, attack the player's target, warn, revive); only the banter is AI-written, at most 12 replies per player per hour, with 40 scripted fallback barks.
+- Output 40% of a player's damage; counts as 0.4 of a player for enemy HP; no loot or XP share and no group bonus.
+- Disclosure, a player off switch and a server kill switch; targets: reply under 2 s, action under 0.3 s, off-persona rate under 1%.
 
 #### Progression ([module 14](14-progression.md))
 - XP to next level = round(250 × L^1.8); kill XP = round(8 × L^1.2); a quest pays 25 kills of XP.
@@ -251,6 +268,11 @@ Each summary lists the key numbers. The linked module owns them.
 - Theme: "No one keeps a fire alone." Four arcs, one per region, each ending at a dungeon or the world boss.
 - Season model: Book, then 12-week Season, then 3 chapters and a finale; one question answered and one opened per season.
 - At most 2 new named characters per season; the world boss event is the Ash Tide.
+
+#### Canon across products ([module 21](21-story-world-many-games.md))
+- Four canon tiers for products: Core, Adjacent, Alternate, Shared setting only; the narrative designer owns continuity.
+- The core game's open threads (Kael's fate, the Heart signal) are answered only in the core game's seasons; each spin-off stands alone.
+- At most one new spin-off a year.
 
 #### Social ([module 22](22-social.md))
 - Guilds founded at level 15 by 3 founders, at most 50 members, one per account; ranks Leader, Officer (up to 5), Member, Recruit.
@@ -305,35 +327,39 @@ A number is **owned** by the module that decides it. Everyone else links.
 
 | Numbers | Owner | Quoted by |
 |---|---|---|
-| Pillars, personas, loops, scope | [02](03-vision-pillars-loops.md), [01](01-player-experience.md) | All |
-| Dodge, input timings, camera, touch sizes | [05](06-controls-camera-feel.md) | 06, 08, 22, 23 |
-| Damage formula, threat, CC durations, TTK bands | [06](08-combat.md) | 08, 10, 21, 24 |
-| Death and respawn: open world | [04](05-design-documents.md) | 07, 10 |
-| Class list, unlock levels, Paths, respec rules | [07](09-classes-roles.md) | 08, 11, 13, 16, 21 |
-| Skill kits, buff cap, skill bar layout | [08](10-skills.md) | 05, 21, 22 |
-| Party size, scaling, loot sharing | [09](11-party-roster.md) | 06, 11, 12, 20, 24 |
-| Telegraph bands, boss phases, world boss, death inside instances | [10](12-enemies-encounters.md) | 04, 06, 15, 20, 22 |
-| XP formulas, region hours, level power | [11](14-progression.md) | 13, 15, 16, 22, 25 |
-| Gear, Tempering, drop tables, binding | [12](15-items-loot.md) | 09, 13, 20 |
-| Currencies, prices, market, sinks | [13](16-economy.md) | 07, 12, 14, 18, 20 |
-| Crowns, passes, shop catalogue, red lines | [14](17-monetization.md) | 13, 20, 24 |
-| Region layout, dungeon levels, field metrics | [15](18-world-level.md) | 10, 16, 17, 22 |
-| Quest budgets, class quest template | [16](19-quests.md) | 11, 22 |
-| Arcs, season model, characters | [17](20-narrative.md) | 20, 25 |
-| Guild, chat, trade, sanctions | [18](22-social.md) | 13, 20 |
-| PvP rules and rating | [19](23-pvp.md) | 13, 21 |
-| Weekly schedule, Ember mode, persona play days, live retention targets | [20](24-endgame-retention.md) | 13, 14, 18, 24 |
-| Balance bands, class score, live balance rules | [21](25-balancing.md) | 07, 25 |
-| First-hour timings, HUD, accessibility | [22](26-ux-onboarding.md) | 24 |
-| Platform rules, performance, latency | [23](27-platforms.md) | 05, 06 |
-| Playtest pass bands, closed-beta gates, stage gates | [24](28-prototype-playtest.md) | 20, 25 |
-| Season calendar, patch rules, cap decision | [25](29-live-design.md) | 17, 20 |
+| Pillars, personas, loops, scope | [03](03-vision-pillars-loops.md), [01](01-player-experience.md) | All |
+| Genre position and what it leaves out | [02](02-genres-formats.md) | 30 |
+| Dodge, input timings, camera, touch sizes | [06](06-controls-camera-feel.md) | 08, 10, 26, 27 |
+| Dimension, art style, on-screen and art budgets | [07](07-dimensions-art-style.md) | 06, 12, 27 |
+| Damage formula, threat, CC durations, TTK bands | [08](08-combat.md) | 10, 12, 25, 28 |
+| Death and respawn: open world | [05](05-design-documents.md) | 09, 12 |
+| Class list, unlock levels, Paths, respec rules | [09](09-classes-roles.md) | 10, 14, 16, 19, 25 |
+| Skill kits, buff cap, skill bar layout | [10](10-skills.md) | 06, 25, 26 |
+| Party size, scaling, loot sharing | [11](11-party-roster.md) | 08, 14, 15, 24, 28 |
+| Telegraph bands, boss phases, world boss, death inside instances | [12](12-enemies-encounters.md) | 05, 08, 18, 24, 26 |
+| Companion persona, strength, limits and targets | [13](13-ai-driven-characters.md) | 11, 20, 26 |
+| XP formulas, region hours, level power | [14](14-progression.md) | 16, 18, 19, 26, 29 |
+| Gear, Tempering, drop tables, binding | [15](15-items-loot.md) | 11, 16, 24 |
+| Currencies, prices, market, sinks | [16](16-economy.md) | 09, 15, 17, 22, 24 |
+| Crowns, passes, shop catalogue, red lines | [17](17-monetization.md) | 16, 24, 28 |
+| Region layout, dungeon levels, field metrics | [18](18-world-level.md) | 12, 19, 20, 26 |
+| Quest budgets, class quest template | [19](19-quests.md) | 14, 26 |
+| Arcs, season model, characters | [20](20-narrative.md) | 24, 29 |
+| Canon tiers across products, spin-off cap | [21](21-story-world-many-games.md) | 20, 29 |
+| Guild, chat, trade, sanctions | [22](22-social.md) | 16, 24 |
+| PvP rules and rating | [23](23-pvp.md) | 16, 25 |
+| Weekly schedule, Ember mode, persona play days, live retention targets | [24](24-endgame-retention.md) | 16, 17, 22, 28 |
+| Balance bands, class score, live balance rules | [25](25-balancing.md) | 09, 29 |
+| First-hour timings, HUD, accessibility | [26](26-ux-onboarding.md) | 28 |
+| Platform rules, performance, latency | [27](27-platforms.md) | 06, 08 |
+| Playtest pass bands, closed-beta gates, stage gates | [28](28-prototype-playtest.md) | 24, 29 |
+| Season calendar, patch rules, cap decision | [29](29-live-design.md) | 20, 24 |
 
-Two rules keep the table honest. A value quoted in a second document is a link or a labelled copy, never a new decision. If a later module changes an owned value, its change log names the modules that quote it.
+Two rules keep the table honest. A value quoted in a second document is a link or a labelled copy, not a new decision. If a later module changes an owned value, its change log names the modules that quote it.
 
 ### 5.5 Cross-checks
 
-Each check recomputes both sides from the owners' numbers. Eight were run for this package.
+Each check recomputes both sides from the owners' numbers. Ten were run for this package.
 
 | # | Where systems meet | Result |
 |---|---|---|
@@ -345,9 +371,11 @@ Each check recomputes both sides from the owners' numbers. Eight were run for th
 | 6 | Economy income vs the persona's hours | **Pass** |
 | 7 | Weekly schedule vs hours per week and the guild goal | **Pass** |
 | 8 | Season pass and Marks vs the personas | **Pass** (after the play-day ruling) |
+| 9 | The AI companion vs the pillar 3 test | **Pass** (after the companion-scaling ruling) |
+| 10 | The on-screen budget vs the world boss | **Pass** (after the crowd-detail ruling) |
 
 #### Check 1: party scaling vs the pillar 3 test
-Pillar 3 requires a group clear at least 25% faster than solo ([module 03](03-vision-pillars-loops.md), [24](28-prototype-playtest.md)).
+Pillar 3 requires a group clear at least 25% faster than solo ([module 03](03-vision-pillars-loops.md), [28](28-prototype-playtest.md)).
 
 | Players | Party power | Enemy HP | Kill speed (power ÷ HP) | Clear time vs solo |
 |---|---|---|---|---|
@@ -364,7 +392,7 @@ Pillar 3 requires a group clear at least 25% faster than solo ([module 03](03-vi
 #### Check 2: first-hour timings vs the XP curve
 Cumulative XP to reach a level is the sum of round(250 × L^1.8) from level 1.
 
-| Reach | Time ([22](26-ux-onboarding.md)) | XP needed | Minutes per level in this stretch | XP per minute |
+| Reach | Time ([26](26-ux-onboarding.md)) | XP needed | Minutes per level in this stretch | XP per minute |
 |---|---|---|---|---|
 | Level 2 | 4:42 | 250 | 4.7 | 53 |
 | Level 5 | 31:36 | 5,958 | 9.0 | 212 |
@@ -426,46 +454,69 @@ The ruling is **Mira plays 5 evenings a week, Dev plays 6 days a week**. Each mo
 
 | Quantity | Computation | Result |
 |---|---|---|
-| Mira, season points a week ([14](17-monetization.md)) | 5 × 150 + 1,500 + 400 | 2,650 |
-| Mira, time to finish 25,000 points | 25,000 ÷ 2,650 | 9.4 weeks of 12 ([20](24-endgame-retention.md) quotes the same) |
+| Mira, season points a week ([17](17-monetization.md)) | 5 × 150 + 1,500 + 400 | 2,650 |
+| Mira, time to finish 25,000 points | 25,000 ÷ 2,650 | 9.4 weeks of 12 ([24](24-endgame-retention.md) quotes the same) |
 | Dev, season points a week | 6 × 150 + 750 + 200 | 1,850 |
-| Dev, points by week 12 | 12 × 1,850 | 22,200, which is tier 44 (the same value in 14) |
-| Mira, Frontier Marks a week ([13](16-economy.md)) | 5 × 10 + 60 + 2 × 40 | 190 |
+| Dev, points by week 12 | 12 × 1,850 | 22,200, which is tier 44 (the same value in 17) |
+| Mira, Frontier Marks a week ([16](16-economy.md)) | 5 × 10 + 60 + 2 × 40 | 190 |
 | Dev, Frontier Marks a week | 6 × 10 + 60 + 40 | 160 |
 
 - Mira's 9.4 weeks leaves 2.6 weeks to spare; Dev ends at tier 44 of 50, so neither is blocked and the pass is paced for the regular player, as module 17 requires.
 
+#### Check 9: the AI companion vs the pillar 3 test
+Pip deals 40% of a player's damage ([module 13](13-ai-driven-characters.md)). Enemy HP grows by 0.5 of the solo value per extra player ([module 11](11-party-roster.md)).
+
+| Case | Party power | Enemy HP | Kill speed | Clear time vs solo |
+|---|---|---|---|---|
+| Solo | 1 | ×1 | 1.00 | 100% |
+| Solo with Pip, Pip not counted for enemy HP (first draft) | 1.4 | ×1 | 1.40 | 71.4% |
+| Solo with Pip, Pip counted as 0.4 of a player (ruling) | 1.4 | ×1.2 | 1.17 | 85.7% |
+| Party of four | 4 | ×2.5 | 1.60 | 62.5% |
+
+- First draft: four players clear in 62.5 ÷ 71.4 = 87.5% of the time of a solo hero with Pip, only 12.5% faster. A solo player with a companion would almost match a group, against pillar 3.
+- Ruling: Pip counts as 0.4 of a player for enemy HP. Four players then clear in 62.5 ÷ 85.7 = 72.9% of the solo-with-Pip time, 27.1% faster, above the 25% line, and Pip still saves a solo hero 14.3% of the time.
+- Reward per hour per player: solo with Pip 1.17 (no group bonus) against 1.84 for four, so grouping stays clearly better.
+
+#### Check 10: the on-screen budget vs the world boss
+- Module 07 allows at most 40 animated characters on screen. A world-boss layer holds up to 40 players ([module 12](12-enemies-encounters.md)), plus the boss: 41.
+- Ruling: module 07 owns the budget. In crowded events the nearest 24 players draw at full detail and the rest as low-detail figures (no costume layers, simplified animation); the boss and every telegraph always draw at full detail, so pillar 2 holds.
+- Full-detail count in the worst case: 24 players + 1 boss = 25, leaving 15 for field enemies nearby, inside the budget of 40.
+
 #### Reconciliation log
-The first pass over the package found five conflicts between owners. Each has a ruling and the quoting modules were updated.
+The first pass over the package found five conflicts between owners, and a second pass after modules 02, 07, 13 and 21 were added found two more. Each has a ruling and the quoting modules were updated.
 
 | Conflict | Ruling | Changed |
 |---|---|---|
-| Telegraph minimums: [06](08-combat.md) had two bands, [10](12-enemies-encounters.md) four (a 30% hit needed 0.8 s in one, 1.2 s in the other) | Module 12 owns the bands: up to 5% of HP 0.4 s, up to 20% 0.8 s, up to 45% 1.2 s, above 45% 1.5 s, always avoidable | 06 now points to 10 |
-| Death rules: [04](05-design-documents.md) had a shared pool of 5 revives and an entrance return, 10 had a 15 s wait and a door respawn | 04 is the open-world rule; inside dungeons, boss rooms and the world boss, 10 applies | 04 scope, R9 and R10, one parameter, test cases T8 to T10 |
-| Play days: Mira "4 days" (01), seven days in 13 and 20, Dev five or six days | Mira 5 evenings × 1.5 h; Dev 6 days of about 25 minutes | 01, 13 (Marks 190 and 160), 14, 20 (Dev 2.6 h; Mira finishes the pass in 9.4 weeks) |
-| Retention numbers in [24](28-prototype-playtest.md) and [20](24-endgame-retention.md) | Both kept: 24's are closed-beta gates, 20's are live targets after launch | One sentence in each |
-| Vertical slice scope | Warden, Cleric, Ranger; levels 1–8 plus the Foundry | 24 stage 4 |
+| Telegraph minimums: [08](08-combat.md) had two bands, [12](12-enemies-encounters.md) four (a 30% hit needed 0.8 s in one, 1.2 s in the other) | Module 12 owns the bands: up to 5% of HP 0.4 s, up to 20% 0.8 s, up to 45% 1.2 s, above 45% 1.5 s, always avoidable | 08 now points to 12 |
+| Death rules: [05](05-design-documents.md) had a shared pool of 5 revives and an entrance return, 12 had a 15 s wait and a door respawn | 05 is the open-world rule; inside dungeons, boss rooms and the world boss, 12 applies | 05 scope, R9 and R10, one parameter, test cases T8 to T10 |
+| Play days: Mira "4 days" (01), seven days in 16 and 24, Dev five or six days | Mira 5 evenings × 1.5 h; Dev 6 days of about 25 minutes | 01, 16 (Marks 190 and 160), 17, 24 (Dev 2.6 h; Mira finishes the pass in 9.4 weeks) |
+| Retention numbers in [28](28-prototype-playtest.md) and [24](24-endgame-retention.md) | Both kept: 28's are closed-beta gates, 24's are live targets after launch | One sentence in each |
+| Vertical slice scope | Warden, Cleric, Ranger; levels 1–8 plus the Foundry | 28 stage 4 |
+| Companion vs pillar 3 (check 9): with Pip not counted for enemy scaling, a solo hero plus Pip clears in 71.4% of the solo time, so a party of four is only 12.5% faster than solo with Pip | Pip counts as 0.4 of a player for enemy HP (solo with Pip: HP ×1.2); it still adds nothing to the group XP and drop bonus | 13 strength table |
+| On-screen budget vs the world boss (check 10): 07 allows 40 animated characters, 12 allows up to 40 players in a world-boss layer, plus the boss | 07 owns the budget: in crowded events the nearest 24 players draw at full detail and the rest as low-detail figures; the boss and every telegraph always at full detail | 07 budgets row |
 
 ### 5.6 The consolidated cut list and open questions
 
 #### What was cut and why
+These are the course game's cuts; each reason is its own, and the modules above present the same options with their strengths and costs.
+
 | Area | Cut | Why | Module |
 |---|---|---|---|
-| Scope | Housing and farming | Pulls toward a life simulation, doubles content | [00](00-what-game-design-is.md) |
-| Scope | Open-world PvP, guild vs guild, sieges | Needs its own balance and moderation budget | 00, [19](23-pvp.md) |
-| Scope | Playing several heroes at once | A different design | 00, [09](11-party-roster.md) |
-| Controls and combat | Click-to-move, free-orbit camera, parry, controller map; hit chance, split defence, hard CC on bosses | Conflicts with dodge and touch; readability | [05](06-controls-camera-feel.md), [06](08-combat.md) |
-| Classes | Classless skills, third advancement, dual class, sixth class | Cost and identity | [07](09-classes-roles.md) |
-| Party and encounters | Role lock, need or greed, cross-class bonuses; unannounced instant kills, split-up mechanics, hidden gear checks | Slow queues, forced compositions; pillars 2 and 3 | 09, [10](12-enemies-encounters.md) |
-| Progression | Prestige levels, level boost, player-assigned stat points | Fairness, and about 551,000 allocations cannot be balanced | [11](14-progression.md), [21](25-balancing.md) |
-| Items | Sockets, destruction on failure, gear-score gates, auction house | Layers of randomness, harshness | [12](15-items-loot.md) |
-| Economy | Gold-for-money exchange, repair, listing deposit, stamina | Pillar 4 | [13](16-economy.md) |
-| Monetization | Random boxes, subscription, tier skips, gifting, ads | Cost spread, fairness, safety | [14](17-monetization.md) |
-| World | Mounts, dungeon keys, puzzle rooms, branching dungeons | Metrics and scope | [15](18-world-level.md) |
-| Quests and story | Escort, rare-drop steps, auto-travel; named hero, fixed ending, faction wars, full voice-over | Pacing, parity, openness, cost | [16](19-quests.md), [17](20-narrative.md) |
-| Social | Guild bank, global channel, voice chat | Trust, spam, moderation | [18](22-social.md) |
-| Endgame | Login rewards and streaks, raid at launch, damage rankings, seasonal gear reset | Pillar 4, scope | [20](24-endgame-retention.md) |
-| Platforms and live | Auto-battle, platform-exclusive rewards, separate mobile server; new class or currency in year one | Pillar 2, parity, scope | [23](27-platforms.md), [25](29-live-design.md) |
+| Scope | Housing and farming | Out of the course game's scope: it would pull toward a life simulation and double the content | [00](00-what-game-design-is.md) |
+| Scope | Open-world PvP, guild vs guild, sieges | Out of the course game's scope: each needs its own balance and moderation budget | 00, [23](23-pvp.md) |
+| Scope | Playing several heroes at once | The course game is one hero per player; several heroes is a different design | 00, [11](11-party-roster.md) |
+| Controls and combat | Click-to-move, free-orbit camera, parry, controller map; hit chance, split defence, hard CC on bosses | The course game's dodge-based combat and touch play (pillar 2: readability) | [06](06-controls-camera-feel.md), [08](08-combat.md) |
+| Classes | Classless skills, third advancement, dual class, sixth class | Cost, and the course game wants five distinct class identities (pillar 1) | [09](09-classes-roles.md) |
+| Party and encounters | Role lock, need or greed, cross-class bonuses; unannounced instant kills, split-up mechanics, hidden gear checks | The course game wants short queues and free compositions (pillar 3) and readable fights (pillar 2); the course game uses personal loot to remove loot competition (module 11) | 11, [12](12-enemies-encounters.md) |
+| Progression | Prestige levels, level boost, player-assigned stat points | The course game's choices: fairness, and an exact balance sheet for teaching (free points are balanced on reference builds instead, module 25 §3.6) | [14](14-progression.md), [25](25-balancing.md) |
+| Items | Sockets, destruction on failure, gear-score gates, auction house | The course game keeps item progress predictable (pillar 4): fewer layers of randomness and no destruction | [15](15-items-loot.md) |
+| Economy | Gold-for-money exchange, repair, listing deposit, stamina | Pillar 4: nothing sold gives power, and failure does not cost twice | [16](16-economy.md) |
+| Monetization | Random boxes, subscription, tier skips, gifting, ads | Pillar 4 prefers a fixed price (module 17); free entry is part of the vision; the other cuts are in module 17 | [17](17-monetization.md) |
+| World | Mounts, dungeon keys, puzzle rooms, branching dungeons | The course game's metrics and scope: waypoints replace mounts, and dungeons are timed party runs | [18](18-world-level.md) |
+| Quests and story | Escort, rare-drop steps, auto-travel; named hero, fixed ending, faction wars, full voice-over | The course game's pacing, parity (pillar 3), open story and cost; each reason is in modules 19 and 20 | [19](19-quests.md), [20](20-narrative.md) |
+| Social | Guild bank, global channel, voice chat | The course game keeps guilds to coordination and goals (module 22): a bank adds trust work, a global channel spam, voice moderation cost | [22](22-social.md) |
+| Endgame | Login rewards and streaks, raid at launch, damage rankings, seasonal gear reset | Pillar 4 (respect time, no sold power) and scope | [24](24-endgame-retention.md) |
+| Platforms and live | Auto-battle, platform-exclusive rewards, separate mobile server; new class or currency in year one | Pillar 2 (dodge decisions), parity across platforms, scope | [27](27-platforms.md), [29](29-live-design.md) |
 
 #### Open questions
 1. **Weakened duration.** Is 180 s long enough to be felt on mobile? (module 05, goes to the first playtest)
@@ -493,14 +544,14 @@ The slice is accepted when all rows pass.
 
 | Area | Criterion | Source |
 |---|---|---|
-| Pillar 1 | At minute 10, at least 9 of 12 testers name their class's role | [24](28-prototype-playtest.md) |
-| Pillar 2 | "What killed you" correct for at least 80% of deaths, PC and phone within 10 points; the dodge succeeds at least 70% on second sight | 24, [05](06-controls-camera-feel.md) |
-| Pillar 3 | Every tester finishes every first-hour quest alone (12 of 12); the group clear of the Foundry is at least 25% faster than solo in 3 of 3 runs | 24, [09](11-party-roster.md) |
-| Pillar 4 | A reward in every 15-minute block for every tester; no purchase prompt in the first hour | 24 |
-| First hour | Control within 90 s, first hit under 60 s, level 5 near 31:36 (the pacing plan) | [22](26-ux-onboarding.md), [11](14-progression.md) |
-| Combat | Time-to-kill inside the bands (trash 10–18 s solo, elite 50–85 s, boss 170–260 s) and 30–40% of dungeon time in combat | [06](08-combat.md) |
-| Balance | The three classes inside the 0.90–1.10 band | [21](25-balancing.md) |
-| Performance | PC 60 fps on integrated graphics; mobile 30 fps on a phone about 3 years old | [23](27-platforms.md) |
+| Pillar 1 | At minute 10, at least 9 of 12 testers name their class's role | [28](28-prototype-playtest.md) |
+| Pillar 2 | "What killed you" correct for at least 80% of deaths, PC and phone within 10 points; the dodge succeeds at least 70% on second sight | 28, [06](06-controls-camera-feel.md) |
+| Pillar 3 | Every tester finishes every first-hour quest alone (12 of 12); the group clear of the Foundry is at least 25% faster than solo in 3 of 3 runs | 28, [11](11-party-roster.md) |
+| Pillar 4 | A reward in every 15-minute block for every tester; no purchase prompt in the first hour | 28 |
+| First hour | Control within 90 s, first hit under 60 s, level 5 near 31:36 (the pacing plan) | [26](26-ux-onboarding.md), [14](14-progression.md) |
+| Combat | Time-to-kill inside the bands (trash 10–18 s solo, elite 50–85 s, boss 170–260 s) and 30–40% of dungeon time in combat | [08](08-combat.md) |
+| Balance | The three classes inside the 0.90–1.10 band | [25](25-balancing.md) |
+| Performance | PC 60 fps on integrated graphics; mobile 30 fps on a phone about 3 years old | [27](27-platforms.md) |
 
 ### 5.8 The validation plan
 
@@ -508,18 +559,18 @@ Order matters: cheap checks come first, and each stage gates the next.
 
 | Stage | Tool | What it checks | Pass bands |
 |---|---|---|---|
-| Design time | `08-ttk` simulation ([06](08-combat.md)) | Time-to-kill for five classes and three enemy types | Trash 10–18 s solo, elite 50–85 s, boss 170–260 s; party bands lower |
-| Design time | `14-curves` ([11](14-progression.md)) | Level curve and region hours | 25 ± 1 h total, each region within 0.4 h of target; 13.6 h in a full party |
-| Design time | `15-loot` ([12](15-items-loot.md)) | Tempering and drop odds | Expected +10 cost 16,298 gold, 8,186 with Charms; set piece 1.875% a run with protection |
-| Design time | `16-economy` ([13](16-economy.md)) | A 90-day economy | Sink ratio 85–95% (91.4% on day 90); 3.9 days of income held |
-| Design time | `17-gacha-odds` ([14](17-monetization.md)) | Why random boxes were cut, and revenue per 10,000 players | Cost spread wide even with protection, so no random draw ships |
-| Design time | `25-balance` ([21](25-balancing.md)) | Class score and Path pairs | Classes 0.90–1.10, Paths within ±5% |
-| Paper | Paper prototype ([24](28-prototype-playtest.md)) | Readability, rhythm, roles, group speed | Dodge at least 70% on second sight; pack in 10–18 beats; Warden is the target in at least 60% of attacks; party faster by at least 25% |
+| Design time | `08-ttk` simulation ([08](08-combat.md)) | Time-to-kill for five classes and three enemy types | Trash 10–18 s solo, elite 50–85 s, boss 170–260 s; party bands lower |
+| Design time | `14-curves` ([14](14-progression.md)) | Level curve and region hours | 25 ± 1 h total, each region within 0.4 h of target; 13.6 h in a full party |
+| Design time | `15-loot` ([15](15-items-loot.md)) | Tempering and drop odds | Expected +10 cost 16,298 gold, 8,186 with Charms; set piece 1.875% a run with protection |
+| Design time | `16-economy` ([16](16-economy.md)) | A 90-day economy | Sink ratio 85–95% (91.4% on day 90); 3.9 days of income held |
+| Design time | `17-gacha-odds` ([17](17-monetization.md)) | Why random boxes were cut, and revenue per 10,000 players | Cost spread is wide even with pity; the course game ships no random draw (pillar 4); a game with one would use the simulation to bound the worst case |
+| Design time | `25-balance` ([25](25-balancing.md)) | Class score and Path pairs | Classes 0.90–1.10, Paths within ±5% |
+| Paper | Paper prototype ([28](28-prototype-playtest.md)) | Readability, rhythm, roles, group speed | Dodge at least 70% on second sight; pack in 10–18 beats; Warden is the target in at least 60% of attacks; party faster by at least 25% |
 | Rough digital | One class on a phone and a PC | Dodge feel at 100 ms | Dodge success at least 70%; platform gap at most 10 points |
 | Greybox | One 15-minute dungeon, four players | Pillar 3 | Group at least 25% faster in 3 of 3 runs |
 | Vertical slice | First-hour test, 12 strangers (6 PC, 6 phone) | All four pillars (section 5.7) | The exit criteria above |
 | Closed beta | Telemetry funnels cut by platform | Retention and pillars at scale | Closed-beta gates D1 35%, D7 15%, D30 6% (placeholders), funnel within 80% of target to pass the stage; after launch the live targets of module 24 (D1 40%, D7 12%, D30 4%) take over |
-| Live | Balance and data gates | Class share and the level-60 gate | Class share of level-50 heroes 12–28%; the week-28 gate ([25](29-live-design.md)) |
+| Live | Balance and data gates | Class share and the level-60 gate | Class share of level-50 heroes 12–28%; the week-28 gate ([29](29-live-design.md)) |
 
 Each simulation runs with `dotnet test examples/NN-topic` and reads the same data file a designer edits, so a number changed in the table is re-checked by the next run.
 
@@ -534,11 +585,11 @@ Each simulation runs with `dotnet test examples/NN-topic` and reads the same dat
 ## Key takeaways
 - A design package is an index and a set of linked parts, ordered from why to how to proof, not one long document.
 - Each reader opens a different part first; the overview must work for the producer and the investor in one page.
-- Keep one fact sheet, give every number one owner, and keep a change log. Other documents link to a number and never copy it.
-- Cross-checks recompute both sides of every place where systems meet. In this package the first pass found five conflicts, among them numbers that assumed different play days for the same persona; each was ruled on and logged.
+- Keep one fact sheet, give every number one owner, and keep a change log. Other documents link to a number or carry a labelled copy.
+- Cross-checks recompute both sides of every place where systems meet. In this package the first pass found five conflicts (among them numbers that assumed different play days for the same persona) and a second pass two more, seven in all; each was ruled on and logged.
 - Write the cut list and the open questions into the package; ideas that were rejected will return in meetings otherwise.
-- Prove the design in stages: simulations first, then paper, then a greybox, then a vertical slice, then a closed beta, each with pass bands written in advance.
-- The vertical slice is the smallest build that can fail every pillar test; scope it from the tests, not from the feature list.
+- The course game proves the design in stages (simulations, paper, greybox, slice, closed beta), each with pass bands written in advance; teams that prototype first or ship early access use a different order.
+- A vertical slice can be scoped from the pillar tests (the course game's way) or from a feature list that shows target quality.
 
 ## Further reading
 - [Stone Librande: One-Page Designs (GDC 2010)](https://gdcvault.com/play/1012356/One-Page)

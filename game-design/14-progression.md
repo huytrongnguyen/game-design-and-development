@@ -7,7 +7,7 @@
 
 ## In short
 
-**Progression** is how a player's hero becomes more capable as they play. Three curves have to be designed together: the **XP curve** (what each level costs), the **power curve** (what each level gives) and the **content curve** (how hard the world is at each point). The cleanest way to build the first one is backwards: decide how long each level should take, then compute the XP bar from how much XP the player earns per hour. Beyond levels, a live game adds other tracks (gear, class choices, collections) and has to plan for catch-up, a level cap that will one day move, and the slow growth of power across years ("power creep"). The worked example is the course game's level curve for levels 1 to 50 (about 25 hours), the hour at which each region, Path and Mastery arrive, and a power curve that stays within 0.95 to 1.35 times the content in every region.
+**Progression** is how a player's hero becomes more capable as they play. Three curves have to be designed together: the **XP curve** (what each level costs), the **power curve** (what each level gives) and the **content curve** (how hard the world is at each point). There are two common ways to build the first one: time-first (decide how long each level should take, then compute the XP bar from how much XP the player earns per hour) and formula-first (pick a shape, then simulate the hours it produces). Beyond levels, a live game adds other tracks (gear, class choices, collections) and has to plan for catch-up, a level cap that will one day move, and the slow growth of power across years ("power creep"). The worked example is the course game's level curve for levels 1 to 50 (about 25 hours), the hour at which each region, Path and Mastery arrive, and a power curve that stays within 0.95 to 1.35 times the content in every region.
 
 ## 1. The concept
 
@@ -47,7 +47,7 @@ flowchart LR
 |---|---|---|
 | **XP curve** | How long does the next level take? | This module |
 | **Power curve** | How much stronger am I after it? | This module (level power), module 15 (gear power) |
-| **Content curve** | What am I asked to beat, and when? | Modules 08 and 12 (enemies), 15 (regions) |
+| **Content curve** | What am I asked to beat, and when? | Modules 08 and 12 (enemies), 18 (regions) |
 
 If the power curve outruns the content curve the game becomes trivial. If it lags, the game is a wall. The XP curve decides how fast the player moves along both.
 
@@ -57,7 +57,7 @@ The player does not see a curve. They feel **rhythm**: how often something new a
 
 - **Power** (module 01): "I am visibly stronger than an hour ago." A level-up, a new skill and a new item each tell the player this. The reward must be *felt*, not just a number.
 - **Completion**: the XP bar is the smallest progress bar in the game, filled again and again. A full-screen "Level up" moment is the cheapest satisfying beat a designer owns.
-- **Challenge**: the player wants to be slightly under-prepared for the next boss, then prepared after some effort. A power ratio of 1.0 to 1.3 gives exactly that feeling.
+- **Challenge**: the player wants to be slightly under-prepared for the next boss, then prepared after some effort. A power ratio of about 1.0 to 1.3 is a common starting point for that feeling (section 3.4).
 
 The core loop of [module 03](03-vision-pillars-loops.md) ends in "loot and XP"; the session loop ends in "turn in and upgrade". Progression is what turns many loops into a story of getting stronger. Two moments hurt it: **dead levels** (levels that give nothing but a bigger number, and take long) and **walls** (a stretch where the bar barely moves). Both are visible in a table of minutes per level, before any player sees them.
 
@@ -68,20 +68,22 @@ The core loop of [module 03](03-vision-pillars-loops.md) ends in "loot and XP"; 
 | Shape | Formula for XP-to-next at level L | XP at level 50 vs level 10 | Feel | Used when |
 |---|---|---|---|---|
 | **Linear** | `a + b × L` | 4.8× (with a = 250, b = 600) | Each level takes about as long, if income is flat | Short games, mobile, flat income |
-| **Polynomial** | `base × L^k` (k between 1.5 and 2.5) | 11× at k = 1.5, 25× at k = 2, 56× at k = 2.5 | Levels get gradually longer; easy to tune with one number | Most online RPGs |
-| **Exponential** | `base × g^(L−1)` (g about 1.05 to 1.15) | 133× at g = 1.13 | Slow late levels; very hard to keep sane across 50 levels | Idle games, games with a hard soft cap |
-| **Piecewise / table** | A hand-made table, or different formulas per band | Anything | Tuned per band: fast tutorial, steady middle, slow end | Production games; usually a formula first, then hand edits |
+| **Polynomial** | `base × L^k` (k between 1.5 and 2.5) | 11× at k = 1.5, 25× at k = 2, 56× at k = 2.5 | Levels get gradually longer; steepness is set by one number | Common in level-based online RPGs |
+| **Exponential** | `base × g^(L−1)` (g about 1.05 to 1.15) | 133× at g = 1.13 | Each level costs a fixed percentage more; very sensitive to g, so tune it over the cap you plan | Idle games and long-ladder MMORPGs: the *RuneScape* table doubles the XP needed about every seventh level up to level 99 (Old School RuneScape wiki, as of October 2026) |
+| **Piecewise / table** | A hand-made table, or different formulas per band | Anything | Tuned per band: fast tutorial, steady middle, slow end | Production games; often a formula first, then hand edits |
+| **Logistic or S-curve** | Fast start, a slow middle, a fast finish | Depends on the parameters | Quick hook, a long middle, a satisfying finish | Games that want a short opening and closing |
+| **Fixed bar** | Every level costs the same; difficulty comes from elsewhere | 1× | Predictable; easy to explain | Games that reduce XP per task as the hero levels up, or have few levels |
 
 Rules of thumb:
 
-- Polynomial with **k between 1.5 and 2.5** covers most of the useful range. The exponent is the single "steepness" knob (see the experiment in section 5.8: 1.8 to 1.9 stretches 25 hours into 35).
-- A pure exponential grows so fast that a small change of `g` changes the game's length by an order of magnitude. Use it only over a short range.
+- For a polynomial, k between 1.5 and 2.5 is a typical starting range, tuned by the time budget. The exponent is the single "steepness" knob (see the experiment in section 5.8: 1.8 to 1.9 stretches 25 hours into 35).
+- An exponential is sensitive to `g`: over many levels a small change of `g` changes the game's length by an order of magnitude (maths), so it is tuned against the cap you plan.
 - Almost every shipped curve is **hand-corrected**: a formula gives the shape, and a designer overrides single levels (a level that should be quick, a level that gates a feature). This is the common practice in the published advice on XP thresholds (see Further reading).
 - Some games keep the bar fixed and instead **reduce the XP given by the same task** as the hero levels up. It gives the same result with a different data shape.
 
 ### 3.2 Deriving the XP table from a time budget
 
-The most useful habit is to **design the time, then compute the XP**.
+Two common methods exist. **Time-first** sets the hours per level or per band, estimates XP income, and computes the bar (control over pacing; needs an income model). **Formula-first** picks a shape, sets the parameters, then simulates hours per level and adjusts (fast to start; pacing is a result you check). Teams also fit a curve to measurements from a prototype, or start from a published curve and retune. The course game uses time-first because its pillars name the hours. Time-first works like this:
 
 1. Set a total: "about 25 hours to the cap" (a vision and market decision, not a formula).
 2. Split it across **regions** or level bands: "region 1 about 2.5 hours, region 4 about 9".
@@ -92,7 +94,7 @@ The most useful habit is to **design the time, then compute the XP**.
 
 A level-20 example from the worked example: the target is 29 minutes, XP income at level 20 is 113,490 per hour, so the bar is `29/60 × 113,490 ≈ 54,900`. The formula `250 × L^1.8` gives 54,928 at level 20, so the formula is a good fit to the plan.
 
-Why backwards? A formula-first table produces "whatever hours it produces", and the designer finds out in playtests. A time-first table makes pacing a **decision**, and the XP bar becomes a consequence. It also keeps working when income changes: if a quest pays more XP, the bar is recomputed, and the hours stay as designed.
+Why time-first here? It makes pacing a **decision** and the XP bar a consequence, and it keeps working when income changes: if a quest pays more XP, the bar is recomputed, and the hours stay as designed. A formula-first table gives "whatever hours it produces", which a simulation or a playtest then checks.
 
 ### 3.3 Where XP income comes from
 
@@ -105,8 +107,8 @@ Why backwards? A formula-first table produces "whatever hours it produces", and 
 
 Two helpers keep income honest:
 
-- **Level-difference modifier.** Kill XP is scaled by `enemy level − hero level`. Over-level enemies pay a little more (capped); under-level enemies pay less and less. Without it players farm trivial enemies for safe XP, or run past the world to fight enemies far above them.
-- **Income must grow slower than the bar.** Minutes per level are `bar ÷ income`. If both grow at the same rate, every level takes the same time. If the bar grows faster (here as `L^1.8` against `L^1.2` for kill XP), levels get longer. If income grows faster, levels get *shorter* as the hero levels, which is the "linear curve" failure shown in the simulation.
+- **Level-difference modifier.** Kill XP is scaled by `enemy level − hero level`. Over-level enemies pay a little more (capped); under-level enemies pay less and less. It discourages both farming trivial enemies and skipping ahead; games with level scaling, flat XP per kill or fixed bands often omit it.
+- **Bar versus income.** Minutes per level are `bar ÷ income`. To make levels take longer as the hero rises, the bar must grow faster than income (here `L^1.8` against `L^1.2` for kill XP). If both grow at the same rate every level takes the same time; if income grows faster, levels get *shorter*, which suits games that want a quick late game (and is the "linear curve" case shown in the simulation). Check minutes per level against the pacing you want.
 
 ### 3.4 Power curves against content
 
@@ -119,8 +121,7 @@ Two helpers keep income honest:
 Most online RPGs use **fixed bands** in the levelling game and sawtooth pacing across regions, and add scaling in places where groups of different levels meet (dungeons, events). The **power ratio** `r = hero power ÷ content power` is the number to tune:
 
 - `r` near 1.0: tense fights; the TTK bands of [module 08](08-combat.md) apply as written.
-- `r` between 1.1 and 1.3: comfortable; the player feels strong.
-- `r` below 0.9: the player hits a wall; above 1.35 the fights are over before they begin.
+- As a starting point for a mainstream audience, a ratio from about 0.9 to 1.3 gives struggle and mastery; hardcore audiences often prefer ratios near or below 1.0, and relaxed audiences enjoy ratios above 1.3. Find your band in playtests (module 28).
 
 Because hero power is damage × survivability, a power ratio of `r` changes **time-to-kill by about `1/√r`**, not `1/r` (offence and toughness each grow by `√r`). This is the link to module 08's TTK bands.
 
@@ -148,9 +149,27 @@ A single bar is rarely enough for years of play. Common tracks:
 | **Account collections** (cosmetics, titles, pets) | Horizontal | Months |
 | **Social** (guild level, reputation) | Mixed | Weeks to months |
 
-Design rule: **each track should give a reward at its own cadence**, and the player should always have something close. If the level bar is the only thing near, the game depends on a single curve. A **reward cadence** chart (a line per track, a dot per reward, over the hours of play) shows gaps: long stretches with no dot are where players drift away.
+Many designs keep several tracks near the player, each with its own cadence, so something is always close; others rely on one curve and long-term goals. A **reward cadence** chart (a line per track, a dot per reward, over the hours of play) shows the gaps; decide how long a gap your audience tolerates (short-session mobile players tolerate less than PC players with long sessions).
 
-### 3.7 Catch-up, rested and level-difference mechanics
+### 3.7 Stat growth: fixed, chosen or mixed
+
+What a level gives to a character's stats (strength, agility, intelligence and so on) is a design choice of its own.
+
+| Model | How it works | Public examples (as of October 2026) | Strengths | Costs |
+|---|---|---|---|---|
+| **Fixed by class** | Each level adds a set amount to each stat, decided by the class | Diablo III; Tree of Savior after its 2019 Re:Build | One build per class is easy to balance and to read | Two characters of the same class differ only in gear and skills |
+| **Chosen by the player** | Each level gives free points the player spends | Ragnarok Online, Diablo II, Silkroad Online, Tree of Savior before 2019 | Players shape their own character, cover a weakness or push a strength; builds differ and feel personal; a long-standing reason players stay | Many possible builds; some are traps for newcomers; balance is harder |
+| **Mixed** | The class gives a base growth, plus a few free points, or points at milestones | Many MMORPGs | Personal choice with a safe floor | Two systems to explain |
+
+**Balancing chosen stats.** Teams often balance **reference builds** rather than every possible allocation: each class has a defined point structure (its intended stat profile, often two or three per class), and the class is balanced on those. Players then move away from them by their own choice. Common tools:
+- **Recommended builds** shown in the game, and an "auto-assign" for players who do not want to choose.
+- **Soft caps** or diminishing returns, so pouring everything into one stat stops paying off.
+- **Respec** (resetting points) at a cost, so a mistake is not permanent.
+- Keeping stats a **moderate share** of total power, with skills and gear carrying the rest.
+
+The balancing method is in [module 25](25-balancing.md), §3.6.
+
+### 3.8 Catch-up, rested and level-difference mechanics
 
 Players who start late, play less often, or add a second hero would face a long climb. Common tools:
 
@@ -160,11 +179,14 @@ Players who start late, play less often, or add a second hero would face a long 
 | **Second-character bonus** | A hero on an account that already has a max-level hero levels faster | Alts level quickly; the first hero's path is the "real" one |
 | **Level-range grouping** | Players of a wide level range can party and still earn | Needs scaling in the dungeon |
 | **Level boosts** | A paid or granted jump to a higher level | Easy to sell, which can conflict with a fairness pillar |
+| **XP boost events** | Double-XP weekends or seasonal boosts: a limited-time rate increase | Drives returns and spikes; may feel like fear of missing out |
+| **Heirloom or hand-me-down gear** | Account-bound gear that scales with level | Speeds up second characters; weakens early gear drops |
+| **Story or content skip** | An optional token to skip early content | Saves time for veterans; may skip the teaching |
 | **Over-level penalty** | Kill XP falls as the hero outlevels an enemy | Stops farming trivial enemies; adds a number to explain |
 
 Rested XP is the most-copied: it is invisible to a player who plays daily, and a gift to a player who plays rarely, so it fits both heavy and light personas.
 
-### 3.8 Level caps and cap raises in a live game
+### 3.9 Level caps and cap raises in a live game
 
 A live game with a cap must decide, years ahead, what happens when the cap moves.
 
@@ -178,22 +200,22 @@ A live game with a cap must decide, years ahead, what happens when the cap moves
 
 Raising the cap by N levels on the same curve makes the **new levels longer than the old ones** (the curve keeps rising), so cap raises usually come with a new region, a new gear tier, and a rule such as "at most 10 levels, and at most about a third of the base game's hours". Section 5.6 shows the arithmetic for the course game.
 
-### 3.9 Power creep
+### 3.10 Power creep
 
-**Power creep** is what happens when each new piece of content is a little stronger than the last. It starts with a good reason (the new thing must feel like an upgrade) and ends with the old content being irrelevant.
+**Power creep** is what happens when each new piece of content is a little stronger than the last. It starts with a good reason (the new thing must feel like an upgrade) and tends to end with the old content being irrelevant. Some games choose a vertical treadmill on purpose, since new tiers give fresh goals and revenue each season or expansion (*World of Warcraft* expansions are a public example); the cost is that players who value past effort feel reset.
 
 A simple model: if each of three expansions raises the gear ceiling by 20% and old content is never retuned, then old content sits at `1.25 × 1.2³ ≈ 2.2` times its original power ratio. A fight designed for an even match is now a formality.
 
-Tools against it:
+Tools that soften it:
 
 - **Retune old content** (a pass at every expansion), and **scale** it for groups.
 - Add **horizontal** growth in place of vertical (new options at equal power).
 - **Squish** numbers periodically, so the top is not unreadable (damage in the millions).
 - Make a new tier worth just **slightly more** than the best old tier (a new generation's fresh item roughly equals the last generation's maxed item), so old effort is worth something.
 
-### 3.10 How to choose
+### 3.11 How to choose
 
-| If your game is... | Choose |
+| If your game is... | Common choices (not exclusive) |
 |---|---|
 | Mobile, short sessions, daily play | Polynomial XP with a short total (10 to 20 h), strong rested or daily bonus, many visible rewards per session |
 | PC or cross-platform online RPG, years of content | Time-budgeted polynomial XP, fixed bands, a sawtooth gear curve, plan a cap raise or a horizontal endgame |
@@ -205,10 +227,12 @@ Tools against it:
 
 ### 4.1 Setting the numbers
 
+Starting points for a game that wants fast early rewards and visible steps (the course game's pillar 4); slower openings, levels that only raise stats and wider jumps are also used, so test them in playtests.
+
 1. **Start from the total hours**, then split by region (heavier toward the end: players accept longer levels once invested).
-2. **First minutes are free.** The first levels should take 3 to 5 minutes, and for the first hour a level-up at least every 15 minutes.
-3. **No dead levels.** Every level should unlock a skill, a choice, an item slot, a zone or a feature, or be short. In the course game, skills arrive at levels 1, 2, 4, 6, 9, 12, 15 and 18.
-4. **Minutes per level rise slowly** after the opening levels; a jump above about 25% between neighbouring levels is likely to be felt as a wall (a rule of thumb, check it in playtests).
+2. **First minutes are free.** The course game's starting point is 3 to 5 minutes for the first levels and a level-up at least every 15 minutes in the first hour.
+3. **No dead levels.** In the course game every level unlocks a skill, a choice, an item slot, a zone or a feature, or is short; many MMORPGs have levels that only raise stats. In the course game, skills arrive at levels 1, 2, 4, 6, 9, 12, 15 and 18.
+4. **Minutes per level rise slowly** after the opening levels; a jump above about 25% between neighbouring levels may be felt as a wall (a starting guess, check it in playtests).
 5. **Check the time to the first Path or class choice**: it should come at the end of the first long evening or two.
 6. **Test with the groups too.** Fast group XP can halve the planned hours; decide whether the budget is solo or the median mix.
 
@@ -220,12 +244,12 @@ Tools against it:
 | Median hours to cap far from plan | Income model is wrong (kills per hour, quests per hour) |
 | Most XP comes from one activity | The loop is a grind; others pay too little |
 | Players farm low-level enemies | Level-difference modifier too soft |
-| The time between rewards on any track is over 2 hours | A dead stretch; add or move rewards |
+| A long gap between rewards on any track (more than 2 hours in the course game) | A dead stretch for this audience; a two-hour gap is a normal beat in long-session games |
 | Elite and boss TTK falls under the band for geared players | Power ratio above its band |
 
 ### 4.3 Classic failures of a long-running game
 
-- **The treadmill:** each expansion adds a gear tier and resets effort, and players feel punished for having played.
+- **The treadmill:** each expansion adds a gear tier and resets effort. Some games choose this on purpose; the risk is that players feel punished for having played.
 - **The cap-raise cliff:** new levels are slower than old ones and nothing explains why.
 - **Levelling that gets in the way:** a 50-level climb that repeats for every new hero, with no catch-up.
 - **Rested XP as a shackle:** players log in only to spend the pool, not to play.
@@ -404,7 +428,7 @@ Each experiment changes one number in `curves.json`:
 - **XP from crafting or gathering**: no crafting or gathering loop in the first release.
 - **Prestige or paragon levels** after 50: module 24 designs the endgame bar.
 - **A level boost**: see the fairness pillar.
-- **Per-level stat points the player assigns** (module 09's class-based growth is fixed; the reason is in module 25).
+- **Per-level stat points the player assigns.** The course game chose fixed class growth (module 09) so that its balance sheet stays exact for teaching; a chosen or mixed model (§3.7) is just as common and is balanced on reference builds instead (module 25 §3.6).
 
 ### 5.10 How the design would differ for another kind of game
 
@@ -416,15 +440,16 @@ Each experiment changes one number in `curves.json`:
 ## Key takeaways
 
 - Design **three curves together**: XP (cost), power (reward) and content (demand); the power ratio between hero and content is the number to tune.
-- **Derive the XP table from a time budget**: `XP-to-next = minutes per level ÷ 60 × XP per hour`. A formula is just a good fit to that plan.
-- Use a **polynomial** `base × L^k` with k between 1.5 and 2.5; the exponent is the steepness knob, and a 0.1 change can add ten hours.
-- Income must grow **slower than the bar**, or levels get shorter as players climb; check minutes per level, not XP.
+- Build the XP table **time-first** (`XP-to-next = minutes per level ÷ 60 × XP per hour`) or **formula-first** and simulate the hours; the course game uses time-first.
+- Pick the curve shape from the pacing you want; a polynomial `base × L^k` with a tunable exponent is a common starting point (in this example a 0.1 change of k can add ten hours), tables are common in production, and exponentials suit idle and long-ladder games.
+- To make levels longer as players climb, the bar must grow faster than income; check minutes per level, not XP.
 - Plan **tracks and cadence**: no dead levels, a visible reward in every 15-minute session, and a check for long stretches between rewards.
 - Offer **catch-up** (rested XP, second-hero bonus) and decide early what a **cap raise** or **squish** will look like; a cap raise on the same curve adds about a third of the base game for ten levels.
-- Watch for **power creep**: three small gear raises can double the power ratio of old content unless it is retuned.
+- Watch for **power creep**: three small gear raises can double the power ratio of old content unless it is retuned; some games accept that as a deliberate treadmill.
 
 ## Further reading
 
+- Old School RuneScape Wiki, "Experience table" (XP needed doubles about every seventh level; 13,034,431 XP for level 99): https://oldschool.runescape.wiki/w/Experience_table
 - Pascal Luban, "Quantitative Design: How to Define XP Thresholds" (Game Developer, 2018): https://www.gamedeveloper.com/design/quantitative-design---how-to-define-xp-thresholds-
 - Warcraft Wiki, "Rested" (accumulation rates and bonus): https://warcraft.wiki.gg/wiki/Rested
 - Guild Wars 2 Wiki, "Endgame" (no gear treadmill; horizontal progression): https://wiki.guildwars2.com/wiki/Endgame

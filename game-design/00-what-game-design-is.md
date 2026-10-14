@@ -7,7 +7,7 @@
 
 ## In short
 
-Game design is deciding **what the player does, why it feels worth doing, and which rules produce that experience**. Development builds those rules; design specifies them and checks that they work on real people. On a big team design splits into roles (systems, combat, level, narrative, economy, UX, live and monetization). On a small team a few people wear all the hats, so the useful habit is to name **who owns each decision**. Design writing is a hierarchy, from a one-page pitch down to data tables, and every level must be explainable by the level above it. The worked example is the one-page pitch of the course game, a small online fantasy RPG that every later module designs one piece of.
+Game design is deciding **what the player does, why it feels worth doing, and which rules produce that experience**. Development builds those rules; design specifies them and checks that they work on real people. On a big team design splits into roles (systems, combat, level, narrative, economy, UX, live and monetization). On a small team a few people wear all the hats, so the useful habit is to name **who owns each decision**. Design writing commonly forms a hierarchy, from a one-page pitch down to data tables, so that a lower level can be explained by the level above it; the order a team writes it in depends on how much it already knows. The worked example is the one-page pitch of the course game, a small online fantasy RPG that every later module designs one piece of.
 
 ## 1. The concept
 
@@ -40,7 +40,7 @@ Experience decisions are cheap to change and expensive to get wrong. Number deci
 
 ### 1.3 The document hierarchy
 
-Design is written down top-down, from **why** to **exactly how**, so a detail decided on page 40 does not quietly contradict the reason the project exists.
+A common way to write design is top-down, from **why** to **exactly how**, so a detail decided on page 40 does not quietly contradict the reason the project exists. Teams that prototype first often write the pitch and pillars after the first playable and work bottom-up until the core is found. Both routes end with the same set of documents; only the order differs.
 
 | Level | Document | Answers | Typical size | Changes |
 |---|---|---|---|---|
@@ -51,7 +51,7 @@ Design is written down top-down, from **why** to **exactly how**, so a detail de
 | 5 | **Feature specs** | Exactly how does one mechanic behave? | 1–5 pages each | Every sprint |
 | 6 | **Data** | What are the actual values? | Tables and files | Constantly |
 
-A **GDD** (game design document) is the living description of all the systems in enough detail that a producer or engineer can act on it. Modern teams usually keep it as a set of linked pages or a wiki, not one huge file, because one monolithic document rots: nobody can keep 200 pages consistent. Module 05 covers how to keep documents alive.
+A **GDD** (game design document) is the living description of all the systems in enough detail that a producer or engineer can act on it. Many modern teams keep it as a set of linked pages or a wiki rather than one huge file, because a monolithic document tends to fall out of date when a game changes often: it is hard to keep 200 pages consistent. Fixed-scope projects can still work well with one large document when someone owns it. Module 05 covers how to keep documents alive.
 
 ```mermaid
 flowchart TD
@@ -75,11 +75,11 @@ A decision usually travels like this:
 1. **Trigger**: a question comes up ("should death cost money?").
 2. **Frame**: restate it in terms of the player experience and the pillars.
 3. **Options**: write two or three real options with what each costs (work, balance risk, player feeling).
-4. **Decide**: the **owner** of that area chooses. If the decision touches a pillar, the lead designer or product owner chooses.
+4. **Decide**: someone chooses. Who that is depends on the team's decision model (section 3.2); a common one is that the **owner** of the area chooses, and a decision that touches a pillar goes to the lead designer or product owner.
 5. **Record**: write one or two lines in the spec: what was decided and why.
 6. **Implement and test**: build the smallest version, then watch players.
 
-Step 5 is the one teams skip, and it is the one that saves the most time later. Three months on, nobody remembers why death costs money, and the debate restarts.
+Step 5 is easy to skip, and without it the same debate can restart months later. Three months on, nobody remembers why death costs money.
 
 ## 2. The player's view
 
@@ -115,7 +115,7 @@ Two related roles sit next to design and are often confused with it:
 
 ### 3.2 Who owns what on a small team
 
-A team of three to eight people cannot afford seven specialists. What it can afford is **explicit ownership**. The table shows a common split.
+A team of three to eight people usually has fewer people than design roles, so a few people wear several hats. Whatever the team size, **explicit ownership** helps. The table shows a common split.
 
 | Team size | Typical design staffing | Risk to watch |
 |---|---|---|
@@ -137,13 +137,25 @@ A simple tool for small teams is a **decision-owner list**: one line per area, o
 
 If two roles can both say "that is mine", you have a collision. If none can, you have a gap. Fix both on paper before they appear as bugs.
 
-### 3.3 Three ways to organise documents
+The owner-per-area list is one decision model. Teams use several:
+
+| Decision model | Strength | Risk |
+|---|---|---|
+| **Area owner decides** | Fast and clear | Silos; areas drift apart |
+| **Lead or creative director decides** | One consistent vision | A bottleneck on one person |
+| **Team consensus or vote** | Buy-in from everyone | Slow; tends toward the lowest common denominator |
+| **Product owner decides business trade-offs, designers decide feel** | A clear split of concerns | Friction where the two meet |
+
+### 3.3 Ways to organise documents
 
 | Style | What it looks like | Good for | Cost |
 |---|---|---|---|
 | **Heavy GDD** | One long document written before production | Fixed-scope games, outsourced work, external sign-off | Out of date within weeks |
 | **Lean pages** | A pitch, pillars, a wiki of linked specs and data tables | Live online games, small teams | Needs discipline to keep links and owners |
 | **Prototype first** | A playable test plus a one-pager; docs written after the fun is found | New or unusual mechanics | Easy to skip writing things down |
+| **Per-feature briefs** | One short brief per feature, written when the feature is scheduled | Agile teams and live updates | No whole-game picture unless someone maintains an index |
+| **Design bible or visual one-pager** | Diagrams, mood boards and flow charts instead of prose | Art-led or small teams, and pitches | Details live in people's heads |
+| **Prototype as the spec** | The build is the document, with a short list of rules beside it | Jam-sized and systemic games | Onboarding new people is slow |
 
 ### 3.4 How to choose
 
@@ -180,10 +192,12 @@ Design documents have no numbers to tune, but they have clear health signals.
 
 ### 4.3 Rules of thumb
 
-1. **Decide at the lowest level that has the information.** A combat designer should not need the product owner to approve a cooldown.
+One common set of rules, for teams that use the area-owner model:
+
+1. **Decide at the lowest level that has the information.** A combat designer does not need the product owner to approve a cooldown.
 2. **Escalate when a pillar is involved.** A decision that bends a pillar goes up.
 3. **Write the "why" in one sentence next to every non-obvious rule.**
-4. **Prefer a small, true document over a large, stale one.**
+4. **A small, true document is worth more than a large, stale one.**
 5. **Keep numbers in data files, not in prose.** A spec says "cooldown 8 s (see skills table)", so there is one source of truth.
 
 ## 5. Worked example
@@ -224,19 +238,19 @@ This is the one-page pitch of the **course game**. Every later module designs on
 
 | Pitch line | Later module that must honour it |
 |---|---|
-| "One hero from a class you choose" | 07 (classes), 09 (party rules) |
-| "Real time" | 05 (controls), 06 (combat) |
-| "Parties of up to four" | 09, 18 (social), 20 (endgame) |
-| "Shared world" | 15 (world), 18 |
-| "Free to play on PC and mobile" | 14 (monetization), 23 (platforms) |
-| "Levels 1 to 50, 25 hours" | 11 (progression), 16 (quests) |
+| "One hero from a class you choose" | 09 (classes), 11 (party rules) |
+| "Real time" | 06 (controls), 08 (combat) |
+| "Parties of up to four" | 11, 22 (social), 24 (endgame) |
+| "Shared world" | 18 (world), 22 |
+| "Free to play on PC and mobile" | 17 (monetization), 27 (platforms) |
+| "Levels 1 to 50, 25 hours" | 14 (progression), 19 (quests) |
 
 ### 5.3 What was cut from the pitch
 
 A pitch is as much about what is left out. These ideas were considered and cut from the course game:
 
-- **Housing and farming**: pleasant, but they pull the game toward a life-simulation and double the content load.
-- **Open-world PvP everywhere**: fights between players need their own balance and moderation budget; the game ships one opt-in PvP mode instead (module 23).
+- **Housing and farming**: cut from this example because its pillars are about combat and groups, and each system would need its own content, UI and economy rules. *Final Fantasy XIV* and *Black Desert* ship housing or farming next to combat; the cost is a larger content and economy budget.
+- **Open-world PvP everywhere**: cut from this example to keep its balance and moderation budget for PvE and parties; it ships one opt-in PvP mode instead (module 23). Some MMORPGs run open-world PvP as a core draw (for example *EVE Online* and *Albion Online*).
 - **A second playable character per account**: possible, but it is a different design (module 11 compares it).
 
 ### 5.4 Who owns what in the course game
@@ -264,10 +278,10 @@ In a team of five these six roles are covered by three people, with the lead des
 ## Key takeaways
 
 - Design decides what the player does and feels; development builds it. Someone must own each.
-- A designer decides at four levels: experience, structure, rules, numbers. Do not argue about numbers when the disagreement is about experience.
-- Write documents top-down: pitch, vision, pillars, GDD, feature specs, data. Each level must be explainable by the one above.
-- Small teams do not need seven specialists but do need **named owners** for every area, or decisions fall into gaps.
-- Record every non-obvious decision with one sentence of reasoning, or the same debate restarts.
+- A designer decides at four levels: experience, structure, rules, numbers. Numbers are the wrong level to settle a disagreement that is really about experience.
+- Documents usually form a hierarchy (pitch, vision, pillars, GDD, feature specs, data) where each level can be explained by the one above; the order you write them in depends on how much you already know.
+- Small teams rarely have seven specialists; naming an owner for every area, in whatever decision model the team uses, keeps decisions from falling into gaps.
+- Recording a non-obvious decision with one sentence of reasoning stops the same debate from restarting.
 - Keep numbers in data files and docs short, so there is one source of truth and the documents stay alive.
 - The course game is a small online fantasy RPG with one hero per player, real-time combat, groups and a shared world, free to play on PC and mobile.
 
@@ -277,4 +291,6 @@ In a team of five these six roles are covered by three people, with the lead des
 - Wikipedia, [Game design](https://en.wikipedia.org/wiki/Game_design): quick overview of the discipline and its sub-areas.
 - Wikipedia, [Game designer](https://en.wikipedia.org/wiki/Game_designer): the role and its common specialisations.
 - Wikipedia, [Game design document](https://en.wikipedia.org/wiki/Game_design_document): what a GDD contains and common variants.
+- Wikipedia, [Final Fantasy XIV](https://en.wikipedia.org/wiki/Final_Fantasy_XIV) and [Black Desert Online](https://en.wikipedia.org/wiki/Black_Desert_Online): housing and farming beside combat (as of October 2026).
+- CCP Games, [Nullsec development: rules and guidelines](https://www.eveonline.com/article/nullsec-development-rules-and-guidelines), and Wikipedia, [Albion Online](https://en.wikipedia.org/wiki/Albion_Online): open-world PvP as a core feature (as of October 2026).
 - Robin Hunicke, Marc LeBlanc, Robert Zubek, [*MDA: A Formal Approach to Game Design and Game Research*](https://users.cs.northwestern.edu/~hunicke/MDA.pdf) (2004): the framework behind module 01.

@@ -1,13 +1,13 @@
 # Module 24: Endgame and retention
 
-- **Goal:** design what players do after the leveling path ends (the endgame), keep them coming back without manipulating them, and measure whether it works.
+- **Goal:** design what players do after the leveling path ends (the endgame), keep them coming back, decide how much pressure the design uses, and measure whether it works.
 - **Prerequisites:** [03 — Vision, pillars and loops](03-vision-pillars-loops.md), [12 — Enemies, bosses and encounters](12-enemies-encounters.md), [14 — Progression and power curves](14-progression.md), [19 — Quest and mission design](19-quests.md), [20 — Narrative design for a live game](20-narrative.md), [22 — Social systems](22-social.md).
 - **Simulation:** none
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
 
 ## In short
 
-The **endgame** is everything a player does at the maximum level: it is where an online RPG spends most of its life. It splits into **vertical** goals (stronger gear, harder bosses) and **horizontal** goals (collections, cosmetics, mastery, new builds). A weekly rhythm of **dailies, weeklies and lockouts** gives the endgame a shape, **raids and hard modes** give the best players a challenge, **seasons** give the live game a calendar, and **catch-up rules** keep returning players in the game. **Retention metrics** (D1, D7, D30, churn) show whether the loop works, but they can also tempt designers into manipulation: streaks, login rewards and false urgency raise the numbers while damaging trust. The worked example designs the course game's level-50 endgame: a weekly schedule of featured dungeons, the Ash Tide twice a week, board bounties and season chapters, with hours per week for Mira and Dev and a set of catch-up rules that never punish a missed day.
+The **endgame** is everything a player does at the maximum level: it is where an online RPG spends most of its life. It splits into **vertical** goals (stronger gear, harder bosses) and **horizontal** goals (collections, cosmetics, mastery, new builds). A weekly rhythm of **dailies, weeklies and lockouts** gives the endgame a shape, **raids and hard modes** give the best players a challenge, **seasons** give the live game a calendar, and **catch-up rules** keep returning players in the game. **Retention metrics** (D1, D7, D30, churn) show whether the loop works, and incentives can move them: streaks, login rewards and limited-time events raise the numbers; some players welcome them and others report pressure, and regulators scrutinise manufactured urgency. The worked example designs the course game's level-50 endgame: a weekly schedule of featured dungeons, the Ash Tide twice a week, board bounties and season chapters, with hours per week for Mira and Dev and a set of catch-up rules that do not punish a missed day.
 
 ## 1. The concept
 
@@ -44,7 +44,7 @@ flowchart LR
     S --> W
 ```
 
-A healthy endgame answers three questions: **what do I do this week, why does it matter, and when am I done?** The third question is the one designers forget. A schedule with no visible end turns into a second job.
+A healthy endgame answers three questions: **what do I do this week, why does it matter, and when am I done?** The third question is the one designers forget. A schedule with no visible end can feel like a second job to some players; others want an open-ended goal. A visible end ("this week's list is done") helps the first group.
 
 ## 2. The player's view
 
@@ -68,25 +68,27 @@ The key emotions to protect: **"I know what to do this week"**, **"I can finish 
 | Model | What drives play | Public example (as of October 2026) | Strength | Risk |
 |---|---|---|---|---|
 | **Gear treadmill** | New tiers of gear every few months; each makes the last obsolete | *World of Warcraft* adds new gear levels with each season and expansion | A clear reason to run content; easy to measure | Rewards from earlier content lose value; players feel behind; a returning player faces a gap |
-| **Flat gear, wide goals** | A fixed top gear tier; growth through unlocks and collections | *Guild Wars 2* has a fixed top gear tier and grows through unlocks and cosmetics (per the game's wiki) | Content never goes stale; easy to return | Needs endless new goals; "nothing to chase" feeling |
+| **Flat gear, wide goals** | A fixed top gear tier; growth through unlocks and collections | *Guild Wars 2* has a fixed top gear tier and grows through unlocks and cosmetics (per the game's wiki) | Content stays relevant; easy to return | Needs endless new goals; "nothing to chase" feeling |
 | **Resetting seasons** | Everyone restarts in a new season or league | *Path of Exile* temporary leagues of about 3–4 months start fresh characters, with a permanent league for old ones | Fresh start for all; strong community moments | Resets throw away investment; needs a permanent option |
+| **Scaling or infinite content** | A dungeon or rift that scales without end, with a leaderboard | *World of Warcraft* Mythic+ keystones; *Diablo III* Greater Rifts (whose scaling was later capped) | Endless challenge | Only the committed climb |
+| **Sandbox endgame** | Players create goals (war, trade) | *EVE Online* | No content treadmill | Needs a large community and tools |
 | **Mixed** | A short gear ladder that stops, plus horizontal goals | Most long-running RPGs | A path for the climbers and a long run for the rest | Needs both designs |
 
-Module 14 covers the power curves. The endgame's role is to decide **what is repeated and what is permanent**. A good rule: **repeat access, not power.** Let players re-run content that keeps its meaning (cosmetic rewards, materials, collections), and make power a one-way climb with an end.
+Module 14 covers the power curves. The endgame's role is to decide **what is repeated and what is permanent**. Models differ in what repeats. Repeating access (cosmetics, materials, collections) keeps content meaningful and the power curve short; repeating power (new gear tiers each season, resets) gives a constant chase and makes old content lose value. The course game repeats access.
 
 ### 3.2 Dailies, weeklies and lockouts
 
 | Tool | Purpose | Good form | Risk |
 |---|---|---|---|
-| **Daily tasks** | A small reason to log in and a habit | Short, a small list, rewards that are not power | Becomes a chore; punishes a missed day |
+| **Daily tasks** | A small reason to log in and a habit | A small list, rewards that vary (power, currency or cosmetics) | Becomes a chore; punishes a missed day |
 | **Weekly tasks** | A rhythm that tolerates missed days | A list that fits one or two evenings | Needs a reset time that suits most regions |
 | **Lockouts** | Cap the reward rate so no one out-grinds the schedule | One chest per boss per week | Players feel the rewards are rationed |
 | **Weekly chest or vault** | A single reward that grows with how much you did | *World of Warcraft*'s Great Vault offers one item per week, with up to nine choices from raid, dungeon and world activities (as of October 2026) | A cap that still feels generous if the choices are good |
 | **Currency caps** | A weekly cap on a bound token | *Final Fantasy XIV* caps the newest weekly token (module 16) | Players feel "capped out" |
 
-**Reasoning.** Lockouts exist because **designers can only keep a game in balance if they know how fast players gain power.** A cap is a promise that nobody out-earns a ceiling. The player-friendly versions of the cap let a player **choose** what to do (the weekly chest picks from activities) and never **lose** progress for a missed day.
+**Reasoning.** Lockouts serve several goals: a known pace of power (a cap is a promise that nobody out-earns a ceiling), a defined weekly rhythm and protection from burnout. Versions of the cap can let a player **choose** what to do (the weekly chest picks from activities) and can avoid **losing** progress for a missed day.
 
-**Dailies as a design smell.** World of Warcraft capped daily quests at 10 when introduced, raised the cap to 25 and later removed it (module 19), which shows the pressure: the more dailies available, the more it feels like work. A small, fixed list, with rewards that **bank**, avoids the problem.
+**Dailies.** Dailies serve retention and habit; the pressure grows with the number of dailies and with penalties for missing a day (World of Warcraft capped daily quests at 10 when introduced, raised the cap to 25 and later removed it, module 19). Options: a small fixed list (the course game's choice), a banked list whose rewards store up, or an open list.
 
 ### 3.3 Raids and hard modes
 
@@ -97,14 +99,15 @@ Module 14 covers the power curves. The endgame's role is to decide **what is rep
 | **Difficulty ladder** | Same raid, several levels | Per level | Higher level, better loot | *World of Warcraft* has Raid Finder, Normal, Heroic and Mythic difficulties (as of October 2026); easy tiers let more players see the story |
 | **World boss** | 10–40 | 10–20 min | Shared; no lockout in the fight itself | Social peak; low skill floor |
 | **Ultimate or challenge** | A set team | Many attempts | Cosmetics, bragging rights | The skill peak; no power |
+| **Endless or scaling run** | One player or a party | A timed run | Rank on a leaderboard | Escalating difficulty with no content cap; the best players compete and others may stop (*World of Warcraft* Mythic+, tower modes in action RPGs) |
 
-The **difficulty ladder** is the most important idea: let **more players see the content** at an easy level, and reserve the hard levels for those who want them. The cost is that every level needs tuning.
+A **difficulty ladder** lets more players see the content at an easy level and reserves the hard levels for those who want them; the cost is tuning for each level.
 
-**Hard-mode rules of thumb.**
+**Hard-mode design choices.**
 
-- **Reward more, not too much more.** A hard mode that pays twice as much for three times the effort is a hard mode nobody runs.
-- **Hard means more mechanics, not just bigger numbers.** A boss with 3× the health is longer, not harder.
-- **A way in.** Hard mode should have a clear entry (an item level or a feat requirement), so groups do not waste each other's time.
+- **Reward ratio.** Ratios vary: some audiences run hard content for a prize beyond the reward, and a mode that pays twice as much for three times the effort suits only that audience.
+- **Mechanics or numbers.** Harder content raises mechanics, numbers or both. Numbers-only is easy to tune and can feel like a longer fight; mechanics-heavy content costs design time.
+- **A way in.** A clear entry (an item level or a feat requirement) saves groups from wasting each other's time.
 - **A cosmetic goal for the skill peak.** "Clear without a death" gives the best players a prize that does not add power.
 
 ### 3.4 Seasons and resets
@@ -113,12 +116,12 @@ The **difficulty ladder** is the most important idea: let **more players see the
 |---|---|---|
 | **Length** | 8–16 weeks | The course game's 12 weeks follows [module 20](20-narrative.md) |
 | **What resets** | Season goals, a ranked ladder (softly), the season track | The choice that matters |
-| **What does not reset** | Level, gear, collections, story | A reset of power punishes loyalty |
+| **What does not reset** | Level, gear, collections, story | A choice: keeping power rewards loyalty; resetting it gives a fresh start (*Path of Exile* leagues) and costs the investment, so games offer a permanent mode |
 | **Season pass** | A track of rewards over the season | Module 17 covers monetization and fairness |
 | **Season end** | A finale event and a short break | Players need a rest as much as a goal |
 | **New-season start** | A recap, a few days of new content | Returning players enter here |
 
-A **season is a calendar, not a treadmill.** It tells players when something new will come and gives a reason to log in this week. The danger is a season that **removes** things: seasonal items that vanish create FOMO (section 3.8). Make seasonal rewards **return** later.
+A season can be a **calendar** (it tells players when something new will come and gives a reason to log in this week) or a **treadmill** (power resets each time). Seasonal-only items raise urgency and create FOMO (section 3.8); returning them later lowers both.
 
 ### 3.5 Collections, achievements and mastery
 
@@ -132,7 +135,7 @@ These are horizontal goals: they add reasons to play without adding power.
 | **Mastery** | Per-class challenges: no-hit boss, a solo elite | Skill goals; cosmetic reward |
 | **Account-wide vs per-hero** | Collections shared across the account | Fits a second character and reduces repeat work |
 
-Rules of thumb: show **progress** (12 of 40) and not just a total; avoid **missable** entries or give them a second chance; keep **random drop collections** to a minimum (players feel the luck, not the skill); allow **partial credit** so a player is always close to something.
+Design choices: showing **progress** (12 of 40) rather than a total; allowing **partial credit** so a player is always close to something. Missable entries and random-drop collections raise the chase and the sense of rarity (rare mounts, shiny creatures); they also cost patience and can frustrate completionists. Options: allow a second chance, add bad-luck protection, or keep rarity as a feature.
 
 ### 3.6 Catch-up
 
@@ -145,7 +148,7 @@ Rules of thumb: show **progress** (12 of 40) and not just a total; avoid **missa
 | **Bonus weeks** | Returning or new players earn faster for a while | Easy to explain; can feel like a penalty to those who stayed |
 | **Level and content skips** | A quick route to the endgame | Costs the story; use a recap (module 20) |
 
-The principle: **catch-up should shorten the road, never change the destination.** A returning player ends up with the same gear as a regular one, just sooner.
+One approach shortens the road without changing the destination (a returning player ends up with the same gear as a regular one, just sooner). Others change it: a returning player's account gets bonuses, or old content is retired. The cost of the first is time; of the second, perceived fairness to the players who stayed.
 
 ### 3.7 Retention metrics
 
@@ -172,13 +175,13 @@ The principle: **catch-up should shorten the road, never change the destination.
 - **A single number hides segments.** Look at D7 by class, platform, source and level.
 - **Correlation is not cause.** Players in guilds retain better, but players who like company join guilds. Test with an experiment.
 - **Averages mislead.** A few heavy players raise the average session; use medians and percentiles.
-- **Retention can be bought.** A login reward raises D7 for a while and cost trust and play quality.
+- **Retention can be moved by incentives** such as login rewards; teams then check whether the extra days are play or only logins (session length, second-day activity).
 
 ### 3.8 Ethics of retention
 
-Retention features sit on a line between **a good reason to return** and **a hook that exploits**.
+Retention features sit on a line between **a gentle reason to return** and **a strong pull**. Login streaks with rewards are common in mobile games, limited-time items and events in most live games, and push notifications in most mobile games. Higher pressure raises short-term numbers; the costs are player burnout and, where rules apply (false urgency), enforcement risk.
 
-| Technique | Healthy form | Manipulative form |
+| Technique | Lower-pressure form | Higher-pressure form |
 |---|---|---|
 | **Daily reward** | A small reward for playing a bounty | A chest for logging in, with a bigger one for a streak |
 | **Streaks** | A free bonus for regular play with grace days | Resetting a long streak on one missed day |
@@ -188,28 +191,28 @@ Retention features sit on a line between **a good reason to return** and **a hoo
 | **Sunk cost** | "Your progress is safe" | "Don't lose your 120-day streak" |
 | **Social obligation** | A guild goal that scales to active members | Public shaming of members who did not contribute |
 
-Research in psychology describes **fear of missing out** and links it to lower mood and life satisfaction in surveys (Przybylski and others, 2013). The US Federal Trade Commission's 2022 report "Bringing Dark Patterns to Light" lists manipulative designs that the agency treats as deceptive, including manufactured urgency. Neither is a ban on events or dailies; both are reasons to keep a **guardrail**.
+Research in psychology describes **fear of missing out** and links it to lower mood and life satisfaction in surveys (Przybylski and others, 2013). The US Federal Trade Commission's 2022 report "Bringing Dark Patterns to Light" lists manipulative designs that the agency treats as deceptive, including manufactured urgency. Neither is a ban on events or dailies; both are reasons to consider a **guardrail**.
 
-**Practical guardrails.**
+**Guardrails the course game applies** (a team sets its own):
 
-1. No reward for logging in; reward **doing**.
-2. No streak that **resets**; use banked days and caps instead.
-3. Any limited-time reward must **return** later, or be cosmetic only.
-4. **Never sell power**, and never make a purchase the only way to keep pace with a schedule (module 17).
-5. Watch an **ethics metric**: the share of endgame players who finish every daily for 7 days in a row. If most players do, the dailies are mandatory in practice.
+1. Reward **doing** rather than logging in.
+2. No streak that **resets**; banked days and caps instead.
+3. Limited-time rewards **return** later or are cosmetic only.
+4. No sold power, and no purchase as the only way to keep pace with a schedule (pillar 4, module 17).
+5. An **ethics metric**: the share of endgame players who finish every daily for 7 days in a row. If most players do, the dailies are mandatory in practice.
 
-### 3.9 Respecting time
+### 3.9 Time budget choices
 
-Every endgame system has a **time cost**. State it, and design to it.
+Every endgame system has a **time cost**. State it, and design to it. The table shows the course game's choices and the alternatives.
 
-| Rule of thumb | Meaning |
-|---|---|
-| **A weekly list that fits 3–5 hours** | A player with an evening or two can finish it; more is optional |
-| **Every task fits a session** | A 15-minute session always gives a visible reward (pillar 4) |
-| **No time-gated catch-up that is longer than the schedule** | A returning player is current within two weeks |
-| **No schedule that needs a precise hour** | Offer two time slots in different regions, or a recording |
-| **A visible end** | The weekly list shows "done"; stop is a valid state |
-| **A rest week** | The finale of a season is followed by a lighter week |
+| Choice | The course game | Alternatives |
+|---|---|---|
+| **Weekly core list** | Fits 3–5 hours, so a player with an evening or two can finish it | Raid-focused games ask for 10 or more hours a week from their core players |
+| **Task length** | Every task fits a 15-minute session (pillar 4) | Longer tasks suit audiences with long sessions |
+| **Catch-up length** | A returning player is current within two weeks | Longer gates keep the schedule's value for those who stayed |
+| **Precise-hour events** | None; two slots in different regions, or a recording | Fixed hours help rallying and cost players in other time zones |
+| **A visible end** | The weekly list shows "done"; stopping is a valid state | Open-ended lists suit players who want more to do |
+| **A rest week** | The finale of a season is followed by a lighter week | Back-to-back seasons keep content flowing |
 
 ### 3.10 How to choose
 
@@ -223,7 +226,9 @@ Every endgame system has a **time cost**. State it, and design to it.
 
 ## 4. Tuning and pitfalls
 
-### 4.1 Targets (rules of thumb)
+### 4.1 Example targets
+
+These are the course game's invented targets; set yours from your own baseline.
 
 | Metric | Target | Warning sign |
 |---|---|---|
@@ -250,12 +255,14 @@ Every endgame system has a **time cost**. State it, and design to it.
 
 ### 4.3 Classic failures
 
-- **The treadmill without a rest.** A new gear tier every six weeks makes the last tier worthless and the schedule a chore.
-- **Content gated by luck.** A rare drop required for progress is a grind.
-- **Mandatory dailies.** A reward so big that skipping it is a loss.
-- **The dead catch-up.** Last tier's gear is so cheap that new gear loses value, or so expensive that no one can catch up.
-- **The one-way reset.** A season that deletes progress.
-- **The FOMO cliff.** A season item that vanishes and was the only way to get something.
+These are higher-risk designs; some live games run them on purpose.
+
+- **A fast gear treadmill.** A new gear tier every six weeks keeps players climbing and makes old gear lose value.
+- **Content gated by luck.** A rare drop required for progress gives a chase and can become a grind.
+- **Strong daily rewards.** A reward so big that skipping it is a loss drives habit and can make dailies mandatory in practice.
+- **The dead catch-up.** Last tier's gear that is too cheap makes new gear lose value; too expensive, and no one can catch up.
+- **A season that deletes progress.** It gives a fresh start (*Path of Exile* leagues) and costs the investment.
+- **A vanishing item.** It raises urgency and complaints, especially if it was the only way to get something.
 - **The empty endgame.** The level path ends, and there is nothing to do but wait.
 
 ## 5. Worked example
@@ -399,11 +406,11 @@ Rules: every entry shows a **hint**; there are **no missable entries** (seasonal
 
 ### 5.9 What was cut
 
-- **Daily login rewards** and **streaks**: rejected in [module 03](03-vision-pillars-loops.md); bounties pay for play instead.
+- **Daily login rewards** and **streaks**: cut because pillar 4 says respect time and reward doing ([module 03](03-vision-pillars-loops.md)); bounties pay for play instead.
 - **A raid at launch**: the Ash Tide is the one large-group event; a 12-player raid is a candidate for season 2.
 - **PvE leaderboards and damage rankings** (they contradict the story's theme of module 20).
-- **A gear reset each season.**
-- **Limited-time power** and any item sold for combat power.
+- **A gear reset each season**: cut because the course game keeps seasons as a calendar, not a power reset (pillar 4); other games reset on purpose.
+- **Limited-time power** and any item sold for combat power: cut because pillar 4 says nothing sold gives power players cannot earn.
 - **Rank decay** in PvP (module 23).
 - **Mandatory guild attendance** (module 22).
 
@@ -420,18 +427,20 @@ Rules: every entry shows a **hint**; there are **no missable entries** (seasonal
 ## Key takeaways
 
 1. The endgame answers three questions: **what do I do this week, why does it matter, and when am I done?**
-2. **Repeat access, not power**: a short gear ladder that ends, plus horizontal goals (collections, mastery, cosmetics) that keep the long run fresh.
-3. **Lockouts keep balance, choice keeps them generous**: cap how much power a week can give, and let players choose what to do.
-4. **Seasons are a calendar**, not a reset of power; everything seasonal should return later.
-5. **Catch-up shortens the road, never changes the destination**: banked days, rolling windows, last tier's gear for tokens, a recap.
-6. Read **D1, D7, D30 and churn** by cohort and segment, treat benchmarks as sanity checks, and remember that retention can be bought with tricks that cost trust.
-7. **Respect time**: a weekly list that fits about four hours, no login rewards, no resetting streaks, no limited-time power, and a guardrail that tells you when dailies have become mandatory.
+2. **Decide what repeats**: access, power, or both (the course game repeats access, with a short gear ladder that ends plus horizontal goals).
+3. **Lockouts** cap how much power a week can give; letting players choose what to do keeps them generous.
+4. A **season can be a calendar or a reset**; the course game uses a calendar.
+5. **Catch-up can shorten the road or change the destination**: banked days, rolling windows, last tier's gear for tokens, a recap, or bonuses.
+6. Read **D1, D7, D30 and churn** by cohort and segment, treat benchmarks as sanity checks, and check whether incentives bought play or only logins.
+7. **Set a time budget and decide how much pressure the schedule applies**; the course game keeps a weekly list of about four hours and no login rewards.
 
 ## Further reading
 
 - GameAnalytics, mobile and PC game benchmarks 2026 (retention by percentile): https://gamedevreports.substack.com/p/gameanalytics-mobile-and-pc-game
 - Przybylski, Murayama, DeHaan and Gladwell, "Motivational, emotional, and behavioral correlates of fear of missing out" (2013): https://centaur.reading.ac.uk/34846/
 - US Federal Trade Commission, "Bringing Dark Patterns to Light" (September 2022): https://www.ftc.gov/reports/bringing-dark-patterns-light
+- Warcraft wiki, Mythic+ Keystone (scaling dungeons): https://warcraft.wiki.gg/wiki/Mythic%2B_Keystone
+- Maxroll, "Greater Rift Pushing Guide" (Diablo III scaling rifts): https://maxroll.gg/d3/resources/greater-rifts
 - Warcraft wiki, Great Vault (a weekly choose-one reward): https://warcraft.wiki.gg/wiki/Great_Vault
 - Warcraft wiki, Raid Finder (the difficulty ladder): https://warcraft.wiki.gg/wiki/Raid_finder
 - Path of Exile wiki, League (temporary leagues and the permanent league): https://pathofexile.fandom.com/wiki/League

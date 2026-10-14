@@ -18,7 +18,7 @@ Players do not buy rules, they buy **feelings**. The MDA framework says designer
 | Layer | What it is | Who controls it | Example in an online RPG |
 |---|---|---|---|
 | **Mechanics** | The rules and data: what exists, what actions are possible | The designer, directly | "A skill heals 20 % of max HP; 12 s cooldown" |
-| **Dynamics** | The behaviour that emerges when players act on the mechanics | Nobody directly | "Groups always bring one healer and wait for her cooldowns" |
+| **Dynamics** | The behaviour that emerges when players act on the mechanics | Nobody directly | "Groups usually bring one healer and wait for her cooldowns" |
 | **Aesthetics** | The emotional response of the player | The result | "I feel needed by my group" |
 
 The key idea: **designers work from mechanics toward aesthetics, but players experience the game from aesthetics toward mechanics.** A player feels tension first and only reverse-engineers the rules if they care. That is why playtesting cannot be replaced: you can be certain of your mechanics and wrong about the feeling, because dynamics are emergent.
@@ -37,7 +37,7 @@ flowchart LR
 
 ### 1.2 The eight aesthetics
 
-The MDA paper replaces the vague word "fun" with eight named kinds of enjoyment. They are a **vocabulary**, not a complete theory, and one game usually delivers three or four strongly.
+The MDA paper replaces the vague word "fun" with eight named kinds of enjoyment. They are a **vocabulary**, not a complete theory. A game often leans on a few of them (commonly two to four) and serves the rest lightly. Some designs spread wider (open worlds, sandboxes) and some focus on one (a pure puzzle game); the count is a choice, and each extra aesthetic needs content that delivers it.
 
 | Aesthetic | Meaning | Example of a mechanic that serves it |
 |---|---|---|
@@ -50,7 +50,7 @@ The MDA paper replaces the vague word "fun" with eight named kinds of enjoyment.
 | **Expression** | Game as self-discovery | Appearance, build choices, naming |
 | **Submission** | Game as pastime | Relaxing routines, auto-run, repetitive farming |
 
-Aesthetics can conflict. A design strongly built for **Challenge** (hard, punishing bosses) tends to work against **Submission** (relaxing play). Pick which ones come first.
+Aesthetics can conflict. A design strongly built for **Challenge** (hard, punishing bosses) tends to work against **Submission** (relaxing play). Deciding which ones lead is part of the design.
 
 ### 1.3 Why people play: three models
 
@@ -92,7 +92,7 @@ Nick Yee and Quantic Foundry built the **Gamer Motivation Model** from surveys o
 | | **Design** | Customising and building things |
 | | **Discovery** | Exploring and experimenting |
 
-Why it is useful for a designer: the motivations are measured per player, so you can build a **profile** (high Community, medium Power, low Competition) instead of a single label. Each genre has a typical profile, and the model shows which features serve which motivation. For example, a shared-world RPG usually attracts players high in Community, Power and Completion, with Fantasy and Story close behind.
+Why it is useful for a designer: the motivations are measured per player, so you can build a **profile** (high Community, medium Power, low Competition) instead of a single label. Each genre has a typical profile, and the model shows which features serve which motivation. Quantic Foundry publishes typical profiles per genre on its site (as of October 2026); check those pages rather than assuming a profile for your genre.
 
 Limit: the data comes from players who answered a survey, not from everyone, and motivations describe tendencies, not destiny.
 
@@ -131,9 +131,9 @@ Designers cannot create flow directly. They create the conditions: clear goals, 
 
 ### 1.8 Target audience and player personas
 
-A **target audience** is the group of players the game is built to delight. You cannot design well for "everyone", because many features conflict (a mode that thrills competitive players frightens relaxed ones).
+A **target audience** is the group of players the game is built to delight. A broad audience is possible but costs more: features that thrill one group can frighten another (a mode that thrills competitive players can frighten relaxed ones), so broad games either give each group its own path or keep the core neutral (*Minecraft* and *Tetris*, both among the best-selling games, reach very wide audiences this way). A narrow audience is cheaper to serve and easier to test.
 
-A **persona** is a short, concrete description of one typical player in that audience: their situation, motivations, play habits and frustrations. Personas come from user-experience practice (see Further reading), and they work only if they are based on real observation (interviews, surveys, analytics) and not invented to flatter the design.
+A **persona** is a short, concrete description of one typical player in that audience: their situation, motivations, play habits and frustrations. Personas come from user-experience practice (see Further reading), and they are strongest when built from real observation (interviews, surveys, analytics) rather than invented to flatter the design. Before a game has players, teams often write **assumption personas**, clearly labelled as hypotheses, and replace them with observed ones after the first playtests.
 
 A useful persona has:
 
@@ -175,7 +175,7 @@ Typical player-facing signals and what they usually mean:
 | **Platform and situation** | Desk or phone, long or short sessions | Drives control, session and UI design | Misses motivation |
 | **Jobs-to-be-done** | "I want to unwind for 20 minutes after work" | Anchors design in real situations | Less standard in games |
 
-Most teams combine two: **motivation** for what to build, **situation** for how to fit it into a life.
+Many teams combine two: **motivation** for what to build, **situation** for how to fit it into a life.
 
 ### 3.2 Choosing and mixing motivation models
 
@@ -184,6 +184,10 @@ Most teams combine two: **motivation** for what to build, **situation** for how 
 | Bartle | 4 types | Single paper, early MUDs | Free, instant |
 | Quantic Foundry | 12 motivations, 3 clusters | Surveys of hundreds of thousands of players | Free articles; paid profiles |
 | SDT | 3 needs | Decades of psychology research | Free; abstract |
+| Yee's three components of online play (achievement, social, immersion; 2006) | 3 components, 10 sub-components | Survey of MMORPG players | Free; coarse, MMORPG-focused |
+| Lazzaro's Four Keys to Fun (hard, easy, serious and people fun) | 4 emotion types | Observation of players | Free; small sample |
+| BrainHex (seven archetypes) | 7 archetypes | Survey with neuroscience-inspired design | Free; psychometric validity is contested |
+| Hexad (Marczewski; six user types) | 6 user types | Motivation research and practice; widely used in gamification | Free; less tested for games |
 
 | If you want to... | Use |
 |---|---|
@@ -197,20 +201,28 @@ Most teams combine two: **motivation** for what to build, **situation** for how 
 | Count | When it works |
 |---|---|
 | **1** | Tiny team; a very focused game |
-| **2 to 4** | The sweet spot: enough to cover the core and the edges |
-| **5 or more** | Rarely helpful; the team stops remembering them |
+| **2 to 4** | A common range: covers the core and the edges and fits in the team's memory |
+| **5 or more** | Used by broad games (open worlds, platforms with many segments); teams usually keep a one-line profile per type instead of a full persona, and read retention per type |
 
-Keep one persona as **primary** (the one you design for when the others conflict) and the others as **secondary** (the design must not hurt them).
+### 3.4 Settling trade-offs between personas
+
+When two personas want different things, the team needs a rule. There are three common ones.
+
+| Approach | How it works | Fits | Costs |
+|---|---|---|---|
+| **One primary persona** | The design favours the primary persona in a conflict; the others are secondary and the design aims not to break them | A focused game with one core audience; a small team | The secondary audiences slowly lose ground |
+| **Player types in balance** | No persona is primary. Each type must keep its own path through the game, and trade-offs follow written rules, for example "no type is blocked from its own path to the endgame" and "each path's reward is balanced against its time"; retention is read per type | Open worlds and MMORPGs, whose life depends on many kinds of player | More judgment per decision; more content to give each type a path |
+| **Separate modes per audience** | Different modes or servers serve different personas (casual and hardcore, PvE and PvP) | Games whose audiences want incompatible rules | The population splits; each mode needs its own content |
 
 ## 4. Tuning and pitfalls
 
 ### 4.1 Rules of thumb
 
-- **Rank aesthetics.** Choose three or four to deliver strongly and accept that others will be weak. If everything is a priority, nothing is.
-- **Match features to motivations.** Each major system should serve at least one top motivation of the primary persona.
+- **Decide which aesthetics lead** (commonly two to four) and accept that others will be lighter. If everything is a priority, nothing is. Then decide how they relate: **ranked** (the higher one wins a conflict), or **in balance** (each has its own content, and a written rule settles each conflict). Ranking is simpler; balance suits games that serve several player types at once.
+- **Match features to motivations.** Each major system should serve at least one top motivation of the primary persona, or of at least one player type when the types are in balance.
 - **Check each need in SDT.** For every core system ask: where is autonomy, competence and relatedness?
-- **Plan flow bands per player type.** A new player and a veteran need different difficulties in the same content, for example normal and hard modes.
-- **Use personas as a test, not as decoration.** For each major feature ask "would the primary persona use this, and what would the secondary persona lose?"
+- **Plan flow bands per player type.** A new player and a veteran need different difficulties in the same content. Common ways to serve them: **difficulty tiers** (normal, hard); **dynamic difficulty** that adapts to performance (the idea behind Jenova Chen's *Flow* research); **scaling content** (level-synced dungeons); **assist and accessibility options**; **player-chosen goals** (optional hard objectives). Each trades authored work against how much control the player has.
+- **Use personas as a test, not as decoration.** For each major feature ask who uses it and who loses by it: the primary and secondary personas, or every player type when they are in balance.
 
 ### 4.2 Signals that the experience is wrong
 
@@ -227,8 +239,8 @@ Keep one persona as **primary** (the one you design for when the others conflict
 
 - **Designing for yourself.** Designers are not the average player. Test with the personas, not with the team's taste.
 - **Treating Bartle as a label.** People are not "an Achiever". The same player is a Socializer on Friday night and an Achiever on Sunday morning.
-- **Using one aesthetic to mask a weak one.** Beautiful effects (Sensation) cannot rescue a weak fight (Challenge).
-- **Personas invented, not observed.** A persona with no data is a wish.
+- **Using one aesthetic to mask a weak one.** Spectacle alone often does not hold players who came for Challenge; if they came for Sensation or Submission, spectacle may be enough. Match the effort to the aesthetic you promised.
+- **Personas invented, not observed.** A persona with no data is a hypothesis; label it as one and test it.
 - **Ignoring situation.** A great dungeon that needs 90 uninterrupted minutes fails the player who has 15 minutes on a phone.
 - **Confusing popularity with fit.** A genre that is popular overall may not be what your specific audience wants. Check the profile, not the market size.
 
@@ -250,7 +262,7 @@ The course game targets players who like **fantasy RPGs and shared worlds**, and
 | **Frustrations** | Waiting for a party; a teammate who ruins a run | Content that needs a long block of time | Quests that are only "kill ten" with no story |
 | **The design must give** | Easy grouping, a clear role, boss fights that reward coordination | Short, meaningful goals; progress saved at any moment | Quest text with stakes; secrets worth finding |
 
-Mira is the primary persona. When a decision is a trade-off, the design favours Mira. Dev and Lena are secondary: the design must not break their experience.
+In this example the team chose the **one primary persona** approach from section 3.4. Mira is the primary persona. When a decision is a trade-off, the design favours Mira. Dev and Lena are secondary: the course game aims not to break their experience.
 
 ### 5.3 Motivation profile of the course game (Quantic Foundry)
 
@@ -311,15 +323,16 @@ Submission ranks last on purpose: the game makes it available (Dev's commute) bu
 | **Auto-battle collection game** | Completion and Power lead; the persona is a short-session collector; Fantasy is carried by characters, not by one hero |
 | **Single-player story RPG** | Story and Fantasy lead; Fellowship is replaced by relatedness with story characters |
 | **Social or casual game** | Community and Submission lead; low Challenge to protect flow for relaxed players |
+| **Open-world MMORPG** | Several player types (raiders, solo players, crafters, collectors, explorers, competitors) kept in balance instead of one primary persona; each type keeps its own path; retention read per type |
 
 ## Key takeaways
 
 - Players buy feelings. MDA links the designer's mechanics, through the players' dynamics, to the aesthetics they feel.
-- The eight aesthetics (sensation, fantasy, narrative, challenge, fellowship, discovery, expression, submission) are a vocabulary: choose three or four to deliver strongly and accept that others will be weaker.
+- The eight aesthetics (sensation, fantasy, narrative, challenge, fellowship, discovery, expression, submission) are a vocabulary: decide which ones lead, which are supported and which you leave out.
 - Bartle (4 types) gives a quick shared language, Quantic Foundry (12 motivations) gives a measurable profile, and SDT (autonomy, competence, relatedness) explains why a system feels good.
 - Flow needs clear goals, immediate feedback and challenge that matches skill, and the band must move as the player improves.
-- Define the audience by motivation and situation, then write two to four personas from real data, and name one as primary.
-- Check every major feature against the primary persona and against each SDT need.
+- Teams often define the audience by motivation and situation, write a small set of personas (commonly two to four), and then choose how trade-offs between them are settled: one primary persona, player types in balance, or separate modes.
+- Check every major feature against the personas (the primary one, or every type when they are in balance) and against each SDT need.
 - The course game targets group-loving fantasy RPG players, ranks Fellowship, Challenge and Fantasy first, and treats Submission as a supported but low-priority feeling.
 
 ## Further reading
@@ -327,6 +340,9 @@ Submission ranks last on purpose: the game makes it available (Dev's commute) bu
 - Robin Hunicke, Marc LeBlanc, Robert Zubek, [*MDA: A Formal Approach to Game Design and Game Research*](https://users.cs.northwestern.edu/~hunicke/MDA.pdf) (2004): the original framework paper, including the eight aesthetics.
 - Richard Bartle, [*Hearts, Clubs, Diamonds, Spades: Players Who Suit MUDs*](https://mud.co.uk/richard/hcds.htm) (1996): the original Bartle paper.
 - Wikipedia, [Bartle taxonomy of player types](https://en.wikipedia.org/wiki/Bartle_taxonomy_of_player_types): short summary and criticism.
+- Nick Yee, [*Motivations for Play in Online Games*](https://nickyee.com/cpb-supp.html) (2006): the three components and ten sub-components of online play.
+- Nicole Lazzaro, [Four Keys to Fun](https://roadtovr.com/nicole-lazzaro-four-keys-fun-virtual-reality/) (interview overview): hard, easy, serious and people fun.
+- Nacke, Bateman and Mandryk, [*BrainHex*](https://www.doi.org/10.1007/978-3-642-24500-8_31) (2011; extended 2014), and Tondello et al., [*The Gamification User Types Hexad Scale*](https://uwspace.uwaterloo.ca/handle/10012/12788) (2016): two further typologies.
 - Nick Yee and Quantic Foundry, [Gamer Motivation Model](https://quanticfoundry.com/gamer-motivation-model/): the 12 motivations and the data behind them.
 - Nick Yee, GDC 2019, [*A Deep Dive into the 12 Motivations: Findings from 400,000+ Gamers*](https://gdcvault.com/play/1025742/A-Deep-Dive-into-the) (GDC Vault; full video may need an account).
 - Ryan, Rigby and Przybylski, [*The Motivational Pull of Video Games: A Self-Determination Theory Approach*](https://selfdeterminationtheory.org/SDT/documents/2006_RyanRigbyPrzybylski_MandE.pdf) (2006).

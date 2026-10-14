@@ -7,7 +7,7 @@
 
 ## In short
 
-Combat is the rules and numbers that decide what a fight asks of the player. The first choice is the **model**: tab-target, action, a hybrid, or turn-based and auto-battle. The second is **readability**: the player must be able to see what is about to hit them. The third is **numbers**: **time-to-kill (TTK)** is how long the player needs to defeat an enemy, **time-to-die (TTD)** is how long the player survives, and the ratio between them is the difficulty. A **damage formula** turns attack and defence into damage, and the formula you pick decides which classes and stats are strong. Roles, aggro and crowd control decide who does what in a group. The worked example fixes the course game's combat model and TTK targets, then checks them with a small C# simulation.
+Combat is the rules and numbers that decide what a fight asks of the player. The first choice is the **model**: tab-target, action, a hybrid, or turn-based and auto-battle. The second is **readability**: how much the player can see of what is about to hit them, from fully telegraphed attacks to deliberate surprise. The third is **numbers**: **time-to-kill (TTK)** is how long the player needs to defeat an enemy, **time-to-die (TTD)** is how long the player survives, and the ratio between them is the difficulty. A **damage formula** turns attack and defence into damage, and the formula you pick decides which classes and stats are strong. Roles, aggro and crowd control decide who does what in a group. The worked example fixes the course game's combat model and TTK targets, then checks them with a small C# simulation.
 
 ## 1. The concept
 
@@ -70,7 +70,7 @@ What the player should feel in the course game:
 | **Boss** | "I must learn the fight, and my group matters" | Challenge, Community |
 | **Group fight** | "My role matters, and we win faster together" | Community, Strategy |
 
-Two pillars of the course game govern the whole module: **Fights you can read** (every dangerous attack is telegraphed; a skilled player can avoid it) and **Stronger together** (groups earn better rewards per hour, solo is never blocked).
+Two pillars of the course game govern its choices in this module: **Fights you can read** (every dangerous attack is telegraphed; a skilled player can avoid it) and **Stronger together** (groups earn better rewards per hour; solo play stays possible). Other games choose other pillars, and the design space in section 3 shows the alternatives.
 
 ## 3. The design space
 
@@ -78,17 +78,20 @@ Two pillars of the course game govern the whole module: **Fights you can read** 
 
 | Model | How a fight plays | Used by (visible in play) | Strengths | Costs |
 |---|---|---|---|---|
-| **Tab-target** | Select a target; skills hit the selection; fights are about cooldown order and positioning; usually a global cooldown | World of Warcraft, Final Fantasy XIV | Tolerates latency and low precision; many skills; works for large raids | Aim is not a skill; fights can become a rotation; needs strong enemy mechanics to stay engaging |
+| **Tab-target** | Select a target; skills hit the selection; fights are about cooldown order and positioning; usually a global cooldown | World of Warcraft, Final Fantasy XIV | Tolerates latency and low precision; many skills; works for large raids | Skill moves from aiming to cooldown and positioning management; depth depends on enemy mechanics |
 | **Action** | The player aims, moves and dodges in real time; hits depend on position | Dark Souls, Black Desert, Genshin Impact | Skill-driven and exciting; strong "feel" | Needs low latency and a good camera; hard to balance with many classes; hard on touch |
 | **Hybrid** | A mix: soft target, dodge, ground-aimed skills | Guild Wars 2 (a selected or nearest target, with free movement and dodging) | Good compromise for online RPGs; touch-friendly with aim assist | More design effort; needs clear rules for what is aimed and what is selected |
 | **Turn-based** | The game waits for each choice | Classic Final Fantasy, Fire Emblem | Time to think; no latency pressure; ideal for deep tactics | Slow pace; poor fit for real-time online groups |
+| **Real-time with pause** | Fights run in real time and the player pauses to give orders | *Baldur's Gate* | Tactical depth without turn delays | Needs a pause or slow mode; a poor fit for online play |
+| **Active-time battle** | A turn-based fight where each actor acts when its gauge fills | Several *Final Fantasy* games (introduced in *Final Fantasy IV*) | Time pressure on a turn-based base | Needs readable gauges |
+| **Lock-on action** | Action combat with a lock on one enemy | Many action RPGs | Easier camera; strong focus on one enemy | Weak in crowds |
 | **Auto-battle** | The game plays the fight; the player sets up the team and triggers a few skills | Many mobile hero-collection games, for example AFK Arena | Fits short phone sessions; fewer inputs | The fun moves to team building; little moment-to-moment skill |
 
 Most online RPGs sit on a line between **tab-target** and **action**. The course game uses the **hybrid** model with action-style dodging.
 
 ### 3.2 Readability and telegraphs
 
-**Readability** is whether the player can tell, fast enough to react, who is attacking, what is about to hit them, and what just happened. It is a combat-design concern, not polish: an unreadable fight cannot be played skillfully.
+**Readability** is whether the player can tell, fast enough to react, who is attacking, what is about to hit them, and what just happened. In a skill-based design it is a combat-design concern, not polish: an unreadable fight is hard to play skillfully.
 
 Common **telegraph** types:
 
@@ -100,16 +103,16 @@ Common **telegraph** types:
 | **Sound cue** | A distinct sound before a heavy hit | Backup for a screen full of effects |
 | **Status icon** | A debuff icon on the player | Delayed effects such as a bomb |
 
-Rules of thumb for good telegraphs:
+These rules serve a readability-first design, like the course game's pillar 2. Games that value surprise, discovery or spectacle relax them, at the cost of deaths that players call unfair and more learning by dying (*Souls-like* games, for example, treat repeated death as part of play). Rules of thumb for a readability-first design:
 
-1. **The warning must outlast the player's reaction time.** A trained player reacts in about 0.25–0.35 s; a new player needs more. A common starting point is **at least 0.8 s for common attacks** and **1.2–2 s for heavy attacks** (a design assumption to playtest).
+1. **The warning should outlast the player's reaction time.** A trained player reacts in about 0.25–0.35 s; a new player needs more. A common starting point is **at least 0.8 s for common attacks** and **1.2–2 s for heavy attacks** (a design assumption to playtest).
 2. **Consistency beats surprise.** The same shape and colour always mean the same thing (for example, red = enemy damage, blue = safe, yellow = help).
-3. **Telegraphs outrank effects.** Player skill effects must never cover a telegraph; keep a visual budget (see [module 06](06-controls-camera-feel.md)).
-4. **Fair means avoidable.** Every attack that can kill must be both visible beforehand and avoidable by movement, a dodge or a role action.
-5. **One-shot mechanics need a warning that cannot be missed**, such as a large marker plus sound.
+3. **Telegraphs outrank effects.** Player skill effects should not cover a telegraph; keep a visual budget (see [module 06](06-controls-camera-feel.md)).
+4. **Fair means avoidable.** In this approach every attack that can kill is both visible beforehand and avoidable by movement, a dodge or a role action.
+5. **One-shot mechanics get a warning that is hard to miss**, such as a large marker plus sound.
 6. **Group fights multiply the clutter.** Four players' effects plus an enemy: test readability with a full party, not one hero.
 
-Players often install add-ons to read a fight better. That is a signal that the built-in telegraphs are not enough: in large raids the community builds timers and warnings (for example, boss-timer add-ons in World of Warcraft). A design that needs such tools has failed pillar 2.
+Players often install add-ons to read a fight better. That can mean the built-in telegraphs are not enough, or that the game's depth rewards preparation: in large raids the community builds timers and warnings (for example, boss-timer add-ons in World of Warcraft). For a game whose pillar is "readable without tools", like the course game, needing add-ons would fail that pillar.
 
 ### 3.3 Time-to-kill and time-to-die
 
@@ -135,7 +138,7 @@ A handy derived number is **required avoidance** = 1 - TTD / TTK, limited to 0�
 Why TTK matters beyond difficulty:
 
 - **Short TTK on trash** supports the Power fantasy and keeps the core loop (30–90 s) fast.
-- **Long TTK on bosses** gives room for mechanics, but too long becomes boring; players tolerate long fights only if the fight keeps changing.
+- **Long TTK on bosses** gives room for mechanics. Players tolerate long fights better when the fight keeps changing (phases, mechanics). Teams also lengthen fights with HP when content is meant to be a damage check; the cost is that long fights without new decisions feel like sponges.
 - **TTK scales with gear and level.** If damage grows faster than enemy HP, TTK collapses toward zero and fights become irrelevant (see 4.3).
 
 ### 3.4 Damage formulas from a design view
@@ -160,7 +163,7 @@ Worked example with numbers. Take a hit of 100 raw damage and enemy defence of 5
 
 Under the subtractive formula, defence takes 50 off *every* hit, so small hits suffer far more (the 60-damage hit loses 83%, the 100-damage hit loses 50%). Under the ratio formula, both lose a third. That is the key design difference: **a subtractive formula favours big, slow hits and punishes fast, small ones; a ratio formula is neutral to hit size.** In the simulation below, switching the course game from ratio to subtractive makes the Duelist (many small hits) the first class to fall out of its band.
 
-**Variance** is a random spread on the raw hit (for example, plus or minus 10%). It makes combat feel less mechanical, with no change to the average. High variance makes fights less predictable: a rule of thumb is to keep it under 15% for regular combat and to avoid it on bosses.
+**Variance** is a random spread on the raw hit (for example, plus or minus 10%). It makes combat feel less mechanical, with no change to the average. Games use anywhere from none to wide ranges (*XCOM*, for one, shows a percentage chance on every shot); more variance raises tension and unpredictability, and makes balance and ranked play harder to judge.
 
 **Critical hits** multiply damage on a chance. The expected multiplier of a swing is 1 + chance x (multiplier - 1): at a 25% chance and x1.75, it is 1.1875. Crits make damage numbers exciting but add variance: a class that lives on crits has more spread in its TTK than one that does not.
 
@@ -168,26 +171,31 @@ Other formula questions a designer must answer:
 
 | Question | Typical options |
 |---|---|
-| Does a hit always land? | Always-hit (simple, preferred in action combat) or a hit-chance stat |
+| Does a hit always land? | Always-hit (simple, common in action combat) or a hit-chance stat (common in tab-target and tactical games) |
+| Does a stat avoid hits? | None (avoid by dodging), evasion chance, block chance or parry; each adds a stat to tune and display, and adds variance |
+| Is there penetration or true damage? | Penetration lowers the defender's defence and true damage ignores it; it gives builds a counter to defence stacking |
+| Are there elements? | A weakness table and resistances per element; adds depth and tooltip load |
 | Is there a damage floor? | A minimum percentage of the raw hit, so defence never makes an enemy immune |
 | Are there damage types? | Physical and magical (more defence stats to display and tune) |
 | Is there a cap on defence or crit? | Prevents impossible builds; makes stacking stop paying |
 
 ### 3.5 Roles and aggro
 
-Many online RPGs use the **role trinity**: tank (takes hits), healer and damage. It is easy to explain and gives each player a clear job; it needs enough players to fill the roles (module 09 and 22). Some games avoid fixed roles and make everyone dodge, heal themselves and support (Guild Wars 2 is a visible example of a game without a dedicated threat system and with flexible roles). The choice of model for aggro depends on this.
+Many online RPGs use the **role trinity**: tank (takes hits), healer and damage. It is easy to explain and gives each player a clear job; it needs enough players to fill the roles (module 09 and 22). Some games avoid fixed roles and make everyone dodge, heal themselves and support (Guild Wars 2 is a visible example of a game without a dedicated threat system and with flexible roles). The choice of aggro model depends on this.
 
 | Aggro model | Rule | Used by | Strengths | Costs |
 |---|---|---|---|---|
 | **Threat table** | Each enemy keeps a number per player; it attacks the highest | World of Warcraft, Final Fantasy XIV (enmity) | Tanks have a real job; predictable | Needs taunts, a threat display, and teaches threat management |
 | **Proximity or last-hit** | The enemy attacks the nearest or the last attacker | Many action RPGs | Simple; no UI | Tanks cannot protect others; dodging decides |
 | **Role-weighted AI** | The enemy chooses targets by AI rules per role | Many action games | Flexible | Less predictable; hard to explain |
+| **Taunt-only** | Default targeting is the nearest or first attacker; a taunt skill forces the target for a few seconds | Some action RPGs and older MMORPGs (check a game's wiki) | Simple, no threat UI; tanks still have a job | Taunt cooldowns become the whole role; no gradual swapping |
+| **Pull-owner** | The enemy stays on whoever started the fight until it dies or the owner leaves | Some mobile and arcade MMORPGs | Predictable and easy to teach | The tank role has little meaning; kiting is strong |
 
 Why aggro matters for groups: the **target of the enemy's attacks** decides who needs to dodge or heal. A boss that retargets randomly forces everyone to read; a boss that stays on the tank lets the other players focus on offence.
 
 ### 3.6 Crowd control and diminishing returns
 
-CC is powerful because defence does not reduce it. It needs rules that stop it from becoming a lock.
+CC is powerful because defence does not reduce it. Games choose how strong CC is. Limits that designers use are listed below; some games use none of them and rely on short base durations and counterplay, or let heavy CC define a role. The more CC acts as a free win, the more a game needs one of these limits or a counter.
 
 | Guardrail | How it works | Visible example |
 |---|---|---|
@@ -195,8 +203,9 @@ CC is powerful because defence does not reduce it. It needs rules that stop it f
 | **CC immunity window** | After CC ends, the target cannot be CC'd for a short time | Common in action RPGs |
 | **Boss resistance bar** | The boss ignores normal CC but has a bar that CC fills; when full, the boss is stunned | Guild Wars 2: the defiance bar (the game wiki describes it) |
 | **CC shorter on elites and bosses** | Duration multiplier by enemy tier | Common |
+| **No diminishing returns** | Durations stay fixed; limits come from short base durations, cooldowns and boss immunity | Many PvE-focused action RPGs and older MMORPGs | Simple and readable; chains are possible in groups and PvP, so the content must expect them |
 
-Rules of thumb: a **stun** is the strongest effect and must be the shortest and rarest; **slow** and **root** can be longer; the more a CC is a "free win", the stricter its guardrails. Any CC that removes the player's control (for example, stun on the player) must be telegraphed and short in PvE, and nearly absent in PvP unless the opponent has an answer.
+Rules of thumb used by many games: a **stun** is the strongest effect and is often the shortest and rarest; **slow** and **root** can be longer. CC that removes the player's control (for example, stun on the player) is commonly telegraphed and short in PvE; in PvP, designs range from heavy CC as a core role (long stuns limited by diminishing returns, as in World of Warcraft PvP) to nearly none unless the opponent has an answer.
 
 ### 3.7 Encounter pacing
 
@@ -228,7 +237,7 @@ The numeric version (how many packs, how long each fight lasts) is the **TTK pla
 
 ### 4.1 Setting TTK targets
 
-Start from the **fight length you want**, then derive HP from it. Do not start from HP.
+One method is to start from the **fight length you want** and derive HP from it (the method used here). Another is to build a level curve of HP and damage and read TTK off it, which is common in level-based MMORPGs; either way, check TTK for each enemy type.
 
 | Enemy type | Role in the loop | Solo TTK to start from | Party TTK to start from |
 |---|---|---|---|
@@ -241,13 +250,13 @@ These are rules of thumb to playtest, not laws. They fit a game where trash is a
 Steps:
 
 1. **Choose the target TTK band** for each enemy type and group size.
-2. **Pick the class DPS** (module 09 and 10). A class does not need equal DPS: tanks and healers may be lower, but the ratio between the weakest and the strongest solo class should stay under about 1.5.
+2. **Pick the class DPS** (module 09 and 10). A class does not need equal DPS: tanks and healers may be lower. A common starting target is for the weakest and strongest solo class to be within about 1.5 of each other; games with specialised role classes may accept wider gaps and balance them with party roles.
 3. **Compute enemy HP** = target TTK x party DPS (the average of the classes at the level).
-4. **Scale for group size.** If every player's DPS adds up and enemy HP does not rise, groups kill much faster than solo. To keep "stronger together" without trivialising content, enemy HP in a party is multiplied by a **party HP scale** below the party size (the course game uses 2.5 for four players).
+4. **Scale for group size.** If every player's DPS adds up and enemy HP does not rise, groups kill much faster than solo. One lever is a **party HP scale**: enemy HP in a party is multiplied by a number below the party size (the course game uses 2.5 for four players). Other levers are listed after these steps.
 5. **Check TTD.** Compute the required avoidance for each fight; make sure trash needs none and bosses demand avoidance but not perfection.
 6. **Simulate**, then playtest.
 
-The party HP scale decides the value of grouping. With a scale of 1.0, a party of four would kill about three to four times faster than a solo player, and a party member would be bored; with a scale of 4.0, a party is no faster than a solo hero, and there is no reason to group. The simulation shows this in 5.5.
+The party HP scale is one lever for the value of grouping: below the party size, a party kills faster than a solo hero; at the party size, no faster. With a scale of 1.0, a party of four would kill about three to four times faster than a solo player; with a scale of 4.0, a party is no faster than a solo hero. The simulation shows this in 5.5. Other levers are rewards per hour, role synergy, content that needs a party, difficulty by party size, or no scaling with fixed-size content (raids).
 
 ### 4.2 Signals that something is wrong
 
@@ -266,11 +275,11 @@ The party HP scale decides the value of grouping. With a scale of 1.0, a party o
 ### 4.3 Classic failures of a long-running game
 
 - **Power creep in damage.** Each season adds more damage than enemy HP. TTK collapses; old content is trivial. Fix: tune from TTK, not from raw numbers.
-- **HP-sponge bosses.** To keep up with power, designers add HP, so fights get longer without being deeper. Add mechanics or phases (module 12), not HP.
+- **HP-sponge bosses.** To keep up with power, designers add HP, so fights get longer without being deeper. Adding mechanics or phases (module 12) is the alternative.
 - **A defence stat that scales badly.** A subtractive formula with no cap makes enemies unhittable at the high end; a ratio formula with a small K makes defence worthless.
-- **CC chains.** Players stack stuns to remove an enemy from the fight. DR and boss resistance bars are the standard fix.
-- **A forced trinity.** If the content cannot be cleared without a healer, groups wait for one; pillar 3 fails when grouping is a queue.
-- **One-shot mechanics that are not telegraphed.** Players learn through death, which feels unfair. Always warn.
+- **CC chains.** Players stack stuns to remove an enemy from the fight. Diminishing returns, boss resistance bars, immunity windows and short durations are the usual limits.
+- **A forced trinity.** Groups may wait for the scarce role; raid-focused games accept this because scripted bosses need tank, healer and damage. The course game's pillar 3 avoids it with fallbacks.
+- **One-shot mechanics that are not telegraphed.** Players learn through death, which can feel unfair to players who expect readable fights (see the note on section 3.2).
 - **Balance by anecdote.** Without a simulation or data, every nerf is an argument. See module 25.
 
 ### 4.4 Connecting formulas to a simulation
@@ -286,7 +295,7 @@ The course game: a small online fantasy RPG for PC and mobile, one hero per play
 | Decision | Choice |
 |---|---|
 | **Model** | Hybrid: soft target, ground-aimed area skills, a dodge (module 06) |
-| **Hit resolution** | Always-hit; no miss or hit-chance stat |
+| **Hit resolution** | Always-hit; no miss or hit-chance stat (this example's choice) |
 | **Damage formula** | **Ratio** defence, K = 100; defence = percent reduction |
 | **Variance and crits** | Plus or minus 10% variance; each class has a crit chance and a crit multiplier on the raw hit |
 | **Roles** | Soft trinity of tank, healer and damage: every class can solo, and the healer is a class, not a requirement |
@@ -414,10 +423,10 @@ Limits of this simulation: it models damage pipeline and TTK only. It has no mov
 
 ### 5.6 What was cut
 
-- **Hit chance and miss.** Always-hit keeps action combat readable.
+- **Hit chance and miss.** Cut from this example because always-hit keeps its action combat readable; tab-target and tactical games commonly use a hit chance.
 - **Separate physical and magic defence.** One defence stat in the first release.
 - **Threat decay.** Threat resets when the fight ends.
-- **Hard CC on bosses.** Bosses use the stagger bar instead.
+- **Hard CC on bosses.** Cut from this example; its bosses use the stagger bar instead, which keeps boss fights from being locked down.
 
 ### 5.7 How the design would differ for another kind of game
 
@@ -427,17 +436,17 @@ Limits of this simulation: it models damage pipeline and TTK only. It has no mov
 | **Action-focused solo game** | No threat table or party scaling; subtractive or ratio defence tuned around dodging; TTK on bosses set by number of hits the player must land |
 | **Auto-battle hero collection** | TTK is a team-power check before the fight; the formula and ratios still apply but the player sets up instead of aims |
 | **Turn-based tactics** | No telegraph timers; "telegraph" is a visible enemy intent; TTK is counted in turns |
-| **PvP-first game** | A ratio formula with a hard cap on defence, strict CC rules and no variance |
+| **PvP-first game** | Common choices: readable, capped formulas; CC limits (diminishing returns or immunity); low or no variance. Some PvP games (MOBAs, MMORPG PvP) keep crits and variance and accept the swing |
 
 ## Key takeaways
 
 - A combat model is a set of linked choices: target selection, hit resolution, defence formula, roles, aggro and CC. Choose them together, from the pillars.
-- Readability is a design rule: every dangerous attack is telegraphed longer than the player's reaction time, and effects never hide the telegraph.
-- Set TTK bands first (for example, trash 10–18 s, elite 50–85 s, boss 170–260 s solo) and derive enemy HP from them, not the other way round.
+- In a readability-first game, every dangerous attack is telegraphed longer than the player's reaction time and effects do not hide the telegraph; games built on surprise relax this on purpose.
+- Set TTK bands (for example, trash 10–18 s, elite 50–85 s, boss 170–260 s solo) and derive enemy HP from them, or read TTK off a level curve; either way, check TTK per enemy type.
 - Subtractive defence punishes small hits; ratio defence is neutral to hit size. Changing the formula means retuning every class.
-- Group content stays attractive only if party HP scale is below the party size; at 2.5 for four players the party kills about 30–45% faster than a solo hero, and at 4.0 it kills slower.
+- Party HP scale is one lever for the value of grouping: below the party size a party kills faster than a solo hero (at 2.5 for four players, about 30–45% faster), and at 4.0 it kills slower; rewards, roles and fixed-size content are other levers.
 - Required avoidance (1 - TTD / TTK) is a simple way to compare how demanding fights are: trash 0%, elite about 35–65%, a solo boss around 85–90%.
-- Guardrails make power safe: aggro rules for roles, diminishing returns and boss stagger bars for crowd control, and a pacing plan with rest beats.
+- Power needs limits: aggro rules for roles, crowd control limits (diminishing returns, boss bars, short durations, cooldowns or counterplay) and a pacing plan with rest beats.
 
 ## Further reading
 
@@ -446,5 +455,6 @@ Limits of this simulation: it models damage pipeline and TTK only. It has no mov
 - [Armor (World of Warcraft wiki)](https://warcraft.wiki.gg/wiki/Armor): a ratio-style damage-reduction formula; note the page flags the old formula as outdated.
 - [Armor (Dota 2 wiki)](https://dota2.fandom.com/wiki/Armor): the 0.06 armour multiplier formula (could not be fetched while checking; open it in a browser).
 - [Defiance Break (Guild Wars 2 wiki)](https://wiki.guildwars2.com/wiki/Defiance_Break): how a boss resistance bar works.
+- Wikipedia, [Real-time with pause](https://en.wikipedia.org/wiki/Real-time_with_pause), [Active Time Battle](https://en.wikipedia.org/wiki/Active_Time_Battle) and [Soulslike](https://en.wikipedia.org/wiki/Soulslike): combat models cited in section 3 (as of October 2026).
 - [Relevant combat mechanics for healers (Icy Veins)](https://www.icy-veins.com/ffxiv/healer-combat-mechanics): a player-written explanation of global cooldown and animation lock in Final Fantasy XIV.
 - Steve Swink, *Game Feel* (CRC Press, 2008): [summary](https://en.wikipedia.org/wiki/Game_feel), for how combat feedback ties into the controls.

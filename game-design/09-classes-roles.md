@@ -58,7 +58,7 @@ Identity is a design tool and a marketing tool. It gives each class a reason to 
 
 ### 1.4 Class structure models
 
-How a game ties a character to a class is a separate choice from the role model. There are five common structures:
+How a game ties a character to a class is a separate choice from the role model. There are several common structures:
 
 ```mermaid
 flowchart LR
@@ -66,6 +66,7 @@ flowchart LR
     B --> C["Classless<br/>build from a shared pool"]
     A --> D["Weapon-defined<br/>gear sets the skills"]
     A --> E["Hero collection<br/>many heroes, each fixed"]
+    B --> F["Multiclass or job switching<br/>one character, several jobs"]
 ```
 
 | Model | How it works | Public examples |
@@ -75,8 +76,10 @@ flowchart LR
 | **Classless / shared pool** | No class; the player buys abilities from a common pool | Path of Exile's shared passive tree (every class starts at a different place on the same tree, per the official page); open skill-based games |
 | **Weapon-defined** | The equipped weapon decides the skills; changing weapon changes the role | Guild Wars 2 (weapon skills come from the equipped weapons, per its wiki); Final Fantasy XIV (switching weapon switches job) |
 | **Hero collection** | The player gathers many heroes, each with a fixed class and role | Common in mobile squad games; see [module 11](11-party-roster.md) |
+| **Multiclass or job switching** | One character holds several classes, or can switch jobs in the field | Final Fantasy XI (a main job plus a support job that grants a share of another job's abilities); Final Fantasy XIV (the equipped weapon sets the job) |
+| **Class plus specialisation** | A fixed class with a role-defining specialisation, so the role changes without a new character | World of Warcraft (for example, the Death Knight has Blood, Frost and Unholy specialisations, one tank and two melee damage) |
 
-A mix is normal. A fixed class with one or two advancement choices is the most common shape for an online RPG, and it is the shape of the course game.
+A mix is normal. A fixed class with one or two advancement choices is a common shape for an online RPG, and it is the shape of the course game.
 
 ## 2. The player's view
 
@@ -114,7 +117,7 @@ The class system supports the **core loop** (fight, loot) by giving each fight a
 | **Role-less** | Classes differ in flavour and tools, not in group job | Looter-shooters and arcade ARPGs | Less need for groups, so group design must come from something else (rewards, bosses) |
 | **Build-defined roles** | Any class can be built for a role by choosing skills or gear | Long-running games with deep customisation | Players need guides; mistakes in a build are costly |
 
-Guild Wars 2 is a public example of the second and third rows: its community wiki describes the game's design as replacing the trinity with damage, support and control aspects of combat (see Further reading). A common critique of the trinity in a short article from Game Developer is that it makes tanks and healers awkward outside group content and locks players into one role; the same author praises systems that let players change roles without a new character.
+Guild Wars 2 is a public example of the second and third rows: its community wiki describes the game's design as replacing the trinity with damage, support and control aspects of combat (see Further reading). A common critique of the trinity in a short article from Game Developer is that it makes tanks and healers awkward outside group content and locks players into one role; the same author praises systems that let players change roles without a new character. Defenders of the trinity point to clear roles for beginners, simple matchmaking, encounter design that can be scripted around three jobs, and the large raiding communities built on it.
 
 ### 3.2 Class structures compared
 
@@ -125,6 +128,8 @@ Guild Wars 2 is a public example of the second and third rows: its community wik
 | **Classless** | Very high | Many small abilities, few kits | Highest; players find combinations designers did not foresee | High | Mastery-focused games with an active community |
 | **Weapon-defined** | High; role changes at will | A skill set per weapon per class | High | Low; swapping is the respec | Games that want flexibility without alts |
 | **Hero collection** | Comes from team choice, not hero choice | A kit per hero, many heroes | Medium per hero; high across the roster | None; collect more heroes | Mobile live-service games |
+| **Multiclass or job switching** | Big build space and a reason to keep one character | A kit per job, plus how jobs combine | Grows with the number of combinations | Low to medium | Games that want one long-lived character; tooltips and UI get heavy |
+| **Class plus specialisation** | Role changes without a new character | One kit per specialisation | Medium to high | Low to medium | Games that want role flexibility inside a class identity |
 
 ### 3.3 How many classes to ship
 
@@ -137,7 +142,7 @@ More classes feel like more choice, but each class is a full set of skills, anim
 | **8 to 12** | A wide fantasy catalogue | Balance work grows faster than the class count, because each class must be tuned against every other |
 | **Many, collected** | Long tail of content; a sales driver | Hero-collection economics, see [module 17](17-monetization.md) |
 
-Rule of thumb for a launch: **cover every role the content needs at least twice**, so the party never has to wait for one specific class, and cover **every fantasy the audience wants**. Add classes after launch to fill a role or fantasy gap shown by the role matrix, not to add novelty.
+One common launch target is to cover every role the content needs at least twice, so a party never waits for one class, and to cover the fantasies the audience wants. Games with large populations or build-defined roles accept one class per role and use fallbacks (potions, shields, revive) for absences. Teams add classes after launch to fill a role gap, to bring a new fantasy, to sell, or to refresh the game; *World of Warcraft* added the Death Knight (as a hero class that starts above level 1) and later the Evoker. Each class carries the cost in section 4.5 and interacts with every encounter, so a role matrix helps to see what is missing.
 
 ### 3.4 Respec policy
 
@@ -151,7 +156,7 @@ Rule of thumb for a launch: **cover every role the content needs at least twice*
 | **Not possible** | Maximum identity; alts are the way to explore | Punishes players who followed bad advice or whose class was changed in a balance patch |
 | **Paid in real money** | A revenue source | Conflicts with fairness pillars if it affects power; handle with care (see module 17) |
 
-Two supporting tools reduce the cost of a wrong choice without making choices meaningless: a **trial** (try each option on a practice target before committing) and a **second character** slot (explore another class without losing the first).
+Respec policies run from free to impossible, each trading freedom against the weight of a choice. Two supporting tools reduce the cost of a wrong choice without making choices meaningless: a **trial** (try each option on a practice target before committing) and a **second character** slot (explore another class without losing the first).
 
 ### 3.5 How to choose
 
@@ -183,12 +188,12 @@ Dominant strategies are usually a **tuning** error. Trap builds are a **communic
 
 | Rule | Reason |
 |---|---|
-| Every choice should win somewhere and lose somewhere | If option A wins every fight type, B is a trap |
+| Every choice wins somewhere and loses somewhere (a rule of thumb for games that value build diversity) | If option A wins every fight type, B is a trap. Games that accept a meta (clear best options with rotating balance patches) trade diversity for a simpler balance load |
 | Compare builds in **benchmark fights**, not in one number | A build can lead in single-target damage and lose against packs |
-| Keep spread inside a band, for example within 5 % of the class median in each benchmark | Perfect parity is impossible; wide gaps are felt (see module 25) |
+| Set a spread band and review it per patch; teams often use a band such as 5 to 10 % of the class median in each benchmark, and some accept wider bands for harder classes | Perfect parity is impossible; wide gaps are felt (see module 25) |
 | Judge choices by **how they change play**, not by percentages | "+5% damage" is a number; "adds a trap" is a decision |
 | Show role effects in the tooltip ("this path trades healing for damage") | Prevents trap builds |
-| Give each role a **fallback** so one missing class does not block a party | Pillar 3 says groups are better, never required |
+| Give each role a **fallback** so one missing class does not block a party | The course game's pillar 3 says groups are better, not required; raid-focused games choose differently |
 
 ### 4.3 Signals that something is wrong
 
@@ -205,9 +210,9 @@ Dominant strategies are usually a **tuning** error. Trap builds are a **communic
 ### 4.4 Classic failures
 
 - **A forgotten role.** A class designed to "support" that never matters because its buffs are smaller than a damage dealer's raw numbers.
-- **Cloned classes.** Two classes that differ only in animation. Identity needs a mechanic, not a skin.
+- **Cloned classes.** Teams often give each class a signature mechanic (a resource, a stance, a unique skill); others differentiate by fantasy, skill set and art. Classes that differ only in animation tend to feel cloned.
 - **Class-level balance by fantasy.** A class gets stronger because players like it, then nerfed when they leave. Identity should not depend on power.
-- **A trinity without fallbacks.** A group of four players with two tanks and no healer cannot finish the content.
+- **A trinity without fallbacks.** A trinity without fallbacks makes a longer queue for the scarce role; raid-focused games accept this for scripted encounters.
 - **A tree with no meaning.** Advancement that gives only more numbers, so the first choice is a trap and the second is a chore.
 
 ### 4.5 What a class costs
@@ -358,9 +363,9 @@ That is **60 skill designs** (40 base plus 20 variants) and 30 traits before any
 
 | Idea | Why cut |
 |---|---|
-| Classless skill pool | Highest balance cost; weakens fantasy of the first fight |
-| Third advancement | Past level 40 the player should be mastering, not choosing |
-| Dual class | Needs a larger roster and breaks identity |
+| Classless skill pool | Cut from this example because its pillar 1 wants each class distinct from the first fight and its balance budget is small; classless systems are a working design elsewhere |
+| Third advancement | Cut to keep this example's 50-level game short; a longer game could add one (module 04's teardown shows a long class ladder) |
+| Dual class | Cut because this example ships five classes and one hero per player |
 | Weapon-defined skills | Needs multiple kits per class; revisit after launch if players want flexibility |
 | A sixth class at launch | The role matrix shows no uncovered need |
 
@@ -386,10 +391,10 @@ That is **60 skill designs** (40 base plus 20 variants) and 30 traits before any
 
 - A **class** is an identity, a **role** is a job for the group, and a **build** is the player's choices inside the class.
 - The holy trinity gives clear roles and queue problems; alternatives (damage, support, control, build-defined roles) reduce queues and raise tuning cost.
-- Choose the class structure by what your content can afford: fixed classes are cheapest, trees and classless are deepest, hero collection scales by volume.
+- Class structure follows several factors: what the content can afford, the audience's appetite for builds, and the fantasy; fixed classes are cheapest, trees and classless are deepest, hero collection scales by volume.
 - Every option should win somewhere and lose somewhere; dominant strategies are tuning errors, trap builds are communication errors.
-- A respec policy balances freedom against weight of choice: a trial plus a small cost is a good default.
-- Every class costs far more than its skill list; ship fewer, more distinct classes and fill gaps shown by a role matrix.
+- Respec policies run from free to impossible, each trading freedom against the weight of a choice; the course game pairs a trial with a small cost.
+- Every class costs far more than its skill list; set the roster size from the content budget and use a role matrix to see the gaps.
 - The course game ships five classes, a light trinity with fallbacks, a path at level 20 and a mastery at level 40.
 
 ## Further reading
@@ -397,6 +402,8 @@ That is **60 skill designs** (40 base plus 20 variants) and 30 traits before any
 - Jouse Then, "The Holy Trinity", Game Developer, 2015: https://www.gamedeveloper.com/design/the-holy-trinity
 - Guild Wars 2 wiki, "Weapon skill" (weapon-defined skills): https://wiki.guildwars2.com/wiki/Weapon_skill
 - Guild Wars 2 wiki, "Sinister Triad" (notes the game's move from the trinity to damage, support and control): https://wiki.guildwars2.com/wiki/Sinister_Triad
+- Warcraft Wiki, [Death knight](https://warcraft.wiki.gg/wiki/Death_knight) and [Evoker](https://warcraft.wiki.gg/wiki/Evoker): hero classes added after launch, with role-defining specialisations (as of October 2026).
+- Wikipedia, [Final Fantasy XI](https://en.wikipedia.org/wiki/Final_Fantasy_XI) (main and support jobs) and [Final Fantasy XIV](https://en.wikipedia.org/wiki/Final_Fantasy_XIV) (weapon sets the job).
 - Path of Exile, official passive skill tree (shared tree, class start points): https://www.pathofexile.com/passive-skill-tree
 - Tree of Savior, official class page (base classes and advancement options): https://treeofsavior.com/page/class/
 - "All classes in FFXIV: Tank, DPS & Healer roles explained" (an overview of a trinity game's roles): https://cms.ggrecon.com/guides/ffxiv-classes-roles-jobs/

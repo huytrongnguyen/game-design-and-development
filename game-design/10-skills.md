@@ -42,7 +42,7 @@ Two terms:
 
 ### 1.2 Resources
 
-A **resource** is the meter that limits how often skills can be used. Its job is to make the player choose, not to count. Five types cover most games, and the examples below come from World of Warcraft, a public game whose resource types are documented on its wiki:
+A **resource** is the meter that limits how often skills can be used. Its job is to make the player choose, not to count. Five types cover many games, and the examples below come from World of Warcraft, a public game whose resource types are documented on its wiki:
 
 | Resource | How it works | How it feels | Public example |
 |---|---|---|---|
@@ -56,6 +56,8 @@ Source for all rows: the Warcraft wiki's "Resource mechanics" page (see Further 
 
 | Resource | How it works | Feels like |
 |---|---|---|
+| **Stamina** | A pool that drains on dodge, block or sprint and refills when idle | Action games decide with it when to be safe; seen in Monster Hunter and Souls-like games |
+| **Ammo or heat** | Reload or overheat; a timed reset | Pacing through a timed reset; common in shooters and tactical games |
 | **Charges** | A skill has 2 or 3 uses; each charge refills on its own timer | Flexible timing: use one now, save one |
 | **Health as cost** | A skill costs life | Risk and reward |
 | **No resource** | Only cooldowns gate use | Simple; good for mobile and beginners |
@@ -88,21 +90,21 @@ Cooldown tools:
 
 - **Global cooldown (GCD):** a short lock shared by most skills, so the player cannot press everything at once. In World of Warcraft the base value is 1.5 seconds, with lower values for some classes (see Further reading).
 - **Charges:** see above; reduces the cost of mistiming a skill.
-- **Cooldown reduction and resets:** gear, traits or a perfect dodge that shorten or refresh cooldowns. They multiply every skill, so cap them.
+- **Cooldown reduction and resets:** gear, traits or a perfect dodge that shorten or refresh cooldowns. They multiply every skill, so many games cap them (*League of Legends* capped its old cooldown-reduction stat at 40% before replacing it with Ability Haste, as of October 2026); uncapped systems turn it into a build-defining stat.
 
 ### 1.4 Play patterns: rotation, priority and reactive
 
-Players use a kit in one of three ways. Designers choose which one a class should lean toward.
+Players use a kit in one of three ways. Designers choose which one a class leans toward.
 
 | Pattern | What it is | Good for | Risk |
 |---|---|---|---|
-| **Rotation** | A fixed sequence of skills in an order | Easy to learn, easy to teach; automation friendly | Boring once learned; a guide replaces thinking |
+| **Rotation** | A fixed sequence of skills in an order | Easy to learn and teach; rewards precise execution, which many players enjoy as a mastery path | Easy to automate; can feel solved once learned; a guide replaces thinking |
 | **Priority list** | A ranked list: use the highest-ranked skill that is ready and affordable | Most modern action RPGs; adapts to procs and cooldowns | Players need a guide to learn the order |
 | **Reactive** | Skills used in response to what the enemy does | Games with strong telegraphs; fits pillar 2 | Needs readable enemies; hard to tune on a phone |
 
 The Warcraft wiki notes that "rotation" has become inaccurate in that game: an ordered rotation is a list followed blindly, while a **priority list** takes conditions into account, because procs and varying effects prevent strict sequencing. Most classes in a modern action RPG are a priority list with a few reactive skills on top.
 
-A well-designed kit gives the player **a plan, plus reasons to break it**. If the best play is always the same list, the class is a rotation and will be botted or boring. If no plan exists, the class is chaos and beginners cannot learn it.
+Many classes mix the three. A kit that gives the player **a plan, plus reasons to break it** adapts to the fight; a kit whose best play is always the same list is a rotation (easy to learn and to automate); a kit with no plan is hard for beginners to learn.
 
 ### 1.5 Status effects, buffs and debuffs
 
@@ -116,7 +118,7 @@ A **status effect** is a lasting condition on a unit. A **buff** helps its targe
 | **Shield** | Absorbs a fixed amount of damage | A barrier |
 | **Control** | Limits movement or action | Root, stun |
 
-Every status effect needs **stacking rules**. Without them two players applying the same effect can multiply it out of control. The common rules:
+Every status effect needs **stacking rules**; without them two players applying the same effect can multiply it out of control. The common rules:
 
 | Rule | Meaning | Use for |
 |---|---|---|
@@ -124,27 +126,30 @@ Every status effect needs **stacking rules**. Without them two players applying 
 | **Extend** | Re-applying adds duration up to a cap | Channels, DoTs |
 | **Stack intensity** | Each application adds strength up to a maximum count | Bleeds, "build up" effects |
 | **Highest wins** | Only the strongest source of the same type counts | Party buffs from several players |
+| **Last applied replaces** | The newest effect overwrites the old one, even a weaker one | Simple to implement and explain; players learn to time re-applications; a weak effect can erase a strong one |
+| **Independent stacks** | Every source counts in full (additive or multiplicative) | Rewards stacking sources and party building; needs caps elsewhere to stop runaway power |
 | **Unique per caster** | Each caster's effect coexists, up to a limit | Personal DoTs |
 | **Category cap** | Several effects of one kind add up only to a ceiling | "Damage dealt" buffs capped at +40% |
 
-Players read statuses through **icons** with timers, so a kit should not apply more effects than the interface can show (a good limit is a few important ones per unit; hide the minor ones).
+Players read statuses through **icons** with timers, so a kit applies only as many effects as the interface can show (a few important ones per unit is a common limit; minor ones can be hidden).
 
 ### 1.6 Crowd control and diminishing returns
 
-**Crowd control (CC)** is any effect that takes away part of an enemy's (or player's) control: stun, root, slow, silence, knockback, sleep. It is powerful because it ignores the target's defence, so it needs limits. The skill-side tools:
+**Crowd control (CC)** is any effect that takes away part of an enemy's (or player's) control: stun, root, slow, silence, knockback, sleep. It is powerful because it ignores the target's defence. Games choose how strong CC is (module 08 compares the limits). The skill-side tools:
 
 | Tool | What it does |
 |---|---|
-| **Short durations** | Most hard CC lasts 1 to 3 seconds in real-time games |
+| **Short durations** | Many games with fast real-time combat keep hard CC to a few seconds |
 | **Diminishing returns (DR)** | Repeated CC of the same category on the same target gets shorter, then the target becomes immune for a while |
 | **Immunity window** | After a CC ends, the target ignores that category for a few seconds |
 | **Boss rules** | Bosses and elites ignore the hardest CC, or take a weaker version |
 | **Break on damage** | Some CC ends when the target is hit (sleep, fear) |
 | **Cooldown cost** | CC skills are on longer cooldowns than damage skills |
+| **No diminishing returns** | Fixed durations; limits come from base duration, cooldown and boss immunity | Simpler to read, with chain risk |
 
 World of Warcraft's diminishing returns are a public example: the first application of a crowd-control category has full duration, the second is reduced by 50%, the third by 75%, and afterwards the target is immune to that category; the category resets 18 seconds after the previous effect ends (Warcraft wiki, "Diminishing returns", checked October 2026). The shape is more important than the numbers: **full, half, quarter, immune, reset**.
 
-Design rule: CC should answer a **moment** (interrupt a charge, split a pack), not stop a fight. If one player can chain CC for the whole fight, the fight is no longer about the enemy.
+Short, moment-based CC (interrupt a charge, split a pack) keeps the fight about the enemy's mechanics. CC-centred roles make control their main fantasy and rely on resistances, cooldowns or counterplay to limit chains: *EverQuest*'s enchanter, for example, has crowd control as the core of its group role, with mesmerize holding enemies until they are damaged.
 
 ### 1.7 Forms, stances and mode switching
 
@@ -154,12 +159,15 @@ A **form** or **stance** changes a hero's skill set or behaviour as a mode. It i
 |---|---|---|
 | **Stance or form** | A button swaps the kit or modifies it | Druid forms in World of Warcraft: abilities are restricted to a form or work differently in it |
 | **Weapon swap** | Equipped weapons decide skills 1 to 5; a button swaps sets | Guild Wars 2: a combat swap cooldown of 10 seconds for most professions (wiki, checked October 2026) |
+| **Stance as a role or stat switch** | A stance changes a few stats and unlocks or locks skills | Warrior and monk stances in World of Warcraft (see the wiki for how they work today); cheap to build and easy to teach |
+| **Loadout presets** | The player swaps whole skill bars out of combat | Flexibility with no in-fight complexity |
+| **Temporary transformation** | A limited-time mode with its own skills | Spectacle and a burst window |
 
-Costs of modes: every mode multiplies the kit (two stances of eight skills each is a sixteen-skill design), UI and tooltips get harder to read, and a new player cannot tell which mode is active at a glance. Use a mode when the class's **fantasy is the switch itself** (shapeshifter, a gunslinger with two stances); otherwise a plain kit is cheaper and clearer. The course game has no stances.
+A mode multiplies the kit (two stances of eight skills each is a sixteen-skill design), makes tooltips and the UI harder to read, and a new player cannot always tell which mode is active. It gives flexibility without a second class, a way to cover several roles with one character, a fantasy of versatility and more build depth. Teams choose modes when the class fantasy is the switch, when one class must fill several roles, or when the audience wants flexibility; teams skip them to keep the kit small and readable. The course game has no stances.
 
 ### 1.8 Skill budget per role
 
-A **skill budget** says how many slots a class spends on each job. With eight slots, a rule of thumb:
+A **skill budget** says how many slots a class spends on each job. With eight slots, a rule of thumb for the course game's avoidance-based model:
 
 | Slot job | Tank | Healer | Melee damage | Ranged damage | Area / control |
 |---|---|---|---|---|---|
@@ -172,7 +180,7 @@ A **skill budget** says how many slots a class spends on each job. With eight sl
 | Burst (long cooldown) | 0 | 1 | 1 | 1 | 1 |
 | **Total** | **8** | **8** | **8** | **8** | **8** |
 
-Rules the budget enforces:
+Rules the budget enforces in the course game (an avoidance-based model; in tab-target games, mitigation can come from role skills, cooldowns or the healer instead):
 
 1. **A class's primary job gets 3 or 4 slots; its secondary jobs get 1 or 2.**
 2. **No empty identity:** each class has at least one slot that no other class can copy.
@@ -184,12 +192,12 @@ On a phone, thumbs cover the screen and a hero with eight skill buttons is hard 
 
 | Tool | What it does | Trade-off |
 |---|---|---|
-| **Fewer buttons** | Show 4 to 6 skills; the rest become automatic or are merged | Less expression; fewer clicks to learn |
+| **Fewer buttons** | Touch games commonly show four to eight skills; the rest become automatic, are merged or sit in a grouped bar | Less expression; fewer clicks to learn |
 | **Smart targeting** | The game picks the target or area: nearest enemy, densest cluster, lowest-health ally | Occasional wrong pick; players want an override |
 | **Tap to aim, drag to override** | A tap casts at the smart default; a drag aims manually with a preview | Needs a clear preview; adds a gesture |
-| **Auto-use toggles** | Selected skills fire when ready, if the player allows it | Simple buffs benefit; skills with a decision should not be automatic |
+| **Auto-use toggles** | Selected skills fire when ready, if the player allows it | Simple buffs fit auto-use best; auto-casting decision skills (as in auto-battle games) moves the player's role to setup and timing |
 
-Rule: **never give a platform a power advantage.** If touch has auto-use for buffs, PC players get the same toggle, so the platforms are equal (course pillar 4).
+The course game's stance: no platform gets a power advantage, so if touch has auto-use for buffs, PC players get the same toggle (course pillar 4). Other games give platform-specific incentives or keep platform pools apart; either way, state the stance so balance and monetization can follow it.
 
 ## 2. The player's view
 
@@ -213,16 +221,17 @@ Skills serve Challenge and Mastery (higher-skill play), Fantasy ("I am an archer
 | **Few** | 4 to 6 | Mobile, arcade, beginner-friendly games | Little expression; each skill must be strong |
 | **Medium** | 8 to 12 | Most action RPGs | Needs bar layout; balance work grows |
 | **Many** | 15 or more | Deep MMOs with hotbars | Heavy tooltips and UI; need guides |
+| **Loadout** | A larger pool of skills and a smaller bar the player fills | Guild Wars 2 (three utility slots filled from unlocked skills), Path of Exile (skill gems placed in sockets) | Build variety without a long bar; needs a build screen, balance across combinations and guides |
 
 ### 3.2 How to choose
 
 | If you need... | Choose |
 |---|---|
-| Fast learning on a phone | Few buttons, smart targeting, no stances |
+| Fast learning on a phone | Few buttons, smart targeting, a small kit (stances add size) |
 | Depth for dedicated players | Resource plus cooldowns plus a signature mechanic |
-| A flexible role without a second class | A stance or a weapon swap (accept the cost) |
+| A flexible role without a second class | A stance, a weapon swap or a loadout (each has the costs in 1.7) |
 | Readable fights (pillar 2) | Strong telegraphs, short CC, few simultaneous effects |
-| A kit that cannot be automated | Reactive skills, plus conditions inside the priority list |
+| A kit that is hard to automate | Reactive skills, plus conditions inside the priority list |
 
 ## 4. Tuning and pitfalls
 
@@ -231,9 +240,9 @@ Skills serve Challenge and Mastery (higher-skill play), Fantasy ("I am an archer
 | Rule | Reason |
 |---|---|
 | **Compare skills by value per resource**, not by raw damage | Skills of different cost and area can then be balanced against each other (see module 25) |
-| **An area skill should break even with a single-target skill at two targets** | It then wins when it should (packs), and never loses outright |
-| **Every skill should be pressed in a normal 60-second fight** | A skill nobody presses is a design bug |
-| **Spread of damage by skill:** the main spender 25 to 40% of damage, no skill (except utility) under 3% | A kit dominated by one button is a rotation |
+| **An area skill breaks even with a single-target skill at two targets** (the course game's rule) | It then wins when it should (packs) and does not lose outright |
+| **Every skill should have a situation where it is the right press** | Most skills appear in a normal 60-second fight; situational skills (emergency defence, utility) may be pressed rarely on purpose; a skill nobody ever presses is a design bug |
+| **Spread of damage by skill:** as a starting point, the main spender is often 25 to 40% of a kit's damage, tuned per class | A kit dominated by one button is a rotation |
 | **Keep the number of simultaneous effects readable** | One big ground effect per second, not five |
 | **Cooldown skills should answer a situation** | Burst, control, escape; not "press on cooldown" only |
 | **Cast time buys power and costs risk** | A longer cast hits harder but needs a safe moment |
@@ -251,7 +260,7 @@ Skills serve Challenge and Mastery (higher-skill play), Fantasy ("I am an archer
 
 ### 4.3 Classic failures
 
-Resource as a chore (a meter watched but never decided on); cooldowns so long the hero feels empty; hidden stacking where the tooltip says "adds" but the effects multiply; perma-CC chains; too many modes; and one best skill with seven decorations.
+Risks of the techniques above: a resource that is a chore (a meter watched but never decided on); cooldowns so long the hero feels empty; hidden stacking where the tooltip says "adds" but the effects multiply; CC chains (a design choice in CC-centred roles, a problem when unplanned); modes the kit cannot afford; and one best skill with seven decorations.
 
 ## 5. Worked example
 
@@ -417,7 +426,7 @@ Module 09 adds one path at level 20 and one mastery at level 40. For the Ranger,
 | CC follows clear rules | Root has DR; bosses ignore it | Yes; the target shows a rooted icon |
 | Mobile can read it | Previews and icons are the same size on a phone | Check in a 6-inch playtest |
 
-What was cut: a stance (a "sniper stance") and a Focus-spending dodge, because both added a mode without adding a decision; a pet, because the course game has one hero per player.
+What was cut: a stance (a "sniper stance") and a Focus-spending dodge, because in this example both added a mode without adding a decision; a pet, because the course game has one hero per player.
 
 ### 5.9 How the design would differ for another kind of game
 
@@ -431,10 +440,10 @@ What was cut: a stance (a "sniper stance") and a Focus-spending dodge, because b
 
 - A skill is **cost, cooldown, cast, range, area and effect**, plus a **telegraph** that lets everyone read the fight.
 - The **resource** sets the rhythm: generators and spenders give "build, spend" play; mana, energy, rage, focus and combo points each feel different.
-- Use cooldowns for timing windows and resources for flow; avoid long cooldowns on core skills.
-- Classes are played as a **priority list with reactive overrides**; a pure rotation is boring and a kit with no plan is chaos.
-- Status effects need **stacking rules** (refresh, highest wins, category cap) and crowd control needs **diminishing returns** and boss rules.
-- Modes and stances multiply a kit's size; use them only when the fantasy is the switch.
+- Cooldowns give timing windows and resources give flow; long cooldowns on core skills make a hero feel empty.
+- Kits lean toward a rotation, a priority list or reactive play; each trades learning curve against adaptability.
+- Status effects need **stacking rules** (refresh, highest wins, last applied, independent stacks, category cap) and crowd control needs a limit (diminishing returns, boss rules, short durations, cooldowns or counterplay).
+- Modes and stances multiply a kit's size and buy flexibility; use them where the class fantasy or role needs them.
 - On touch: fewer buttons, smart targeting, drag to override, and auto-use toggles for the same skills on every platform.
 
 ## Further reading
@@ -445,5 +454,9 @@ What was cut: a stance (a "sniper stance") and a Focus-spending dodge, because b
 - Warcraft wiki, "Rotation": https://warcraft.wiki.gg/wiki/Rotation
 - Warcraft wiki, "Diminishing returns": https://warcraft.wiki.gg/wiki/Diminishing_returns
 - Warcraft wiki, "Shapeshifting" (druid forms): https://warcraft.wiki.gg/wiki/Shapeshifting
+- Guild Wars 2 wiki, "Utility skill": https://wiki.guildwars2.com/wiki/Utility_skill
+- EverQuest enchanter crowd control (group guide): https://everquest.allakhazam.com/editorial/020100_Enchanter.html
+- League of Legends wiki, "Cooldown reduction" (old 40% cap) and "Haste": https://wiki.leagueoflegends.com/en-us/Cooldown_Reduction
+- Wikipedia, "Soulslike" and "Monster Hunter" (stamina-based combat): https://en.wikipedia.org/wiki/Soulslike and https://en.wikipedia.org/wiki/Monster_Hunter
 - Guild Wars 2 wiki, "Weapon swap": https://wiki.guildwars2.com/wiki/Weapon_swap
 - Guild Wars 2 wiki, "Weapon skill": https://wiki.guildwars2.com/wiki/Weapon_skill

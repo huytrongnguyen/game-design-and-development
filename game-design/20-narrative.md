@@ -7,7 +7,7 @@
 
 ## In short
 
-**Writing** produces the words. **Narrative design** decides the structure: what the player learns in what order, how story beats are paced against play, and how the story and the systems back each other up. A live online game cannot be written like a film: it is released in pieces over years, many people contribute, players skip text and a new player may start in year three. So the story is built as a **serial**: a fixed premise, a few big **arcs**, a repeatable **season** unit, **open threads** that carry on, and a **lore bible** that keeps every writer consistent. Delivery avoids stopping play: barks, environmental clues and short scenes carry most of it. The worked example gives the course game's premise, four regions as four arcs, a season model, two character sheets and one system (the world boss) driven by the story.
+**Writing** produces the words. **Narrative design** decides the structure: what the player learns in what order, how story beats are paced against play, and how the story and the systems back each other up. A live online game is released in pieces over years, many people contribute, players skip text and a new player may start in year three. Teams answer with different structures (a serial, expansions, closed arcs, emergent stories) and different delivery styles, from play-preserving (barks, environment) to cinematic (long scenes); this module covers both. The course game uses a **serial**: a fixed premise, a few big **arcs**, a repeatable **season** unit, **open threads** that carry on, and a **lore bible** that keeps every writer consistent, delivered mostly through barks, environmental clues and short scenes. The worked example gives the course game's premise, four regions as four arcs, a season model, two character sheets and one system (the world boss) driven by the story.
 
 ## 1. The concept
 
@@ -42,7 +42,7 @@ flowchart TD
     S --> G["In the game<br/>players see this"]
 ```
 
-Each level is more detailed and changes faster than the one above. **A change at the top costs a lot; a change at the bottom is cheap.** Lock the top levels early.
+Each level is more detailed and changes faster than the one above. **A change at the top costs a lot; a change at the bottom is cheap.** Teams lock the top early for consistency, or keep it loose to follow what players love; the cost of loose is retcons (section 3.6).
 
 ## 2. The player's view
 
@@ -75,16 +75,18 @@ In small teams one person does both. Keep the *decisions* separate from the *wor
 
 | Structure | Shape | Public example | Strength | Risk |
 |---|---|---|---|---|
-| **Single campaign** | One arc, one ending, one protagonist | Single-player RPGs | Strong shape; satisfying end | A live game that finishes its story has nowhere to go |
+| **Single campaign** | One arc, one ending, one protagonist | Single-player RPGs | Strong shape; satisfying end | The story ends, so a live game must plan a new story or a sequel |
 | **Episodic** | Self-contained episodes with the same cast | Many mobile and live games | Easy to enter at any episode | Little sense of progress |
 | **Serial with seasons** | A long arc split into seasons, each with a finale and open threads | *Guild Wars 2* Living World seasons; seasonal live games | Planned cadence, replaceable writers, a place to join | Needs a continuity owner |
 | **Expansions and patches** | Large releases with story, plus patch-sized chapters | *Final Fantasy XIV* (a main scenario continued in each patch, as of October 2026) | Players know what to expect | Long gaps; catch-up cost |
 | **Anthology** | Each season is a separate story with a theme | Some event-driven games | New players start anywhere | The world never accumulates |
-| **Evergreen world** | The story is the world's history and it changes little | Games without a plot | No catch-up | Low emotional pull |
+| **Emergent or player-driven** | The story is what players do in the world (alliances, wars) | *EVE Online*: its player-run corporations and alliances fight wars, for example the 2014 Battle of B-R5RB (as of October 2026) | Unscripted; no authored arc to write | No authored arc; depends on the community |
+| **Closed arcs, new tiers** | A long arc ends with a finale and a new arc starts | *Final Fantasy XIV*: Endwalker closed the Hydaelyn and Zodiark arc (2021) and Dawntrail opened a new one (2024), as of October 2026 | Satisfying pay-off | Needs the next story planned |
+| **Evergreen world** | The story is the world's history and it changes little | Games without a plot | No catch-up | Less story pull; the world's activity and players carry the experience |
 
-A long-lived online game is best served by the **serial with seasons** (or a mix with expansions): a stable world, a fixed premise, and a repeating unit of release. One point matters more than any other. **Do not answer the big question too early.** A live game that solves its central mystery has ended its story, and with it the reason to log in. Answer a small question each season and open a new one.
+Long-lived online games use serial seasons, expansions with patches, anthologies and closed arcs with new tiers (table above). A **serial with seasons** keeps a stable world, a fixed premise and a repeating unit of release; it keeps a long question open and trades pay-off for retention, answering a small question each season and opening a new one (the course game's choice). A closed arc pays off and must launch the next story. Choose by how much resolution the audience expects.
 
-A cautionary public example: *Guild Wars 2*'s first Living World season shipped in temporary installments and much of it was unavailable for years; ArenaNet later made seasons permanent and restored the first one in 2022 (per the game's wiki and press coverage, as of October 2026). The lesson: **keep released story playable**, or newcomers meet a story with a missing beginning.
+A cautionary public example: *Guild Wars 2*'s first Living World season shipped in temporary installments and much of it was unavailable for years; ArenaNet later made seasons permanent and restored the first one in 2022 (per the game's wiki and press coverage, as of October 2026). The trade-off: keeping released story playable lets newcomers start at the beginning; time-limited story gives events urgency and lowers the content to maintain, and leaves later players a gap that a recap or codex must fill.
 
 ### 3.3 Delivery methods, ranked by how little they stop play
 
@@ -98,7 +100,7 @@ A cautionary public example: *Guild Wars 2*'s first Living World season shipped 
 | **Cutscene** | 60–90 s | Yes | Skippable per player | Arc finales | High |
 | **Live event** | Minutes | No | Yes (shared) | Spectacle, big moments | High |
 
-Barks are one of the cheapest and densest tools: short lines that tell the player something about the world or the next step without a menu (as the Game Developer article in Further reading describes). Cutscenes in a party game need rules: every player may skip, and the group never waits for the slowest reader.
+Barks are one of the cheapest and densest tools: short lines that tell the player something about the world or the next step without a menu (as the Game Developer article in Further reading describes). Common cutscene policies in party games: each player may skip alone; the party waits for a shared cutscene; or the scene runs in an instance per player. Skippable scenes cost the story impact; waiting costs time.
 
 ### 3.4 Environmental and systemic storytelling
 
@@ -118,13 +120,21 @@ Both need a **bible fact** behind them, so a sign in a field and a line in a que
 | **Screen time** | Controlled by the author | Controlled by where the player goes |
 | **Change over time** | A planned arc | An arc spread across releases, which may be years apart |
 
-Rules for a game cast:
+Cast practices:
 
-1. **Every named character has a function in play** (vendor, trainer, quest giver, boss, board) and a function in the story. If either is missing, merge or cut them.
-2. **Use a small "face cast"**, 8–12 recurring named characters at launch, who appear across regions. Players remember a few characters well, not hundreds poorly.
-3. **Give each recurring character a voice** (sentence length, favourite images) that a barks writer can copy in five lines.
-4. **Cap new characters per season** so the cast does not grow beyond what the audience can follow.
-5. **Fiction and game may differ on purpose.** A film adaptation may keep only the core cast of the game.
+1. **Every named character has a function in play** (vendor, trainer, quest giver, boss, board) and a function in the story. If either is missing, a team can merge or cut them.
+2. **Give each recurring character a voice** (sentence length, favourite images) that a barks writer can copy in five lines.
+3. **Fiction and game may differ on purpose.** A film adaptation may keep only the core cast of the game.
+
+**Cast size options.**
+
+| Option | Strengths | Costs |
+|---|---|---|
+| **Small face cast** (8–12 recurring characters) | Memorable; cheap to write and voice | Fewer hooks for variety and for new products |
+| **Large cast** (dozens to hundreds, one story per character), as in many hero-collection games | A collection and a reason to return | Writing volume, voice work, a cap needed for continuity; many characters are forgotten |
+| **Mixed** | A small core story cast plus a large roster with short bios | Two writing tracks |
+
+Choose by whether characters are the product or the story's carriers. The course game keeps a small face cast at launch and caps new characters per season.
 
 ### 3.6 Lore bibles and canon management
 
@@ -145,15 +155,15 @@ A **lore bible** is the single source of facts. A minimal bible has:
 
 | Tier | Meaning | Change rule |
 |---|---|---|
-| **Locked** | Appears in shipped story or is part of the premise | Never changed; only extended |
+| **Locked** | Appears in shipped story or is part of the premise | The team commits not to change it and extends it instead; a retcon can still happen with sign-off and an in-world explanation |
 | **Soft** | Mentioned once, lightly | May be refined if the new version fits |
 | **Draft** | In planning only | Free |
 
-**Process.** One **continuity owner** keeps the bible. Every writer reads the entry before writing and sends a note after. New facts are logged with an ID. A retcon needs the continuity owner's sign-off and an **in-world explanation** ("the old Lodge records were wrong"). Public example: *World of Warcraft* has revised parts of its lore over many years, and the books that summarise it show how much explaining that takes (as of October 2026; so plan to avoid retcons).
+**Process.** One **continuity owner** keeps the bible. Every writer reads the entry before writing and sends a note after. New facts are logged with an ID. A retcon needs the continuity owner's sign-off and an **in-world explanation** ("the old Lodge records were wrong"). Public example: *World of Warcraft* has revised parts of its lore over many years, and the books that summarise it show how much explaining that takes (as of October 2026); retcons cost explanation work, so many teams plan to avoid them.
 
 ### 3.7 Ludonarrative harmony
 
-If the story says one thing and the mechanics reward another, players feel the gap even if they cannot name it. Critic Clint Hocking called this **ludonarrative dissonance** in a 2007 essay about *BioShock*: its mechanics rewarded self-interest while its story argued against it (see Further reading).
+If the story says one thing and the mechanics reward another, players often notice the gap. Critic Clint Hocking called this **ludonarrative dissonance** in a 2007 essay about *BioShock*: its mechanics rewarded self-interest while its story argued against it (see Further reading). Critics dispute how much it matters, and some games use the gap on purpose: *Spec Ops: The Line* is analysed as deliberately creating discomfort (see Further reading).
 
 A quick audit for any system:
 
@@ -163,19 +173,26 @@ A quick audit for any system:
 | What does the system reward? | Participation, cooperation | Top damage, solo carry |
 | Does the world react the same way the story says? | A boss that returns, as the story says it must | A boss that "dies for good" and returns next week |
 
-Fix the system or fix the story. Do not fix the player.
+A designer can close the gap (change the system or the story) or use it on purpose to make the player uncomfortable.
 
-### 3.8 Delivering story without stopping play
+### 3.8 Delivery styles
+
+Delivery runs from play-preserving to cinematic. The first table is play-preserving delivery, which the course game uses; the second is cinematic delivery.
 
 | Technique | How |
 |---|---|
 | **Move while talking** | Dialogue lines play as a banner while the hero keeps moving; a character walks with the player |
 | **Barks for hints and mood** | An NPC says what the player should know in 8 words |
 | **Skippable by default** | A skip button on every scene and a summary on skip |
-| **Never in a fight** | No scene starts while enemies are alive; the player decides when to read |
-| **Never wait for a slow reader** | A party moves on when everyone has skipped, or after a fixed time |
+| **No scenes in a fight** | A common practice: no scene starts while enemies are alive; the player decides when to read |
+| **Not waiting for a slow reader** | A party moves on when everyone has skipped, or after a fixed time |
 | **Rewatch** | Every scene can be replayed from the journal (for Lena) |
 | **Recap** | A short "previously" for returning players |
+
+| Cinematic delivery | Strength | Cost |
+|---|---|---|
+| Long voiced scenes and full-screen dialogue (*Final Fantasy XIV* Main Scenario, as of October 2026) | Emotional weight | Production cost and time; some players skip it |
+| Play-preserving delivery (table above) | No interruption | Weaker emotional peaks |
 
 ### 3.9 Localisation-aware writing
 
@@ -183,11 +200,11 @@ Most online games ship in several languages. Write so that translation is easy a
 
 | Rule | Why | Example |
 |---|---|---|
-| **Never build a sentence from pieces** | Word order and grammar differ | Bad: `"You defeated " + n + " raiders"`. Good: one string with a placeholder |
+| **Whole strings, not sentences built from pieces** | Word order and grammar differ | Bad: `"You defeated " + n + " raiders"`. Good: one string with a placeholder |
 | **Use plural and gender rules from a standard** | Languages have different plural forms | ICU message format; CLDR plural rules |
 | **Leave room for expansion** | Translated text is usually longer; very short labels grow the most | Budget about 1.3× for long text and 2–3× for labels of ten characters or less (W3C summary of IBM guidance) |
 | **Give context** | A translator sees one string, not the scene | Add "who speaks to whom" and where it appears |
-| **Avoid idioms and puns** | They do not travel | Say "we hold the line", not a joke on the word |
+| **Idioms and puns** | They need transcreation (a rewritten line) | Budget for that, or use plain wording where cost matters: "we hold the line" rather than a pun |
 | **Keep names stable** | Players search for them; art and VO use them | A glossary of names that never translate |
 | **Do not put text in images** | Image text cannot be localised cheaply | Keep it as strings |
 | **Plan register** | Many languages have formal or informal address | Mark how a character addresses the player |
@@ -203,7 +220,7 @@ Most online games ship in several languages. Write so that translation is easy a
 | Old story becomes unreachable | Keep all released story playable or readable (codex, replay) |
 | New players are lost | A recap and a level-50 entry point for each season |
 | The cast grows without limit | A cap on new characters and a "retire" rule |
-| A mystery with no answer | Open only threads that someone has already planned to answer |
+| A mystery with no answer | Threads opened without a planned answer keep options open and can become a mystery box if never closed; keep a list and decide per thread whether it has an owner |
 | Players guess your twist | Plan two seasons ahead; keep a "red herring" list |
 
 ### 3.11 How to choose
@@ -230,7 +247,7 @@ Decide the amount of story per hour of play, then hold it. Invented targets for 
 | **Codex entry** | Up to 120 words |
 | **Text on screen at once** | Up to 3 lines on mobile |
 
-Reading speed for a typical adult is roughly 200–250 words per minute on a screen (rule of thumb, inferred), so a 35-word page takes 9–11 seconds. Three pages is 30 seconds, which is the most a quest giver should ask for before the player acts.
+Reading speed for a typical adult is roughly 200–250 words per minute on a screen (rule of thumb, inferred), so a 35-word page takes 9–11 seconds. Three pages is 30 seconds, which is the course game's budget before the player acts; games with longer dialogue assume the player wants it.
 
 ### 4.2 Signals that something is wrong
 
@@ -247,10 +264,10 @@ Reading speed for a typical adult is roughly 200–250 words per minute on a scr
 ### 4.3 Classic failures
 
 - **Lore dump.** A page of text where one bark would do.
-- **The mystery box.** An open question with no planned answer. Players wait, then feel cheated.
-- **The cast sprawl.** Hundreds of characters, most forgotten, many added only to sell something; the core story loses its shape.
+- **The mystery box.** An open question with no planned answer risks players leaving disappointed.
+- **Cast growth.** A large cast is memorable only in part and needs continuity effort; it is also the product in collection games.
 - **The retcon spiral.** Each fix creates a new contradiction.
-- **The ending that ends the game.** A live game that resolves its main story must have the next story planned.
+- **Ending the main story.** The game needs a next story (see closed arcs, section 3.2).
 - **Mechanics that say the opposite.** A rewards system that tells the player to ignore the theme.
 - **Unreachable story.** Old chapters removed, so new players cannot follow.
 - **Untranslatable writing.** Jokes, puns, built-up sentences.
@@ -377,7 +394,7 @@ The weekly world boss, the **Ashen Colossus** (module 12), is the course game's 
 ### 5.7 What was cut
 
 - **A named, voiced hero.** A silent Wayfarer keeps the game open to all five classes and avoids localising voice acting for the hero.
-- **A branching story with player-made canon.** It would multiply content and break the shared world; choices are cosmetic or local.
+- **A branching story with player-made canon.** The course game keeps one shared world, and branches would multiply content; choices are cosmetic or local. Games with player-driven canon (*EVE Online*) accept a different cost.
 - **A fixed ending.** Book One ends with open threads; a planned final book is a decision for later.
 - **Full voice-over.** Barks and finales are the only candidates for audio; the rest is text.
 - **Faction wars.** Season 2's factions are cosmetic, since open-world PvP is out of scope (course game scope).
@@ -394,15 +411,18 @@ The weekly world boss, the **Ashen Colossus** (module 12), is the course game's 
 ## Key takeaways
 
 - **Narrative design** decides structure and delivery; **writing** fills it. Keep the decisions in an outline, and let the writers follow it.
-- A live game is a **serial**: a fixed premise, arcs, a repeatable season unit, and open threads. Never answer the big question early.
-- **Do not stop the play.** Prefer barks, environment and systems, with short skippable scenes and a recap for returning players.
-- A game cast serves **two functions** (a service in play and a role in the story); keep a small, recurring face cast and cap new characters per season.
-- A **lore bible with canon tiers and one continuity owner** is how many writers stay consistent over years; keep released story playable.
+- Live games use **serials, expansions, closed arcs or emergent stories**; each trades pay-off for retention differently.
+- Delivery runs from **play-preserving** (barks, environment) to **cinematic**; pick by your players' patience.
+- A game cast serves **two functions** (a service in play and a role in the story). Cast size is a decision: small and memorable, or large and collectable; the course game keeps a small core and caps new characters.
+- A **lore bible with canon tiers and a continuity owner** is a common way to keep writers consistent over years.
 - Audit every system for **ludonarrative harmony**: what the story says matters and what the rules reward must agree.
-- Write for **localisation**: whole strings, standard plural rules, room for expansion, stable names, no puns.
+- Write for **localisation**: whole strings, standard plural rules, room for expansion and stable names.
 
 ## Further reading
 
+- Kristine Jørgensen, on *Spec Ops: The Line* and discomfort (Game Studies): https://gamestudies.org/1602/articles/jorgensenkristine
+- Battle of B-R5RB (EVE Online, 2014; a player-driven story): https://en.wikipedia.org/wiki/Battle_of_B-R5RB
+- Final Fantasy XIV: Endwalker (the closing of a long arc): https://en.wikipedia.org/wiki/Final_Fantasy_XIV:_Endwalker
 - Clint Hocking and ludonarrative dissonance (overview): https://en.wikipedia.org/wiki/Ludonarrative_dissonance
 - Harvey Smith and Matthias Worch, "What Happened Here? Environmental Storytelling" (GDC 2010): https://www.gdcvault.com/play/1012647/What-Happened-Here-Environmental
 - Environmental storytelling (overview): https://en.wikipedia.org/wiki/Environmental_storytelling

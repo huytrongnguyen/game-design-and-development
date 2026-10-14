@@ -7,7 +7,7 @@
 
 ## In short
 
-**UX** (user experience) is how the whole interaction feels and works; **UI** (user interface) is the screens, icons and text that carry it. In an online RPG the hardest UI is the **HUD**, which must show a fight's information in the right order without hiding the world. The hardest UX problem is the **first-time user experience (FTUE)**: most players who leave do so in the first minutes, so the opening hour must teach by playing, unlock systems one at a time, and be measured step by step. Accessibility (colour-blind-safe danger signals, readable text, remappable controls, subtitles) is cheaper to build in than to add later and helps everybody. The worked example is the course game's first hour, minute by minute, with the HUD for PC and touch and the list of what unlocks when.
+**UX** (user experience) is how the whole interaction feels and works; **UI** (user interface) is the screens, icons and text that carry it. In an online RPG the hardest UI is the **HUD**, which must show a fight's information in the right order without hiding the world. The hardest UX problem is the **first-time user experience (FTUE)**: most players who leave do so in the first minutes, so the opening hour needs a plan for teaching (by playing, by tutorial, by tips or by a mix), a plan for what unlocks when, and a way to measure each step. Accessibility (colour-blind-safe danger signals, readable text, remappable controls, subtitles) is cheaper to build in than to add later and helps everybody. The worked example is the course game's first hour, minute by minute, with the HUD for PC and touch and the list of what unlocks when.
 
 ## 1. The concept
 
@@ -73,15 +73,17 @@ Rank everything by "how fast does the player need it?" and let the rank set size
 | **2. Decide soon** | "What is my situation?" | Target frame, party HP, buffs and debuffs, minimap, XP | Medium; always visible but quiet |
 | **3. Reference** | "What else exists?" | Quest tracker, chat, loot feed, menu icons | Small; fades to about 40% opacity in combat; never blocks a tier 1 element |
 
-Three rules go with it:
+Three practices the course game uses:
 
-1. **Telegraphs outrank the HUD.** Nothing but a skill preview may be drawn over the middle 40% of the screen in combat (module 08, rule 3).
-2. **One colour, one meaning.** Red is reserved for enemy danger ([module 10](10-skills.md)); blue means safe; yellow means help ([module 08](08-combat.md)).
-3. **Group by action, not by type.** The skill bar sits where the right hand is (bottom centre on PC, right thumb on touch); health sits where the eyes rest (top left).
+1. **Telegraphs outrank the HUD.** Only a skill preview is drawn over the middle 40% of the screen in combat (module 08, rule 3).
+2. **One colour carries one meaning.** The course game reserves red for enemy danger ([module 10](10-skills.md)), blue for safe and yellow for help ([module 08](08-combat.md)). Many games also use red for health and differ on the safe and help colours.
+3. **Group by action.** The skill bar sits where the right hand is (bottom centre on PC, right thumb on touch); health sits where the eyes rest (top left).
+
+Other games trade space for information density.
 
 ### 3.3 Feedback and readability
 
-Link to [module 06](06-controls-camera-feel.md) (the feedback list: every action has a visual and an audio cue within 100 ms) and [module 08](08-combat.md) (telegraphs are visible, consistent and longer than reaction time). The UX work is the **budget**: how many things may flash at once. A rule that works: at most one tier-1 alert at a time in the centre of the screen, and an effect that covers a telegraph is a bug, not a style.
+Link to [module 06](06-controls-camera-feel.md) (the feedback list: every action has a visual and an audio cue within 100 ms) and [module 08](08-combat.md) (telegraphs are visible, consistent and longer than reaction time). The UX work is the **budget**: how many things may flash at once. In the course game, at most one tier-1 alert shows at a time in the centre of the screen, and an effect that covers a telegraph is treated as a bug (pillar 2). Games that value spectacle accept more overlap and use other cues.
 
 ### 3.4 Menus and inventory
 
@@ -95,7 +97,7 @@ Link to [module 06](06-controls-camera-feel.md) (the feedback list: every action
 | **New-item hints** | A dot on the icon and the item; cleared on view | Cheap and effective |
 | **Mobile form** | Bottom sheets and large rows (48 dp or more); no hover | Hover tooltips do not exist on touch: long-press or a detail panel |
 
-Do **the same flows on PC and touch**; only the input changes. A menu is also a promise: if you put a feature in it, the player expects it to work the same everywhere.
+Cross-platform menus can share **one flow** (one design to test, a promise of parity; the course game does this) or differ per platform (each fits its input; two designs to build and test). A menu is also a promise: a feature in it is expected to work the same everywhere it appears.
 
 ### 3.5 Accessibility
 
@@ -110,7 +112,7 @@ Accessibility means a game people with different senses, abilities and devices c
 | **Subtitles** | On by default for all speech, with speaker names and a background panel, size adjustable | Hearing, noise, silent play, translation |
 | **Effects** | Options to reduce screen shake, flashing and damage numbers | Motion sickness, photosensitivity, clutter |
 | **Audio to visual** | Every important sound has a visual cue (module 06's list) | Hearing |
-| **Difficulty and assist** | Assist options in a single-player game; in an online game, grouping and clear tells do this job | Fairness online; parity of PvP is covered in module 23 |
+| **Difficulty and assist** | Assist options (aim assist, auto-targeting, reduced difficulty in PvE) exist in online games too; clear tells and grouping also help | Fairness constraints apply to PvP and ranked modes (module 23) |
 
 The Game Accessibility Guidelines state the basics plainly: "Ensure no essential information is conveyed by a fixed colour alone", "Allow controls to be remapped / reconfigured" and "Provide subtitles for all important speech". The Xbox Accessibility Guidelines add a structure for each area. Both are in Further reading.
 
@@ -123,6 +125,9 @@ The Game Accessibility Guidelines state the basics plainly: "Ensure no essential
 | **Contextual tips** | A short hint the first time a situation appears | Cheap; just in time | Easy to ignore; can interrupt a fight | Nearly all games |
 | **Optional codex or help** | A searchable page of how things work | Players re-read it | Not for the first minute | Everywhere |
 | **Skip option** | Veterans or alts skip or fast-forward | Respects experienced players | Skippers miss controls | Many long-lived games |
+| **No tutorial (discovery)** | The game states little; players learn by trying and from the community | Mystery; respect for players | Leaks players who need help | Many action games |
+| **Story intro** | A cinematic or story opening that carries the first lessons | Emotional hook | Slow to the first action | Story-led games |
+| **Mentor or buddy** | An experienced player guides a new one | Social bond | Needs players and rewards | *Final Fantasy XIV*'s Mentor system and Novice Network |
 
 A public example: World of Warcraft's **Exile's Reach** (introduced with the Shadowlands pre-patch, October 2020) starts new players in a guided island zone for levels 1 to 10, while a veteran can pick a normal starting area or skip to level 10 (see Further reading; checked October 2026).
 
@@ -138,21 +143,21 @@ Showing everything at the start overwhelms; hiding everything loses the veteran 
 | **Progressive disclosure** | Icons appear when unlocked; locked ones are hidden | Clean HUD; players miss that the feature exists |
 | **Shown locked** | The icon is visible and greyed with "Unlocks at level N" | Tells players what is coming; adds clutter |
 
-A good rule is to **introduce a system when the player first needs it, in the place they need it**, and to **show locked systems** with their requirement once the player is close (as quests do in module 19).
+Two common practices: **introduce a system when the player first needs it, in the place they need it**, and **show locked systems** with their requirement once the player is close (as quests do in module 19). Hidden-until-unlocked keeps the HUD clean and hides what is coming; showing it motivates and adds clutter.
 
-### 3.8 Tutorial anti-patterns
+### 3.8 Common tutorial pitfalls and their trade-offs
 
-| Anti-pattern | What goes wrong | Fix |
+| Pitfall | What goes wrong | Fix |
 |---|---|---|
 | **A wall of text** | Nobody reads it; it is out of date after the next patch | One line and one action |
-| **An unskippable long scene** | The first minute is a video | 30 seconds, skippable, control early |
+| **An unskippable long scene** | A long scene raises story weight and costs players who want to play | Allow a skip; keep control early |
 | **A fake tutorial mode** | Different from the real game; skills do not transfer | Teach in the real game |
 | **Teaching everything at once** | Ten prompts in a minute; none is remembered | One idea at a time, practised before the next |
 | **Prompts that cover the fight** | The player cannot read the telegraph | Prompts at the edge; pause nothing |
 | **"Press X to continue"** | The player is waiting for the game | Advance on the action itself |
 | **Prompts for the wrong device** | "Click" on a phone | Detect the device and show its own prompt |
-| **Wait gates** | "Come back in 4 hours" in the first hour | No timers in the first hour (module 17: nothing sold touches it) |
-| **Early asks** | Rating, push-notification permission, shop offer in the first minutes | Ask after the first success, or not in the first session |
+| **Wait gates** | "Come back in 4 hours" in the first hour; early timers slow progress and can sell speed-ups | The course game uses no timers in the first hour (module 17) |
+| **Early asks** | Asking for a rating, notifications or showing an offer early raises opt-in rates and risks the first impression; many mobile games ask early | The course game asks after a success, or not in the first session |
 | **No way back** | A tip seen once cannot be found again | A help page and a "replay tips" option |
 
 ### How to choose
@@ -166,7 +171,7 @@ A good rule is to **introduce a system when the player first needs it, in the pl
 
 ## 4. Tuning and pitfalls
 
-**The first minute.** A rule of thumb (inferred, from public onboarding guides): get the player into the core action within about a minute of pressing Play, and keep the first reward within the first few minutes. Roblox's onboarding guidance (see Further reading) also advises low thresholds for the first levels, so that a player feels progress at once. The course game's level curve ([module 14](14-progression.md)) already does that: level 2 arrives at 4.7 minutes.
+**The first minute.** Many public onboarding guides advise getting the player into the core action within about a minute of pressing Play, with the first reward within the first few minutes; story-led games open with a longer intro. The course game targets a first hit within 60 seconds. Roblox's onboarding guidance (see Further reading) also advises low thresholds for the first levels, so that a player feels progress at once. The course game's level curve ([module 14](14-progression.md)) already does that: level 2 arrives at 4.7 minutes.
 
 **Measure the funnel.** Add an event for every step of the FTUE and plot completion at each. The step with the largest absolute drop is the one to fix first (a case in Meta's analytics guidance found one tutorial step responsible for a 6% loss of new users; see Further reading).
 
@@ -185,7 +190,7 @@ Common **pitfalls**:
 - **Designing for the first session only.** The first hour is the **session** and the first week is the **retention**; systems introduced and never revisited are forgotten.
 - **Tooltips at 12 pt.** Unreadable on a phone; the minimum body text must be tested on the smallest supported device.
 - **Thumb on the HUD.** A button under the palm, or a tracker where the thumb rests.
-- **Fixing every drop with a prompt.** More prompts do not teach; a simpler first encounter does.
+- **Fixing every drop with a prompt.** A prompt is one fix; a simpler first encounter is another. Prompts are cheap and can interrupt play; a simpler encounter costs authoring time.
 - **Leaving out accessibility until late.** Colour-blind modes and text scaling touch every screen; adding them after launch is expensive.
 
 ## 5. Worked example
@@ -371,7 +376,7 @@ Red stays reserved for enemy danger ([module 10](10-skills.md)), and a skill rec
 - **A spoken, unskippable intro.** One 25-second skippable scene.
 - **Quest auto-travel** and **a mini-game for the hub** (module 19 and 18 cut them).
 - **A paper-doll with an equipment preview in 3D** at launch; a flat grid and a paper-doll icon list.
-- **An "AI helper" companion** that comments on every action: too intrusive; hints are one line.
+- **An "AI helper" companion** that comments on every action: cut because the course game keeps its first hour to one-line hints (pillar 4); an on-demand helper that answers when asked is another option.
 - **A full controller map** ([module 06](06-controls-camera-feel.md)).
 
 ### 5.9 How the design would differ for another kind of game
@@ -388,14 +393,15 @@ Red stays reserved for enemy danger ([module 10](10-skills.md)), and a skill rec
 
 - **UX is the whole experience; UI is what carries it.** The HUD answers "what do I do now?" and gets the best place; menus answer "what do I want?".
 - Rank information by **how fast the player needs it** (act now, decide soon, reference), and keep the centre of the screen for the fight and its telegraphs.
-- **Never rely on colour alone.** Shape, pattern, outline and sound make the danger readable to the roughly 1 in 12 men with a colour-vision deficiency. Offer text scaling, remapping and subtitles.
-- **Teach by doing, one idea at a time,** in the real game: a guided first zone, contextual tips, a skip for veterans, a help page for the rest.
-- **Introduce each system at the moment it is needed**, and show locked systems with their requirement.
-- The first hour needs **a reward every few minutes**, no waiting, and no shop or permission asks.
+- The Game Accessibility Guidelines advise **not relying on colour alone**: shape, pattern, outline and sound make the danger readable to the roughly 1 in 12 men with a colour-vision deficiency. Text scaling, remapping and subtitles are the other basics.
+- Onboarding can **teach by doing, by tutorial, by tips or by a mix**; the course game teaches by doing, one idea at a time.
+- Systems can unlock when needed, by level, by quest or all at once; the course game unlocks by need and shows locked systems.
+- The course game's first hour gives **a reward every few minutes**, has no waiting and no shop or permission asks; mobile games often ask earlier.
 - **Measure the funnel step by step**: fix the largest leak first, split by platform and class, and let a think-aloud playtest explain why.
 
 ## Further reading
 
+- Final Fantasy XIV Console Games Wiki, "Mentor System and Novice Network": https://ffxiv.consolegameswiki.com/wiki/Mentor_System_and_Novice_Network
 - Game Accessibility Guidelines (a reference for inclusive game design): https://gameaccessibilityguidelines.com/full-list/
 - Xbox Accessibility Guidelines (Microsoft Learn, version 3.2 as of October 2026): https://learn.microsoft.com/en-us/gaming/accessibility/guidelines
 - W3C, Web Content Accessibility Guidelines 2.2 (contrast minimums): https://www.w3.org/TR/WCAG22/

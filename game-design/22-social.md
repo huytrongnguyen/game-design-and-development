@@ -1,13 +1,13 @@
 # Module 22: Social systems
 
-- **Goal:** design the social layer of an online RPG (parties, guilds, friends, chat, trading) so that players meet, stay together and stay safe, without forcing anyone to socialise.
+- **Goal:** design the social layer of an online RPG (parties, guilds, friends, chat, trading) so that players meet, stay together and stay safe, and decide how much of it the game requires, rewards or leaves optional.
 - **Prerequisites:** [01 — The player experience](01-player-experience.md), [03 — Vision, pillars and loops](03-vision-pillars-loops.md), [11 — One hero, a party or a roster](11-party-roster.md), [18 — World and level design](18-world-level.md).
 - **Simulation:** none
 - **Facts checked:** October 2026 (prices, rules and product status change; re-check before reuse)
 
 ## In short
 
-A **social system** is any feature that lets players find each other, act together and talk. In an online RPG it is the main reason people stay for years: content gets consumed, friends do not. The tools form a ladder: **strangers** share a field, **parties** run content together, **friends** keep in touch, **guilds** give a standing group a home and shared goals. Around the ladder sit **chat**, **expression** (emotes, pings), **trading** and the safety machinery (**moderation**, **reporting**, **protection of minors**) that keeps the ladder usable. The central design choice is how much the game *requires* social play versus *rewards* it. The worked example designs the course game's guild (50 members, four ranks, a weekly goal that scales with how many members are active, a guild hall in Kindlewick), its friends and chat rules, and how shared kill credit in the fields feeds the group finder.
+A **social system** is any feature that lets players find each other, act together and talk. In many online RPGs, social ties are one of the main reasons people stay for years: content gets consumed, and friends may remain. The tools form a ladder: **strangers** share a field, **parties** run content together, **friends** keep in touch, **guilds** give a standing group a home and shared goals. Around the ladder sit **chat**, **expression** (emotes, pings), **trading** and the safety machinery (**moderation**, **reporting**, **protection of minors**) that keeps the ladder usable. The central design choice is how much the game *requires* social play versus *rewards* it. The worked example designs the course game's guild (50 members, four ranks, a weekly goal that scales with how many members are active, a guild hall in Kindlewick), its friends and chat rules, and how shared kill credit in the fields feeds the group finder.
 
 ## 1. The concept
 
@@ -31,7 +31,7 @@ A **social system** is any feature that lets players find each other, act togeth
 
 ### 1.2 The social ladder
 
-Players do not jump from "alone" to "guild". They climb, and each step must be easy and optional.
+Players do not jump from "alone" to "guild". They climb. Each step can be made easy and optional, or required for some content; the choice sets how large the social pull is and who is shut out.
 
 ```mermaid
 flowchart LR
@@ -61,7 +61,7 @@ What players want from the social layer:
 
 Two cautions from research and practice:
 
-- **Many players are social only a little.** A well-known study of a large online RPG found that players often spend much of their time near others without grouping, "alone together" (Ducheneaut and others, 2006). Design for people who want company, not conversation.
+- **Many players are social only a little.** A well-known study of a large online RPG found that players often spend much of their time near others without grouping, "alone together" (Ducheneaut and others, 2006). One option is to design for company without conversation; other designs ask for deep cooperation (raids, sieges) and serve the players who want it.
 - **Social pressure can become obligation.** Raid attendance rules, "be online at 20:00 or lose your slot" and public contribution rankings turn a hobby into a shift. The same features that bind players can burn them out.
 
 ## 3. The design space
@@ -78,9 +78,9 @@ Module 11 covers parties and group finders in full. The social-design point is t
 | **Medium (100–200)** | A community with sub-groups | Games with 20+ player content | Needs officers and sub-channels |
 | **Large (500 and up)** | A small society, often with several sub-guilds | Games with sieges and territory | Needs tools: ranks, permissions, logs, alliances |
 
-Public examples (as of October 2026): in *Guild Wars 2* a guild starts at 50 members and can be upgraded to 500; in *Final Fantasy XIV* a Free Company holds up to 512 members. Anthropologist Robin Dunbar's famous figure of about 150 stable relationships is often quoted to justify guild sizes, but it is contested and should be read as a rough prompt, not a rule.
+Public examples (as of October 2026): in *Guild Wars 2* a guild starts at 50 members and can be upgraded to 500; in *Final Fantasy XIV* a Free Company holds up to 512 members. Anthropologist Robin Dunbar's famous figure of about 150 stable relationships is often quoted to justify guild sizes, but it is contested and is best read as a rough prompt.
 
-**How to choose:** size follows the largest activity. If the biggest shared content is a 40-player boss, a guild of 50 is enough; if it is a siege between hundreds, a guild must be large.
+**How to choose.** One way is to size the guild to the largest activity: if the biggest shared content is a 40-player boss, a guild of 50 is enough; if it is a siege between hundreds, a guild must be large. Other drivers are moderation load, server load and community feel.
 
 ### 3.3 Guilds: ranks and permissions
 
@@ -94,7 +94,7 @@ A rank is a bundle of permissions. Most games ship a few default ranks and let l
 | Edit ranks, transfer leadership, disband | Leader only | Prevents a coup |
 | Use the guild bank or storage | Rank-based | The most abused permission (see below) |
 
-**Succession** is the rule people forget. If the leader stops logging in, the guild is stuck. Good rule: after a set period of inactivity, the longest-serving active officer is promoted, with a notice to everyone.
+**Succession** is the rule people forget. If the leader stops logging in, the guild is stuck. A common rule: after a set period of inactivity, the longest-serving active officer is promoted, with a notice to everyone.
 
 **Guild banks and storage** hold shared items or currency. They create trust problems (a leader or officer can empty it) and economy problems (a bank is a channel for gold sellers and bots). Many games ship them anyway; a simple game can leave them out.
 
@@ -108,18 +108,20 @@ A guild needs a reason to exist beyond a chat channel.
 | **Weekly or seasonal goals** | The whole guild fills a bar together | Rewards must not depend on a few heavy players |
 | **Guild hall or base** | A shared space: board, trophies, decorations | Space and moderation cost; can become housing |
 | **Guild-only content** | A dungeon, a mission or a boss for guild groups | Splits the player base; needs scaling for small guilds |
-| **Guild versus guild** | Territory, sieges, leaderboards | Needs PvP, balance and anti-cheat (module 23); excludes the casual |
+| **Guild versus guild** | Territory, sieges | Needs PvP, balance and anti-cheat (module 23); excludes the casual |
+| **Guild leaderboard** | Ranks guilds by activity or score | Rivalry and pride; pressure, and casual guilds are left out |
+| **Guild buff or perk** | A passive bonus for members | A reason to join; power by membership |
 
 Public example (as of October 2026): *Guild Wars 2* lets members cooperate to unlock a guild hall and buy upgrades, and runs cooperative **Guild Missions** that pay out commendations. Its model rewards the guild collectively rather than ranking members.
 
-**Design rule for guild goals:** scale the target to the number of *active* members and cap each member's contribution, so that a three-person guild and a fifty-person guild can both finish, and no single heavy player carries the rest.
+**Guild goal options.** A fixed target (simple; large guilds win), a target scaled to active members (small guilds can finish), a per-member cap (no single player carries), or a ranking (competition). The course game scales the target to the number of *active* members and caps each member's contribution, so that a three-person guild and a fifty-person guild can both finish.
 
 ### 3.5 Friends and presence
 
 | Feature | Options | Notes |
 |---|---|---|
 | **Friend list size** | 50–200 is typical | A cap keeps the list meaningful and the server cheap |
-| **Request type** | Mutual (both accept) is standard | One-way "follow" lists exist but invite harassment |
+| **Request type** | Mutual (both accept) is standard | One-way "follow" lists need no consent and are easy to join; they also let others see or contact a player who did not agree, so they pair with blocks and privacy settings |
 | **Presence detail** | Online only, plus activity, plus location | More detail means more privacy risk; give a setting |
 | **Appear offline** | Common and wanted | Without it, players mute notifications instead |
 | **Recent players list** | Last 20–50 people you grouped with | A cheap bridge between a stranger and a friend |
@@ -132,12 +134,15 @@ Public example (as of October 2026): *Guild Wars 2* lets members cooperate to un
 | **Local (zone, town)** | Everyone near you | Spam in busy towns |
 | **World or global** | Everyone on the server | Advertising, scams, abuse; hard to moderate |
 | **Trade** | A channel for selling | Scam traffic; made redundant by a market |
+| **Language or region** | Everyone speaking one language | Needs moderation per language |
+| **Looking for group** | A channel for party search | Spam; partly redundant once a group finder exists |
+| **Preset-only** | Fixed phrases, no free text | Safe for children; limited expression |
 | **Party and raid** | Your group | Low risk; the main place for coordination |
 | **Guild** | Your guild | Low risk; needs mute and rank rules |
 | **Whisper** | One to one | The main route for harassment and scams |
 | **Voice** | Real-time speech | Highest value for coordination; highest moderation cost; many games rely on outside tools |
 
-Two practical rules. **Phones make typing slow**, so offer presets and pings. **Defaults matter more than options**: public evidence shows regulators now treat risky defaults as a design fault (section 4.5).
+Two practical points. **Phones make typing slow**, so presets and pings help. **Defaults carry weight**: public evidence shows regulators now treat risky defaults as a design fault (section 4.5).
 
 ### 3.7 Expression: emotes and pings
 
@@ -169,7 +174,7 @@ Standard defences:
 
 ### 3.9 Cooperation versus competition
 
-Social systems make a choice between three modes, and mixing them badly is the commonest design error.
+Social systems make a choice between three modes, and mixing them has costs.
 
 | Mode | Example | Effect |
 |---|---|---|
@@ -177,11 +182,11 @@ Social systems make a choice between three modes, and mixing them badly is the c
 | **Cooperative-competitive** | Guild goals, guild leaderboards | Pride and rivalry; excludes small guilds and casual players |
 | **Competitive** | Duels, arenas, sieges (module 23) | Strong feeling for a minority; needs fair rules |
 
-The failure is competition *inside* cooperation: need-or-greed rolls on a shared chest, kill-stealing, a damage meter that names and shames, a vote to kick a player the moment the boss dies. Each makes strangers wary of each other. Personal loot and shared credit (module 11 and the example below) remove the incentive instead of policing the behaviour.
+Some games set competition *inside* cooperation on purpose: need-or-greed rolls make loot a social negotiation, damage meters let players compare, kick votes let parties remove a player. They cost trust between strangers. Personal loot and shared credit (module 11 and the example below) remove the incentive instead of policing the behaviour, and in exchange remove the negotiation and the competition some players enjoy.
 
 ### 3.10 Toxicity, moderation and reporting
 
-**What the evidence says.** Riot Games reported at GDC 2013 that about 1% of players in *League of Legends* were consistently toxic and produced only about 5% of the toxic behaviour: most of it came from ordinary players having a bad day (as reported by Scientific American). The Anti-Defamation League's survey of adult players in US online multiplayer games found 76% had experienced some harassment in 2023 (as of October 2026). Two lessons: toxicity is mostly situational, so **design fixes the situations**; and it is common, so **you need systems**, not just a code of conduct.
+**What the evidence says.** Riot Games reported at GDC 2013 that about 1% of players in *League of Legends* were consistently toxic and produced only about 5% of the toxic behaviour: most of it came from ordinary players having a bad day (as reported by Scientific American). The Anti-Defamation League's survey of adult players in US online multiplayer games found 76% had experienced some harassment in 2023 (as of October 2026). One reading of these figures: toxicity is mostly situational (Riot, 2013), so design changes can reduce it, and it is common (ADL, 2023), so systems are needed besides a code of conduct. Other teams combine design changes with heavy enforcement or with closed communities.
 
 **What worked in public reports (as of October 2026):**
 
@@ -216,13 +221,14 @@ Many players are under 18, and some are under 13. The rules differ by country an
 | **UK Online Safety Act** (children's duties in force from 25 July 2025) | Risk assessments and safety measures for services children use, including user-to-user chat |
 | **EU Digital Services Act, Article 28** (Commission guidelines, July 2025) | A high level of privacy, safety and security for minors on platforms they can access |
 
-Design implications that hold in all of them:
+Design implications that follow from these rules:
 
 1. **Know the age bracket** (or assume the youngest) and set the **defaults** by it: restricted chat, private presence, no unsolicited whispers.
 2. **Avoid collecting what you do not need.** Chat logs are personal data.
 3. **Parents get controls** where the law requires them, and they are easy to find.
-4. **No real-money pressure in social features** (module 17).
-5. **Report and block must be one tap away**, in every chat and on every profile.
+4. **Report and block one tap away**, in every chat and on every profile.
+
+A design choice many teams make beyond the rules: no real-money pressure in social features ([module 17](17-monetization.md)).
 
 ### 3.12 Social features on mobile
 
@@ -241,7 +247,7 @@ Design implications that hold in all of them:
 |---|---|---|
 | Is the biggest content 20 or more players? | Large guilds, ranks with permissions | Small guilds, three ranks |
 | Is the audience mostly mobile and casual? | Presets and pings first; goals that fill over days | Real-time chat and voice can lead |
-| Does the game have PvP territory? | Guild versus guild, strong tools and logs | Keep guilds cooperative; no rankings |
+| Does the game have PvP territory? | Guild versus guild, strong tools and logs | Guilds can stay cooperative, or add rankings or content races for competitive guilds |
 | Is the audience young? | Restricted-by-default chat, parental controls | Standard defaults with block and report |
 | Is trading central to the economy? | Two-step trade, restrictions, staff reversal | Binding rules, no player market |
 
@@ -262,8 +268,7 @@ Design implications that hold in all of them:
 
 ### 4.2 Classic failures
 
-- **The mandatory guild.** If the best rewards require a guild, solo players and shy players are shut out. This game keeps rewards for guilds modest and solo play never blocked (pillar 3).
-- **The attendance shift.** Guild goals that need members online at a fixed hour create resentment.
+- **Guild-gated rewards and attendance goals.** They raise the guild's value and the pressure on members. Many MMORPGs use them for their social pull; players who do not want that look elsewhere. The course game keeps guild rewards modest and solo play unblocked (pillar 3).
 - **The ghost guild.** Hundreds of empty guild names clutter search. Require a small founding group and prune inactive guilds.
 - **The leader trap.** One founder holds the guild hostage. Add succession and an officer majority to remove a leader.
 - **The unmoderated whisper.** Most harassment and scams arrive by whisper. Provide block, and rate-limit whispers from strangers.
@@ -362,7 +367,7 @@ It is **not housing**: no placement grid, no farming, no storage (all out of sco
 
 **Guild content.** One guild-specific activity: the **Guild run**, which is any weekly dungeon with three or more members of one guild. It pays the doubled Kindling of section 5.4 and grants the **Bond**: +4% maximum HP for each distinct role present (tank, healer, damage), up to +12%. The Bond exists to reward a guild that fills its roles, which serves pillar 3; module 25 balances the number.
 
-**What was cut:** guild bank, guild versus guild, public guild rankings, guild levels that unlock combat perks, and mandatory attendance.
+**What was cut:** guild bank, guild versus guild, public guild rankings, guild levels that unlock combat perks, and mandatory attendance. Cut for the course game's scope and for pillar 3 (solo play unblocked); games with large guilds keep several of these for their social weight.
 
 ### 5.6 Friends, presence and chat
 
@@ -405,8 +410,8 @@ The thanks tags follow the *Overwatch* idea of rewarding good behaviour as well 
 
 ### 5.8 What was cut
 
-- **Mandatory guild content.** Solo play is never blocked.
-- **Guild bank and guild leaderboards.** Trust and pressure problems for little gain.
+- **Mandatory guild content.** Cut because pillar 3 keeps solo play unblocked.
+- **Guild bank and guild leaderboards.** Cut for this game: a bank adds trust and gold-seller work, and leaderboards add pressure on casual guilds; games with large guilds keep both for their social weight.
 - **Voice chat.** Moderation cost.
 - **A global channel.** Spam; the finder and boards replace it.
 - **Friend gifting.** A monetization and safety question left to [module 17](17-monetization.md).
@@ -423,10 +428,10 @@ The thanks tags follow the *Overwatch* idea of rewarding good behaviour as well 
 
 ## Key takeaways
 
-1. Social systems are the strongest long-term retention tool, but only when they are **optional and cheap**: make every step up the ladder (stranger, party, friend, guild) one tap.
-2. **Remove competition inside cooperation**: personal loot, shared credit and no kill-steal beat policing.
-3. Guild goals should **scale to active members and cap each member**, so small guilds finish and heavy players cannot carry the rest.
-4. Plan **succession** and a way to remove a leader on day one; guild banks bring theft and gold-seller problems.
+1. Social systems are a major long-term retention tool; **how required they are is a choice** with costs on both sides.
+2. **Competition inside cooperation** (loot rolls, meters, kick votes) is a trade-off; the course game removes it with personal loot and shared credit.
+3. Guild goals can be **fixed, scaled or ranked**; the course game scales to active members and caps each member.
+4. Plan **succession** and a leader-removal rule; a guild bank adds trust and economy work, so each game decides whether to ship one.
 5. Trading is a trust problem: **two-step confirmation, full item display, no links and new-account limits**.
 6. Moderation is layers, not one tool: defaults, filters, player tools, reports with context, human review, a sanction ladder and appeals. Most toxicity is situational, so fix situations first.
 7. **Defaults protect minors**: regulators in the US, UK and EU treat on-by-default open chat for children as a design fault (as of October 2026).

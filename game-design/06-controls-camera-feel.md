@@ -7,7 +7,7 @@
 
 ## In short
 
-A **control scheme** answers four questions: how the hero moves, how the player picks targets, how skills are fired, and what the camera shows. Each answer changes what combat can be: a camera that hides the ground cannot support ground telegraphs, and a touch screen cannot support twelve precise hotkeys. **Game feel** is how those controls feel in the hand: how fast the game answers, how forgiving the timing is, and how much the game "sells" each hit with sound and motion. Feel is mostly numbers (milliseconds, frames, pixels) that a designer can set and a playtest can check. The worked example designs the course game's control scheme for one hero on PC and on touch: input map, camera, targeting rules and a feedback list.
+A **control scheme** answers four questions: how the hero moves, how the player picks targets, how skills are fired, and what the camera shows. Each answer changes what combat can be: a camera that hides the ground cannot show ground telegraphs, and a touch screen has less room for precise hotkeys, so designs reduce, group or automate skills. **Game feel** is how those controls feel in the hand: how fast the game answers, how forgiving the timing is, and how much the game "sells" each hit with sound and motion. Feel is mostly numbers (milliseconds, frames, pixels) that a designer can set and a playtest can check. The worked example designs the course game's control scheme for one hero on PC and on touch: input map, camera, targeting rules and a feedback list.
 
 ## 1. The concept
 
@@ -74,7 +74,7 @@ Two lessons for a designer:
 
 ### 1.6 Responsiveness: why 100 ms matters
 
-Usability research gives three rough limits for response time: about **0.1 s** feels instantaneous, about **1 s** keeps the user's train of thought, and about **10 s** is the limit of attention (Jakob Nielsen, 1993; the limits are still quoted today). For action games the 0.1 s limit is the useful one: if pressing a skill button produces *no visible reaction* for more than about a tenth of a second, the control feels sluggish. The practical rule for an online game is to **respond on the client at once** (start the animation, play the sound) and let the server confirm the result afterwards, so the player never waits for the network to see their own hero move.
+Usability research gives three rough limits for response time: about **0.1 s** feels instantaneous, about **1 s** keeps the user's train of thought, and about **10 s** is the limit of attention (Jakob Nielsen, 1993; the limits are still quoted today). For action games the 0.1 s limit is the useful one: if pressing a skill button produces *no visible reaction* for more than about a tenth of a second, the control feels sluggish. Online games handle latency in several ways: **start the animation on the client and let the server confirm** (fast feel, rare visible corrections); **wait for the server** (simple and authoritative, but it feels slow above about 100 ms of round trip); **client-side prediction** of movement and hits with server correction; **lag compensation**, where the server rewinds time to judge hits; and **rollback**, which re-simulates after a wrong guess (used in fighting games). This module's worked example uses the first, so the player does not wait for the network to see their own hero move.
 
 ## 2. The player's view
 
@@ -87,7 +87,7 @@ What the player should feel:
 
 Motivations from [module 01](01-player-experience.md): controls and feel serve **Excitement** and **Sensation** (moment-to-moment pleasure), **Challenge** (a skilled player can dodge and chain) and **Power** (a skill that feels strong confirms growth). Dev (the phone persona, 15–25 minutes) needs **one-thumb-friendly** play; Mira (PC, evenings) wants depth and precision.
 
-Link to the loops of [module 03](03-vision-pillars-loops.md): controls and feel *are* the core loop (30–90 s of "engage, use skills, dodge, kill"). If they are poor, no reward layer rescues the game, so this is the first system to prototype.
+Link to the loops of [module 03](03-vision-pillars-loops.md): controls and feel *are* the core loop (30–90 s of "engage, use skills, dodge, kill"). In action-led games a weak core loop is hard to repair with rewards, so controls are usually the first thing prototyped. Meta-led games (idle, collection) prototype their progression first.
 
 ## 3. The design space
 
@@ -98,19 +98,22 @@ Link to the loops of [module 03](03-vision-pillars-loops.md): controls and feel 
 | **Click-to-move** | Click the ground or an enemy; the hero walks or attacks | Diablo III, Path of Exile | Needs only the mouse; one hand free; works with many skills on keys | Hard to dodge precisely; mouse is busy moving, so aiming needs a second mechanism; pathfinding must be good |
 | **Direct movement (WASD or stick)** | Held keys move the hero in a direction | World of Warcraft (alongside click-to-move), Genshin Impact | Precise dodging; best for telegraph-and-avoid combat; natural for controller | Needs two hands on PC; harder to support long travel without an "auto-run" |
 | **Twin-stick** | One input moves, a second aims independently | Brawl Stars (touch), many PC and console shooters | Separates moving and aiming; strong for skill shots | Two thumbs on touch (little room for skill buttons); more complex on keyboard |
+| **Tap-to-move and auto-path** | Tap the ground or a quest marker; the hero walks there | Mobile versions of many ARPGs and MMORPGs (a widespread touch pattern) | One thumb; good for long travel and short sessions | Imprecise for dodging; pathfinding must be reliable; less moment-to-moment skill |
 | **Tap and virtual joystick** | A thumb joystick moves; buttons fire skills; tap targets | Mobile versions of Genshin Impact, Wild Rift | Works on a phone; familiar to mobile players | Imprecise; thumbs cover the screen; no hover; fewer simultaneous buttons |
 | **Controller** | Sticks move and aim; face buttons and triggers for skills | Genshin Impact, Diablo IV, many console RPGs | Comfortable for long sessions; precise movement | Few buttons; menus and inventory need a controller-friendly layout |
 
-Many games offer two or three of these at once and let the player choose. Offering both click-to-move and direct movement doubles the work (pathfinding plus steering) and doubles the test matrix; do it only when the audience needs it.
+Many games offer two or three of these at once and let the player choose. Offering more than one scheme adds pathfinding or steering work and a bigger test matrix, but lets players pick their comfort; *World of Warcraft* offers both click-to-move and direct movement.
 
 ### 3.2 Targeting and aiming
 
 | Model | How the player chooses a target | Strengths | Costs |
 |---|---|---|---|
-| **Select a target** (tab-target) | Click or press Tab to select; skills hit the selection | Forgiving of latency and imprecise input; easy on touch | Aim is not a skill; fights become number-crunching unless enemy attacks demand movement |
+| **Select a target** (tab-target) | Click or press Tab to select; skills hit the selection | Forgiving of latency and imprecise input; easy on touch | Skill moves from aiming to cooldown and positioning management; depth depends on how much enemy attacks demand movement and timing |
 | **Cursor or reticle aim** | Skills go where the cursor or reticle points | High skill ceiling; satisfying hits | Needs a mouse or stick; hard on touch; latency matters more |
 | **Auto-target** | The game picks the nearest or best target | Lowest friction; ideal for touch and for filler skills | Wrong target in a crowd; needs override |
 | **Ground-aimed area** | The player marks a spot or direction for an area skill | Clear and fair for area skills | Needs a preview and a drag gesture on touch |
+| **Lock-on or soft-lock** | A button holds the camera and skills on one enemy | Many action RPGs | Keeps focus in a duel | Poor in crowds; needs a target-switch input |
+| **Directional skills** | The skill goes where the hero faces; no target | Many action RPGs and brawlers | Simple on touch and controller | Movement and aim are tied together |
 
 Real games mix models. A common pattern in online RPGs is **soft target plus aim assist**: the game keeps a selected or nearest target, single-target skills use it, and area skills are placed on the ground.
 
@@ -122,6 +125,7 @@ Real games mix models. A common pattern in online RPGs is **soft target plus aim
 | **Isometric** | Fixed angle, usually around 30–45 degrees of pitch, no perspective or little | Diablo-style ARPGs, Path of Exile | Same as top-down with more character visibility; occlusion by walls needs transparency |
 | **Third-person (orbit)** | Camera behind the hero, rotated by the player | World of Warcraft, Genshin Impact, Black Desert | Strong immersion; the player controls the view, so skills can be aimed in 3D; enemies behind the hero are hidden; telegraphs on the ground need a good camera angle |
 | **Side view (2D)** | Camera looks at the hero from the side, scrolling horizontally | MapleStory | Simple and very readable; movement is one dimension plus jumping; level design is "lanes" |
+| **First-person** | Camera at the hero's eyes | The Elder Scrolls Online (optional alongside third-person), many shooters | Strongest immersion and direct aiming; the hero is not visible, melee and ground telegraphs are harder to read, motion comfort is a concern, and it needs a free-look input |
 
 Rules of thumb for how a camera shapes combat:
 
@@ -130,9 +134,9 @@ Rules of thumb for how a camera shapes combat:
 3. **A free camera is a skill and a load.** Orbiting while moving and aiming is a third control; on touch it competes for the same thumb as the joystick.
 4. **Fixed cameras make level design cheaper.** The artists know what the player will see, and the engine can cull what is outside the view.
 
-### 3.4 Rarer schemes (alternatives only)
+### 3.4 Other schemes (alternatives to the course game's one-hero control)
 
-The course game controls **one hero**. Other designs break that rule, and each changes the whole scheme:
+The course game controls **one hero**. Other designs break that rule, and each changes the whole scheme. Auto-battle in particular is the dominant combat scheme in many mobile hero-collection games:
 
 | Scheme | How it works | Example of a visible feature | Cost |
 |---|---|---|---|
@@ -140,6 +144,7 @@ The course game controls **one hero**. Other designs break that rule, and each c
 | **Control several characters at once** | The player gives commands to a group, usually with selection | Baldur's Gate 1 and 2 (real-time with pause; select the party with a drag box) | Selection UI; needs pause or slow combat to be usable; hard on touch |
 | **RTS-style selection** | Box-select units, right-click to command | StarCraft, Dota 2 (one unit, but RTS-style commands) | Needs a mouse and a keyboard; precision rises, accessibility falls |
 | **Auto-battle** | The game plays the fight; the player sets up before and optionally triggers skills | Many mobile hero-collection games, for example AFK Arena | Removes most of the control question; moves the design to team building (module 11) |
+| **Manual with an auto toggle** (auto-hunt, auto-quest, auto-attack) | The player controls the hero and can switch to auto for grinding, travel or repetitive content | Many mobile MMORPGs, and some PC games | Serves Submission and short sessions; players may leave the toggle on, so content needs to hold up with it; botting and fairness rules apply (module 27) |
 | **Turn-based** | The game waits for each choice | Classic Final Fantasy, Fire Emblem | Controls become menus; timing, buffering and animation commitment do not apply |
 
 These are not covered further here. The point is that **a control scheme is a consequence of the combat model and of the platform**, so change one and the other must follow.
@@ -148,10 +153,10 @@ These are not covered further here. The point is that **a control scheme is a co
 
 | If your game... | Prefer |
 |---|---|
-| Is built on telegraphed attacks that must be avoided | Direct movement plus a steep camera, so the ground is readable and dodging is precise |
+| Is built on telegraphed attacks that players are meant to avoid | Direct movement plus a steep camera, so the ground is readable and dodging is precise |
 | Needs a huge number of skills and has players who sit at a PC | Click-to-move or direct movement with many hotkeys; top-down or isometric |
-| Must feel good on a phone | Joystick plus few large buttons, auto-target, aim assist; limit skills on screen |
-| Runs on both PC and touch with shared progress | One action set, two input maps; do not design depth that only the mouse can reach |
+| Has to feel good on a phone | Joystick plus a few large buttons, auto-target and aim assist; fit skills by reducing, grouping or automating them |
+| Runs on both PC and touch with shared progress | One action set, two input maps (the parity approach of 4.4); depth that only the mouse can reach splits the audience |
 | Has tab-target combat | A forgiving camera and input; focus feel on feedback and cooldown timing |
 | Is real-time with pause or party control | A selection model and a pause command, and a UI for them |
 | Is competitive (PvP) | The most precise scheme available, and rules for fair cross-play |
@@ -174,7 +179,7 @@ These are starting values to test, not laws. Practitioners' talks and platform g
 | **Camera pitch for an action-readable ARPG view** | About 45–60 degrees from the horizon, fixed rotation | High enough to see ground telegraphs, low enough to see characters |
 | **Cooldown ready feedback** | Icon flash and a soft sound | The player must know without looking away from the fight |
 
-Network note (as of October 2026, general practice): for action combat on an online server, **client-side prediction** (the client starts the action at once and the server corrects it if needed) is the standard way to hide latency. Tab-target combat tolerates more latency than action combat because it does not depend on exact positions.
+Network note (as of October 2026, general practice): for action combat on an online server, **client-side prediction** (the client starts the action at once and the server corrects it if needed) is a common way to hide latency; section 1.6 lists the alternatives. Tab-target combat tolerates more latency than action combat because it does not depend on exact positions.
 
 ### 4.2 Signals that something is wrong
 
@@ -192,7 +197,7 @@ Network note (as of October 2026, general practice): for action combat on an onl
 ### 4.3 Classic failures of a long-running game
 
 - **Feel tuned once and never touched again.** New skills added over years are tuned for damage only, and they feel different from older ones. Keep a "feel checklist" in the skill spec (module 10).
-- **Animation lock creep.** Each new skill gets a long, flashy animation, and the combat gets slower. Set a maximum recovery time per skill tier.
+- **Animation lock creep.** Each new skill gets a long, flashy animation, and the combat gets slower. A maximum recovery time per skill tier is one way to hold it back.
 - **Effects that grow until the screen is unreadable.** Every new skill adds particles; in a group fight nobody can see the telegraph. Put a **visual budget** on skill effects and give the enemy telegraph the highest priority.
 - **A camera built for one fight.** A boss that needs a wide view in a game with a tight camera. Decide the camera range early and test every fight at the extremes.
 - **A touch layout copied from the PC one.** The result is tiny buttons and a crowded screen.
@@ -200,7 +205,7 @@ Network note (as of October 2026, general practice): for action combat on an onl
 
 ### 4.4 Designing one game for mouse/keyboard and touch
 
-The cleanest approach has three layers:
+One common architecture has three layers:
 
 ```mermaid
 flowchart TD
@@ -210,11 +215,11 @@ flowchart TD
 ```
 
 1. **Define the actions once.** Combat rules see only actions ("use skill 3 on the selected target"), never keys or taps. Adding a device means adding an input map, not changing combat.
-2. **Give every device the same capabilities, in its own way.** Anything a mouse user can do in combat, a touch user can do too, with a different gesture. Do not add content that only one device can complete.
-3. **Compensate for the weaker input, do not nerf the content.** Touch has no hover, covers part of the screen and is imprecise, so give it a larger auto-target radius, quick-cast on tap and drag-to-aim only where it matters. The hit rules stay the same; the *assist* differs.
-4. **Reduce what must be pressed at once.** Phones are comfortable with about 6–8 combat buttons; PC players handle more. The course game solves this at the design level: on touch, six skill buttons are shown and the two simple buff skills run on their own as auto-use toggles (see 5.2).
-5. **Keep telegraph and dodge rules identical.** If the dodge window is tighter on one device, the same boss is easier on the other. Cross-play fairness matters most in PvP (module 23), so keep it in mind when the first PvP mode is designed.
-6. **Test on real devices.** The emulator hides thumb occlusion and screen reflections.
+2. **Decide the stance on device differences.** Two common stances exist. **Parity**: the same rules on every device, with assists that differ (simple to balance and to explain). **Device-specific tuning**: input-based matchmaking or separate queues, easier assists, controller-only or PC-only content (fits each device better, but splits the test matrix and can feel unfair across devices). The course game uses parity, so the next points follow it.
+3. **Under parity, give every device the same capabilities, in its own way.** Anything a mouse user can do in combat, a touch user can do too, with a different gesture, and compensate for the weaker input with assists (touch has no hover, covers part of the screen and is imprecise: a larger auto-target radius, quick-cast on tap, drag-to-aim only where it matters) rather than easier content. The hit rules stay the same; the *assist* differs.
+4. **Reduce what must be pressed at once.** Touch games use different numbers of on-screen buttons, commonly four to eight skill buttons plus a basic attack, and some allow customisable layouts, more slots, or gesture and swipe skills. Options for fitting more skills: automate low-decision skills (auto-cast), group skills in a radial or paged bar, let the player choose which skills to show, or limit the skill count per class. The course game automates two buffs: on touch, six skill buttons are shown and the two simple buff skills run on their own as auto-use toggles (see 5.2).
+5. **Under parity, keep telegraph and dodge rules identical.** If the dodge window is tighter on one device, the same boss is easier on the other. Cross-play fairness matters most in PvP (module 23).
+6. **Define actions once and test on real devices** (a readability and process point under any stance). The emulator hides thumb occlusion and screen reflections.
 
 ## 5. Worked example
 
@@ -237,7 +242,7 @@ The course game: a small online fantasy RPG for PC and mobile, one hero per play
 | Camera | **Fixed-rotation, tilted top-down (about 55 degrees)**, zoom range 10–16 m, follows the hero | Best view of ground telegraphs; no camera control competes with the joystick; cheap to test |
 | Platforms | PC (mouse and keyboard) and touch at launch; controller supported by the action layer but not shipped | Keeps the first release small; the action layer allows a later controller map |
 | Skill bar | **PC:** all 8 class skills on keys, plus basic attack and dodge, no loadout. **Touch:** 1 attack button, 1 dodge button and 6 skill buttons; the class's 2 simple buff skills run as **auto-use toggles** (on by default, also available on PC) | Fits a phone without cutting skills; buffs are maintenance, not decisions, so automating them costs no depth |
-| Click-to-move | Not offered | Doubles the work and fights the dodge |
+| Click-to-move | Not offered | Adds pathfinding work and conflicts with dodge-based combat in this example |
 
 Every class has eight active skills: six that the player fires and two simple buffs. On touch the buffs are not buttons: an auto-use toggle (on by default) casts each buff when its class rule says so, for example "when an elite or boss is in range" (see [module 10](10-skills.md)), and only between skills so it never interrupts the player. On PC the same toggle exists and the buffs also have keys, for a player who wants to time them by hand. Both devices therefore reach every skill; only the way a buff is triggered differs.
 
@@ -319,8 +324,8 @@ The priority rule: **enemy telegraphs are always drawn on top** of hero effects,
 
 ### 5.8 What was cut
 
-- **Click-to-move** (cost and conflict with dodge).
-- **A free-orbit camera** (competes with the joystick on touch).
+- **Click-to-move**: cut from this example because it needs its own pathfinding work and conflicts with dodge-based combat.
+- **A free-orbit camera**: cut from this example because it competes with the joystick on touch.
 - **Auto-battle** at launch. A basic "auto-attack on the nearest target" button exists; full auto-play is covered in module 27.
 - **Controller map**, kept for a later release.
 - **A parry or block button**: the dodge covers defence for the first release.
@@ -338,17 +343,18 @@ The priority rule: **enemy telegraphs are always drawn on top** of hero effects,
 
 - A control scheme is four linked decisions: movement, targeting, activation and camera. Change one and the others must follow.
 - The camera decides what a telegraph can be: a tilted top-down view makes ground warnings readable and dodging fair.
-- Feel is mostly numbers: respond within about 100 ms, buffer early presses for 100–200 ms, and keep recovery times capped per skill tier.
+- Feel is mostly numbers. Common starting values to test: a visible reaction within about 100 ms, an input buffer of 100–200 ms, and recovery times capped per skill tier.
 - Juice sells the hit but never changes its outcome; keep it on a visual budget so enemy telegraphs stay the loudest thing on screen.
 - For PC and touch, define actions once and give each device its own input map; compensate touch with assist, not with easier content.
-- A phone fits about six to eight combat buttons, so automate the low-decision skills (buffs) on touch instead of shrinking buttons.
-- Multi-character control, RTS selection and auto-battle are rarer alternatives: each replaces the whole scheme, not one setting.
+- Touch games commonly show four to eight skill buttons; ways to fit more skills include auto-cast for low-decision skills, grouped or paged bars, and customisable layouts (the course game automates its two buffs).
+- Multi-character control, RTS selection and auto-battle are alternatives to one-hero control: each replaces the whole scheme, not one setting.
 
 ## Further reading
 
 - Steve Swink, *Game Feel: A Game Designer's Guide to Virtual Sensation* (CRC Press, 2008), the book behind the term. Summary: [Game feel (Wikipedia)](https://en.wikipedia.org/wiki/Game_feel)
 - Martin Jonasson and Petri Purho, ["Juice it or lose it"](https://www.youtube.com/watch?v=Fy0aCDmgnxg) (talk, 2012): how small effects change feel on a simple game.
 - Jan Willem Nijman (Vlambeer), ["The art of screenshake"](https://www.youtube.com/watch?v=AJdEqssNZ-U) (INDIGO Classes, 2013).
+- Wikipedia, [Netcode](https://en.wikipedia.org/wiki/Netcode) (rollback and lag compensation) and [The Elder Scrolls Online](https://en.wikipedia.org/wiki/The_Elder_Scrolls_Online) (first- or third-person play), as of October 2026.
 - Jakob Nielsen, ["Response times: the 3 important limits"](https://www.nngroup.com/articles/response-times-3-important-limits/) (1993).
 - [WCAG 2.2, Understanding SC 2.5.8: Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) (W3C), with Apple's 44 pt and Google's 48 dp guidance noted in 4.1.
 - Steven Hoober, ["How do users really hold mobile devices?"](https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php) (UXmatters, 2013): an observation of 1,333 people; useful for thumb reach and for testing layouts held in several grips.

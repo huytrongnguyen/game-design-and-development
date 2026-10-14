@@ -23,7 +23,7 @@ A useful vision has three parts:
 | **The verb** | What do they do most? | "...fights and explores..." |
 | **The feeling** | What do they feel? | "...and feels that friends make the difference." |
 
-Tests for a good vision:
+Four tests teams often use for a vision (a vision need not pass all four; one can be deliberately familiar if the game differs elsewhere):
 
 1. **Repeatable:** a new teammate can say it back after one reading.
 2. **Experiential:** it describes what the player feels, not what the engine does.
@@ -38,9 +38,9 @@ Tests for a good vision:
 
 ### 1.2 Design pillars
 
-**Design pillars** are three to five short principles derived from the vision, used to filter every later decision. When two good ideas compete, the pillars decide. Pillars are usually set by the lead designer or creative director with the product owner and are rarely changed.
+**Design pillars** are three to five short principles derived from the vision, used to filter every later decision. When two good ideas compete, the pillars decide. Pillars are usually set by the lead designer or creative director with the product owner and change rarely, though a live game may revise them when playtests or data show a pillar is wrong.
 
-A pillar works only if it can **say no**. If every feature passes, the pillar is decoration.
+A good pillar can **say no**: it rejects some ideas. A pillar that rarely does is a weak filter and may serve better as a tone statement.
 
 | Property | Good pillar | Bad pillar |
 |---|---|---|
@@ -49,7 +49,7 @@ A pillar works only if it can **say no**. If every feature passes, the pillar is
 | **Rejects ideas** | Some good-looking features fail it | Everything passes |
 | **Short** | 2 to 6 words, easy to memorise | A paragraph |
 | **Player-facing** | Written as an experience | Written as a technical goal ("60 FPS") |
-| **Few** | 3 to 5 | 10 |
+| **Few** | Fewer are easier to memorise (published lists run from 3 to 7 or more) | A long list that never rejects anything |
 
 A pillar is easier to use if it has a one-line **meaning**, a one-line **non-meaning** (what it does not say), and a **test** (how you would check it in play).
 
@@ -68,7 +68,7 @@ What these two lists show (this is the course's reading, not the studios' own co
 | **Pillars can be player-facing sentences** | "Enjoyable by the tired, impatient and distracted" is a requirement on every feature's friction |
 | **Some pillars are strong filters** | "Approachable" rejects a feature that needs a 40-page manual |
 | **Some pillars are weak filters** | "Strong setting" is hard to fail; it rarely rejects a feature |
-| **Seven is on the high side** | Fewer pillars are easier to remember; seven needs ranking |
+| **Published lists run from three to seven or more** | Fewer pillars are easier to remember; a longer list works when the team has a conflict rule and each pillar still rejects some ideas |
 | **Pillars describe the whole product** | They cover combat, rewards, social and onboarding, not only one system |
 
 Pillars can also be written for a single feature or an update ("feature pillars"), which is useful for a live game's season or major system. The same rules apply.
@@ -121,7 +121,7 @@ flowchart TD
 Two things to look for:
 
 - **Each outer loop uses the inner loop's reward.** Loot from fights becomes gear upgrades in the session loop, and gear raises the character's power across the meta loop.
-- **Each loop has an exit and an entry.** A session loop needs a natural stopping point (so the player can leave happily) and a reason to return (so they do).
+- **Each loop has an exit and an entry.** Designs choose how the session loop ends: **natural stopping points** (daily caps, rested XP, end-of-run screens) favour short sessions and wellbeing; **open-ended sessions** ("one more turn") favour long engagement but risk burnout. Either way, give players a reason to return, and test the choice with players.
 
 ### 1.7 Where a feature belongs
 
@@ -139,12 +139,12 @@ The **pillar check** is a quick table you fill in before building. For each pill
 
 | Result | Decision |
 |---|---|
-| Serves at least one pillar and harms none | Build it |
+| Serves at least one pillar and harms none | A candidate; cost, risk and dependencies decide the order |
 | Serves one pillar and harms another | Redesign, or escalate to the owner of the pillars |
 | Harms any pillar and serves none | Cut or postpone |
-| Serves none, harms none | Ask whether it is worth the cost; usually postpone |
+| Serves none, harms none | Ask whether it is worth the cost |
 
-The check is cheap (ten minutes) and replaces long arguments with a question: "Which pillar is this for?"
+The check is cheap (ten minutes) and replaces long arguments with a question: "Which pillar is this for?" Other common filters are weighted scoring, a cost and benefit table, a cheap prototype test and written kill criteria; teams often combine the pillar check with one of them.
 
 ## 2. The player's view
 
@@ -160,7 +160,7 @@ How the loops feel from the player's side:
 
 The motivations from [module 01](01-player-experience.md) map onto the loops. Excitement, Challenge and Sensation live mainly in the core loop. Strategy and Autonomy sit in the session loop (choosing what to do next). Power, Completion, Story and Community sustain the meta loop.
 
-If the core loop is not fun by itself, no meta layer will rescue it. More currencies, more collections and more dailies only hide the problem for a while. This is the most common reason why a feature-rich game fails early.
+In action-led games a weak core loop is hard to repair with meta systems: more currencies, collections and dailies tend to hide the problem for a while, and players often leave in the first hour. In meta-led games (idle, collection) the meta layer is the draw, and the core loop can be thin on purpose.
 
 ## 3. The design space
 
@@ -173,6 +173,9 @@ If the core loop is not fun by itself, no meta layer will rescue it. More curren
 | **Player verbs** | "Explore, fight, build" | Defining the gameplay | Ignores feeling |
 | **Experience goals** | "Players feel needed by their group" | Aligning design and UX | Hard to measure |
 | **Constraints** | "Every session ends with progress in 15 minutes" | Mobile and live games | Can feel restrictive |
+| **Anti-pillars (non-goals)** | "This game will not have ..." | Scope control | Negative statements say nothing about the feeling |
+| **A north-star sentence or design tenets** | One sentence that every feature must support | Small teams | Can be too broad to reject anything |
+| **Whole-team workshop** | The team writes the pillars together | Buy-in | Compromise wording |
 
 ### 3.2 Pillars: how many, and how strict
 
@@ -180,9 +183,16 @@ If the core loop is not fun by itself, no meta layer will rescue it. More curren
 |---|---|
 | **3** | Small teams and tight scopes; easy to remember |
 | **4 to 5** | Most online games; covers feel, social, progression, fairness |
-| **6 or more** | Large studios; needs ranking, otherwise nothing is excluded |
+| **6 or more** | Large studios; needs a conflict rule, otherwise nothing is excluded |
 
-If you must keep more than five, **rank** them. When two pillars conflict, the higher one wins.
+Pillars sometimes pull against each other. Decide in advance how a conflict is settled:
+
+| Approach | How it works | Fits | Costs |
+|---|---|---|---|
+| **Ranked pillars** | When two conflict, the higher one wins | Games with one clear priority (for example readable combat above all) | Lower pillars erode a little with every decision |
+| **Pillars in balance** | No pillar wins by default; each has a test with a pass line, and a decision may not push any pillar below its line; a written rule covers each known conflict | Games that serve several player types or several feelings equally, such as open worlds | More judgment per decision; the tests must be measurable |
+
+With more than five pillars, a written conflict rule helps; without one, the team decides case by case.
 
 ### 3.3 Loop designs by game type
 
@@ -201,7 +211,7 @@ If you must keep more than five, **rank** them. When two pillars conflict, the h
 | Align a new team quickly | A short vision plus 3 to 4 pillars with "means / does not mean" |
 | Keep a live game coherent for years | Pillars plus a loop map; check every update |
 | Fit short sessions | Pillar on session length, with a session loop under 20 minutes |
-| Choose what to cut | Rank pillars; cut what serves only the lowest |
+| Choose what to cut | Ranked: cut what serves only the lowest pillar. In balance: cut what serves none, or what pushes a pillar below its line |
 
 ## 4. Tuning and pitfalls
 
@@ -209,7 +219,7 @@ If you must keep more than five, **rank** them. When two pillars conflict, the h
 
 1. **Write each pillar with its "does not mean".** It prevents the loudest reading from winning.
 2. **Pillars are about the player, not about the team.** "Fast iteration" is a production goal, not a pillar.
-3. **Rank them.** When forced, you need to know which one gives way.
+3. **Decide how they give way.** Rank them, or keep them in balance with a pass line per pillar; when forced, you need to know which one gives way.
 4. **Revisit them rarely, deliberately.** If playtests show a pillar is wrong, change it at the top and update everything under it.
 5. **Hang them where the team can see them.** On the first page of the GDD and in feature specs.
 
@@ -217,11 +227,11 @@ If you must keep more than five, **rank** them. When two pillars conflict, the h
 
 | Rule | Reason |
 |---|---|
-| The core loop should be fun **with the rewards turned off** | If it is not, rewards are bribes |
+| Test whether the loop is fun **with the rewards turned off** | Some loops are fun without rewards (a platformer jump); others are fun because of the reward and its anticipation (loot chase, idle growth). If players do not play without rewards, the reward carries the fun, so design its pacing and variety as carefully as the action |
 | A session should end with a visible result | Players leave satisfied |
 | Rewards should create the next goal, not only a number | "What does this loot let me do?" |
 | Each loop should be explainable in one sentence | If not, it is probably two loops |
-| Do not add a new meta loop until the core is fun | More systems do not fix a weak core |
+| Sequence by risk: prototype the loop whose fun you are least sure about first | In action games that is usually the core loop; in meta-led games it may be the progression |
 
 ### 4.3 Signals that something is wrong
 
@@ -236,11 +246,11 @@ If you must keep more than five, **rank** them. When two pillars conflict, the h
 
 ### 4.4 Classic failures
 
-- **Pillars as slogans.** "Epic", "immersive" and "fun" cannot say no.
-- **Too many pillars.** Seven or more is a wish list.
-- **Pillars that conflict silently.** "Casual friendly" and "punishing difficulty" both appear, and nobody ranks them.
-- **Meta loop before core loop.** Adding battle passes, collection screens and ranks to a combat system that is not fun.
-- **A session loop with no end.** Endless chores with no natural stop, which burns players out.
+- **Pillars as slogans.** "Epic", "immersive" and "fun" do not reject any idea.
+- **A long list that rejects nothing.** Length is not the test; whether the pillars say no is. A list of pillars that never rejects anything works as a wish list.
+- **Pillars that conflict silently.** "Casual friendly" and "punishing difficulty" both appear, and nobody decides how they give way.
+- **Meta layers on an unproven core (in action-led games).** Adding battle passes, collection screens and ranks to a combat system that is not fun; meta-led games build the meta layer first on purpose.
+- **An open-ended session by accident.** Endless chores with no stop burn players out; some games leave sessions open on purpose, which should be a deliberate choice.
 - **Loops that do not nest.** Fight rewards that do not feed the session goals, so loot feels meaningless.
 
 ## 5. Worked example
@@ -257,7 +267,7 @@ Checks against the four tests:
 |---|---|
 | Repeatable | Two clauses, easy to say back |
 | Experiential | "Clear role" and "win together" are feelings |
-| Distinctive | Shared with other group RPGs, but with the role and the group as the centre |
+| Distinctive | Shared with other group RPGs, but with the role and the group as the centre (a deliberately familiar vision) |
 | Falsifiable | A game where the best fights are solo does not fit |
 
 ### 5.2 Four pillars
@@ -269,7 +279,7 @@ Checks against the four tests:
 | 3 | **Stronger together** | Groups always get better rewards per hour than the same player alone | Solo play is blocked | Group clear of the first dungeon is at least 25 % faster than solo |
 | 4 | **Fair and respectful of time** | A 15-minute session always gives a visible reward; nothing sold gives combat power that players cannot earn | No monetization | Players can reach level 50 without spending; sessions end at a natural stop |
 
-Ranking when pillars conflict: **2 > 1 > 3 > 4** for gameplay decisions, but **4 is a hard rule for the shop** (see module 17).
+This example uses the **ranked** approach from section 3.2, chosen because it has one clear priority (readable fights); the in-balance approach is the alternative. Ranking when pillars conflict: **2 > 1 > 3 > 4** for gameplay decisions, but **4 is a hard rule for the shop** (see module 17).
 
 ### 5.3 The three loops
 
@@ -328,7 +338,7 @@ The team receives five ideas. For each, +1 helps a pillar, 0 is neutral and -1 h
 | Proposed feature | 1 My hero | 2 Readable | 3 Together | 4 Fair and time-respecting | Decision |
 |---|---|---|---|---|---|
 | **Auto-battle toggle** for solo quests | 0 | -1 | 0 | +1 | **Redesign:** limit auto to travel and trivial fights (keeps pillar 2) |
-| **Daily login chest** | 0 | 0 | 0 | -1 | **Cut or reshape:** rewards login rather than play; harms the respect-for-time pillar |
+| **Daily login chest** | 0 | 0 | 0 | -1 | **Cut or reshape:** this verdict comes from the example's pillar 4 (respect time); a game whose pillars favour habit and streaks would score the same chest +1 |
 | **Cosmetic mounts for sale** | +1 | 0 | 0 | +1 | **Build:** no combat power; supports fantasy |
 | **Paid stat boosts** | 0 | 0 | -1 | -1 | **Reject:** violates the hard rule of pillar 4 |
 | **Guild dungeon with role bonuses** | +1 | +1 | +1 | 0 | **Build:** serves three pillars |
@@ -337,9 +347,9 @@ The table shows how the pillars end arguments: nobody has to say whether auto-ba
 
 ### 5.6 What was cut
 
-- **Seven pillars.** The first draft had seven (including "a rich story" and "endless content"). They were ranked, and the lowest three were folded into the others.
+- **Seven pillars.** The first draft had seven (including "a rich story" and "endless content"). Reduced to four for this example because a four-person example team could hold four; the lowest three were folded into the others.
 - **A fourth loop (seasonal).** Added in module 29, when the live schedule is designed.
-- **A "crafting loop".** Left out of the first release; gear comes from drops and upgrades.
+- **A "crafting loop".** Left out of the first release to keep the content budget on dungeons; gear comes from drops and upgrades.
 
 ### 5.7 How the design would differ for another kind of game
 
@@ -353,10 +363,10 @@ The table shows how the pillars end arguments: nobody has to say whether auto-ba
 
 - A vision is one or two sentences about the player's experience; test it for repeatability, feeling, distinctiveness and falsifiability.
 - Good pillars are short, player-facing, testable and able to say no. Write what each means, what it does not mean, and how you would test it.
-- Published pillars (for example Diablo III's and Destiny's) show how a studio phrases player promises, and show that seven pillars need ranking.
+- Published pillars (for example Diablo III's and Destiny's) show how a studio phrases player promises, and show that a long list works best with a rule for conflicts (a ranking, or pillars in balance with pass lines).
 - A loop has a goal, an action, feedback and a reward, and the reward must create the next goal.
 - Games nest three loops: core (seconds), session (a sitting) and meta (weeks), and the outer loop uses the inner loop's reward.
-- If the core loop is not fun on its own, no meta system rescues it.
+- In action-led games a weak core loop is hard to repair with meta systems; in meta-led games (idle, collection) the meta layer is the draw.
 - Before building any feature, run the pillar check and place the feature in a loop. A feature that serves no pillar and fits no loop is a candidate to cut.
 
 ## Further reading

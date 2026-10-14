@@ -59,7 +59,7 @@ flowchart TB
     E --> H["8. Intent hypotheses"]
     F --> H
     G --> H
-    H --> I["9. Verdicts: keep, change, avoid"]
+    H --> I["9. Verdicts: adopt, adapt, skip"]
     I --> J["10. Open questions"]
     J -->|"next session"| B
 ```
@@ -101,7 +101,7 @@ Map it as a timeline of **milestones**, with what each one unlocks:
 | How long does it take (in hours) to reach the next one? | The shape of the curve |
 | What is the first moment a player could plausibly quit? | Churn points |
 
-Count the time between milestones. A journey where each step takes longer than the last is a typical long-running online RPG. A flat journey with a sudden cliff signals a gate or a paywall.
+Count the time between milestones. A journey where each step takes longer than the last is a typical long-running online RPG. A flat journey with a sudden cliff may indicate a gate, a paywall or a content gap.
 
 ### 2.3 Map the loops
 
@@ -111,7 +111,7 @@ Using module 03, write the **core loop** (seconds), the **session loop** (minute
 
 A **system** is a set of rules that handles one concern: classes, gear upgrades, quests, trading, parties. List them, draw the links (what produces what), and mark each system with the loop it supports. Two things matter most:
 
-- **Which systems the player touches daily** versus rarely. Daily systems carry the retention.
+- **Which systems the player touches daily** versus rarely. Daily systems often carry the retention.
 - **Where the money enters** (a shop, a time-saver, a random draw) and which system it touches. That tells you what the game treats as scarce.
 
 ## 3. The design space
@@ -129,6 +129,8 @@ There is no single way to study a game. The methods differ in what they cost and
 | **Community signals** (section 6) | What players actually do and hate | Low | Loud minorities; survivor bias |
 | **Patch history** (section 7) | Which decisions failed and how | Medium | Missing context on why a change was made |
 | **Developer talks and interviews** | Stated intent | Low | Filtered by memory and marketing |
+| **Feature matrix across several games** | Seeing which systems are standard and which are rare | Medium | Comparing features without their context |
+| **Watching other players** (streams, recorded sessions, playtests of the game) | First-time friction and real play patterns | Low | Streamers are not typical players |
 
 ### 3.2 Public evidence: where each kind comes from
 
@@ -260,12 +262,12 @@ A game's patch notes are the cheapest source of hard evidence about its design, 
 
 Patterns worth noticing:
 
-| Pattern in the notes | What it usually means |
+| Pattern in the notes | A possible reading (confirm with a second source) |
 |---|---|
 | The same system adjusted every few patches | The design is unstable, or the audience keeps finding the edge |
 | A catch-up event or boost added to an old ladder | The ladder became too long for new players |
 | A new tier added to the top of a ladder | The old end was reached; the studio is stretching the content life |
-| A rate or cost quietly changed | Economic pressure; this is where trust problems start |
+| A rate or cost quietly changed | Possibly economic pressure; changes that are not announced are where trust problems tend to start |
 | A feature removed or renamed | The design failed, or the legal environment changed |
 
 Patch history is also where **trust failures** show up, and these are design failures too. A system that depends on randomness depends on the player believing the odds are fair. The worked example below contains a real one.
@@ -287,7 +289,7 @@ Question: <the one thing I wanted to understand>
 5. COMMUNITY        top 5 praised, top 5 disliked, workarounds        [D]
 6. PATCH HISTORY    date -> change -> problem it answers -> fix/pivot [D]
 7. INTENT (MDA in reverse)  hypothesis + rival hypothesis + evidence  [I]
-8. VERDICTS         keep / change / avoid, each with a reason         [I]
+8. VERDICTS (for our game)  adopt / adapt / skip / not applicable, each with a reason tied to our pillars  [I]
 9. OPEN QUESTIONS   each with a test or a source to look for
 10. SOURCES         title, author, date, link, what it supports
 ```
@@ -382,10 +384,11 @@ The first reading: **the ladder has been extended over the years.** Early jobs s
 
 | Decision | Verdict | Reason |
 |---|---|---|
-| A class ladder with named tiers | **Keep** | Easy to read, easy to extend, gives milestones |
-| Extending the ladder upward again and again | **Change** | Each extension pushes new players further from the veterans; plan the end of the ladder early |
-| Random upgrades without published odds | **Avoid** | The documented record shows how fast trust is lost, and platform rules now require disclosure |
-| Catch-up events | **Keep, built in** | Plan them with the ladder, not after it feels too long |
+| A class ladder with named tiers | **Adopt** | Easy to read, easy to extend, gives milestones |
+| Extending the ladder upward again and again | **Trade-off** | Extensions give veterans new goals (a reason studios do it) and push new players further from them. Keep it if long-term veterans are the audience; plan an end or a catch-up path if new players matter more |
+| Random upgrades sold without published odds | **Not allowed** on the App Store and Google Play, and in South Korea (as of October 2026) | Platform rules and law require disclosure |
+| Random upgrades as a design | **Trade-off** | A long spending loop with a thrill on every attempt (documented), against trust problems when odds change unannounced; with published odds it is permitted and widely used |
+| Catch-up events | **Adopt, built in** | In this example's reading, planning them with the ladder avoids adding them after it feels too long |
 
 **9. Open questions** (what a play session or further reading would check).
 
@@ -398,11 +401,11 @@ The first reading: **the ladder has been extended over the years.** Early jobs s
 
 ### 9.2 What the course game takes from this
 
-The teardown ends in **principles, not constants**. For the course game it suggests:
+The teardown ends in **principles, not constants**. For the course game, whose pillars favour a clear path for new players, the teardown suggests the points below. Games that rely on open-ended ladders or on veterans may read the same evidence differently.
 
 - **Use a class ladder with visible milestones** (module 09), and decide up front where the ladder ends and how it will be extended.
-- **Plan catch-up in the first release** (module 14), not as a patch after players complain.
-- **Publish odds and keep a public change log** for any random reward (module 17). It is a platform requirement and a trust asset.
+- **Plan catch-up in the first release** (module 14), rather than as a patch after players complain.
+- **Publish odds and keep a public change log** for any random reward sold for money (module 17). Odds disclosure is a platform requirement, and a public change log is a trust asset.
 - **Keep the evidence trail.** Every rule the course game takes from this teardown records the source that inspired it, and then gets its own numbers.
 
 ### 9.3 How the method changes for other kinds of game

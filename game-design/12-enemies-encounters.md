@@ -7,7 +7,7 @@
 
 ## In short
 
-An **encounter** is one fight the designer has staged: which enemies, where, with what behaviour, and what the player must do to win. Enemies come in a small set of **archetypes**, each asking the player for one thing (move, focus, interrupt, hold, survive). Enemies must be **readable**: every dangerous attack shows a **tell** before it lands, and every enemy leaves an **attack window** afterwards. Difficulty is tuned with a few **knobs** (health, damage, count, mechanics, timers) and should come from mechanics first and numbers last. Bosses combine archetypes into **phases** that test each role. The worked example is a field pack, an elite and a three-phase dungeon boss for the course game, with stats given as multiples of a standard enemy.
+An **encounter** is one fight the designer has staged: which enemies, where, with what behaviour, and what the player must do to win. Enemies come in a small set of **archetypes**, each asking the player for one thing (move, focus, interrupt, hold, survive). Most action games make enemies **readable**: a dangerous attack shows a **tell** before it lands, and the enemy leaves an **attack window** afterwards; some games use surprise or memorisation on purpose. Difficulty is tuned with a few **knobs** (health, damage, count, mechanics, timers); teams use them in different orders, from mechanics first to numbers first. Bosses combine archetypes into **phases** that test each role. The worked example is a field pack, an elite and a three-phase dungeon boss for the course game, with stats given as multiples of a standard enemy.
 
 ## 1. The concept
 
@@ -71,6 +71,11 @@ An archetype is defined by what it asks of the player. Values are in standard en
 | **Elite** | A tougher enemy with 1–2 special moves | Use cooldowns, handle a mechanic | about 18 SE (2,200 HP) | about 3.7 SH basic (110), specials 6–10 SH | Named, with a coloured nameplate and markers |
 | **Mini-boss** | A set piece before a boss | A short test of one mechanic and a role | about 33 SE (4,000 HP) | about 4 SH basic, specials 8–15 SH | Area-sized markers |
 | **Boss** | The climax of a dungeon or event | Every role and every skill | about 54 SE (6,500 HP) | about 5.3 SH basic (160), specials 10–25 SH | A full set of markers, sounds and phases |
+| **Summoner** | Spawns adds until killed or interrupted | Focus it or manage the adds | 0.8–1.5 SE | Low | A visible summoning animation or cast |
+| **Shielded or armoured** | Needs a break, a flank or a skill to open | Positioning, a role skill | 1–3 SE | Medium | A visible shield or armour effect |
+| **Ambusher or stalker** | Hidden until close | Awareness, area clearing | 0.8–1.5 SE | Medium to high | A sound or a shimmer, or none by design |
+| **Exploder or swarm** | Runs at the player and detonates, or many weak units | Kiting, area skills | 0.3–0.6 SE | Burst on contact | A fuse or glow |
+| **Environment hazard** | Traps, pools, moving floors | Movement and reading the room | Not applicable | Varies | Ground effects |
 
 A distinct silhouette and colour lets players pick the type from across the screen, a single clear counter (interrupt the caster, hold the bruiser, close on the ranged enemy) makes it learnable, and cheap variants (a different element or tint) stretch it across regions.
 
@@ -95,9 +100,9 @@ Public games solve this in different ways. **Guild Wars 2** draws red outlines o
 | Light, up to 5% | 0.4 s | Animation |
 | Medium, up to 20% | 0.8 s | Animation plus a marker |
 | Heavy, up to 45% | 1.2 s | Marker and a sound |
-| Severe, above 45% | 1.5 s | Marker, sound and a cast name; always avoidable |
+| Severe, above 45% | 1.5 s | Marker, sound and a cast name; avoidable, or mitigable with a skill or a role (a vent, a shield, a tank cooldown) |
 
-These values already include about 0.25 s for touch input and latency, so a PC player and a phone player have the same window. They are slightly stricter than the floor in module 08 (above 25% of HP: 0.8 s; heavy attacks: 1.2 s).
+These values are this example's starting values for a readability-first design. They already include about 0.25 s for touch input and latency, so a PC player and a phone player have the same window. They are slightly stricter than the floor in module 08 (above 25% of HP: 0.8 s; heavy attacks: 1.2 s).
 
 **Attack windows.** An enemy that attacks without pause cannot be punished, and the player can only run. A designer controls difficulty by the length of the window after each pattern: more downtime is easier, less downtime is harder. Windows are the player's reward for reading the pattern.
 
@@ -113,13 +118,13 @@ A **pack** is composed from archetypes. A **pull** is how many enemies join the 
 | **3–5** | A short skirmish; needs target priority | The standard field pack |
 | **6–10** | A crowd; area skills shine | Hordes, density events |
 
-Rules for composing a pack:
+Rules for composing a readable field pack for a loop of 30–90 seconds; hordes and ambush designs break them on purpose:
 
-1. **One priority target.** Include one enemy that the player should kill first (ranged, caster or healer). A pack of identical enemies has no decisions.
+1. **One priority target.** A pack with one priority target (ranged, caster or healer) gives target-choice decisions; a pack of identical enemies puts the decisions in positioning and area skills.
 2. **Mix distances.** Melee and ranged in one pack force movement and positioning.
 3. **No more than two archetypes with a heavy attack in one pull**, so the markers stay readable.
 4. **Fodder fills the count.** Heavy enemies drive the difficulty; fodder drives the pace.
-5. **Pull links.** Decide how enemies join the fight: only the ones the player touches, or the whole pack within a radius. Linked packs make careful play possible; "chain pulls" that wake half the map punish exploration.
+5. **Pull links.** Decide how enemies join the fight: only the ones the player touches, or the whole pack within a radius. Linked packs make careful play possible; chain pulls that wake half the map reward caution and punish careless exploration, and some games use them on purpose.
 6. **Leash and reset.** An enemy that chases the player too far returns and heals. Players use this to escape, so keep it consistent.
 
 **Aggro.** The simplest rule is "nearest player". A **threat table** (damage and taunts raise threat; the enemy attacks the highest) lets a tank keep attention. The choice matters for parties: with nearest-target aggro every player is a tank, with threat tables there is a defined tank, and the encounter can ask for a role.
@@ -137,11 +142,19 @@ The designer has five main knobs and a few minor ones.
 | **Timers** | Pace, enrage, windows | Forcing action | Frustration when a timer is invisible |
 | **Minor knobs** | Tell length, window length, speed, area size, resistances | Fine tuning | Hidden changes feel arbitrary |
 
-**Rule of thumb: mechanics and count first, damage next, HP last.** A fight that is hard because there is more to do is a better fight than one where the numbers just got bigger. HP is the knob that sets length and should be set from the time-to-kill target, not used to raise difficulty.
+Teams use the knobs in different orders:
+
+| Order | Strength | Cost | Where it is common |
+|---|---|---|---|
+| **Mechanics and count first** | Keeps fights varied | More tuning and testing; risks overload | Raid and action design |
+| **Numbers first** (HP and damage) | Simple to tune | Risks sponge fights and flat feel | Level-scaled ARPGs and gear-check progression, where the power curve is the challenge |
+| **A mix of the two** | Balances variety against tuning cost | Needs a clear plan per fight | Many games |
+
+Whichever order you choose, set HP from the time-to-kill target (module 08).
 
 ### 3.5 Boss design
 
-A boss is a long encounter, usually two to six minutes in an online RPG dungeon, built from **phases**. A boss fight should do four things: teach, escalate, test every role, and end.
+A boss is a long encounter, often two to six minutes in an online RPG dungeon. A common structure builds it from **phases** and has the fight teach, escalate, test every role, and end. Other structures exist: **a single pattern set** learned by repetition (*Monster Hunter* hunts centre on learning a monster's tells), **two phases** (a main fight and a desperation form), **multi-boss fights**, **arena or puzzle bosses** where the environment is the mechanic, and **damage-check bosses** where the numbers are the test. Phases prevent repetition and reward partial success; they cost design and testing time per phase.
 
 **Phases.** A phase is a stage of the fight with its own set of behaviours. Phase triggers:
 
@@ -151,14 +164,14 @@ A boss is a long encounter, usually two to six minutes in an online RPG dungeon,
 | **Timer** | Every 90 seconds | Ensures pace |
 | **Event** | A pillar is destroyed | Rewards teamwork |
 
-Phase structure that works:
+A common phase structure, used by this module's worked example:
 
 - **Phase 1 teaches.** It uses two or three basic mechanics at a forgiving speed.
 - **Phase 2 changes the rules.** A new arena state or a mechanic that asks for a different role.
 - **Phase 3 combines and speeds up.** It reuses earlier mechanics at a higher tempo, plus an enrage.
 - **Transitions are safe.** The boss is briefly invulnerable and does no damage so players can heal and regroup.
 
-Bosses are commonly built as multi-phase fights because phases prevent repetition, give milestones that reward partial success, and force adaptation instead of rote execution.
+Multi-phase fights are common because phases prevent repetition, give milestones that reward partial success, and force adaptation instead of rote execution.
 
 **Mechanics that test each role.** A good boss asks something specific of every role, so no one is idle and no one carries:
 
@@ -169,9 +182,9 @@ Bosses are commonly built as multi-phase fights because phases prevent repetitio
 | **Healer** | Damage over time that needs healing or cleansing; a shield before a large blast |
 | **All** (control as a secondary job) | Moving out of area markers; positioning for a phase; filling the boss's stagger bar |
 
-**Enrage.** A time limit that makes the fight end. A **hard enrage** wipes the group at a fixed time (often several minutes); a **soft enrage** gradually raises the pressure (more adds, rising damage, a shrinking arena) so that a strong group can push through it. Without any enrage, a fight can be won by healing forever. Use enrage to say that damage matters, and show the clock to the player.
+**Enrage.** A time limit that makes the fight end. A **hard enrage** wipes the group at a fixed time (often several minutes); a **soft enrage** gradually raises the pressure (more adds, rising damage, a shrinking arena) so that a strong group can push through it. Without any enrage, a fight can be won by healing forever. Time pressure options: a **hard enrage** (wipe at a fixed time), a **soft enrage** (rising pressure), **attrition** (stacking debuffs, limited potions), or **none** (a fight that ends by mechanics). A visible clock helps players plan; a hidden one adds tension and can feel unfair.
 
-**Wipe recovery.** A wipe is a normal part of learning a boss, so recovery must be quick and cheap. Questions to settle:
+**Wipe recovery.** Games choose how much a wipe costs: quick and cheap recovery supports learning and short sessions; repairs and consumable costs (as in *World of Warcraft* and *Final Fantasy XIV* raids) raise the stakes; lost run progress (roguelikes) raises them further. Cheaper recovery supports learning and casual audiences; higher costs filter the audience and raise tension. Questions to settle:
 
 | Question | Options |
 |---|---|
@@ -179,9 +192,9 @@ Bosses are commonly built as multi-phase fights because phases prevent repetitio
 | **Are revives limited?** | **World of Warcraft** raids share one pool of combat-resurrection charges (one at the start, plus one every 90 divided by raid size minutes), while dungeons have no limit |
 | **What does a wipe cost?** | Time only, or repair costs and lost consumables |
 | **What does the boss do on reset?** | Full reset, or phase checkpoints |
-| **How long to get back?** | Under a minute is friendly; five is punishing |
+| **How long to get back?** | Under a minute is friendly to casual audiences; five minutes or more suits hardcore raiding |
 
-A designer must decide how much a death should hurt. Too little and mechanics are optional; too much and groups disband.
+A designer decides how much a death should hurt. Too little and mechanics can feel optional; too much and some groups disband.
 
 ### 3.6 Scaling for party size
 
@@ -199,33 +212,35 @@ Public approaches:
 - **Flexible raids** in World of Warcraft scale health and damage with raid size (between 10 and 30 players), with each player adding about a 20% chance for a boss ability to hit one more target or have an extra effect. Boss health grows more slowly than raid output, so bigger groups kill faster, and the stated goal was to be neutral about group size.
 - **Dynamic events** in Guild Wars 2 scale in real time as players arrive or leave: most events scale up to about ten participants, and a few large ones scale up to a hundred. Scaling can increase enemy level, add tougher enemy types, add more enemies, or raise the objective.
 
-Rules for good scaling:
+Other methods: **no scaling (fixed-size content)** (the encounter is built for N players; fewer cannot clear it; tuned and tested once, with the strongest mechanics; raids use it); **difficulty by group size chosen by the player or party** (a tier or player-count setting; more tiers to balance); and **level or gear normalisation** (players are scaled to a standard power; fair content for mixed groups, but it removes some gear reward).
+
+Rules for scaling a game where solo play is allowed (the course game's choice):
 
 1. **Scale at the pull**, not mid-fight, so players are not surprised. (Dynamic scaling is fine for open-world events, where players come and go.)
 2. **Scale HP slower than party power**, so groups are faster per hour.
 3. **Scale mechanics with count**, not only numbers, so large parties still have something to do.
-4. **Never require more players than the minimum.** If a mechanic needs two players, solo must have a sequential version.
+4. **If solo play is allowed, give solo a sequential version of any mechanic that needs two players.**
 5. **Tell the player** what the scaling is.
 
 ### 3.7 World bosses
 
-A **world boss** is a boss fought in the open world by many players at once, usually at scheduled times. Public example: **Diablo IV** world bosses appear about every six hours, with a short fight window (a guide gives 15 minutes) and multi-player participation (as of October 2026).
+A **world boss** is a boss fought in the open world by many players at once. Public example: **Diablo IV** world bosses spawn on a repeating schedule, with a short fight window of about 15 minutes in one guide (as of October 2026; the schedule has changed between seasons, so check the current one).
 
-| Design question | Typical answer |
+| Design question | Common options |
 |---|---|
-| **Spawn** | Fixed schedule with a visible countdown or announcement |
-| **Participation** | Anyone nearby can join, no party needed |
-| **HP and scaling** | Large HP, scaled by the number of players present |
-| **Mechanics** | Big, simple, and readable at a distance; few roles are required |
-| **Rewards** | By participation, so a late joiner or a supporter is not left out |
-| **Failure** | A timer; the boss leaves if not killed |
-| **Dying** | Respawn at a nearby camp; dying does not forfeit the reward |
+| **Spawn** | Fixed schedule with a countdown (Diablo IV); an announcement without a countdown; a respawn after a fixed interval from the last kill; a random window; summoned by an item, egg or event; a roaming field boss |
+| **Participation** | Open to anyone nearby, no party needed; party or guild only; contested (the first guild to kill it owns the reward) |
+| **HP and scaling** | Large HP, scaled by the number of players present, or a fixed high HP |
+| **Mechanics** | Big, simple and readable at a distance, with few roles required; or a hard test for organised groups |
+| **Rewards** | By participation or contribution, so a late joiner or a supporter is not left out; by rank; or by last hit or a drop race (contested) |
+| **Failure** | A timer, a wipe that resets the boss, or a stronger boss that returns |
+| **Dying** | Free respawn at a camp; a resource cost; lost contribution |
 
-A world boss is a **social event** more than a skill test: the aim is that many players feel part of something large, so mechanics must be forgiving and the telegraphs must be huge. Lots of players in one place also make readability and server load the first problems.
+A world boss is often a **social event** more than a skill test: the aim is that many players feel part of something large, so mechanics are usually forgiving and the telegraphs huge; contested designs make it a competition between guilds instead. Lots of players in one place also make readability and server load the first problems.
 
 ### 3.8 How to choose
 
-Use 3–5 enemy packs with one priority target for the everyday field loop, elites with one or two special moves to give cooldowns a purpose, a three-phase boss as a dungeon climax, and a world boss with huge telegraphs as a social spectacle. For touch screens lengthen tells and reduce simultaneous markers; for hard-core players shorten tells and add mechanics and enrage timers. For turn-based or auto-battle games, show enemy intent (a next-action icon) and test team composition and elements instead of reflexes.
+For a readability-first online RPG with parties, like the course game, a workable recipe is: 3–5 enemy packs with one priority target for the everyday field loop, elites with one or two special moves to give cooldowns a purpose, a three-phase boss as a dungeon climax, and a world boss with huge telegraphs as a social spectacle. Other games choose differently: a hardcore raid game uses more simultaneous mechanics, shorter tells and a hard enrage; an action game with one hero makes pattern bosses and dodging the whole test; a roguelike uses random room mixes and elites as spikes. For touch screens, lengthen tells and reduce simultaneous markers; for turn-based or auto-battle games, show enemy intent (a next-action icon) and test team composition and elements instead of reflexes.
 
 ## 4. Tuning and pitfalls
 
@@ -259,16 +274,16 @@ Party fights use the HP multiplier of 2.5 at four players ([module 11](11-party-
 | Everyone dies to the same attack | The tell is too short or too late; or the counter is not clear |
 | A role never has anything to do | The boss does not test that role |
 | One role carries the fight | The mechanics demand too much of one role |
-| Boss fights take longer than 8 minutes | Too much HP; difficulty is coming from numbers |
+| Boss fights much longer than the planned band | Check whether HP, not mechanics, is the source of length. Raid and world bosses commonly run 8 minutes or more |
 | Solo clears are impossible | A mechanic requires two players |
 
 ### 4.3 Classic failures
 
 - **The sponge.** A boss with a huge HP bar and the same two attacks. The fight is long, not hard.
 - **Unreadable difficulty.** Many markers, colours and effects at once. The player sees noise.
-- **Surprise kills.** A lethal attack with no tell, or a tell shorter than the human reaction time. It teaches players to distrust the game.
+- **Surprise kills.** A lethal attack with no tell, or a tell shorter than the human reaction time, can feel unfair to players who expect readable fights; some games use them on purpose to teach by dying, and then rely on fast restarts.
 - **The healer problem.** Pure damage-pressure encounters make the healer the only role that matters.
-- **Roleless bosses.** Fights where nothing differentiates the roles make class design pointless.
+- **Roleless bosses.** In a role-based game, fights where nothing differentiates the roles make class design pointless.
 - **Scaling that punishes grouping.** A group of four faces more than four times the HP.
 
 ## 5. Worked example
@@ -419,7 +434,7 @@ The world boss does not require a party, supports pillar 3 as a place where stra
 
 ### 5.6 What was cut
 
-Instant-death mechanics with no tell (pillar 2), mechanics requiring two players in different places (solo is never blocked), hidden gear checks (the enrage is a visible clock), and per-boss resurrection caps (time and lost output are the cost of dying).
+Instant-death mechanics with no tell (cut for this example's pillar 2, readable fights), mechanics requiring two players in different places (cut for its solo-playable pillar), hidden gear checks (cut so that the enrage is a visible clock), and per-boss resurrection caps (cut so that time and lost output are the cost of dying).
 
 ### 5.7 How the design would differ for another kind of game
 
@@ -428,12 +443,12 @@ In a **hero-collection auto-battle** game there are no telegraphs to react to: t
 ## Key takeaways
 
 - Enemy archetypes are defined by **what they ask of the player**: fodder fills, bruisers hold, ranged break formation, casters get interrupted, elites test cooldowns, bosses test everyone.
-- **Readability is a contract.** Every dangerous attack has a tell, the tell is long enough for the hit's size, and the same signal always means the same thing.
+- **Readability is a choice with a contract.** A game that promises readable fights gives every dangerous attack a tell long enough for the hit's size, and keeps one signal for one meaning; games built on surprise or memorisation set a different contract and say so.
 - **Attack windows reward reading.** Difficulty comes from shortening windows and adding mechanics, not only from bigger numbers.
-- Tune with **mechanics and count first, damage next, HP last**; set HP from a time-to-kill target, not to make fights harder.
-- A boss is **three phases that teach, change the rules, then combine**, with a visible enrage clock and something specific for every role to do.
-- Make **wipe recovery fast and cheap**; the cost of death should be time and lost output, not a chore.
-- Scale encounters at the pull, **HP slower than party power**, and never require more players than one; world bosses are social events with participation rewards and huge telegraphs.
+- Difficulty comes from mechanics, count, damage and HP: mechanics keep fights varied, numbers keep tuning simple; set HP from a time-to-kill target.
+- A boss is built from patterns; many are multi-phase fights, commonly escalating from teaching to combining, with a time-pressure choice and something specific for every role to do.
+- The cost of a wipe is a choice: cheap recovery supports learning and short sessions; higher costs raise stakes and filter the audience.
+- In a game where solo play is allowed, scale encounters at the pull with HP slower than party power; fixed-size content is the alternative. World bosses range from open social events with participation rewards to contested competitions.
 
 ## Further reading
 
@@ -445,4 +460,5 @@ In a **hero-collection auto-battle** game there are no telegraphs to react to: t
 - Guild Wars 2 Wiki, "Dynamic event" (scaling): https://wiki.guildwars2.com/wiki/Event
 - Guild Wars 2 Wiki, "Area of effect" (red circles): https://wiki.guildwars2.com/wiki/Aoe
 - Final Fantasy XIV Console Games Wiki, "Common mechanics and markers": https://ffxiv.consolegameswiki.com/wiki/Common_mechanics_and_markers
+- Wikipedia, "Monster Hunter" (combat built on learning monsters' tells): https://en.wikipedia.org/wiki/Monster_Hunter
 - Diablo IV world boss guide (Keengamer): https://www.keengamer.com/articles/guides/diablo-4-world-boss-guide-world-boss-spawn-times-strategies-and-loot/

@@ -7,7 +7,7 @@
 
 ## In short
 
-**Itemization** is the design of equipment: what slots a hero has, what stats an item gives, how rare it is, how it is improved and how a player gets it. It is a slow second progression track next to levels ([module 14](14-progression.md)) and a major reason players come back. The main choices are how much of an item is fixed and how much is random, how upgrades fail, how drops are rolled and how bad luck is capped. The rule that matters most is **never stack independent random layers**: every extra roll multiplies the spread of outcomes, and the unluckiest players suffer most. The worked example designs the course game's eight gear slots, four rarity tiers, a ten-step upgrade system and one dungeon's drop table, and the simulation shows that bad-luck protection cuts the 99th-percentile wait from 244 runs to 83, and that a protection charm halves the expected cost of a +10 upgrade.
+**Itemization** is the design of equipment: what slots a hero has, what stats an item gives, how rare it is, how it is improved and how a player gets it. It is a slow second progression track next to levels ([module 14](14-progression.md)) and a major reason players come back. The main choices are how much of an item is fixed and how much is random, how upgrades fail, how drops are rolled and how bad luck is capped. A central trade-off is **how many independent random layers to stack**: every extra roll multiplies the spread of outcomes, and the unluckiest players wait longest. Stacked layers are the engine of loot-chase games; one wide layer gives a predictable chase. The worked example designs the course game's eight gear slots, four rarity tiers, a ten-step upgrade system and one dungeon's drop table, and the simulation shows that bad-luck protection cuts the 99th-percentile wait from 244 runs to 83, and that a protection charm halves the expected cost of a +10 upgrade.
 
 ## 1. The concept
 
@@ -54,7 +54,7 @@ Items serve four of the motivations of [module 01](01-player-experience.md):
 - **Completion**: sets and collections give a visible goal.
 - **Community**: showing and trading items is social, and the "wrong class drop" problem is a social problem (module 11).
 
-A drop must always answer three questions at a glance: **Is it better than mine? Can I use it? What would it cost me to improve?** Anything that forces the player to leave the game and read a spreadsheet has failed. The rule from the course game's pillar 4 applies: the player's time is respected, so the worst-case wait for a chased item must have a **ceiling**.
+A drop should answer three questions at a glance: **Is it better than mine? Can I use it? What would it cost me to improve?** Players use guides, loot filters and community spreadsheets in many loot games; in-game clarity lowers that need. The course game's pillar 4 (respect the player's time) gives a chased item a **ceiling** on the worst-case wait; some games leave the wait open on purpose.
 
 ## 3. The design space
 
@@ -67,6 +67,8 @@ A drop must always answer three questions at a glance: **Is it better than mine?
 | **Class-bound or open** | Items restricted by class, or a stat that only helps the right class | Class-bound drops are cleaner ("smart loot" only rolls what the hero can use) but double the item list |
 | **Flat or percent** | +40 Attack versus +4% Attack | Flat grows with level and needs retuning; percent scales and needs caps |
 | **One weapon, or weapon plus off-hand** | | Each extra slot adds a build question and a drop to chase |
+| **Durability and repair** | Items wear out and are repaired for gold | A steady sink and a cost for dying; frustration if too harsh (World of Warcraft: death costs durability and vendors repair gear, per its wiki; a recent patch removed combat wear, as of October 2026) |
+| **Sockets and gems** | Slots on an item hold swappable gems | Build depth and a second progression track; another random layer if sockets roll (Path of Exile skill gems sit in item sockets) |
 
 ### 3.2 Rarity tiers
 
@@ -78,7 +80,7 @@ A rarity tier is a promise about **how special** an item is. Most games use four
 | **Slot tiers** | Rarity sets the **number of affixes** (more slots to roll) | Many action RPGs; *Path of Exile* uses rarity to set how many affixes an item may have (as of October 2026, per its wiki) |
 | **Named / unique** | A few items have a fixed, special rule | Items that change a skill; build-defining |
 
-Rule of thumb: **each tier should drop about 3 to 5 times less often than the one below**, and the top tier should be the one the player thinks about.
+Common spacings range from about 2 to 10 times between tiers; top tiers in chase games are often thousands of times rarer than the base tier. A starting point for a game with a narrow chase is for each tier to drop about 3 to 5 times less often than the one below.
 
 ### 3.3 Affixes: fixed versus random
 
@@ -95,7 +97,7 @@ The key knob is **roll width**. A roll of 50% to 150% of the average makes a per
 
 **Item level** says "this item is made for this level". It is set by the source (an enemy of level 32 drops item level 32 items) and sets the stat budget. **Gear score** is the sum of item power across slots, shown as one number. It is a **summary** for the player and a tool for the designer (recommended gear for a dungeon).
 
-Pitfalls: a gear score used as a **gate** ("need 500 to join") turns a number into a rule, excludes players who are strong in ways the number does not see, and invites inflation. The course game shows gear score and recommends it, but never gates on it (module 11 uses a level range only).
+Gear score can be a **display** (the player sees power), a **recommendation** (the game suggests a level) or a **gate** (a minimum to queue). A gate is simple, protects groups and cuts failed runs, and item-level requirements are used this way in several online RPGs (*Lost Ark* raids and *Final Fantasy XIV* duties publish minimum item levels, as of October 2026); it also excludes players the number does not see, invites inflation and makes the number a rule. The course game uses a display and a recommendation, and gates on level range only (module 11).
 
 ### 3.5 Set items
 
@@ -103,7 +105,7 @@ A **set** bonus rewards wearing several pieces of one family.
 
 | Design | Bonus is | Cost |
 |---|---|---|
-| **Stat bonus** (2 and 4 pieces: more HP, more crit) | Extra power for a complete set | Players wear a set even when single pieces are better; sets must not exceed the budget of the best mix |
+| **Stat bonus** (2 and 4 pieces: more HP, more crit) | Extra power for a complete set | Players wear a set even when single pieces are better; sets need to stay within the budget of the best mix |
 | **Build bonus** (changes how a skill works) | A reason to build around the set | Needs balance work per class |
 | **Collection bonus** (account-wide, cosmetic) | Rewards completion without power | No power, so a weaker chase |
 
@@ -119,7 +121,7 @@ An **upgrade** raises an item by steps (+1, +2, ...). Three designs exist:
 | **Probabilistic** | Each step has a success chance | Exciting, with a bad-luck problem |
 | **Hybrid** | Safe early steps, risky late steps, plus protection | Common in online RPGs |
 
-On **failure**, games choose from: nothing but the cost is lost; the item drops a level; the item is destroyed. The harsher the penalty the more players buy **protection items**, and the more a failure feels like a loss rather than a retry. A **pity** rule (a failure counter that eventually forces success) caps the wait. For example, *Lost Ark* tracks an "Artisan's Energy" meter per item: each failed honing attempt raises it, and when it reaches 100% the next attempt is guaranteed (as of October 2026, per community guides).
+On **failure**, games choose from: nothing but the cost is lost; the item drops a level; the item is destroyed; the attempt adds to a progress meter (pity); the upgrade consumes duplicate items (fodder) so a failure costs only the duplicate; or the item breaks into materials (salvage value). The harsher the penalty the more players buy **protection items**, and the more a failure feels like a loss rather than a retry. A **pity** rule (a failure counter that eventually forces success) caps the wait. For example, *Lost Ark* tracks an "Artisan's Energy" meter per item: each failed honing attempt raises it, and when it reaches 100% the next attempt is guaranteed (as of October 2026, per community guides).
 
 **The cost of an upgrade with a chance `p` and a cost `c` per attempt:**
 
@@ -128,7 +130,14 @@ On **failure**, games choose from: nothing but the cost is lost; the item drops 
 - If a failure also drops the item one level, the step must first be re-climbed: `T(i) = (c + (1 − p) × T(i − 1)) / p`, where `T(i)` is the expected cost to go from level `i − 1` to `i`.
 - With a pity rule that guarantees success after `K` failures, the mean number of attempts is `(1 − (1 − p)^(K+1)) / p`. For `p = 0.55` and `K = 3`: `(1 − 0.45⁴) / 0.55 = 1.74` attempts instead of `1.82`.
 
-**Never stack independent RNG.** Every random layer multiplies the number of possible outcomes. Suppose a perfect piece needs a drop (1 in 53 runs), three affixes each in the top tenth of a wide range (1 in 1,000) and a lucky upgrade climb: the chase is 1 in 53,000 runs before the upgrade, and the player who needs it has no way to plan. If one layer must be wide (drops), keep the others narrow (affix rolls 90% to 110%) or deterministic (early upgrades), and put a ceiling on the wide one.
+**Stacked random layers.** Every random layer multiplies the number of possible outcomes (maths). Suppose a perfect piece needs a drop (1 in 53 runs), three affixes each in the top tenth of a wide range (1 in 1,000) and a lucky upgrade climb: the chase is 1 in 53,000 runs before the upgrade, and the unluckiest players wait longest. Designers choose how wide the chase is:
+
+| Choice | Result | Example |
+|---|---|---|
+| **Stacked layers on purpose** (random drop, random affixes, random crafting) | A deep, long chase and a market for perfect items; the tail is unbounded | *Path of Exile* |
+| **One wide layer** with narrow or deterministic others (affix rolls 90% to 110%, early upgrades certain) | A predictable chase and a bounded tail | The course game |
+
+Pity rules and targeted paths bound the tail in either design.
 
 ### 3.7 Drop tables
 
@@ -167,10 +176,10 @@ A drop table is a chain of draws: **source → does it drop? → rarity → slot
 
 ### 3.10 How to choose
 
-| If your game is... | Choose |
+| If your game is... | Common choices (not exclusive) |
 |---|---|
 | Mobile, short sessions | Fewer slots (4 to 6), fixed stats, upgrade with a pity counter, gear as hero progression |
-| PC online RPG, years of play | 8 to 12 slots, 4 to 5 rarity tiers, narrow random affixes, hybrid upgrades with protection, bind on equip, personal boss loot |
+| PC online RPG, years of play | 8 to 12 slots, 4 to 5 rarity tiers, narrow random affixes, hybrid upgrades with protection, bind on equip, personal boss loot; some PC games choose wide random affixes and a market (*Path of Exile*), shared loot (need or greed), or unique-only drops |
 | Hardcore or build-crafting game | Wide random affixes, deep crafting, a market; accept an expert-only chase |
 | Competitive or fairness-driven | Standardised gear in PvP; items matter for PvE |
 | A game with "no gear treadmill" | A fixed top tier, with growth in options (module 14) |
@@ -182,8 +191,8 @@ A drop table is a chain of draws: **source → does it drop? → rarity → slot
 1. **Start from the time a chase should take.** Pick a target such as "a chosen dungeon piece in a month of weekly clears" and work back to the chance per run.
 2. **Look at the tail, not the mean.** Choose the percentile you protect (P99) and set the pity so the worst case is acceptable.
 3. **Make the stat budget follow the level curve.** `budget(ilvl) = base × level power(ilvl)` (module 14) so gear scales with the hero.
-4. **Rarity is a multiplier, not a lottery.** The gap between the best and worst item of a slot at the same level should be about 30% to 50%.
-5. **Upgrade rates from expected attempts.** Choose the number of attempts a typical player will accept at each step (about 1 to 2 for early steps, 3 to 10 for late ones) and compute `p`.
+4. **Rarity as a multiplier.** In a narrow-chase game like the course game, the gap between the best and worst item of a slot at the same level is about 30% to 50%; hardcore chase games use much wider gaps and more attempts, and tune the tail with pity or crafting.
+5. **Upgrade rates from expected attempts.** Choose the number of attempts a typical player will accept at each step (as a starting point, about 1 to 2 for early steps and 3 to 10 for late ones) and compute `p`.
 6. **Price from the sink you need.** Costs are placeholders until the economy (module 16) says how much gold must leave the game per player per week.
 
 ### 4.2 Signals that something is wrong
@@ -198,13 +207,15 @@ A drop table is a chain of draws: **source → does it drop? → rarity → slot
 | Gold or materials pile up unused | Sinks too weak (module 16) |
 | Very high upgrade levels held by few players | Too long a tail; add protection or pity |
 
-### 4.3 Classic failures of a long-running game
+### 4.3 Common causes of player anger in a long-running game
 
 - **Loot inflation:** every expansion adds a tier, so old drops are scrap (see power creep in module 14).
 - **Random on random on random:** the chase has no ceiling for the unlucky.
 - **The one correct item:** a build needs one specific drop with no deterministic path.
-- **Hidden odds:** players find real rates by data-mining. In many places odds for paid random items must be disclosed (see module 11), and good practice is to publish all odds.
+- **Hidden odds:** players find real rates by data-mining. In many places odds for paid random items must be disclosed (see module 11), and many teams publish all odds.
 - **Failure that feels like theft:** destruction on failure, with no protection or pity.
+
+These are common causes of player anger. Some games use them on purpose for an audience that values stakes and rare moments (a chase item no one can buy, enchant-and-destroy systems in several MMORPGs); the risk is trust and churn among players who expect a ceiling.
 - **Binding that traps:** drops that can never be traded or used, so players feel their time was wasted.
 
 ### 4.4 Connecting to a simulation
@@ -378,15 +389,15 @@ Key tests and their numbers:
 |---|---|---|
 | Bonus roll for beating a par time (`rollsPerRun` 1 to 2) | Chase mean 53.3 to 26.9 runs, P90 122 to 61 | A bonus roll halves the chase with no change to the weights |
 | Hard pity at 100 runs lowered to 60 | Mean 35.9 runs, P90 and P99 both 60 (the ceiling) | A tighter ceiling for a 6% lower mean; the item feels less rare |
-| Remove the charm | +10 costs 16,298 and the P99 is 66,800 | A drop-back penalty without protection is a tax on the unlucky |
+| Remove the charm | +10 costs 16,298 and the P99 is 66,800 | Without the charm the +10 climb costs 16,298 gold on average and the 99th percentile is 66,800: the unlucky tail grows |
 | Charm price 400 to 200 | +10 costs 6,371 | A cheaper charm shifts the break-even down to step 8 |
 
 ### 5.9 What was cut
 
 - **Sockets and gems:** another random layer; revisit if builds need more depth.
-- **Item destruction on failure:** too harsh for pillar 4.
-- **Wide affix rolls and a "perfect roll" chase:** keeps the chase to one layer.
-- **A gear-score gate for dungeons:** gear score is shown but never required.
+- **Item destruction on failure:** cut from this example because it conflicts with its pillar 4 (respect time); some games use it on purpose.
+- **Wide affix rolls and a "perfect roll" chase:** cut from this example to keep the chase to one random layer.
+- **A gear-score gate for dungeons:** cut from this example; gear score is shown and recommended, not required.
 - **Transmog and cosmetic gear:** module 17.
 - **An auction house:** the market design is module 16's.
 
@@ -400,15 +411,19 @@ Key tests and their numbers:
 ## Key takeaways
 
 - An item is **a slot, a stat budget, a rarity and a few affixes**; keep the budget tied to the level curve and the rarity a multiplier.
-- **Never stack independent RNG.** Keep one layer wide (drops), the others narrow or deterministic, and cap the wide one.
+- Each random layer widens the spread of outcomes; decide how wide the chase should be, and use pity or targeted paths to bound the tail where you want a ceiling.
 - Judge a chase by its **percentiles**, not the mean: a 1-in-53 drop leaves 5% of players without it after 160 runs.
 - **Bad-luck protection** lowers the tail far more than the mean (P99 244 to 83 runs for a 28% lower mean).
-- For upgrades, **a failure that drops the item must come with a protection**; the charm halves the cost of +10 and cuts the 99th-percentile cost by 3.4 times.
-- Use **personal loot with a boss-chest floor**, and a **trade window** for wrong-class drops; binding keeps the economy simple.
-- Keep **gear score a display, not a gate**, and plan for **new item generations** so old effort is replaced slowly.
+- The course game pairs a drop-back failure with a protection charm: the charm halves the cost of +10 and cuts the 99th-percentile cost by 3.4 times. Alternatives: no loss on failure, or destruction with insurance.
+- The course game uses personal loot with a boss-chest floor and a trade window for wrong-class drops; other games use shared loot or free trade.
+- Gear score can be a display, a recommendation or a gate; the course game keeps it a display. Plan for **new item generations** so old effort is replaced slowly.
 
 ## Further reading
 
+- MassivelyOP, "Lost Ark details requirements and events to help players prep for April's Brelshaza hard mode raid" (item-level requirements): https://massivelyop.com/?p=433602
+- Final Fantasy XIV Console Games Wiki, "Minimum item level": https://ffxiv.consolegameswiki.com/wiki/Minimum_item_level
+- Warcraft Wiki, "Durability": https://warcraft.wiki.gg/wiki/Durability
+- Wikipedia, "Path of Exile" (random item properties, crafting, skill gems in sockets): https://en.wikipedia.org/wiki/Path_of_Exile
 - Warcraft Wiki, "Personal Loot": https://warcraft.wiki.gg/wiki/Personal_Loot
 - Path of Exile database, "Item Level" (affixes gated by item level): https://poedb.tw/us/Item_Level
 - Lost Ark honing guide (Artisan's Energy pity): https://gamerempire.net/lost-ark-gear-honing-guide/

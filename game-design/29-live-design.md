@@ -7,7 +7,7 @@
 
 ## In short
 
-A live game is not a product that ships once. It is a **service with a promise**: the world keeps changing, and the rules stay fair while it does. Designing it means choosing a **cadence** (how often something new arrives), a **roadmap** (what and when, with honest confidence), a **patch discipline** (what changes how fast), and a **voice** (how you tell players what you did and why). The two long-term dangers are **power creep** (each release makes the last one obsolete) and **trust loss** (changes players feel were done to them). The worked example is the course game's first year after launch: four 12-week seasons with chapters, events, balance passes and a level-cap decision, plus its patch-note and dev-note conventions.
+A live game is not a product that ships once. It is a **service with a promise**: the world keeps changing, and the rules stay fair while it does. Designing it means choosing a **cadence** (how often something new arrives), a **roadmap** (what and when, with honest confidence), a **patch discipline** (what changes how fast), and a **voice** (how you tell players what you did and why). Two common long-term risks are **power creep** (each release makes the last one obsolete) and **trust loss** (changes players feel were done to them). The worked example is the course game's first year after launch: four 12-week seasons with chapters, events, balance passes and a level-cap decision, plus its patch-note and dev-note conventions.
 
 ## 1. The concept
 
@@ -32,7 +32,7 @@ A live game is not a product that ships once. It is a **service with a promise**
 
 ### 1.2 The release rhythm
 
-A live game has several clocks running at once. Players should be able to guess when the next one ticks.
+A live game has several clocks running at once; many teams let players guess when the next one ticks. An example release rhythm (the course game's):
 
 ```mermaid
 flowchart LR
@@ -65,8 +65,11 @@ These serve the motivations of [module 01](01-player-experience.md): **Completio
 | **Seasons** | A fixed-length unit (8–16 weeks) with a theme, a pass and a finale | *Fortnite*, *Destiny 2* (seasons and episodes) | Predictable; a clear point to join or return | Constant content pressure; "season fatigue" |
 | **Leagues (fresh start)** | A new world with a reset economy every few months | *Path of Exile* (leagues every few months) | Everyone starts equal; economy and power creep reset | Players lose progress each time; needs a permanent mode too |
 | **Continuous drip** | Frequent small updates (every 1–4 weeks) | *Warframe*, *League of Legends* (a patch about every two weeks) | Always something new; fast fixes | Many small pieces; hard to build a story peak |
+| **Annual release** | A new version every year, with a live season inside | Sports and shooter franchises | Predictable revenue and marketing | The audience may split between versions |
+| **Content when ready** | Updates have no fixed schedule | Many sandbox and indie games | No crunch to a date; bigger drops | Unpredictable; hard to market |
+| **Maintenance mode** | Fixes, security and small events only | Older live games | Low cost | The game ages |
 
-Most successful live games combine them: a steady **drip** of small patches and balance changes, a **season** as the unit of story and rewards, and an **expansion or book** as the unit of big change.
+Many live games combine models: a steady **drip** of small patches and balance changes, a **season** as the unit of story and rewards, and an **expansion or book** as the unit of big change (the course game's choice); others run one model alone (league-style resets, continuous drip, annual releases).
 
 ### 3.2 Roadmaps
 
@@ -78,11 +81,13 @@ A **roadmap** is a promise, so label how firm each part is.
 | **This season** (12 weeks) | Themes and features | **Planned** | May move by a chapter |
 | **Next season and beyond** | Direction only | **Exploring** | No dates; may be dropped |
 
-**Rules for a public roadmap.**
-1. **Dates are windows, not days** ("Chapter 2, week of 12 March").
-2. **Never show what you are not ready to commit to** as a firm date. An announced feature that is cut costs more trust than one that was never announced.
-3. **Slips are announced early.** A delay told at week 6 is a small problem. A delay discovered at week 12 is a trust problem.
-4. **Show a recap of what shipped** next to what is coming, so the roadmap proves the team delivers.
+**Roadmap practices.**
+1. **Dates as windows, not days** ("Chapter 2, week of 12 March").
+2. **Firm dates only for what is committed.** An announced feature that is cut can cost reputation.
+3. **Slips announced early.** A delay told at week 6 is a smaller problem than one discovered at week 12.
+4. **A recap of what shipped** next to what is coming shows the team delivers.
+
+Options: no public roadmap (surprise and flexibility; players cannot plan), loose themes (some planning), or a full public roadmap (planning and trust; cut features cost reputation). The course game uses confidence labels.
 
 Internally plan **one season in detail** (the beat sheet), **two seasons in outline**, and **one year as themes**, as in [module 20](20-narrative.md).
 
@@ -113,22 +118,26 @@ Internally plan **one season in detail** (the beat sheet), **two seasons in outl
 | **Seasonal (calendar)** | A shared celebration | A midwinter festival at the Lodge |
 | **Story finale** | The shared peak of a season | The season's world boss mutation and a one-time scene |
 | **Anniversary** | Thank players, bring lapsed ones back | A week of returning rewards |
+| **Community goal** | The whole server fills a bar | A shared contribution target |
+| **Competitive event** | A tournament or a race with a ranking | A ranked weekend |
+| **Collaboration** | Another franchise's items or characters (*Fortnite* has run crossovers with other franchises, such as Star Wars) | Licences and a mode to balance |
+| **Limited-time mode** | A rule variant | A mode to balance, ranking pressure |
 
-**Event rules.**
-- **Reward time-limited items that players can earn, never power.** Pillar 4 applies: no event gives combat power that is not earnable later.
+**Event practices** (the course game's; other live games run limited-time power or items for urgency and scarcity, at the cost of fear of missing out).
+- **Time-limited items players can earn, with no combat power.** Pillar 4 applies: no event gives combat power that is not earnable later.
 - **Give the economy a budget.** An event is a faucet and a sink; set both on the economy model ([module 16](16-economy.md)). Event tokens are bound, capped and expire.
-- **Do not create daily chores.** An event that asks for 45 minutes a day for two weeks punishes the player who cannot.
-- **Bring old events back.** Missable cosmetics return, as in the pass rule of [module 17](17-monetization.md).
+- **No daily minimum.** An event that asks for 45 minutes a day for two weeks punishes the player who cannot.
+- **Old events return** once a year; missable cosmetics return, as in the pass rule of [module 17](17-monetization.md).
 
 ### 3.5 Balance patches
 
-The mechanics of balancing (spreadsheets, benchmarks, power budgets) are in [module 25](25-balancing.md). The live rules are about **how and when**:
+The mechanics of balancing (spreadsheets, benchmarks, power budgets) are in [module 25](25-balancing.md). Common live practices are about **how and when** (module 25 covers the alternatives: buff-first, nerf-first and mixed approaches are all in use):
 
 1. **Scheduled, not random.** Numbers change on set days, except for emergencies.
 2. **Small and explained.** Change a few things at a time so you can tell what worked.
 3. **Buff before nerf.** Raise the weak instead of lowering the strong, where the game's power budget allows.
 4. **Compensate nerfs.** If a skill that players built on is weakened, give them a way to change (a free respec for a week).
-5. **Tell the truth.** Every number change appears in the notes. A "stealth" nerf teaches players to distrust notes.
+5. **Say what changed.** Some games change numbers when needed and keep notes short; some publish full tables per change (Riot, for example). The course game lists every number change; a "stealth" nerf can teach players to distrust notes.
 6. **Preview big changes.** A dev note a few days before a large change gives players time to respond.
 7. **Check after.** Compare the benchmark results (module 25) and the player counts by class one week later.
 
@@ -144,9 +153,9 @@ The mechanics of balancing (spreadsheets, benchmarks, power budgets) are in [mod
 **Principles.**
 - **Numbers over adjectives.** "Barrage damage 1.0× → 0.9× per tick" beats "Barrage was slightly reduced."
 - **Give the reason.** One sentence per change: what was wrong, what is the effect.
-- **Say what you do not know.** "We are investigating" is acceptable. A guess presented as a fact is not.
+- **Say what you do not know.** A team may say it is investigating, or avoid comment until it knows more; guesses presented as facts have cost studios trust.
 
-Some live games involve players in decisions directly. *Old School RuneScape* publishes proposed updates and lets players vote, and a proposal needs 75% approval to pass (as of October 2026, per the game's public wiki). That is the strongest form of the "do they listen" promise, and it limits what the designers can do.
+Some live games involve players in decisions directly. *Old School RuneScape* publishes proposed updates and lets players vote, and a proposal needs 75% approval to pass (as of October 2026, per the game's public wiki). Voting gives players a binding say and limits what designers can do.
 
 ### 3.7 Handling backlash
 
@@ -157,16 +166,16 @@ Backlash is a signal. Treat it in four steps:
 3. **Decide (within a few days).** Revert, change, hold or compensate. State the reason, and the date of the next update.
 4. **Follow up (about a week).** Report what changed and the data after.
 
-**Do and do not.**
+**Common practices and their costs.**
 
-| Do | Do not |
+| Practice | Cost or alternative |
 |---|---|
-| Fix the cause, then apologise in plain words | Apologise without a change |
-| Admit a mistake once, with what changes | Argue each complaint in public |
-| Compensate for lost time or items, in the same kind of reward | Pay back a harm with premium currency that pushes spending |
-| Revert fast when a rule is clearly harmful | Defend a decision by stating the player "does not understand" |
+| Fix the cause, then apologise in plain words | An apology without a change draws more criticism |
+| Admit a mistake once, with what changes | Arguing each complaint in public prolongs the dispute |
+| Compensate in the same kind of reward | Compensating with premium currency is cheaper for the studio and has drawn criticism for pushing spending |
+| Revert fast when a rule is clearly harmful | A slower, reasoned hold can protect a design a team believes in |
 
-A public example: in 2017 a large publisher turned off real-money purchases in a big game just before launch after a wave of criticism of its progression design. The lesson is that an early, clear reversal costs less than a sustained dispute.
+A public example: in 2017 a large publisher turned off real-money purchases in a big game just before launch after a wave of criticism of its progression design. The 2017 reversal (see Further reading) is a public example of a quick reversal; how often reversal beats dispute depends on the case.
 
 ### 3.8 Reading community signals
 
@@ -189,7 +198,7 @@ Different sources show different things, and each has a bias.
 
 ### 3.9 Power creep and sunsetting
 
-**Power creep** is the slow rise of power across releases. Each new gear tier must beat the old one to be worth chasing, and new enemies grow to match it. After several releases, old content is trivial, old gear is trash, and new players cannot catch up. [Module 14](14-progression.md) gives the model: if each of three expansions raises the gear ceiling by 20% and old content is never retuned, old content sits at about 2.2 times its original power ratio.
+**Power creep** is the rise of power across releases. In a gear-chase game each tier beats the last, so older content and gear lose value; designs differ on how fast (see tools) and on whether old power is reset on purpose. [Module 14](14-progression.md) gives the model: if each of three expansions raises the gear ceiling by 20% and old content is never retuned, old content sits at about 2.2 times its original power ratio.
 
 | Tool | How it limits creep | Public example (as of October 2026) | Cost |
 |---|---|---|---|
@@ -198,19 +207,20 @@ Different sources show different things, and each has a bias.
 | **Level or stat squish** | Compress numbers back down | *World of Warcraft* levels 1–120 compressed to 1–50 in 2020 | Large one-time cost; players are unhappy for a while |
 | **Rotation** | Old items leave a mode | *Hearthstone*'s yearly rotation of its standard mode | Players lose items; needs a permanent mode |
 | **Scaling old content** | Old dungeons adjust to the player | Common | Removes the feeling of growing stronger |
+| **Planned reset** | Each expansion or season resets the chase (new gear tiers, a level squish) | *World of Warcraft* expansions; *Path of Exile* leagues | Always a new goal; old effort loses value and players may feel a treadmill |
 
-**Sunsetting.** Retire in the least harmful order: **rewards** (old tiers become cheaper or lower value) before **content** (rarely removed), before **modes** or **items** (announced early), before **the game itself**. For an end of service, announce far ahead, stop selling premium currency at once, refund or convert unspent premium currency where the law or the store requires it, and let players keep access to what they own as long as possible (laws differ by region; check them).
+**Sunsetting.** One order for retiring things, from least to most disruptive: **rewards** (old tiers become cheaper or lower value) before **content** (rarely removed), before **modes** or **items** (announced early), before **the game itself**. Games that retire items early use scarcity and urgency; the cost is player goodwill. For an end of service, announce far ahead, stop selling premium currency at once, refund or convert unspent premium currency where the law or the store requires it, and let players keep access to what they own as long as possible (laws differ by region; check them).
 
 ### 3.10 Team rhythm
 
-A live team is a **pipeline**, not a project. At any moment it works on three seasons: one live, one in production, one in the outline.
+Many live teams run a **pipeline**: at any moment, three seasons (one live, one in production, one in the outline); smaller teams run one season at a time.
 
 | Practice | Why |
 |---|---|
 | **Fixed cadence** | The team can plan; players can predict |
 | **Content freeze before release** | Time for testing and store review; reduces crunch |
 | **A weekly live review** | Metrics and community topics reach the design team every week |
-| **No deploys at the end of the week** | Problems found on a Friday should not cost a weekend |
+| **No deploys at the end of the week** | Reduces risk and shortens the week's release window |
 | **Capacity split** | Part of the team is protected for live work, tech debt and experiments, so content never eats all of it |
 
 ## 4. Tuning and pitfalls
@@ -228,9 +238,9 @@ A live team is a **pipeline**, not a project. At any moment it works on three se
 
 - **Cadence you cannot keep.** A promise of weekly content collapses into months of silence. Choose a cadence you can sustain through the worst month.
 - **Content treadmill.** Players consume a month's content in a weekend. Fix: depth and repeatable content, not only new content.
-- **Fear-of-missing-out design.** Missable rewards and daily streaks make players feel they owe the game their time. Fix: let rewards return.
-- **Power creep spiral.** Each season needs a bigger number. Fix: a written power budget and horizontal growth.
-- **Unannounced changes.** Players discover a nerf in play. Fix: the notes list every number.
+- **Fear-of-missing-out design.** Missable rewards and streaks raise logins and the sense of obligation; returning rewards lowers both.
+- **Power creep spiral.** Each season may need a bigger number to feel new; a power budget and horizontal growth slow it, and resets accept it.
+- **Unannounced changes.** They cost trust when found in play; some studios list only headline changes.
 
 ## 5. Worked example
 
@@ -435,15 +445,17 @@ Known issues
 ## Key takeaways
 
 - A live game is a **service with a promise**: new content and fair rules. Choose a cadence the team can keep through its worst month.
-- Use the **season** as the unit of story and rewards, the **chapter** as the patch, and a **book or level cap** as the unit of big change.
-- Label every roadmap item **Committed, Planned or Exploring**, give dates as windows, and announce slips early.
-- Change numbers on a **schedule**, in **small steps**, with **every change in the notes and a reason for each**, and compensate nerfs.
+- A common structure uses season, chapter and book (the course game's); others use annual releases or continuous drip.
+- Roadmap labels (**Committed, Planned, Exploring**) and window dates are one way to promise carefully (the course game's).
+- The course game changes numbers on a **schedule**, in **small steps**, and lists every change; other studios publish less.
 - Handle backlash by triage, acknowledgement within a day, a decision within days and a follow-up with data. Read community signals by source and confirm them with telemetry.
-- Control **power creep** with a written budget, small steps, horizontal growth and catch-up paths, and retire rewards before content.
-- Build a **pipeline** (one season live, one in production, one in outline), with freezes, no end-of-week deploys and protected capacity.
+- Power creep can be controlled with a written budget, small steps and horizontal growth, or reset on purpose.
+- A **pipeline** of one live season, one in production and one in outline is one model; smaller teams plan one season at a time.
 
 ## Further reading
 
+- TechRadar, "Star Wars Battlefront 2 microtransactions have been pulled for now" (November 2017): https://www.techradar.com/news/star-wars-battlefront-2-microtransactions-have-been-pulled-for-now
+- Inverse, Fortnite crossovers with Star Wars, Halo and God of War: https://www.inverse.com/gaming/fortnite-season-5-skins-kratos-master-chief-mandalorian-leaks
 - Riot Games, League of Legends patch notes (a public, long-running example of numbered, reasoned notes): https://www.leagueoflegends.com/en-us/news/tags/patch-notes/
 - Old School RuneScape wiki, the poll system: https://oldschool.runescape.wiki/w/Update:Dev_Blog:_The_Poll_System
 - Path of Exile, league and patch news (a public example of a league cadence): https://www.pathofexile.com/forum/view-forum/news

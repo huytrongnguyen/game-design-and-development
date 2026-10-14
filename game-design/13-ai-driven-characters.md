@@ -7,7 +7,7 @@
 
 ## In short
 
-NPC behaviour has always been a spectrum: fixed scripts, state machines and behaviour trees, planners, and now **AI agents** that generate dialogue or choose actions at run time. AI agents add open conversation, memory, reactions and characters that play like players. They also add risks: leaving the persona or the canon, breaking quests, being exploited, being unreadable, producing unsafe text, and costing money and time per interaction. As of October 2026 the technology is mostly **experimental or limited-mode** in commercial games, so the practical design is a **hybrid**: the story, rewards and rules stay scripted, and the AI works inside a narrow, guarded space with scripted fallbacks. AI can also play as a **test bot** that behaves like a player to check content and balance. The worked example designs the course game's AI-driven companion with a persona sheet, an action list and fallbacks.
+NPC behaviour has always been a spectrum: fixed scripts, state machines and behaviour trees, planners, and now **AI agents** that generate dialogue or choose actions at run time. AI agents add open conversation, memory, reactions and characters that play like players. They also add risks: leaving the persona or the canon, breaking quests, being exploited, being unreadable, producing unsafe text, and costing money and time per interaction. As of October 2026 the technology is mostly **experimental or limited-mode** in commercial games. Designs choose how much freedom the AI gets, from words only to full play through the same inputs and rules as a human player; the risk and cost rise with the freedom, and the game server stays the authority on outcomes and rewards at every level. Two common paths exist: **script first** and add AI where a character feels dead, or **AI first** where the feature is the agent (a simulation, a co-player) with a scripted safety layer around it. AI can also play as a **test bot** or as a player-facing character that plays like a player. The worked example designs the course game's AI-driven companion with a persona sheet, an action list and fallbacks.
 
 ## 1. The concept
 
@@ -54,7 +54,7 @@ What AI-driven characters promise a player:
 | **A teammate that plays like a person** | "My companion revives me and calls out threats" | Community, Autonomy |
 | **Uniqueness** | "My game differs from yours" | Discovery |
 
-What players do not forgive: a character that **forgets the quest**, says **something that contradicts the world**, is **slow** to answer, or can be **tricked into breaking the game**. The test for a player is "does this make the world feel more alive, or more broken?"
+Typical complaints in playtests and early reviews (a designer's assumption here, to be confirmed by your own playtests; some players enjoy breaking AI characters, and some audiences accept inconsistency for charm): a character that **forgets the quest**, says **something that contradicts the world**, is **slow** to answer, or can be **tricked into breaking the game**. The test for a player is "does this make the world feel more alive, or more broken?"
 
 How it fits the loops of [module 03](03-vision-pillars-loops.md): conversation sits in the **session** loop (between fights); a companion's actions sit in the **core** loop (inside fights), where latency and readability matter most.
 
@@ -80,6 +80,9 @@ How it fits the loops of [module 03](03-vision-pillars-loops.md): conversation s
 | **Reaction to the world** | The character receives a short description of game state | Adds latency; must stay cheap |
 | **Initiative** | The character starts talking or acting | Players may feel nagged |
 | **Characters that play like players** | The agent perceives, plans and acts in the game | Fairness, anti-cheat, expected skill |
+| **Population and liveness** | AI-played characters fill a world, a town or a party when few humans are online | Needs fairness rules, a cost cap and a clear label |
+| **Content at scale** | Generating barks, item flavour text, quest variants or localisation drafts, reviewed by writers | Needs review for canon and tone; less open-ended than live conversation |
+| **Adaptive difficulty or pacing** | A director that watches the player (the *Left 4 Dead* AI Director) | A mature technique; needs readable rules |
 
 ### 3.3 Public examples and research
 
@@ -122,12 +125,13 @@ State clearly to your team: **shipped and mainstream** = scripted, behaviour tre
 | **Input filters** | Detect abuse, injection attempts and personal data before the prompt |
 | **Output filters** | Check for banned words, canon violations and length |
 | **Short memory with approved facts** | Only logged, verified events are remembered |
+| **Open memory with review** | The agent keeps and retrieves free-form notes; a filter or a canon check runs before use | Richer, more surprising characters; drift and canon risk grow, so it needs more review |
 | **Scripted fallbacks** | A bark or a scripted line when the AI is slow, blocked or off-persona |
 | **Budgets** | A cap on tokens, replies per hour and cost per player |
 | **Logging and review** | Samples of conversations are reviewed by a person; failures become test cases |
 | **A kill switch** | Remote switch back to scripted mode without a patch |
 
-**The rule of thumb:** *the AI chooses words and picks among options; the game owns the facts, the rewards and the rules.*
+**How much the AI may do** is the main choice: (1) words only; (2) words plus picks from an allowed list; (3) full play through the same inputs and rules as a human player. The risk and cost rise with the freedom: readability, latency, fairness and exploits. Whatever the level, the game server owns outcomes and rewards, so an AI character earns what a human would earn under the same rules and cannot grant itself items. Teams that need readable combat or fixed stories keep the AI at level 1 or 2; teams that want characters that play like players (population, co-players, rivals) accept the cost of level 3.
 
 ### 3.6 AI-played characters as a testing aid
 
@@ -141,7 +145,7 @@ An agent that **plays the game like a player** can help test (module 28):
 | **Load and economy tests** | Bots act in the economy to expose exploits (module 16) | They find loops, not feelings |
 | **Regression** | The same bot runs after each patch | Needs maintenance |
 
-Public precedent: research agents have played complex games at high level (for example OpenAI Five for *Dota 2* and DeepMind's AlphaStar for *StarCraft II*), but they were research projects, not products; most studios use scripted or reinforcement-learned bots for testing. **A bot is a measuring tool, never a replacement for human playtests** (module 28).
+Public precedent: research agents have played complex games at high level (for example OpenAI Five for *Dota 2* and DeepMind's AlphaStar for *StarCraft II*), but they were research projects, not products; most studios use scripted or reinforcement-learned bots for testing. Bots measure clear times, stuck points and exploits; they usually cannot judge fun, feel or readability, which need human playtests (module 28), so treat them as a complement.
 
 ### 3.7 How to choose
 
@@ -150,10 +154,11 @@ Public precedent: research agents have played complex games at high level (for e
 | **A quest giver for a main story beat** | Scripted | The designer must control facts and pacing |
 | **An enemy in combat** | Behaviour tree or planner | Readability matters most |
 | **A tavern NPC who adds colour** | AI dialogue with guardrails and a scripted fallback | Low stakes; adds life |
-| **A companion in a game that sells togetherness** | Rule-based combat; AI dialogue for banter only | The companion must stay weaker than humans (module 11) |
+| **A companion in a game that sells togetherness** | Rule-based combat; AI dialogue for banter only | In this reading the companion stays weaker than humans (module 11) |
 | **A companion in a solo game** | AI agent with an action list | Reaction and memory are the product |
 | **A simulation character** | AI agent with memory | The emergent stories are the product |
-| **A test partner** | Test bot | A tool, not a player-facing feature |
+| **A test bot or practice partner** | Test bot | A tool for testing and practice |
+| **A character that plays like a player (teammate, rival, population filler)** | An agent-played character that uses the same inputs and rules as a human and runs under the server's authority | It makes a world feel populated and fills parties without queues; costs and risks are fairness, anti-cheat, latency, cost per player-hour and player trust. Public example: *PUBG Ally* (limited beta, as of October 2026) |
 | **A character in a game for children** | Scripted, or heavily filtered AI dialogue only after review | Safety rules |
 | **A shared world with one canon** | AI dialogue only where it cannot change shared facts | Everyone must see one truth |
 
@@ -161,9 +166,9 @@ Public precedent: research agents have played complex games at high level (for e
 
 ### 4.1 Rules of thumb
 
-- Start **scripted**, then add AI where a playtest shows the character feels dead.
-- **Keep AI out of the core combat loop** unless actions come from a short, readable list.
-- Give the AI **no power over rewards, items or progress.**
+- Two common paths: **script first**, then add AI where a playtest shows a character feels dead (low risk, slow to reach agents); or **AI first**, where the feature is the agent, with scripted fallbacks and a rule layer around it. As of October 2026 shipped games are mostly on the first path.
+- Where combat must be readable, keep AI actions to a short, readable list; characters that play like players (section 3.1) accept the cost of freer actions.
+- Let the **game server own outcomes and rewards**: an AI character earns what a human would under the same rules, and cannot grant itself items or progress.
 - Put a **budget** on every AI reply (tokens, time, cost) and a fallback for each.
 - **Test with adversarial players.** Ask testers to break the character in 15 minutes.
 - **Review logs** weekly; every failure becomes a rule or a test.
@@ -227,7 +232,7 @@ Give **Dev** (short phone sessions) and **Lena** (story and discovery) a charact
 | **Rewards and items** | **Game only** | The AI has no access to inventory or economy |
 | **Callouts in combat** | **Scripted barks**, chosen by the rule-based layer | Under 0.3 s, always correct |
 
-The AI never selects combat actions. In the first version it only writes the **banter**.
+In the first version the AI does not select combat actions; it only writes the **banter** (this feature spec's scope, not a rule for every design).
 
 ### 5.4 Companion strength and fairness
 
@@ -236,7 +241,8 @@ The AI never selects combat actions. In the first version it only writes the **b
 | **Output** | 40% of a player's damage; basic revive with a longer channel | Weaker than humans (module 11 suggests 60% in another variant; here a pure helper) |
 | **Party slot** | Fills one slot only when the party is smaller than three | Humans always take priority |
 | **Reward share** | None; loot and XP are the player's | A companion is not a farm |
-| **Group bonus** | Not counted as a player for module 11's scaling | Keeps "stronger together" true |
+| **Enemy scaling** | Counts as 0.4 of a player for enemy HP (solo with Pip: enemy HP ×1.2) | Without it a solo hero with Pip clears almost as fast as a group (the design package's check 9) |
+| **Group bonus** | Not counted as a player for module 11's XP and drop bonus | Keeps "stronger together" true |
 | **Dungeon use** | Normal difficulty only | Ember mode needs humans |
 
 ### 5.5 Allowed actions, filters and fallbacks
@@ -278,8 +284,8 @@ A low-stakes example. **Hob** is a Gloam Fen barkeeper who can chat about the to
 
 ### 5.8 What was cut
 
-- **AI-written quest dialogue.** Story and facts stay scripted (module 20).
-- **AI-chosen combat actions.** Readability and latency (module 12).
+- **AI-written quest dialogue.** Cut from this first version because the story bible must stay under human control until moderation and canon checks exist (module 20).
+- **AI-chosen combat actions.** Cut from this first version because the combat layer needs guaranteed latency and readable actions (module 12), and the team has no test data yet.
 - **Companions in Ember mode, the world boss and PvP.** Humans only.
 - **Free-form memory.** Only logged, verified events.
 - **Voice conversation.** Extra cost, moderation and privacy work.
@@ -300,16 +306,17 @@ A low-stakes example. **Hob** is a Gloam Fen barkeeper who can chat about the to
 - NPC intelligence is a **spectrum** from scripts to agents; each step to the right adds openness and removes control.
 - As of October 2026, AI-driven characters are **experimental or limited-mode** in commercial games; scripted, behaviour-tree and planned NPCs are the shipped standard.
 - AI adds **conversation, memory, reaction** and **characters that play like players**, but brings risks: out of character, out of canon, exploits, unreadable actions, safety, cost and latency.
-- **The AI chooses words and picks among options; the game owns the facts, rewards and rules.**
+- The more freedom an AI character has, the more guardrails, cost and testing it needs; the game server stays the authority on outcomes and rewards at every level.
 - Use **guardrails**: persona sheet, canon limits, allowed actions, input and output filters, budgets, logging and a kill switch, and a **scripted fallback for every case**.
-- Keep AI **out of the readable core combat loop**, and out of anything that grants rewards.
-- **Test bots** that play like players are a useful measuring tool, never a replacement for human playtests.
+- Where combat must be readable, keep AI actions to a short list; characters that play like players are an option with their own costs (fairness, anti-cheat, latency, trust).
+- **Test bots** measure clear times and stuck points; human playtests judge fun, feel and readability.
 
 ## Further reading
 
 - Park et al., "Generative Agents: Interactive Simulacra of Human Behavior" (2023): https://arxiv.org/abs/2304.03442
 - Ubisoft, "Ubisoft unveils NEO NPC, a generative AI prototype" (GDC 2024): https://news.ubisoft.com/en-us/article/5qXdxhshJBXoanFZApdG3L
 - NVIDIA, "NVIDIA Redefines Game AI With ACE Autonomous Game Characters": https://www.nvidia.com/en-eu/geforce/news/nvidia-ace-autonomous-ai-companions-pubg-naraka-bladepoint/
+- GamesMEA, "KRAFTON unveils PUBG Ally Duo beta with AI teammate" (beta status, 2026): https://gamesmea.com/krafton-unveils-pubg-ally-duo-beta-with-ai-teammate/
 - Krafton, "Krafton reveals playtest plans for PUBG Ally, built with NVIDIA ACE": https://press.krafton.com/KRAFTON-REVEALS-PLAYTEST-PLANS-FOR-PUBG-ALLY-BUILT-WITH-NVIDIA-ACE
 - Wikipedia, "Behavior tree (artificial intelligence, robotics and control)": https://en.wikipedia.org/wiki/Behavior_tree_(artificial_intelligence,_robotics_and_control)
 - Wikipedia, "Goal-oriented action planning": https://en.wikipedia.org/wiki/Goal-oriented_action_planning

@@ -7,7 +7,7 @@
 
 ## In short
 
-"Balanced" means three things at once: **fair** (players of equal skill have equal chances), **varied** (many options are viable, so choices matter) and **intended** (the result matches what the designer meant, for example "tanks survive, mages burst"). You get there by giving every option a **power budget**, checking it first in a **spreadsheet**, then a **simulation**, then **playtests**, and finally **live metrics**, and by changing one number at a time. In a live game, balance never ends: it is a cadence of small patches, buffs before nerfs, and plain communication. The worked example is the course game's **class balance sheet**: DPS, effective HP and a utility score for five classes against target bands, the rule that the two Paths of a class stay within 5% of each other in three benchmark fights, and one balance change traced through the simulation.
+"Balanced" means three things at once: **fair** (players of equal skill have equal chances), **varied** (many options are viable, so choices matter) and **intended** (the result matches what the designer meant, for example "tanks survive, mages burst"). You get there by giving every option a **power budget**, checking it first in a **spreadsheet**, then a **simulation**, then **playtests**, and finally **live metrics**, and by changing one number at a time. In a live game, balance continues: it is a cadence of small patches, buffs before nerfs, and plain communication. The worked example is the course game's **class balance sheet**: DPS, effective HP and a utility score for five classes against target bands, the rule that the two Paths of a class stay within 5% of each other in three benchmark fights, and one balance change traced through the simulation.
 
 ## 1. The concept
 
@@ -37,7 +37,7 @@
 | **Varied** | Are many options viable? | Everyone plays the same two builds; the rest are traps |
 | **Intended** | Does it match the design goal? | The "tank" kills faster than the damage class |
 
-David Sirlin's well-known definition of a balanced multiplayer game is "a reasonably large number of options available to the player are viable", which puts variety first and fairness second. Online RPGs add a third demand: the numbers must also serve the **role fantasy** ([module 09](09-classes-roles.md)). Perfect parity is not the goal. A healer that deals exactly the same damage as a Duelist has no identity.
+David Sirlin's well-known definition of a balanced multiplayer game is "a reasonably large number of options available to the player are viable", which puts variety first and fairness second. Online RPGs add a third demand: the numbers must also serve the **role fantasy** ([module 09](09-classes-roles.md)). Perfect parity is the goal of many competitive games; role-based RPGs usually aim for identity within a band, since a healer that deals the same damage as a Duelist has no identity.
 
 ### 1.3 The balance loop
 
@@ -73,23 +73,26 @@ A **power budget** gives every option the same total to spend. A sword, a skill 
 |---|---|---|---|
 | **Linear** | Each point costs the same | Easy to explain; stacking a stat is not punished or rewarded | Base stats, flat bonuses |
 | **Convex (rising cost)** | Each extra point costs more | Spreads investment across stats; extremes are expensive | Crit chance, cooldown reduction, anything that multiplies |
-| **Concave (falling cost)** | Each extra point costs less | **Stacking is rewarded**, so one build dominates; avoid | Rarely intended |
+| **Concave (falling cost)** | Each extra point costs less | Stacking is rewarded and builds can snowball | Used on purpose in games that sell the fantasy of runaway scaling (many action RPGs); the cost is one dominant build unless the stacking has an end |
+| **No formal budget** | Designers tune by feel and playtest | Fast; keeps identity | Drift and power creep as content grows |
 
-Two practical rules:
+Two practical approaches:
 
 1. **Compare by value per point, not by raw effect.** In [module 10](10-skills.md) Aimed Shot gives 3.0× for 25 Focus (0.120 per Focus) and Volley 2.0× per target for 35 Focus (0.057 per target), so Volley breaks even at two targets and wins from three. That table is a small power budget.
-2. **Cap what multiplies.** Module 10 caps damage-dealt buffs at +40% additive for exactly this reason: uncapped multipliers turn a small edge into a dominant strategy.
+2. **Capping what multiplies** keeps outliers small. Module 10 caps damage-dealt buffs at +40% additive for that reason; uncapped multipliers make build discovery a game of its own and need endgame tuning.
 
-### 3.2 Four ways to check a number
+### 3.2 Ways to check a number
 
 | Method | Answers | Cost | Blind spot | Use when |
 |---|---|---|---|---|
-| **Spreadsheet** | "What is the expected DPS, effective HP, time-to-kill?" | Hours | Averages only; no variance, no player behaviour | First, always |
+| **Spreadsheet** | "What is the expected DPS, effective HP, time-to-kill?" | Hours | Averages only; no variance, no player behaviour | A cheap first pass |
 | **Simulation** | "What happens over 10,000 fights with crits, targets and interactions?" | Days | Models what you thought of | Interacting systems, random rolls |
 | **Playtest** | "Is it fun, readable, fair?" | A day per round | Small sample; opinions | Before "final" |
 | **Live metrics** | "What do real players pick and win?" | Needs players | Sees symptoms, not causes; skill and platform mix distort it | After launch, forever |
+| **Automated play** | "What are win rates and degenerate strategies over thousands of matches?" (bots or learning agents) | Days to build | Bots do not play like people | Games with many interacting options |
+| **Public test realm** | "How does it feel, and what breaks?" (volunteers play ahead of release) | Needs a community | Self-selected players | Before a risky release |
 
-Order for a small team: spreadsheet, then simulation for the interesting parts, then playtests ([module 28](28-prototype-playtest.md)), then live metrics. Each stage catches what the earlier one cannot: a spreadsheet will not find "this fight is boring", and a playtest will not find a 4% edge.
+A common order for a small team is spreadsheet, then simulation for the interesting parts, then playtests ([module 28](28-prototype-playtest.md)), then live metrics (cheapest first). Teams that prototype first playtest early and model later; the cost is more rework in numbers. Each stage catches what the earlier one cannot: a spreadsheet will not find "this fight is boring", and a playtest will not find a 4% edge.
 
 ### 3.3 Transitive and intransitive balance
 
@@ -128,11 +131,24 @@ A **dominant strategy** shows up in two numbers.
 | | **Low win rate** | **High win rate** |
 |---|---|---|
 | **High usage** | A popular trap, or a fun but weak option; watch for frustration | Overpowered, or just easy to play at every level; nerf or buff the others |
-| **Low usage** | Underpowered; buff | Strong but hard or not obvious (a high skill ceiling); do not nerf yet, teach it |
+| **Low usage** | Underpowered; buff | Strong but hard or not obvious (a high skill ceiling); options are to wait and teach it, to leave it as a skill-ceiling reward, or to nerf it for the top tier |
 
 Read the metrics with care. **Skill and platform mix distort them**: an easy class gets more beginners, so its average win rate drops even if it is strong in good hands. Riot Games' public champion-balance framework (see Further reading) handles this by setting separate power bands for different skill tiers instead of one number, and by treating the pick-or-ban rate as a signal of its own. Use the same idea: look at the metric by skill bracket and platform before you act.
 
-### 3.6 PvE versus PvP balance
+### 3.6 Balancing choices players make: stats and talents
+
+When players spend points themselves (stats, talents, attributes), the number of possible builds is far too large to check one by one: 3 free points a level over 49 levels into 4 stats already give about 551,000 allocations for a single class. Teams handle this in four ways:
+
+| Technique | What it does |
+|---|---|
+| **Reference builds** | Each class has two or three defined point structures (its intended profiles); the balance sheet covers those, and they set the class's bands |
+| **Soft caps and diminishing returns** | Each extra point in one stat gives less, so extreme builds stay viable but not dominant |
+| **Guidance** | Recommended builds and auto-assign for players who do not want to choose; clear stat descriptions |
+| **Respec** | A way to undo choices at a cost, so experiments are safe |
+
+Live data then shows which off-reference builds players actually use; a build that dominates is handled like any dominant strategy (§3.5). The freedom itself is a feature: it makes characters personal and lets players fix their own weaknesses, which many players value above perfect balance.
+
+### 3.7 PvE versus PvP balance
 
 | | **PvE** | **PvP** |
 |---|---|---|
@@ -144,17 +160,19 @@ Read the metrics with care. **Skill and platform mix distort them**: an easy cla
 
 When both modes share skills, a change meant for one breaks the other. The common answer is to give PvP **its own coefficients**: several games publish separate PvE and PvP values for some skills (for example Guild Wars 2, as of October 2026; check the current patch notes). The course game's single opt-in PvP mode ([module 23](23-pvp.md)) applies a mode multiplier on top of the same sheet, so the PvE sheet in this module stays the one source of truth.
 
-### 3.7 Balancing a live game
+### 3.8 Balancing a live game
 
-| Practice | Rule of thumb | Why |
+| Common practice | Typical form | Why |
 |---|---|---|
-| **Buffs before nerfs** | If a class is weak, buff it; nerf only a true outlier | A nerf removes something players built; buffs are welcome, but if you only buff, the whole roster inflates (power creep), so pair them with content tuning |
-| **Small steps** | At most about 10% on one number per patch; one lever at a time | You can see what each change did; you can undo it |
+| **Buffs before nerfs** | If a class is weak, buff it; nerf a true outlier | A nerf removes something players built; buffs are welcome, but if you only buff, the whole roster inflates (power creep), so pair them with content tuning |
+| **Small steps** | The course game limits a patch to ±10% per number, one lever at a time | You can see what each change did; you can undo it |
 | **Fix the right layer** | A mechanic problem is not a number problem | Nerfing damage on a skill that is oppressive because it is un-dodgeable only makes it weak and still oppressive |
 | **Patch cadence** | Predictable and published | League of Legends, for example, ships patches roughly every two weeks and publishes the year's schedule (as of October 2026). Players plan around a rhythm and stop expecting surprise hotfixes |
-| **Hotfix only for harm** | Exploits, crashes, broken rewards | A mid-cycle balance change is a surprise and erodes trust |
+| **Hotfix for harm** | Exploits, crashes, broken rewards | A mid-cycle balance change is a surprise and erodes trust |
 | **Communicate intent** | Patch notes give the old value, the new value and one sentence of reason ("Frostbinder trailed in packs, so its freeze is longer") | Players accept a reasoned change more readily than a silent one |
-| **Compensate nerfs** | Free respec, refund, or a grace period when a nerf hits a build players invested in | Time is the currency in a game where nothing sold gives power |
+| **Compensate nerfs** | Free respec, refund, or a grace period when a nerf hits a build players invested in | Protects player investment; in a game that sells power, refunds are money; in the course game, only time is at stake |
+
+**Alternatives.** *Buff first* is welcomed and inflates the roster. *Nerf to the mean* holds power and costs players' investment. *Mixed*, per case. *Rotation*: instead of patching, content rotates out (Hearthstone's Standard format rotates older sets out each year). *Leave it*: accept a flavour-of-the-month meta and let it shift with other patches.
 
 Which method for which situation:
 
@@ -168,11 +186,11 @@ Which method for which situation:
 
 ## 4. Tuning and pitfalls
 
-**Set bands before numbers.** Decide what "acceptable" is first. A band of ±10% around the roster mean for classes and ±5% between the two Paths of a class is a good starting point: it is wide enough to hide the error of the model and narrow enough that players do not feel a gap. The 5% figure is a rule of thumb (inferred): below it, most players cannot attribute a result to the build and not to their own play.
+**Set bands before numbers.** Decide what "acceptable" is first. The course game uses a band of ±10% around the roster mean for classes and ±5% between the two Paths of a class. A tolerance depends on the game: wide bands tolerate model error and reward identity; narrow bands suit competitive modes. Set bands from what your players notice.
 
 **Change one lever at a time**, then re-run the sheet. If three numbers move together you cannot say which helped.
 
-**Signals that the balance is wrong** (playtest and live):
+**Signals that the balance is wrong** (playtest and live; these are the course game's thresholds, so set yours from the roster size and your tolerance):
 
 | Signal | Likely cause |
 |---|---|
@@ -185,10 +203,9 @@ Which method for which situation:
 
 **Classic failures in long-running games:**
 
-- **Balancing by the loudest voice.** Forum anger is not data. Check the metrics first.
-- **Balancing for the top 1%.** Elite players optimise anything; a tuning pass for them can ruin the casual experience.
+- **Community feedback and top-tier play** are both signals with biases: forum volume is not a sample, and top-1% play shows ceilings. Riot's framework balances separate tiers.
 - **Homogenisation.** Fixing every outlier by giving each class the same tools ends in five identical classes.
-- **Power creep.** Each new class or item is slightly stronger than the last to sell it. Budget new content against the same sheet.
+- **Power creep.** It can come from selling new content or from adding it without budgeting against the sheet.
 - **Over-trusting the sheet.** A sheet shows averages; it does not know that a skill is boring or un-dodgeable. The sheet in section 5 does not value a Cleric's raise at all.
 - **Hidden coupling.** A "class" change that touches shared skills changes PvP, gear tuning and the economy. Keep a list of what each number feeds.
 
@@ -322,7 +339,7 @@ What the trace shows:
 - **The edge is between 1.45 and 1.50.** At `areaMult` 1.45 the pack gap is +4.2% (in band); at 1.50 it is +5.3% (out).
 - **A change to one class moves the others.** Raising Duelist damage 10% lifts its overall score from 0.941 to 0.979, and **every other class falls** (Warden 1.006 → 0.998, Arcanist 1.060 → 1.047), because the roster mean moved. The mean of all scores stays exactly 1.0. Scores are relative.
 
-**Which fix?** Before launch, nerf: nobody has chosen a Path yet, and the intent for Stormcaller ("ahead in packs, within 5%") says 1.6 overshoots. After launch, prefer the buff, or give a free Path change for seven days with the nerf (section 5.9), because players have already paid respec gold ([module 16](16-economy.md): 50 gold × level).
+**Which fix?** Before launch, nerf: nobody has chosen a Path yet, and the intent for Stormcaller ("ahead in packs, within 5%") says 1.6 overshoots. In this example, after launch, a buff or a nerf with a free Path change for seven days (section 5.9), because players have already paid respec gold ([module 16](16-economy.md): 50 gold × level).
 
 ### 5.9 Live rules
 
@@ -340,11 +357,11 @@ Nothing sold gives combat power ([module 17](17-monetization.md)), so a nerf nev
 
 ### 5.10 What was cut
 
-- **Player-assigned stat points per level.** The reason sits in this module: with 3 free points over 49 levels into 4 stats, a single class has about **551,000** possible allocations (`C(150, 3)`). The sheet cannot cover that; players find the best one within days and the rest become traps. Fixed class growth ([module 09](09-classes-roles.md)) keeps the sheet exact and the build choice on the Paths and skills.
+- **Player-assigned stat points per level.** A choice of the course game, not a rule: fixed class growth ([module 09](09-classes-roles.md)) keeps this example's sheet exact. A game with free points balances on reference builds instead (§3.6).
 - **Per-class weight sets.** One weight set per fight; per-role sets would make a tank's score about the tank's own job and hide a weak role.
 - **Cross-class Path comparison.** The ±5% rule holds inside a class; comparing all ten Paths on one scale is a second pass.
-- **Automatic balancing** (win-rate-driven numbers). It hides intent. Metrics inform a human decision.
-- **Per-skill PvP splits.** One PvP multiplier ([module 23](23-pvp.md)).
+- **Automatic balancing** (win-rate-driven numbers). Cut because the course game's sheet is a written intent that a human approves; automatic tuning is used in some games for numbers that carry no identity (matchmaking weights, dynamic difficulty).
+- **Per-skill PvP splits.** Cut to keep one PvP multiplier ([module 23](23-pvp.md)).
 
 ### 5.11 The simulation
 
@@ -387,17 +404,18 @@ Try it: raise the Duelist's `damagePerHit` until it passes 1.10, or change the p
 
 ## Key takeaways
 
-- "Balanced" means fair, varied **and** intended. Perfect parity is not the goal; identity is.
-- Give every option a **power budget** and compare **value per point**. Cap whatever multiplies.
-- Use the four methods in order: spreadsheet, simulation, playtest, live metrics. Each catches what the previous one cannot.
+- "Balanced" means fair, varied **and** intended. Parity or identity is a design choice; role-based RPGs usually aim for identity within a band.
+- Give every option a **power budget** and compare **value per point**. Cap what multiplies if you want outliers small; uncapped scaling is a legitimate fantasy with its own tuning.
+- A common order is spreadsheet, simulation, playtest, live metrics. Each catches what the previous one cannot.
 - Score classes as a **normalised weighted sum** against the roster mean, with written bands: ±10% for classes, ±5% between Paths. Scores are relative: change one class and all the others move.
 - Change **one number at a time** and trace it through the sheet. An area change cannot move a single-target fight.
-- In a live game, **buff before nerf**, patch on a predictable cadence in small steps, say why, and compensate players whose investment you cut.
+- Live balance practices vary (buff first, nerf to hold power, rotation); the course game buffs before nerfs, patches in small steps, explains and compensates.
 - Treat the sheet as a model with known blind spots (utility is a judgement, skill is not modelled). Metrics by skill bracket have the last word.
 
 ## Further reading
 
 - Ian Schreiber, *Game Balance Concepts* (free online course; cost curves, transitive and intransitive systems, spreadsheets): https://gamebalanceconcepts.wordpress.com/
 - David Sirlin, *Balancing Multiplayer Games, Part 1: Definitions*: https://www.sirlin.net/articles/balancing-multiplayer-games-part-1-definitions
+- Hearthstone Wiki, "Standard rotation" (older sets rotate out each year): https://hearthstone.wiki.gg/wiki/Standard_rotation
 - Riot Games, *Champion Balance Framework* (power bands by audience, presence as a signal): https://www.leagueoflegends.com/en-us/news/dev/dev-champion-balance-framework/
 - Riot Games, League of Legends patch schedule (a published cadence; checked October 2026): https://support.riotgames.com/league-of-legends/gameplay/patch-schedule-league-of-legends

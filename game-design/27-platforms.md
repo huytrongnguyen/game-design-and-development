@@ -7,7 +7,7 @@
 
 ## In short
 
-A platform is a bundle of **input, screen, attention, hardware limits and store rules**, and each one changes what a good design looks like. The safest way to ship on several platforms is to keep the **rules of the game identical** (damage, hit windows, rewards, progress) and let the **presentation differ** (layout, assists, session hooks). The hardest design questions are how much the game may play itself on a phone, and how to keep a mixed PC and phone crowd fair in a group or a PvP match. The worked example sets the course game's platform rules: what is the same on PC and mobile, what differs, the cross-play rules for dungeons and PvP, and why there is no full auto-battle.
+A platform is a bundle of **input, screen, attention, hardware limits and store rules**, and each one changes what a good design looks like. One approach to shipping on several platforms keeps the **rules of the game identical** (damage, hit windows, rewards, progress) and lets the **presentation differ** (layout, assists, session hooks); another tunes rules per platform, which fits each audience and splits the community and the support load. The hardest design questions are how much the game may play itself on a phone, and how to keep a mixed PC and phone crowd fair in a group or a PvP match. The worked example sets the course game's platform rules: what is the same on PC and mobile, what differs, the cross-play rules for dungeons and PvP, and why the course game has no full auto-battle.
 
 ## 1. The concept
 
@@ -29,7 +29,7 @@ A platform is a bundle of **input, screen, attention, hardware limits and store 
 
 ### 1.2 Shared rules and platform layers
 
-Think of the game as layers. The lower layers are rules that every platform must agree on. The upper layers adapt to the device.
+Think of the game as layers. In the identical-rules approach (the course game's), the lower layers are rules that every platform agrees on, and the upper layers adapt to the device.
 
 ```mermaid
 flowchart TD
@@ -41,7 +41,7 @@ flowchart TD
     A --> B --> C --> D --> E
 ```
 
-Rule of thumb: **anything that affects fairness or progress lives at the rules and account layers**, and anything that affects comfort lives above. Module 06 applied this to controls, and this module applies it to the whole game.
+One approach is to put **anything that affects fairness or progress at the rules and account layers**, and anything that affects comfort above. Module 06 applied this to controls, and this module applies it to the whole game. The other approach tunes rules per platform (mobile-only rewards or modes, separate balance) and accepts the split.
 
 ## 2. The player's view
 
@@ -101,8 +101,8 @@ A **budget** is a limit per frame or per session that every feature must fit. Se
 
 Design consequences:
 - **Crowd cap.** A shared world with dozens of players needs a rule for how many other characters are drawn in full. Reduce detail, not rules.
-- **Never cull the gameplay-critical.** Telegraphs and enemy attack effects are drawn at every quality tier, because dropping them changes who can survive.
-- **Quality tiers.** Offer a "low" tier that looks plainer but plays identically.
+- **Gameplay-critical effects.** A common practice is to draw them at every tier: the course game draws telegraphs and enemy attack effects at every quality tier (pillar 2). Some games let low tiers drop effects, which changes what players can read, and accept that for performance; competitive shooters let players lower effects to reduce visual noise.
+- **Quality tiers.** A "low" tier can look plainer and play identically.
 
 ### 3.5 Store rules and fees (as of October 2026)
 
@@ -122,25 +122,27 @@ Stores take a share of each sale and set rules about what you can sell and how. 
 - **Randomized items.** Apple and Google require odds disclosure for random paid items ([module 17](17-monetization.md)).
 - **Age and parental tools.** Stores expect an age rating and honour family purchase controls.
 - **One account on several platforms.** Apple's guidelines allow content bought elsewhere to be used on iOS if the same content is also offered as an in-app purchase there (Review Guideline 3.1.3(b), multiplatform services, as of October 2026).
-- **Anti-steering.** Historically, mobile stores barred apps from pointing players to cheaper outside purchases. That is loosening in some regions in 2025–2026. Never design the economy around a loophole that may close.
+- **Anti-steering.** Historically, mobile stores barred apps from pointing players to cheaper outside purchases. That is loosening in some regions in 2025–2026. Mobile store rules on outside purchases are loosening in some regions and may change again; a business model that depends on the current rule carries that risk.
 
-**Worked fee example.** A 500 Crowns pack costs $4.99 on every platform in the course game. After a 30% fee the studio keeps $3.49. After 15% it keeps $4.24. After an assumed 5% processor fee on a web shop it keeps about $4.74. The price to the player is the same. **Design implication:** price parity across platforms keeps the shared account fair; the fee difference is a business decision, not a player-facing one.
+**Worked fee example.** A 500 Crowns pack costs $4.99 on every platform in the course game. After a 30% fee the studio keeps $3.49. After 15% it keeps $4.24. After an assumed 5% processor fee on a web shop it keeps about $4.74. The price to the player is the same. **Design implication:** price parity across platforms keeps the shared account simple (the course game's choice); the fee difference is then a business decision. Some games price lower or add a bonus on their own web shop where store rules allow, which turns the fee difference into a player-facing offer.
 
 ### 3.6 Auto-play and idle features on mobile
 
 Auto-play and idle features are common on mobile because a phone is used in gaps and with one thumb.
 
-| Feature | What it does | Who uses it | When it helps | What it costs the design |
+| Feature | What it does | Who uses it | Why players and studios choose it | What it costs the design |
 |---|---|---|---|---|
 | **Auto-pathing (auto-travel)** | Walks the hero to the quest target | Many mobile online RPGs | Removes dead travel time on a small screen | Players stop looking at the world, so exploration and discovery weaken |
-| **Auto-battle (auto-hunt)** | The game fights for the player | Common in mobile MMORPGs, for example Lineage 2 Revolution and MIR4 | Makes grinding playable on a phone and while half-attending | Skill expression goes away, so the game becomes a spreadsheet of numbers; telegraphs no longer matter; farming bots become hard to tell from players |
+| **Auto-battle (auto-hunt)** | The game fights for the player | Common in mobile MMORPGs, for example Lineage 2 Revolution and MIR4 | Playable one-handed and half-attending; widens the audience, including players who cannot play fast real-time combat; the main mode of several mobile RPGs | Skill expression moves to build and team choice; telegraphs matter less; farming bots are harder to tell from players |
 | **Auto-use of simple buffs** | Casts maintenance skills at set conditions | Many action RPGs | Saves a button on a small screen | Almost none if the skill is not a decision |
 | **Idle (offline) progress** | Rewards accumulate while away | Idle and hero-collection games | Respects time; brings players back | Players feel they must log in to avoid losing value; it competes with the core loop |
 | **Sweep (skip a cleared stage)** | Finish content you have already beaten, instantly | Hero-collection games | Respects time for repeated content | Skips the loop the game is built on |
+| **Player-scripted automation** | The player sets conditions ("if HP below 40%, heal") | Gambit-style rule systems in single-player RPGs (*Final Fantasy XII*) | Depth from rule design; skill in setup | A second game to build |
+| **Accessibility auto-assist** | Auto-aim, auto-target, hold-to-toggle for players who cannot do fast inputs | Many games | Access | Parity in competitive modes |
 
-**What auto-play does to the design.** Each automated action removes a decision from the core loop. When combat is automated, the game's depth moves to **build and team preparation** (module 11), which is the design of hero-collection games. When combat is the core pleasure (real-time dodging, as in the course game), automation removes the pleasure and makes pillar 2 meaningless. The question to ask for each feature: **"Is this action a decision, or maintenance?"** Automate maintenance, keep decisions.
+**What auto-play does to the design.** Each automated action removes a decision from the core loop. In games where combat is the core pleasure (real-time dodging, as in the course game), automation removes it; in games where depth is in **build and team preparation** (module 11, hero-collection games), automation removes only repetition. A test the course game uses for each feature: **"Is this action a decision, or maintenance?"** The course game automates maintenance and keeps decisions. Games that automate decisions on purpose (auto-battle collectors) design the depth elsewhere.
 
-**Fairness and trust.** If auto-play beats a skilled human, hand-played PC players feel outclassed; if a human beats auto-play, mobile players feel patronised. Auto-play is easiest to defend when its power is capped below manual play, or when it applies to content where speed, not skill, is the point.
+**Fairness and trust.** If auto-play beats a skilled human, hand-played PC players feel outclassed; if a human beats auto-play, mobile players feel patronised. Auto-play power can be capped below manual play, equal to it, or above it (idle rewards); capping is easiest to explain when the content is one where speed, not skill, is the point.
 
 ### 3.7 Cross-play and cross-progression
 
@@ -179,18 +181,18 @@ Cooperative content is forgiving: a phone player with large aim assist helps the
 | Account, progress, purchases | Session hooks: notifications, resume, short-session entry points |
 | Matchmaking rules | Tutorial hints for each input |
 
-Three tactics to keep the work manageable:
+The course game shares rules, content, economy and account, and varies layout, assists and hooks. Games can also ship platform-specific content (PC-only raids, mobile-only modes) to fit each audience, at the cost of fragmenting the community. Tactics for keeping the work manageable:
 
 1. **Define the action layer once** (module 06), and write each platform as an input map.
-2. **Test the weakest platform first.** The design must be playable on the phone before the PC's extras are added.
-3. **Never ship a PC-only requirement.** Do not add content that only one device can finish.
+2. **Test the weakest platform first** to keep designs reachable on the phone; testing the strongest first keeps depth.
+3. **Content only one device can finish** fragments the community; the course game has none.
 
 ### 3.9 How to choose
 
 | If the game... | Then favour |
 |---|---|
-| Is built on precise real-time combat | PC first, with touch-friendly assists; no full auto-battle |
-| Lives in short sessions and collection | Mobile first; auto and idle features are acceptable; depth is in team building |
+| Is built on precise real-time combat | PC first, with touch-friendly assists; auto-play ranges from none to maintenance-only to full auto (the course game picks maintenance-only) |
+| Lives in short sessions and collection | Mobile first, with auto and idle features; depth is in team building |
 | Is a competitive shooter or arena game | Separate pools by input, or equalised assists |
 | Needs the biggest reach with the least friction | Browser or instant-play, accepting hardware limits |
 | Has a long story and set-piece scenes | Console or PC; controller support |
@@ -215,10 +217,10 @@ Measure **by platform** from day one: completion rate, deaths per fight, session
 ### 4.2 Classic failures of a long-running multi-platform game
 
 - **A phone port.** The PC design is shrunk to a phone with tiny buttons. Fix: design the touch layout from the action layer, not from the keyboard.
-- **Two games under one name.** PC and mobile diverge in rules, so a shared account makes no sense. Fix: lock the rules layer.
-- **Auto-play creep.** First auto-travel, then auto-battle, then idle rewards; each one is "just for convenience", and in two years nobody plays the core loop. Fix: write the rule down ("auto never casts attack skills") and review it each season.
-- **Platform exclusive power.** A bonus for one platform, even a small one, splits the community.
-- **Store-rule shocks.** A fee or policy change breaks a revenue model. Fix: no unsellable bundle, a web shop where allowed, and a business model that works at the highest fee.
+- **Two games under one name.** Diverging rules suit separate games; a shared account suits aligned rules.
+- **Auto-play growth.** Auto-play can grow feature by feature (auto-travel, auto-battle, idle rewards). Teams that want to keep the core loop write down what automation may do and review it each season; games that move to mobile add auto features deliberately.
+- **Platform bonuses.** A bonus for one platform can split the community, or fit each audience.
+- **Store-rule shocks.** A fee or policy change can break a revenue model. Options: no unsellable bundle, a web shop where allowed, and a model that works at more than one fee level.
 - **Device fragmentation.** Hundreds of phones. Fix: a device tier list and a lowest-supported device kept in the test lab.
 - **Letting the old device fall behind.** Each season adds effects until the baseline phone cannot run it. Fix: a per-season performance budget check.
 
@@ -309,8 +311,8 @@ These make a 15-minute session on a phone complete (module 03, pillar 4).
 
 ### 5.7 What was cut
 
-- **Full auto-battle and idle farming.** They remove the dodge decision that pillar 2 depends on (see 5.4).
-- **A platform-exclusive reward** (for example "mobile login bonus"). It splits the community and breaks parity.
+- **Full auto-battle and idle farming.** Cut because they remove the dodge decision that pillar 2 depends on (see 5.4); hero-collection games build on them.
+- **A platform-exclusive reward** (for example "mobile login bonus"). Cut because pillar 4 asks that no platform be second-class; other games use platform-exclusive rewards to steer players to a platform.
 - **A separate mobile server.** One world is the point.
 - **Console and browser at launch.** The first release is small; the controller map stays open.
 - **Auto-travel on quests.** Cut in module 19; the waypoint network is free.
@@ -327,15 +329,16 @@ These make a 15-minute session on a phone complete (module 03, pillar 4).
 ## Key takeaways
 
 - A platform is **input, screen, attention, hardware and store rules**; each one changes what a good design looks like.
-- Keep the **rules layer and the account layer identical** on every platform; let layout, assists and session hooks differ.
-- Set performance budgets on the **weakest supported device**, and never cull what players need to survive, such as telegraphs.
-- Ask of every automated feature: **is this action a decision, or maintenance?** Automate maintenance, keep decisions.
-- Cross-play is easy in cooperative content and hard in competitive content: **equalise assists in PvP**, keep them generous in cooperation, and measure before splitting queues.
-- Store fees and rules change often (as of October 2026, Apple, Google and Steam all differ and two are in flux), so design a business model that works at the highest fee.
+- **Rules can be identical everywhere** (the course game) **or tuned per platform**, each with its trade-off.
+- Set performance budgets on the **weakest supported device**; the course game also draws gameplay-critical effects such as telegraphs at every tier.
+- **Decide how much the game plays itself**; the course game automates maintenance and keeps decisions.
+- Cross-play is easy in cooperative content and harder in competitive content: equalised assists, platform filters or separate pools are the main options; the course game equalises in PvP.
+- Store fees and rules change often (as of October 2026, Apple, Google and Steam all differ and two are in flux), so model the business at more than one fee level.
 - Measure **by platform** from day one, because an average hides the platform that is struggling.
 
 ## Further reading
 
+- StrategyWiki, "Final Fantasy XII/Gambits" (player-scripted rules): https://strategywiki.org/wiki/Final_Fantasy_XII/Gambits
 - Apple, App Store Small Business Program: https://developer.apple.com/app-store/small-business-program/
 - Apple, App Store Review Guidelines (section 3.1.3(b), multiplatform services): https://developer.apple.com/app-store/review/guidelines/
 - Google Play, service fees: https://support.google.com/googleplay/android-developer/answer/112622

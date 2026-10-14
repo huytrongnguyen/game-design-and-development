@@ -38,7 +38,7 @@ flowchart LR
     A -. "cost and freedom rise" .-> C
 ```
 
-Cost and freedom both rise to the right. The designer's job is to buy only the freedom the game's core loop uses.
+Cost and freedom both rise to the right. A free camera is the most expensive freedom to build and tune. Teams choose it when the core loop needs it, when immersion or spectacle is the selling point (open worlds), when the audience expects it, or when the team already has the pipeline; teams that choose it budget for lock-on, camera collision and a touch scheme.
 
 ## 2. The player's view
 
@@ -65,6 +65,8 @@ Style serves the aesthetics (module 01). Pixel art delivers Fantasy and nostalgi
 | **Isometric** | 2.5D | Classic action RPGs and tactics | Any ground direction | Fixed angle | Depth cue with a fixed camera | Objects hide others; clicks are ambiguous |
 | **2D sprites in a 3D world** | 2.5D | Games with hand-drawn characters in 3D scenes | Free in 3D | Fixed or limited rotation | 2D art quality with 3D lighting | Sprites look wrong from other angles |
 | **3D models, fixed camera** | 2.5D | Online action RPGs, many mobile games | Ground plane, optional height | Fixed rotation, possibly zoom | Full 3D art and animation with a controlled view | Some 3D cost; camera cannot show behind walls |
+| **First-person 3D** | 3D | The Elder Scrolls Online (optional), many shooters | Hero's eyes | Strongest immersion and aiming | Hero and ground telegraphs are hard to read; needs a free camera plus an arm and weapon model |
+| **Voxel or block 3D** | 3D | Minecraft | Free orbit | Easy to build and edit; strong identity | A distinct look; fine detail is limited |
 | **3D, free camera** | 3D | Open-world RPGs, third-person action | Full 3D | Player controlled | Maximum immersion and freedom | Highest cost; occlusion, lock-on and camera problems |
 
 ### 3.2 What the dimension changes
@@ -127,7 +129,7 @@ A 2D character facing eight directions with ten actions at six frames each is 48
 
 #### Feel
 
-2D allows the sharpest feel: fixed frames, exact hitboxes, a 1-pixel precision. 3D feel depends on camera, physics and animation blending; it can feel heavier and more immersive but takes more tuning to reach the same crispness.
+2D gives exact frames and hitboxes with little tuning. 3D feel depends on camera, physics and animation blending, and needs more tuning to reach the same precision. Both can reach high precision: 3D action games such as *Monster Hunter*, whose combat centres on reading a monster's tells, rely on exact timing.
 
 ### 3.3 Art styles as design choices
 
@@ -139,8 +141,10 @@ A 2D character facing eight directions with ten actions at six frames each is 48
 | **Stylised 3D** (low-poly, cel-shaded) | Cheaper than realistic; ages well; reads clearly | Needs art direction to look intentional |
 | **Realistic 3D** | Sensation, immersion | Highest cost, heavy hardware, uncanny problems |
 | **Voxel** | Easy to build and destroy; recognisable | A distinct style players may or may not like |
+| **HD-2D** (2D sprites lit in a 3D scene; *Octopath Traveler*) | Pixel charm with depth and lighting | Needs both a 2D art pipeline and a 3D lighting pipeline |
+| **Anime or cel-shaded 3D** (*Genshin Impact* has an anime style) | Clear silhouettes and a recognisable look | Needs a shader and strong art direction; costume and animation load stays high |
 
-A useful rule: **pick the style the team can make consistently for the whole life of the game.** A consistent simple style beats an inconsistent ambitious one.
+One common rule is to pick the style the team can keep consistent for the life of the game. Realistic 3D delivers immersion and Sensation and has the highest cost (art pipeline, hardware range, uncanny-valley risk); teams that choose it budget for that, or use asset libraries and scanning. Stylised looks cost less and age better, which is why small teams often choose them.
 
 ### 3.4 What a browser (web) game changes
 
@@ -169,7 +173,7 @@ Practical effect on dimension: browser games lean toward **2D and 2.5D** with sm
 | Is the team under 5 people? | 2D or a small 2.5D with a strict style guide |
 | Does the game need many characters and costume variants? | 3D (reusable rig) or modular 2D |
 | Is the first-minute and install friction critical? | Browser: 2D, 2.5D, small 3D |
-| Is the game played on phones with one thumb? | Fixed camera; avoid free camera |
+| Is the game played on phones with one thumb? | A fixed camera is the simplest on one thumb; free cameras on phones use a second thumb or a swipe area for the view, at the cost of screen space and a camera-sensitivity setting |
 | Is there a distinctive visual identity to protect? | The style you can produce for years |
 
 ## 4. Tuning and pitfalls
@@ -193,11 +197,11 @@ Practical effect on dimension: browser games lean toward **2D and 2.5D** with sm
 
 | Failure | Result | Fix |
 |---|---|---|
-| **3D by default** | The team pays for free-camera 3D and uses a fixed camera | Choose fixed-camera 3D or 2D until the core loop needs more |
+| **A free camera nobody uses** | The team pays for free-camera 3D and the game plays on a fixed camera | Decide early whether the core loop or the audience needs the free camera |
 | **2D with too many directions** | Animation load explodes | Mirror, limit directions, use cut-out rigs |
 | **Sprites in 3D that look wrong at an angle** | Billboards show the same face from all sides | Limit the camera angle or use 3D models |
 | **Style drift** | Different artists, different looks | A style guide with reference sheets and a palette |
-| **Realism trap** | Cost and hardware needs outgrow the team | Stylise |
+| **Realism cost outgrowing the team** | Cost and hardware needs outgrow the team | Stylise, or budget for the realistic pipeline from the start |
 | **Ignoring the small screen** | Details too small to read on a phone | Test silhouettes at the smallest size |
 | **Browser bloat** | First load takes a minute | Budget the first screen; stream the rest |
 
@@ -214,7 +218,7 @@ The course game's control module fixed the camera as a **fixed-rotation, tilted 
 | **Why** | Pillar 2 ("fights you can read") needs a camera that always shows the ground; pillar 1 needs five classes with many skills and costume variants, which a reusable 3D rig handles; a small team can keep a stylised look consistent |
 | **Movement** | Direct movement on a ground plane; jump is not a combat tool; a height difference is decoration or a ramp |
 | **Occlusion** | Walls and tall props between camera and hero fade to 30% opacity; enemies and telegraphs are never hidden |
-| **Budgets (invented)** | Hero at most 15,000 triangles; trash enemy at most 6,000; at most 40 animated characters on screen; draw-call budget set per quality tier (module 27) |
+| **Budgets (invented)** | Hero at most 15,000 triangles; trash enemy at most 6,000; at most 40 animated characters on screen at full detail (in crowded events, such as a 40-player world boss, the nearest 24 players draw at full detail and the rest as low-detail figures; the boss and every telegraph always at full detail); draw-call budget set per quality tier (module 27) |
 | **Art cost sheet (invented)** | New enemy 8 days; new class set with skills 40 days; new environment kit 25 days; costume variant 4 days on an existing rig |
 | **Browser** | The game does not target browsers at launch (module 27); if it did, the first load would stay under 20 MB with streaming and the quality tier would start on "low" |
 
@@ -223,7 +227,7 @@ The course game's control module fixed the camera as a **fixed-rotation, tilted 
 | Alternative | What it would change | What would break or improve |
 |---|---|---|
 | **2D top-down, pixel art** | Replace models by sprite sheets; five classes at eight directions and ten actions each is thousands of frames; the budget moves from rigs to frame counts. Telegraphs become simpler and exact | **Improves:** cost of environments, readability at small size, browser start. **Breaks:** costume variants multiply the sprite work; visual spectacle for bosses is harder |
-| **2D side view** | Combat moves to lanes; the dodge becomes a roll or jump; parties overlap on one plane; the world is a series of levels instead of fields | Pillar 3 (grouping) is harder to show; world design becomes linear |
+| **2D side view** | Combat moves to lanes; the dodge becomes a roll or jump; parties overlap on one plane; the world is a series of levels instead of fields | Parties overlap on one plane, so the example would need ways to keep party members readable (lane offsets, outlines, name tags); *MapleStory* shows that a side view can host parties. World: connected maps and portals replace open fields, which fits a level-based structure |
 | **3D with a free camera** | Orbit camera, lock-on, camera collision, vertical enemies; movement and aim on touch need two thumbs for movement and camera | **Improves:** immersion and exploration. **Breaks:** telegraph readability (pillar 2), phone controls, content cost |
 | **Isometric sprites** | A fixed 30° angle; a pixel look; depth sorting issues | Good for a small-team classic look; heavy art for a large class roster |
 | **Realistic 3D** | Higher poly counts and texture memory; hardware floor rises | Fails the "PC integrated graphics at 60 fps and a three-year-old phone at 30 fps" target in module 27 |
@@ -243,14 +247,17 @@ A small classic-style platformer would pick 2D side view with pixel art, a tiny 
 
 - Dimension and art style are design decisions: they change readability, movement, camera, telegraphs, level design, content cost and feel.
 - 2D gives control and low cost per asset; 3D gives reuse and spatial freedom at higher cost; 2.5D covers many mixes, among them 3D models on a fixed camera.
-- A free camera is the most expensive freedom. Buy it only when the core loop needs it.
-- Pick an art style the team can keep consistent for the life of the game; stylised beats realistic for small teams.
+- A free camera is the most expensive freedom: teams choose it when the core loop, the selling point (immersion, spectacle), the audience or the team's pipeline calls for it.
+- One common rule is to pick an art style the team can keep consistent for the life of the game; stylised looks cost less than realistic ones, which is why small teams often choose them.
 - A browser game starts instantly but must budget download size, input, audio unlock and performance from the start.
 - Write budgets (frame time, memory, first load, triangles, frames) as numbers before art starts.
 - The course game uses stylised 3D on a fixed tilted camera because pillar 2 needs the ground always visible.
 
 ## Further reading
 
+- Octopath Traveler (HD-2D): https://en.wikipedia.org/wiki/Octopath_Traveler
+- The Elder Scrolls Online (first- or third-person): https://en.wikipedia.org/wiki/The_Elder_Scrolls_Online
+- Minecraft (block-based 3D): https://en.wikipedia.org/wiki/Minecraft
 - Isometric video game graphics: https://en.wikipedia.org/wiki/Isometric_video_game_graphics
 - 2.5D overview: https://en.wikipedia.org/wiki/2.5D
 - Pixel art overview: https://en.wikipedia.org/wiki/Pixel_art
